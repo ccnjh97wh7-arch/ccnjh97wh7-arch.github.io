@@ -189,7 +189,7 @@
       addDoc,
       collection,
       getDocs,
-      initializeFirestore,
+      getFirestore,
       orderBy,
       query,
       serverTimestamp
@@ -205,7 +205,7 @@
     };
 
     const app = initializeApp(firebaseConfig);
-    const db = initializeFirestore(app, {});
+    const db = getFirestore(app);
 
     const form = document.querySelector("#memory-form");
     const submitButton = document.querySelector("#submit-button");
@@ -222,6 +222,12 @@
         const snapshot = await getDocs(memoriesQuery);
 
         if (snapshot.empty) {
+          memories.innerHTML = `
+            <article class="memory">
+              <div class="memory-name">No memories have been posted yet.</div>
+              <p>Check back soon.</p>
+            </article>
+          `;
           return;
         }
 
@@ -247,6 +253,12 @@
         });
       } catch (error) {
         console.error("Could not load memories:", error);
+        memories.innerHTML = `
+          <article class="memory">
+            <div class="memory-name">Unable to load memories right now.</div>
+            <p>Please try again later.</p>
+          </article>
+        `;
       }
     }
 
@@ -266,7 +278,7 @@
       status.textContent = "Sending your memory...";
 
       try {
-        await addDoc(collection(db, "memory_submissions"), {
+        await addDoc(collection(db, "approved_memories"), {
           name,
           nickname,
           story,
@@ -275,7 +287,8 @@
 
         form.reset();
         status.textContent =
-          "Thank you. Your memory was sent for review.";
+          "Thank you. Your memory has been posted.";
+        await loadApprovedMemories();
       } catch (error) {
         console.error("Could not submit memory:", error);
         status.textContent =
