@@ -1,304 +1,116 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Stories About Rocky</title>
+<script type="module">
+  import { initializeApp } from "https://www.gstatic.com/firebasejs/12.16.0/firebase-app.js";
+  import {
+    addDoc,
+    collection,
+    getDocs,
+    getFirestore,
+    orderBy,
+    query,
+    serverTimestamp
+  } from "https://www.gstatic.com/firebasejs/12.16.0/firebase-firestore.js";
 
-  <style>
-    :root {
-      --gold: #DAA520;
-      --paper: #F2EBDD;
-      --orange: #C45722;
-      --black: #111111;
-    }
+  const firebaseConfig = {
+    apiKey: "AIzaSyCw64gMvjhoKGwOlkTEF8Krvk3VX1KVup4",
+    authDomain: "rocky-taylor-memorial.firebaseapp.com",
+    projectId: "rocky-taylor-memorial",
+    storageBucket: "rocky-taylor-memorial.firebasestorage.app",
+    messagingSenderId: "1082208747146",
+    appId: "1:1082208747146:web:5eee9fb14e2ef853d03773"
+  };
 
-    * {
-      box-sizing: border-box;
-    }
+  const app = initializeApp(firebaseConfig);
+  const db = getFirestore(app);
 
-    body {
-      margin: 0;
-      background: var(--black);
-      color: var(--paper);
-      font-family: Georgia, "Times New Roman", serif;
-      line-height: 1.6;
-    }
+  const form = document.querySelector("#memory-form");
+  const submitButton = document.querySelector("#submit-button");
+  const status = document.querySelector("#form-status");
+  const memories = document.querySelector("#memories");
 
-    main {
-      width: min(760px, calc(100% - 32px));
-      margin: 0 auto;
-      padding: 48px 0 70px;
-    }
+  async function loadApprovedMemories() {
+    try {
+      const memoriesQuery = query(
+        collection(db, "memories"),
+        orderBy("submittedAt", "desc")
+      );
 
-    a {
-      color: var(--gold);
-    }
+      const snapshot = await getDocs(memoriesQuery);
 
-    .back-link {
-      display: inline-block;
-      margin-bottom: 35px;
-      text-decoration: none;
-    }
-
-    h1 {
-      color: var(--gold);
-      font-size: clamp(2.3rem, 8vw, 4.5rem);
-      line-height: 1;
-      margin: 0 0 16px;
-    }
-
-    .intro {
-      font-size: 1.15rem;
-      max-width: 650px;
-      margin-bottom: 34px;
-    }
-
-    .form-box,
-    .memory {
-      background: var(--paper);
-      color: var(--black);
-      padding: 25px;
-      border-left: 7px solid var(--orange);
-      margin-bottom: 28px;
-    }
-
-    h2 {
-      margin-top: 0;
-      color: var(--orange);
-    }
-
-    label {
-      display: block;
-      font-weight: bold;
-      margin: 16px 0 6px;
-    }
-
-    input,
-    textarea {
-      width: 100%;
-      border: 1px solid #777;
-      padding: 12px;
-      font: inherit;
-      background: #fffdf8;
-    }
-
-    textarea {
-      min-height: 180px;
-      resize: vertical;
-    }
-
-    .optional,
-    .notice {
-      color: #555;
-      font-weight: normal;
-      font-size: 0.9rem;
-    }
-
-    button {
-      margin-top: 22px;
-      padding: 13px 20px;
-      border: 0;
-      background: var(--orange);
-      color: white;
-      font: bold 1rem Arial, sans-serif;
-      cursor: pointer;
-    }
-
-    button:hover {
-      background: #9d3d19;
-    }
-
-    button:disabled {
-      cursor: wait;
-      opacity: 0.7;
-    }
-
-    .status {
-      margin-top: 16px;
-      font-weight: bold;
-    }
-
-    .memory-name {
-      color: var(--orange);
-      font-weight: bold;
-      margin-bottom: 10px;
-    }
-
-    .memory p {
-      margin-bottom: 0;
-      white-space: pre-wrap;
-    }
-  </style>
-</head>
-
-<body>
-  <main>
-    <a class="back-link" href="index.html">← Back to the main page</a>
-
-    <h1>Stories About Rocky</h1>
-
-    <p class="intro">
-      This page is for anyone who knew James “Rocky” Taylor.
-      Leave a story, a nickname, or one small piece of him that deserves
-      to be remembered.
-    </p>
-
-    <section class="form-box">
-      <h2>Leave a memory</h2>
-
-      <form id="memory-form">
-        <label for="name">
-          Your name <span class="optional">(optional)</span>
-        </label>
-        <input id="name" name="name" type="text" maxlength="80">
-
-        <label for="nickname">
-          Your nickname <span class="optional">(optional)</span>
-        </label>
-        <input id="nickname" name="nickname" type="text" maxlength="80">
-
-        <label for="story">Your story</label>
-        <textarea id="story" name="story" required maxlength="2500"></textarea>
-
-        <button id="submit-button" type="submit">Send memory for review</button>
-
-        <p id="form-status" class="status" aria-live="polite"></p>
-
-        <p class="notice">
-          Stories are reviewed before being posted publicly. Photo uploads
-          will be added soon.
-        </p>
-      </form>
-    </section>
-
-    <section>
-      <h2>Memories already shared</h2>
-      <div id="memories">
-        <article class="memory">
-          <div class="memory-name">No memories have been posted yet.</div>
-          <p>Check back soon.</p>
-        </article>
-      </div>
-    </section>
-  </main>
-
-  <script type="module">
-    import { initializeApp } from "https://www.gstatic.com/firebasejs/12.16.0/firebase-app.js";
-    import {
-      addDoc,
-      collection,
-      getDocs,
-      getFirestore,
-      orderBy,
-      query,
-      serverTimestamp
-    } from "https://www.gstatic.com/firebasejs/12.16.0/firebase-firestore.js";
-
-    const firebaseConfig = {
-      apiKey: "AIzaSyCw64gMvjhoKGwOlkTEF8Krvk3VX1KVup4",
-      authDomain: "rocky-taylor-memorial.firebaseapp.com",
-      projectId: "rocky-taylor-memorial",
-      storageBucket: "rocky-taylor-memorial.firebasestorage.app",
-      messagingSenderId: "1082208747146",
-      appId: "1:1082208747146:web:5eee9fb14e2ef853d03773"
-    };
-
-    const app = initializeApp(firebaseConfig);
-    const db = getFirestore(app);
-
-    const form = document.querySelector("#memory-form");
-    const submitButton = document.querySelector("#submit-button");
-    const status = document.querySelector("#form-status");
-    const memories = document.querySelector("#memories");
-
-    async function loadApprovedMemories() {
-      try {
-        const memoriesQuery = query(
-          collection(db, "approved_memories"),
-          orderBy("submittedAt", "desc")
-        );
-
-        const snapshot = await getDocs(memoriesQuery);
-
-        if (snapshot.empty) {
-          memories.innerHTML = `
-            <article class="memory">
-              <div class="memory-name">No memories have been posted yet.</div>
-              <p>Check back soon.</p>
-            </article>
-          `;
-          return;
-        }
-
-        memories.innerHTML = "";
-
-        snapshot.forEach((doc) => {
-          const memory = doc.data();
-          const article = document.createElement("article");
-          article.className = "memory";
-
-          const name = document.createElement("div");
-          name.className = "memory-name";
-          name.textContent =
-            memory.nickname ||
-            memory.name ||
-            "A friend of Rocky";
-
-          const story = document.createElement("p");
-          story.textContent = memory.story;
-
-          article.append(name, story);
-          memories.append(article);
-        });
-      } catch (error) {
-        console.error("Could not load memories:", error);
+      if (snapshot.empty) {
         memories.innerHTML = `
           <article class="memory">
-            <div class="memory-name">Unable to load memories right now.</div>
-            <p>Please try again later.</p>
+            <div class="memory-name">No memories have been posted yet.</div>
+            <p>Check back soon.</p>
           </article>
         `;
-      }
-    }
-
-    form.addEventListener("submit", async (event) => {
-      event.preventDefault();
-
-      const name = document.querySelector("#name").value.trim();
-      const nickname = document.querySelector("#nickname").value.trim();
-      const story = document.querySelector("#story").value.trim();
-
-      if (!story) {
-        status.textContent = "Please write a memory before sending it.";
         return;
       }
 
-      submitButton.disabled = true;
-      status.textContent = "Sending your memory...";
+      memories.innerHTML = "";
 
-      try {
-        await addDoc(collection(db, "approved_memories"), {
-          name,
-          nickname,
-          story,
-          submittedAt: serverTimestamp()
-        });
+      snapshot.forEach((doc) => {
+        const memory = doc.data();
+        const article = document.createElement("article");
+        article.className = "memory";
 
-        form.reset();
-        status.textContent =
-          "Thank you. Your memory has been posted.";
-        await loadApprovedMemories();
-      } catch (error) {
-        console.error("Could not submit memory:", error);
-        status.textContent =
-          "Something went wrong. Please try again in a moment.";
-      } finally {
-        submitButton.disabled = false;
-      }
-    });
+        const name = document.createElement("div");
+        name.className = "memory-name";
+        name.textContent =
+          memory.nickname ||
+          memory.name ||
+          "A friend of Rocky";
 
-    loadApprovedMemories();
-  </script>
-</body>
-</html>
+        const story = document.createElement("p");
+        story.textContent = memory.story;
+
+        article.append(name, story);
+        memories.append(article);
+      });
+    } catch (error) {
+      console.error("Could not load memories:", error);
+      memories.innerHTML = `
+        <article class="memory">
+          <div class="memory-name">Unable to load memories right now.</div>
+          <p>Please try again later.</p>
+        </article>
+      `;
+    }
+  }
+
+  form.addEventListener("submit", async (event) => {
+    event.preventDefault();
+
+    const name = document.querySelector("#name").value.trim();
+    const nickname = document.querySelector("#nickname").value.trim();
+    const story = document.querySelector("#story").value.trim();
+
+    if (!story) {
+      status.textContent = "Please write a memory before sending it.";
+      return;
+    }
+
+    submitButton.disabled = true;
+    status.textContent = "Sending your memory...";
+
+    try {
+      await addDoc(collection(db, "memories"), {
+        name,
+        nickname,
+        story,
+        submittedAt: serverTimestamp()
+      });
+
+      form.reset();
+      status.textContent = "Thank you. Your memory has been posted.";
+      await loadApprovedMemories();
+    } catch (error) {
+      console.error("Could not submit memory:", error);
+      status.textContent =
+        "Something went wrong. Please try again in a moment.";
+    } finally {
+      submitButton.disabled = false;
+    }
+  });
+
+  loadApprovedMemories();
+</script>
