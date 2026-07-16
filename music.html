@@ -1,0 +1,243 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Music Library</title>
+  <style>
+    :root {
+      --ink: #111111;
+      --paper: #f2ebdd;
+      --gold: #daa520;
+      --orange: #c45722;
+      --cream: #fff8e8;
+      --muted: #6f6251;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      font-family: Georgia, "Times New Roman", serif;
+      color: var(--ink);
+      background:
+        radial-gradient(circle at top left, rgba(218, 165, 32, 0.22), transparent 34rem),
+        linear-gradient(135deg, var(--paper), #e5d7bd);
+      line-height: 1.6;
+    }
+
+    header {
+      border-bottom: 4px solid var(--ink);
+      background: var(--ink);
+      color: var(--paper);
+    }
+
+    nav {
+      max-width: 960px;
+      margin: 0 auto;
+      padding: 1rem;
+      display: flex;
+      gap: 1rem;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    nav a {
+      color: var(--gold);
+      text-decoration: none;
+      font-weight: 700;
+    }
+
+    nav a:hover {
+      color: var(--paper);
+    }
+
+    main {
+      max-width: 960px;
+      margin: 0 auto;
+      padding: 2rem 1rem 4rem;
+    }
+
+    .hero {
+      padding: 3rem 0 2rem;
+    }
+
+    .eyebrow {
+      margin: 0 0 0.5rem;
+      color: var(--orange);
+      font-family: Arial, Helvetica, sans-serif;
+      font-size: 0.85rem;
+      font-weight: 800;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+    }
+
+    h1 {
+      margin: 0;
+      max-width: 760px;
+      font-size: clamp(2.4rem, 8vw, 5rem);
+      line-height: 0.95;
+    }
+
+    .intro {
+      max-width: 680px;
+      margin: 1rem 0 0;
+      color: #30291f;
+      font-size: 1.15rem;
+    }
+
+    .music-card {
+      position: relative;
+      overflow: hidden;
+      margin-top: 1.5rem;
+      padding: 1.25rem;
+      border: 3px solid var(--ink);
+      border-radius: 8px;
+      background: var(--cream);
+      box-shadow: 8px 8px 0 var(--ink);
+    }
+
+    .music-card::before {
+      content: "";
+      position: absolute;
+      inset: 0 0 auto;
+      height: 0.55rem;
+      background: repeating-linear-gradient(
+        90deg,
+        var(--gold) 0,
+        var(--gold) 24px,
+        var(--orange) 24px,
+        var(--orange) 48px,
+        var(--ink) 48px,
+        var(--ink) 72px
+      );
+    }
+
+    .track-top {
+      display: flex;
+      gap: 1rem;
+      align-items: center;
+      margin-top: 0.7rem;
+    }
+
+    .record {
+      flex: 0 0 auto;
+      width: 86px;
+      aspect-ratio: 1;
+      border: 8px solid var(--ink);
+      border-radius: 50%;
+      background:
+        radial-gradient(circle, var(--gold) 0 11%, var(--ink) 12% 18%, transparent 19%),
+        repeating-radial-gradient(circle, #252525 0 6px, #111111 7px 12px);
+    }
+
+    h2 {
+      margin: 0;
+      font-size: 2rem;
+      line-height: 1.05;
+    }
+
+    .track-note {
+      margin: 0.35rem 0 0;
+      color: var(--muted);
+      font-family: Arial, Helvetica, sans-serif;
+    }
+
+    audio {
+      width: 100%;
+      margin-top: 1.25rem;
+      accent-color: var(--orange);
+    }
+
+    .file-link {
+      display: inline-block;
+      margin-top: 1rem;
+      color: var(--ink);
+      font-family: Arial, Helvetica, sans-serif;
+      font-weight: 800;
+      text-decoration-thickness: 3px;
+      text-decoration-color: var(--gold);
+      text-underline-offset: 4px;
+    }
+
+    .library-note {
+      max-width: 720px;
+      margin-top: 2.5rem;
+      padding-left: 1rem;
+      border-left: 6px solid var(--orange);
+      color: #352c20;
+      font-size: 1.05rem;
+    }
+
+    footer {
+      max-width: 960px;
+      margin: 0 auto;
+      padding: 2rem 1rem;
+      color: var(--muted);
+      font-family: Arial, Helvetica, sans-serif;
+      font-size: 0.9rem;
+    }
+
+    @media (max-width: 620px) {
+      .track-top {
+        align-items: flex-start;
+      }
+
+      .record {
+        width: 64px;
+        border-width: 6px;
+      }
+
+      .music-card {
+        box-shadow: 5px 5px 0 var(--ink);
+      }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <nav>
+      <a href="index.html">Home</a>
+      <a href="music.html">Music</a>
+    </nav>
+  </header>
+
+  <main>
+    <section class="hero">
+      <p class="eyebrow">Suno Songs</p>
+      <h1>Music Library</h1>
+      <p class="intro">
+        A home for the songs, experiments, weird little hits, and half-serious bangers that came out of the Suno era.
+      </p>
+    </section>
+
+    <section class="music-card" aria-labelledby="bullshit-title">
+      <div class="track-top">
+        <div class="record" aria-hidden="true"></div>
+        <div>
+          <h2 id="bullshit-title">The Bullshit</h2>
+          <p class="track-note">First track in the archive.</p>
+        </div>
+      </div>
+
+      <audio controls preload="metadata">
+        <source src="music/the_bullshit.mp3" type="audio/mpeg">
+        Your browser does not support the audio element.
+      </audio>
+
+      <a class="file-link" href="music/the_bullshit.mp3">Open MP3 file</a>
+    </section>
+
+    <p class="library-note">
+      More songs can be added here as they come off the phone. Each one just needs an audio player and a short note.
+    </p>
+  </main>
+
+  <footer>
+    <p>Life of Jaffar music archive.</p>
+  </footer>
+</body>
+</html>
