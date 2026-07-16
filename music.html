@@ -163,6 +163,93 @@
       text-underline-offset: 4px;
     }
 
+    .player-controls {
+      display: flex;
+      gap: 0.75rem;
+      margin-top: 1rem;
+      flex-wrap: wrap;
+    }
+
+    .player-controls button,
+    .track-button {
+      border: 2px solid var(--ink);
+      color: var(--ink);
+      font-family: Arial, Helvetica, sans-serif;
+      font-weight: 800;
+      cursor: pointer;
+    }
+
+    .player-controls button {
+      padding: 0.65rem 1rem;
+      border-radius: 999px;
+      background: var(--gold);
+    }
+
+    .player-controls button:hover:not(:disabled),
+    .player-controls button:focus-visible {
+      background: var(--orange);
+      color: var(--cream);
+    }
+
+    .player-controls button:disabled {
+      cursor: not-allowed;
+      opacity: 0.45;
+    }
+
+    .playlist {
+      margin: 2.25rem 0 0;
+      padding: 0;
+      list-style: none;
+      border-top: 3px solid var(--ink);
+    }
+
+    .playlist li {
+      border-bottom: 2px solid var(--ink);
+    }
+
+    .track-button {
+      display: grid;
+      grid-template-columns: 2.5rem 1fr auto;
+      gap: 0.75rem;
+      align-items: center;
+      width: 100%;
+      padding: 1rem 0.75rem;
+      border: 0;
+      background: transparent;
+      text-align: left;
+    }
+
+    .track-button:hover,
+    .track-button:focus-visible {
+      background: rgba(218, 165, 32, 0.24);
+      outline: 3px solid var(--orange);
+      outline-offset: -3px;
+    }
+
+    .track-button[aria-current="true"] {
+      background: var(--ink);
+      color: var(--cream);
+    }
+
+    .track-number {
+      color: var(--orange);
+    }
+
+    .track-button[aria-current="true"] .track-number {
+      color: var(--gold);
+    }
+
+    .playing-label {
+      color: var(--orange);
+      font-size: 0.78rem;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+    }
+
+    .track-button[aria-current="true"] .playing-label {
+      color: var(--gold);
+    }
+
     .library-note {
       max-width: 720px;
       margin-top: 2.5rem;
@@ -194,6 +281,14 @@
       .music-card {
         box-shadow: 5px 5px 0 var(--ink);
       }
+
+      .track-button {
+        grid-template-columns: 2rem 1fr;
+      }
+
+      .playing-label {
+        grid-column: 2;
+      }
     }
   </style>
 </head>
@@ -214,30 +309,220 @@
       </p>
     </section>
 
-    <section class="music-card" aria-labelledby="bullshit-title">
+    <section class="music-card" aria-labelledby="now-playing-title">
       <div class="track-top">
         <div class="record" aria-hidden="true"></div>
         <div>
-          <h2 id="bullshit-title">The Bullshit</h2>
-          <p class="track-note">First track in the archive.</p>
+          <p class="eyebrow">Now Playing</p>
+          <h2 id="now-playing-title">The Bullshit</h2>
+          <p class="track-note" id="now-playing-note">First track in the archive.</p>
         </div>
       </div>
 
-      <audio controls preload="metadata">
+      <audio id="audio-player" controls preload="metadata">
         <source src="music/the_bullshit.mp3" type="audio/mpeg">
         Your browser does not support the audio element.
       </audio>
 
-      <a class="file-link" href="music/the_bullshit.mp3">Open MP3 file</a>
+      <div class="player-controls" aria-label="Playlist controls">
+        <button id="previous-track" type="button">&#9664; Previous</button>
+        <button id="next-track" type="button">Next &#9654;</button>
+      </div>
+
+      <a class="file-link" id="file-link" href="music/the_bullshit.mp3">Open current MP3 file</a>
+
+      <!-- To add a song, copy this list item and change its title, note, and MP3 path. -->
+      <ol class="playlist" id="playlist" aria-label="Song playlist">
+        <li>
+          <button
+            class="track-button"
+            type="button"
+            data-title="The Bullshit"
+            data-note="First track in the archive."
+            data-src="music/the_bullshit.mp3"
+            aria-current="true"
+          >
+            <span class="track-number">01</span>
+            <span>The Bullshit</span>
+            <span class="playing-label">Playing</span>
+          </button>
+        </li>
+        <li>
+          <button
+            class="track-button"
+            type="button"
+            data-title="Duh Duh Dumb"
+            data-note="Second track in the archive."
+            data-src="music/duh-duh-dumb.mp3"
+            aria-current="false"
+          >
+            <span class="track-number">02</span>
+            <span>Duh Duh Dumb</span>
+            <span class="playing-label">Play</span>
+          </button>
+        </li>
+        <li>
+          <button
+            class="track-button"
+            type="button"
+            data-title="I'm on Drugs"
+            data-note="Third track in the archive."
+            data-src="music/Im-on-drugs.mp3"
+            aria-current="false"
+          >
+            <span class="track-number">03</span>
+            <span>I'm on Drugs</span>
+            <span class="playing-label">Play</span>
+          </button>
+        </li>
+        <li>
+          <button
+            class="track-button"
+            type="button"
+            data-title="Big Country Cover"
+            data-note="Fourth track in the archive."
+            data-src="music/big-country-cover.mp3"
+            aria-current="false"
+          >
+            <span class="track-number">04</span>
+            <span>Big Country Cover</span>
+            <span class="playing-label">Play</span>
+          </button>
+        </li>
+        <li>
+          <button
+            class="track-button"
+            type="button"
+            data-title="Fatgirls"
+            data-note="Fifth track in the archive."
+            data-src="music/fatgirls.mp3"
+            aria-current="false"
+          >
+            <span class="track-number">05</span>
+            <span>Fatgirls</span>
+            <span class="playing-label">Play</span>
+          </button>
+        </li>
+        <li>
+          <button
+            class="track-button"
+            type="button"
+            data-title="Ho Ho Ho"
+            data-note="Sixth track in the archive."
+            data-src="music/ho-ho-ho.mp3"
+            aria-current="false"
+          >
+            <span class="track-number">06</span>
+            <span>Ho Ho Ho</span>
+            <span class="playing-label">Play</span>
+          </button>
+        </li>
+        <li>
+          <button
+            class="track-button"
+            type="button"
+            data-title="Japanese Boom Bap"
+            data-note="Seventh track in the archive."
+            data-src="music/japanese-boom-bap.mp3"
+            aria-current="false"
+          >
+            <span class="track-number">07</span>
+            <span>Japanese Boom Bap</span>
+            <span class="playing-label">Play</span>
+          </button>
+        </li>
+        <li>
+          <button
+            class="track-button"
+            type="button"
+            data-title="Sound Track"
+            data-note="Eighth track in the archive."
+            data-src="music/sound-track.mp3"
+            aria-current="false"
+          >
+            <span class="track-number">08</span>
+            <span>Sound Track</span>
+            <span class="playing-label">Play</span>
+          </button>
+        </li>
+        <li>
+          <button
+            class="track-button"
+            type="button"
+            data-title="Tokyo Slaughter"
+            data-note="Ninth track in the archive."
+            data-src="music/tokyo-slaughter.mp3"
+            aria-current="false"
+          >
+            <span class="track-number">09</span>
+            <span>Tokyo Slaughter</span>
+            <span class="playing-label">Play</span>
+          </button>
+        </li>
+      </ol>
     </section>
 
     <p class="library-note">
-      More songs can be added here as they come off the phone. Each one just needs an audio player and a short note.
+      Choose a song from the playlist. When a track ends, the next one will begin automatically.
     </p>
   </main>
 
   <footer>
     <p>Life of Jaffar music archive.</p>
   </footer>
+
+  <script>
+    const audioPlayer = document.querySelector("#audio-player");
+    const nowPlayingTitle = document.querySelector("#now-playing-title");
+    const nowPlayingNote = document.querySelector("#now-playing-note");
+    const fileLink = document.querySelector("#file-link");
+    const previousButton = document.querySelector("#previous-track");
+    const nextButton = document.querySelector("#next-track");
+    const trackButtons = Array.from(document.querySelectorAll(".track-button"));
+    let currentTrackIndex = 0;
+
+    function loadTrack(index, shouldPlay = false) {
+      const track = trackButtons[index];
+
+      currentTrackIndex = index;
+      audioPlayer.src = track.dataset.src;
+      nowPlayingTitle.textContent = track.dataset.title;
+      nowPlayingNote.textContent = track.dataset.note;
+      fileLink.href = track.dataset.src;
+
+      trackButtons.forEach((button, buttonIndex) => {
+        const isCurrent = buttonIndex === currentTrackIndex;
+        button.setAttribute("aria-current", isCurrent ? "true" : "false");
+        button.querySelector(".playing-label").textContent = isCurrent ? "Playing" : "Play";
+      });
+
+      if (shouldPlay) {
+        audioPlayer.play();
+      }
+    }
+
+    function changeTrack(direction) {
+      const nextIndex = (currentTrackIndex + direction + trackButtons.length) % trackButtons.length;
+      loadTrack(nextIndex, true);
+    }
+
+    trackButtons.forEach((button, index) => {
+      button.addEventListener("click", () => loadTrack(index, true));
+    });
+
+    previousButton.addEventListener("click", () => changeTrack(-1));
+    nextButton.addEventListener("click", () => changeTrack(1));
+
+    audioPlayer.addEventListener("ended", () => {
+      if (trackButtons.length > 1) {
+        changeTrack(1);
+      }
+    });
+
+    if (trackButtons.length < 2) {
+      previousButton.disabled = true;
+      nextButton.disabled = true;
+    }
+  </script>
 </body>
 </html>
