@@ -161,12 +161,12 @@
         <label for="story">Your story</label>
         <textarea id="story" name="story" required maxlength="2500"></textarea>
 
-        <button id="submit-button" type="submit">Send memory for review</button>
+        <button id="submit-button" type="submit">Share memory</button>
 
         <p id="form-status" class="status" aria-live="polite"></p>
 
         <p class="notice">
-          Stories are reviewed before being posted publicly. Photo uploads
+          Stories will appear publicly after they are submitted. Photo uploads
           will be added soon.
         </p>
       </form>
@@ -275,11 +275,10 @@
       }
 
       submitButton.disabled = true;
-      status.textContent = "Sending your memory...";
+      status.textContent = "Sharing your memory...";
 
       try {
-        // Submit to the review queue so you can approve before publishing
-        await addDoc(collection(db, "memory_submissions"), {
+        await addDoc(collection(db, "approved_memories"), {
           name,
           nickname,
           story,
@@ -287,11 +286,12 @@
         });
 
         form.reset();
-        status.textContent = "Thank you. Your memory was sent for review.";
+        status.textContent = "Thank you. Your memory has been shared.";
+        loadApprovedMemories();
       } catch (error) {
         console.error("Could not submit memory:", error);
-        // Surface helpful text for common Firestore rule failures
-        if (error && error.code === 'permission-denied') {
+
+        if (error && error.code === "permission-denied") {
           status.textContent =
             "Submission blocked by database rules. I can't save this right now.";
         } else {
