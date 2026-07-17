@@ -278,7 +278,8 @@
       status.textContent = "Sending your memory...";
 
       try {
-        await addDoc(collection(db, "approved_memories"), {
+        // Submit to the review queue so you can approve before publishing
+        await addDoc(collection(db, "memory_submissions"), {
           name,
           nickname,
           story,
@@ -286,12 +287,17 @@
         });
 
         form.reset();
-        status.textContent = "Thank you. Your memory has been posted.";
-        await loadApprovedMemories();
+        status.textContent = "Thank you. Your memory was sent for review.";
       } catch (error) {
         console.error("Could not submit memory:", error);
-        status.textContent =
-          "Something went wrong. Please try again in a moment.";
+        // Surface helpful text for common Firestore rule failures
+        if (error && error.code === 'permission-denied') {
+          status.textContent =
+            "Submission blocked by database rules. I can't save this right now.";
+        } else {
+          status.textContent =
+            "Something went wrong. Please try again in a moment.";
+        }
       } finally {
         submitButton.disabled = false;
       }
