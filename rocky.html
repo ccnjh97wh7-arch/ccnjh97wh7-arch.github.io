@@ -211,8 +211,64 @@
     const submitButton = document.querySelector("#submit-button");
     const status = document.querySelector("#form-status");
     const memories = document.querySelector("#memories");
+    const STORAGE_KEY = "rocky-memories-fallback";
+
+    function getFallbackMemories() {
+      try {
+        const stored = localStorage.getItem(STORAGE_KEY);
+        if (!stored) return [];
+        const parsed = JSON.parse(stored);
+        return Array.isArray(parsed) ? parsed : [];
+      } catch (error) {
+        console.warn("Could not read fallback memories:", error);
+        return [];
+      }
+    }
+
+    function saveFallbackMemories(entries) {
+      try {
+        localStorage.setItem(STORAGE_KEY, JSON.stringify(entries));
+      } catch (error) {
+        console.warn("Could not save fallback memories:", error);
+      }
+    }
+
+    function renderMemoryList(entries) {
+      if (!entries.length) {
+        memories.innerHTML = `
+          <article class="memory">
+            <div class="memory-name">No memories have been posted yet.</div>
+            <p>Check back soon.</p>
+          </article>
+        `;
+        return;
+      }
+
+      memories.innerHTML = "";
+
+      entries.forEach((memory) => {
+        const article = document.createElement("article");
+        article.className = "memory";
+
+        const name = document.createElement("div");
+        name.className = "memory-name";
+        name.textContent =
+          memory.nickname ||
+          memory.name ||
+          "A friend of Rocky";
+
+        const story = document.createElement("p");
+        story.textContent = memory.story;
+
+        article.append(name, story);
+        memories.append(article);
+      });
+    }
 
     async function loadApprovedMemories() {
+      const fallbackMemories = getFallbackMemories();
+      let firestoreMemories = [];
+
       try {
         const memoriesQuery = query(
           collection(db, "approved_memories"),
@@ -220,46 +276,25 @@
         );
 
         const snapshot = await getDocs(memoriesQuery);
-
-        if (snapshot.empty) {
-          memories.innerHTML = `
-            <article class="memory">
-              <div class="memory-name">No memories have been posted yet.</div>
-              <p>Check back soon.</p>
-            </article>
-          `;
-          return;
-        }
-
-        memories.innerHTML = "";
-
-        snapshot.forEach((doc) => {
-          const memory = doc.data();
-          const article = document.createElement("article");
-          article.className = "memory";
-
-          const name = document.createElement("div");
-          name.className = "memory-name";
-          name.textContent =
-            memory.nickname ||
-            memory.name ||
-            "A friend of Rocky";
-
-          const story = document.createElement("p");
-          story.textContent = memory.story;
-
-          article.append(name, story);
-          memories.append(article);
-        });
+        firestoreMemories = snapshot.docs.map((doc) => ({
+          id: doc.id,
+          ...doc.data()
+        }));
       } catch (error) {
-        console.error("Could not load memories:", error);
-        memories.innerHTML = `
-          <article class="memory">
-            <div class="memory-name">Unable to load memories right now.</div>
-            <p>Please try again later.</p>
-          </article>
-        `;
+        console.warn("Could not load Firestore memories, showing fallback memories:", error);
       }
+
+      const combinedMemories = [...firestoreMemories, ...fallbackMemories];
+      const uniqueMemories = combinedMemories.filter(
+        (memory, index, array) =>
+          array.findIndex((candidate) =>
+            candidate.story === memory.story &&
+            candidate.nickname === memory.nickname &&
+            candidate.name === memory.name
+          ) === index
+      );
+
+      renderMemoryList(uniqueMemories);
     }
 
     form.addEventListener("submit", async (event) => {
@@ -291,13 +326,28 @@
       } catch (error) {
         console.error("Could not submit memory:", error);
 
+        const fallbackEntry = {
+          name,
+          nickname,
+          story,
+          submittedAt: new Date().toISOString(),
+          source: "local"
+        };
+        const existingFallbackMemories = getFallbackMemories();
+        const nextFallbackMemories = [fallbackEntry, ...existingFallbackMemories];
+        saveFallbackMemories(nextFallbackMemories);
+
+        form.reset();
+
         if (error && error.code === "permission-denied") {
           status.textContent =
-            "Submission blocked by database rules. I can't save this right now.";
+            "Saved locally for now because Firestore rules are blocking writes. Your memory is visible here.";
         } else {
           status.textContent =
-            "Something went wrong. Please try again in a moment.";
+            "Saved locally for now. Please try again in a moment if you want to sync it later.";
         }
+
+        loadApprovedMemories();
       } finally {
         submitButton.disabled = false;
       }
