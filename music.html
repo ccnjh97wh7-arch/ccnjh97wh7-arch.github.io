@@ -331,163 +331,7 @@
 
       <a class="file-link" id="file-link" href="music/the_bullshit.mp3">Open current MP3 file</a>
 
-      <!-- To add a song, copy this list item and change its title, note, and MP3 path. -->
-      <ol class="playlist" id="playlist" aria-label="Song playlist">
-        <li>
-          <button
-            class="track-button"
-            type="button"
-            data-title="The Bullshit"
-            data-note="First track in the archive."
-            data-src="music/the_bullshit.mp3"
-            aria-current="true"
-          >
-            <span class="track-number">01</span>
-            <span>The Bullshit</span>
-            <span class="playing-label">Playing</span>
-          </button>
-        </li>
-        <li>
-          <button
-            class="track-button"
-            type="button"
-            data-title="Duh Duh Dumb"
-            data-note="Second track in the archive."
-            data-src="music/duh-duh-dumb.mp3"
-            aria-current="false"
-          >
-            <span class="track-number">02</span>
-            <span>Duh Duh Dumb</span>
-            <span class="playing-label">Play</span>
-          </button>
-        </li>
-        <li>
-          <button
-            class="track-button"
-            type="button"
-            data-title="I'm on Drugs"
-            data-note="Third track in the archive."
-            data-src="music/Im-on-drugs.mp3"
-            aria-current="false"
-          >
-            <span class="track-number">03</span>
-            <span>I'm on Drugs</span>
-            <span class="playing-label">Play</span>
-          </button>
-        </li>
-        <li>
-          <button
-            class="track-button"
-            type="button"
-            data-title="Big Country Cover"
-            data-note="Fourth track in the archive."
-            data-src="music/big-country-cover.mp3"
-            aria-current="false"
-          >
-            <span class="track-number">04</span>
-            <span>Big Country Cover</span>
-            <span class="playing-label">Play</span>
-          </button>
-        </li>
-        <li>
-          <button
-            class="track-button"
-            type="button"
-            data-title="Fatgirls"
-            data-note="Fifth track in the archive."
-            data-src="music/fatgirls.mp3"
-            aria-current="false"
-          >
-            <span class="track-number">05</span>
-            <span>Fatgirls</span>
-            <span class="playing-label">Play</span>
-          </button>
-        </li>
-        <li>
-          <button
-            class="track-button"
-            type="button"
-            data-title="Ho Ho Ho"
-            data-note="Sixth track in the archive."
-            data-src="music/ho-ho-ho.mp3"
-            aria-current="false"
-          >
-            <span class="track-number">06</span>
-            <span>Ho Ho Ho</span>
-            <span class="playing-label">Play</span>
-          </button>
-        </li>
-        <li>
-          <button
-            class="track-button"
-            type="button"
-            data-title="Japanese Boom Bap"
-            data-note="Seventh track in the archive."
-            data-src="music/japanese-boom-bap.mp3"
-            aria-current="false"
-          >
-            <span class="track-number">07</span>
-            <span>Japanese Boom Bap</span>
-            <span class="playing-label">Play</span>
-          </button>
-        </li>
-        <li>
-          <button
-            class="track-button"
-            type="button"
-            data-title="Sound Track"
-            data-note="Eighth track in the archive."
-            data-src="music/sound-track.mp3"
-            aria-current="false"
-          >
-            <span class="track-number">08</span>
-            <span>Sound Track</span>
-            <span class="playing-label">Play</span>
-          </button>
-        </li>
-        <li>
-          <button
-            class="track-button"
-            type="button"
-            data-title="Tokyo Slaughter"
-            data-note="Ninth track in the archive."
-            data-src="music/tokyo-slaughter.mp3"
-            aria-current="false"
-          >
-            <span class="track-number">09</span>
-            <span>Tokyo Slaughter</span>
-            <span class="playing-label">Play</span>
-          </button>
-        </li>
-        <li>
-          <button
-            class="track-button"
-            type="button"
-            data-title="Shippity"
-            data-note="Tenth track in the archive."
-            data-src="music/shippity.mp3"
-            aria-current="false"
-          >
-            <span class="track-number">10</span>
-            <span>Shippity</span>
-            <span class="playing-label">Play</span>
-          </button>
-        </li>
-        <li>
-          <button
-            class="track-button"
-            type="button"
-            data-title="Lil Static"
-            data-note="Eleventh track in the archive."
-            data-src="music/lil-static.mp3"
-            aria-current="false"
-          >
-            <span class="track-number">11</span>
-            <span>Lil Static</span>
-            <span class="playing-label">Play</span>
-          </button>
-        </li>
-      </ol>
+      <ol class="playlist" id="playlist" aria-label="Song playlist"></ol>
     </section>
 
     <p class="library-note">
@@ -506,11 +350,52 @@
     const fileLink = document.querySelector("#file-link");
     const previousButton = document.querySelector("#previous-track");
     const nextButton = document.querySelector("#next-track");
-    const trackButtons = Array.from(document.querySelectorAll(".track-button"));
+    const playlist = document.querySelector("#playlist");
+    let trackButtons = [];
     let currentTrackIndex = 0;
+
+    async function loadPlaylist() {
+      const response = await fetch("music-playlist.json");
+      const tracks = await response.json();
+
+      playlist.innerHTML = tracks.map((track, index) => `
+        <li>
+          <button
+            class="track-button"
+            type="button"
+            data-title="${track.title}"
+            data-note="${track.note}"
+            data-src="${track.src}"
+            aria-current="${index === 0 ? "true" : "false"}"
+          >
+            <span class="track-number">${String(index + 1).padStart(2, "0")}</span>
+            <span>${track.title}</span>
+            <span class="playing-label">${index === 0 ? "Playing" : "Play"}</span>
+          </button>
+        </li>
+      `).join("");
+
+      trackButtons = Array.from(document.querySelectorAll(".track-button"));
+      if (trackButtons.length > 0) {
+        loadTrack(0, false);
+      }
+
+      trackButtons.forEach((button, index) => {
+        button.addEventListener("click", () => loadTrack(index, true));
+      });
+
+      if (trackButtons.length < 2) {
+        previousButton.disabled = true;
+        nextButton.disabled = true;
+      } else {
+        previousButton.disabled = false;
+        nextButton.disabled = false;
+      }
+    }
 
     function loadTrack(index, shouldPlay = false) {
       const track = trackButtons[index];
+      if (!track) return;
 
       currentTrackIndex = index;
       audioPlayer.src = track.dataset.src;
@@ -530,13 +415,10 @@
     }
 
     function changeTrack(direction) {
+      if (trackButtons.length === 0) return;
       const nextIndex = (currentTrackIndex + direction + trackButtons.length) % trackButtons.length;
       loadTrack(nextIndex, true);
     }
-
-    trackButtons.forEach((button, index) => {
-      button.addEventListener("click", () => loadTrack(index, true));
-    });
 
     previousButton.addEventListener("click", () => changeTrack(-1));
     nextButton.addEventListener("click", () => changeTrack(1));
@@ -547,10 +429,7 @@
       }
     });
 
-    if (trackButtons.length < 2) {
-      previousButton.disabled = true;
-      nextButton.disabled = true;
-    }
+    loadPlaylist();
   </script>
 </body>
 </html>
