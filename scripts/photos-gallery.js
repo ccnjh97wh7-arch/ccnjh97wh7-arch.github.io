@@ -27,6 +27,32 @@ function createPhotoCard(photo) {
   return figure;
 }
 
+async function getPhotoDate(photo) {
+  try {
+    const response = await fetch(
+      `https://api.github.com/repos/${repoOwner}/${repoName}/commits?path=${encodeURIComponent(photo.path)}&per_page=1`,
+      {
+        headers: {
+          Accept: 'application/vnd.github+json',
+        },
+      }
+    );
+
+    if (!response.ok) {
+      throw new Error(`Commit lookup failed with ${response.status}`);
+    }
+
+    const commits = await response.json();
+    if (commits.length) {
+      return new Date(commits[0].commit.committer.date).getTime();
+    }
+  } catch (error) {
+    return 0;
+  }
+
+  return 0;
+}
+
 async function loadPhotos() {
   if (!gallery) {
     return;
@@ -49,19 +75,26 @@ async function loadPhotos() {
     }
 
     const items = await response.json();
-    const imageFiles = items
-      .filter((item) => item.type === 'file' && /\.(jpe?g|png|gif|webp|avif|svg)$/i.test(item.name))
-      .sort((a, b) => a.name.localeCompare(b.name));
+    const imageFiles = items.filter((item) => item.type === 'file' && /\.(jpe?g|png|gif|webp|avif|svg)$/i.test(item.name));
+
+    const photosWithDates = await Promise.all(
+      imageFiles.map(async (photo) => ({
+        ...photo,
+        sortDate: await getPhotoDate(photo),
+      }))
+    );
+
+    const sortedPhotos = photosWithDates.sort((a, b) => b.sortDate - a.sortDate);
 
     gallery.innerHTML = '';
 
-    if (!imageFiles.length) {
+    if (!sortedPhotos.length) {
       gallery.innerHTML = '<p class="gallery-empty">No photos yet. Add images to the images folder and push the change.</p>';
       return;
     }
 
     const fragment = document.createDocumentFragment();
-    imageFiles.forEach((photo) => fragment.appendChild(createPhotoCard(photo)));
+    sortedPhotos.forEach((photo) => fragment.appendChild(createPhotoCard(photo)));
     gallery.appendChild(fragment);
   } catch (error) {
     gallery.innerHTML = '<p class="gallery-empty">Photos could not be loaded right now. Please refresh the page.</p>';
