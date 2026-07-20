@@ -353,6 +353,7 @@
     }
 
     function nextTributeTrack() {
+      tributeOrder = shuffle(tributeOrder);
       const nextIndex = (tributeIndex + 1) % tributeOrder.length;
       playTributeTrack(nextIndex);
     }
@@ -478,7 +479,8 @@
           name,
           nickname,
           story,
-          submittedAt: serverTimestamp()
+          submittedAt: serverTimestamp(),
+          createdAt: new Date().toISOString()
         });
 
         form.reset();
@@ -492,6 +494,7 @@
           nickname,
           story,
           submittedAt: new Date().toISOString(),
+          createdAt: new Date().toISOString(),
           source: "local"
         };
         const existingFallbackMemories = getFallbackMemories();
