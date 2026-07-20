@@ -212,6 +212,25 @@
       color: var(--orange);
       font-weight: bold;
     }
+
+    .reaction-group {
+      margin: 20px 0 8px;
+    }
+
+    .reaction-group label {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      margin-right: 16px;
+      margin-top: 0;
+      font-weight: bold;
+      cursor: pointer;
+    }
+
+    .reaction-group input {
+      width: auto;
+      margin: 0;
+    }
   </style>
 </head>
 
@@ -246,6 +265,17 @@
 
         <label for="story">Your story</label>
         <textarea id="story" name="story" required maxlength="2500"></textarea>
+
+        <div class="reaction-group" role="radiogroup" aria-label="Choose a reaction">
+          <label>
+            <input type="radio" name="reaction" value="Bud Ice">
+            Bud Ice
+          </label>
+          <label>
+            <input type="radio" name="reaction" value="Bud Light">
+            Bud Light
+          </label>
+        </div>
 
         <button id="submit-button" type="submit">Share memory</button>
 
@@ -465,6 +495,7 @@
       const name = document.querySelector("#name").value.trim();
       const nickname = document.querySelector("#nickname").value.trim();
       const story = document.querySelector("#story").value.trim();
+      const reaction = document.querySelector('input[name="reaction"]:checked')?.value || "";
 
       if (!story) {
         status.textContent = "Please write a memory before sending it.";
@@ -479,6 +510,7 @@
           name,
           nickname,
           story,
+          reaction,
           submittedAt: serverTimestamp(),
           createdAt: new Date().toISOString()
         });
@@ -493,6 +525,7 @@
           name,
           nickname,
           story,
+          reaction,
           submittedAt: new Date().toISOString(),
           createdAt: new Date().toISOString(),
           source: "local"
