@@ -3,12 +3,12 @@ const repoName = 'ccnjh97wh7-arch.github.io';
 const branch = 'main';
 const gallery = document.getElementById('photo-gallery');
 
-const featuredFiles = ['eric-woods.jpg', 'buddy-sleeping.jpg', 'water-tower-sunset.jpg', 'Downtown-Greenville.jpg'];
+const featuredFiles = ['eric-in-the-woods.jpg', 'buddy-sleeping.jpg', 'water-tower-sunset.jpg', 'downtown-greenville.jpg'];
 const displayNameOverrides = {
-  'eric-woods.jpg': 'Eric in the Woods',
+  'eric-in-the-woods.jpg': 'Eric in the Woods',
   'buddy-sleeping.jpg': 'Buddy Sleeping',
   'water-tower-sunset.jpg': 'Water Tower Sunset',
-  'Downtown-Greenville.jpg': 'Downtown Greenville',
+  'downtown-greenville.jpg': 'Downtown Greenville',
 };
 
 function formatLabel(fileName) {
