@@ -286,12 +286,12 @@
 
         <div class="reaction-group" role="radiogroup" aria-label="Choose a reaction">
           <label>
-            <input type="radio" name="reaction" value="Bud Ice">
-            Bud Ice
+            <input type="radio" name="reaction" value="Malboro Reds">
+            Malboro Reds
           </label>
           <label>
-            <input type="radio" name="reaction" value="Bud Light">
-            Bud Light
+            <input type="radio" name="reaction" value="Pall Mall">
+            Pall Mall
           </label>
         </div>
 
@@ -446,12 +446,12 @@
     }
 
     function renderMemoryList(entries) {
-      const budIceVotes = entries.filter((memory) => memory.reaction === "Bud Ice").length;
-      const budLightVotes = entries.filter((memory) => memory.reaction === "Bud Light").length;
+      const malboroVotes = entries.filter((memory) => memory.reaction === "Malboro Reds").length;
+      const pallMallVotes = entries.filter((memory) => memory.reaction === "Pall Mall").length;
 
       voteSummary.innerHTML = `
-        Votes so far: <span class="vote-pill">Bud Ice ${budIceVotes}</span>
-        <span class="vote-pill">Bud Light ${budLightVotes}</span>
+        Votes so far: <span class="vote-pill">Malboro Reds ${malboroVotes}</span>
+        <span class="vote-pill">Pall Mall ${pallMallVotes}</span>
       `;
 
       if (!entries.length) {
