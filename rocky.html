@@ -231,6 +231,24 @@
       width: auto;
       margin: 0;
     }
+
+    .vote-summary {
+      margin: 0 0 20px;
+      padding: 14px 16px;
+      background: rgba(255, 255, 255, 0.1);
+      border-left: 5px solid var(--gold);
+      color: var(--paper);
+      font-weight: bold;
+    }
+
+    .vote-pill {
+      display: inline-block;
+      margin-left: 8px;
+      padding: 3px 8px;
+      border-radius: 999px;
+      background: var(--gold);
+      color: var(--black);
+    }
   </style>
 </head>
 
@@ -290,6 +308,7 @@
 
     <section>
       <h2>Memories already shared</h2>
+      <div id="vote-summary" class="vote-summary" aria-live="polite"></div>
       <div id="memories">
         <article class="memory">
           <div class="memory-name">No memories have been posted yet.</div>
@@ -345,6 +364,7 @@
     const submitButton = document.querySelector("#submit-button");
     const status = document.querySelector("#form-status");
     const memories = document.querySelector("#memories");
+    const voteSummary = document.querySelector("#vote-summary");
     const tributeAudio = document.querySelector("#tribute-audio");
     const nextTributeButton = document.querySelector("#next-tribute");
     const titlePlayButton = document.querySelector("#title-play-button");
@@ -426,6 +446,14 @@
     }
 
     function renderMemoryList(entries) {
+      const budIceVotes = entries.filter((memory) => memory.reaction === "Bud Ice").length;
+      const budLightVotes = entries.filter((memory) => memory.reaction === "Bud Light").length;
+
+      voteSummary.innerHTML = `
+        Votes so far: <span class="vote-pill">Bud Ice ${budIceVotes}</span>
+        <span class="vote-pill">Bud Light ${budLightVotes}</span>
+      `;
+
       if (!entries.length) {
         memories.innerHTML = `
           <article class="memory">
@@ -452,7 +480,16 @@
         const story = document.createElement("p");
         story.textContent = memory.story;
 
-        article.append(name, story);
+        if (memory.reaction) {
+          const reaction = document.createElement("p");
+          reaction.textContent = `Reaction: ${memory.reaction}`;
+          reaction.style.marginTop = "10px";
+          reaction.style.fontWeight = "bold";
+          article.append(name, story, reaction);
+        } else {
+          article.append(name, story);
+        }
+
         memories.append(article);
       });
     }
