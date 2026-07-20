@@ -1,13 +1,38 @@
 [
   {
+    "title": "Don Gato Season",
+    "note": "Track from Don Gato Season",
+    "src": "music/Don-Gato-Season.mp3"
+  },
+  {
     "title": "Im On Drugs",
     "note": "Track from Im On Drugs",
     "src": "music/Im-on-drugs.mp3"
   },
   {
+    "title": "It Fuckin Cold",
+    "note": "Track from It Fuckin Cold",
+    "src": "music/It fuckin cold.mp3"
+  },
+  {
+    "title": "It'S Still Cold",
+    "note": "Track from It'S Still Cold",
+    "src": "music/It's still cold.mp3"
+  },
+  {
+    "title": "Yeah\u2026 (1)",
+    "note": "Track from Yeah\u2026 (1)",
+    "src": "music/Yeah\u2026 (1).mp3"
+  },
+  {
     "title": "Big Country Cover",
     "note": "Track from Big Country Cover",
     "src": "music/big-country-cover.mp3"
+  },
+  {
+    "title": "Czarface Cover Mashup",
+    "note": "Track from Czarface Cover Mashup",
+    "src": "music/czarFace-Cover-Mashup.mp3"
   },
   {
     "title": "Duh Duh Dumb",
