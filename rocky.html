@@ -48,6 +48,40 @@
       margin: 0 0 16px;
     }
 
+    .page-title-row {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      flex-wrap: wrap;
+      margin-bottom: 16px;
+    }
+
+    .page-title-row h1 {
+      margin: 0;
+    }
+
+    .title-play-button {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 42px;
+      height: 42px;
+      border: 0;
+      border-radius: 50%;
+      background: var(--gold);
+      color: var(--black);
+      font-size: 18px;
+      cursor: pointer;
+      box-shadow: 0 3px 8px rgba(0, 0, 0, 0.25);
+      margin-top: 0;
+      padding: 0;
+    }
+
+    .title-play-button:hover {
+      background: var(--orange);
+      color: white;
+    }
+
     .intro {
       font-size: 1.15rem;
       max-width: 650px;
@@ -185,7 +219,10 @@
   <main>
     <a class="back-link" href="index.html">← Back to the main page</a>
 
-    <h1>Stories About Rocky</h1>
+    <div class="page-title-row">
+      <h1>Stories About Rocky</h1>
+      <button class="title-play-button" id="title-play-button" type="button" aria-label="Play tribute soundtrack">▶</button>
+    </div>
 
     <p class="intro">
       This page is for anyone who knew James “Rocky” Taylor.
@@ -280,6 +317,7 @@
     const memories = document.querySelector("#memories");
     const tributeAudio = document.querySelector("#tribute-audio");
     const nextTributeButton = document.querySelector("#next-tribute");
+    const titlePlayButton = document.querySelector("#title-play-button");
     const STORAGE_KEY = "rocky-memories-fallback";
 
     const tributeTracks = [
@@ -320,7 +358,18 @@
     }
 
     tributeOrder = shuffle(tributeTracks);
-    playTributeTrack(0);
+
+    function startTributeAudio() {
+      if (tributeAudio.paused) {
+        playTributeTrack(0);
+      } else {
+        tributeAudio.pause();
+      }
+    }
+
+    titlePlayButton.addEventListener("click", startTributeAudio);
+    document.addEventListener("touchstart", startTributeAudio, { once: true });
+    document.addEventListener("click", startTributeAudio, { once: true });
 
     nextTributeButton.addEventListener("click", nextTributeTrack);
     tributeAudio.addEventListener("ended", nextTributeTrack);
