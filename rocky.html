@@ -181,6 +181,32 @@
       margin-top: 0;
     }
 
+    .audio-consent-banner {
+      margin: 16px 0 8px;
+      padding: 14px 16px;
+      background: rgba(218, 165, 32, 0.14);
+      border: 1px solid var(--gold);
+      border-radius: 10px;
+      color: var(--black);
+    }
+
+    .audio-consent-banner p {
+      margin: 0 0 10px;
+      font-weight: bold;
+    }
+
+    .audio-consent-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+    }
+
+    .audio-consent-actions button {
+      margin-top: 0;
+      padding: 10px 14px;
+      border-radius: 999px;
+    }
+
     .player-controls {
       display: flex;
       flex-wrap: wrap;
@@ -331,7 +357,14 @@
         These are royalty-free demo tracks meant to carry the mood without using copyrighted songs.
       </p>
 
-      <audio id="tribute-audio" controls preload="metadata" autoplay></audio>
+      <div id="audio-consent-banner" class="audio-consent-banner" role="dialog" aria-live="polite">
+        <p>Enable the soundtrack for the full ambience. This stores a browser preference so it can play on later visits.</p>
+        <div class="audio-consent-actions">
+          <button id="audio-consent-accept" type="button">Allow soundtrack</button>
+        </div>
+      </div>
+
+      <audio id="tribute-audio" controls preload="metadata"></audio>
 
       <div class="player-controls">
         <button id="next-tribute" type="button">Next track</button>
@@ -374,9 +407,13 @@
     const reactionButtons = Array.from(document.querySelectorAll(".reaction-option"));
     const reactionValueInput = document.querySelector("#reaction-value");
     const tributeAudio = document.querySelector("#tribute-audio");
+    const audioConsentBanner = document.querySelector("#audio-consent-banner");
+    const audioConsentAcceptButton = document.querySelector("#audio-consent-accept");
     const nextTributeButton = document.querySelector("#next-tribute");
     const titlePlayButton = document.querySelector("#title-play-button");
     const STORAGE_KEY = "rocky-memories-fallback";
+    const AUDIO_CONSENT_KEY = "rocky-audio-consent";
+    const AUDIO_CONSENT_COOKIE_NAME = "rocky_audio_consent";
 
     const tributeTracks = [
       "https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3",
@@ -392,6 +429,37 @@
     let tributeIndex = 0;
     let tributeOrder = [];
 
+    function setAudioConsentCookie(value) {
+      document.cookie = `${AUDIO_CONSENT_COOKIE_NAME}=${value}; path=/; max-age=31536000; SameSite=Lax`;
+    }
+
+    function hasAudioConsent() {
+      try {
+        return localStorage.getItem(AUDIO_CONSENT_KEY) === "true" || document.cookie.split(";").some((cookie) => cookie.trim().startsWith(`${AUDIO_CONSENT_COOKIE_NAME}=true`));
+      } catch (error) {
+        console.warn("Could not read audio consent:", error);
+        return false;
+      }
+    }
+
+    function saveAudioConsent() {
+      try {
+        localStorage.setItem(AUDIO_CONSENT_KEY, "true");
+      } catch (error) {
+        console.warn("Could not save audio consent:", error);
+      }
+      setAudioConsentCookie("true");
+      if (audioConsentBanner) {
+        audioConsentBanner.hidden = true;
+      }
+    }
+
+    function showAudioConsentBanner() {
+      if (audioConsentBanner) {
+        audioConsentBanner.hidden = false;
+      }
+    }
+
     function shuffle(array) {
       const copy = [...array];
       for (let i = copy.length - 1; i > 0; i -= 1) {
@@ -405,8 +473,8 @@
       tributeIndex = index;
       tributeAudio.src = tributeOrder[index];
       tributeAudio.load();
-      tributeAudio.play().catch(() => {
-        // Ignore autoplay restrictions until the user interacts.
+      tributeAudio.play().catch((error) => {
+        console.warn("Playback was blocked until the user interacts:", error);
       });
     }
 
@@ -419,6 +487,11 @@
     tributeOrder = shuffle(tributeTracks);
 
     function startTributeAudio() {
+      if (!hasAudioConsent()) {
+        showAudioConsentBanner();
+        return;
+      }
+
       if (tributeAudio.paused) {
         playTributeTrack(0);
       } else {
@@ -426,9 +499,30 @@
       }
     }
 
+    if (audioConsentBanner) {
+      audioConsentBanner.hidden = hasAudioConsent();
+    }
+
+    audioConsentAcceptButton?.addEventListener("click", () => {
+      saveAudioConsent();
+      playTributeTrack(0);
+    });
+
     titlePlayButton.addEventListener("click", startTributeAudio);
-    document.addEventListener("touchstart", startTributeAudio, { once: true });
-    document.addEventListener("click", startTributeAudio, { once: true });
+    document.addEventListener("touchstart", () => {
+      if (!hasAudioConsent()) {
+        showAudioConsentBanner();
+      } else {
+        startTributeAudio();
+      }
+    }, { once: true });
+    document.addEventListener("click", () => {
+      if (!hasAudioConsent()) {
+        showAudioConsentBanner();
+      } else {
+        startTributeAudio();
+      }
+    }, { once: true });
 
     nextTributeButton.addEventListener("click", nextTributeTrack);
     tributeAudio.addEventListener("ended", nextTributeTrack);
