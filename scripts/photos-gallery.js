@@ -3,11 +3,25 @@ const repoName = 'ccnjh97wh7-arch.github.io';
 const branch = 'main';
 const gallery = document.getElementById('photo-gallery');
 
+const featuredFiles = ['eric-woods.jpg', 'buddy-sleeping.jpg', 'water-tower-sunset.jpg', 'Downtown-Greenville.jpg'];
+const displayNameOverrides = {
+  'eric-woods.jpg': 'Eric in the Woods',
+  'buddy-sleeping.jpg': 'Buddy Sleeping',
+  'water-tower-sunset.jpg': 'Water Tower Sunset',
+  'Downtown-Greenville.jpg': 'Downtown Greenville',
+};
+
 function formatLabel(fileName) {
-  return fileName
-    .replace(/\.[^.]+$/, '')
-    .replace(/[-_]+/g, ' ')
-    .trim();
+  if (displayNameOverrides[fileName]) {
+    return displayNameOverrides[fileName];
+  }
+
+  const baseName = fileName.replace(/\.[^.]+$/, '').replace(/[-_]+/g, ' ').trim();
+  if (/^\d+$/.test(baseName)) {
+    return `Photo ${baseName.padStart(2, '0')}`;
+  }
+
+  return baseName;
 }
 
 function createPhotoCard(photo) {
@@ -25,6 +39,26 @@ function createPhotoCard(photo) {
   figure.appendChild(img);
   figure.appendChild(figcaption);
   return figure;
+}
+
+function buildPhotoSections(photos) {
+  const featured = [];
+  const archive = [];
+
+  photos.forEach((photo) => {
+    if (featuredFiles.includes(photo.name)) {
+      featured.push(photo);
+    } else {
+      archive.push(photo);
+    }
+  });
+
+  const featuredOrder = featuredFiles
+    .map((fileName) => featured.find((photo) => photo.name === fileName))
+    .filter(Boolean);
+
+  const archiveOrder = archive.sort((a, b) => a.name.localeCompare(b.name));
+  return [...featuredOrder, ...archiveOrder];
 }
 
 async function getPhotoDate(photo) {
@@ -84,7 +118,7 @@ async function loadPhotos() {
       }))
     );
 
-    const sortedPhotos = photosWithDates.sort((a, b) => b.sortDate - a.sortDate);
+    const sortedPhotos = buildPhotoSections(photosWithDates);
 
     gallery.innerHTML = '';
 
