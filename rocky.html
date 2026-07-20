@@ -129,6 +129,55 @@
       margin-bottom: 0;
       white-space: pre-wrap;
     }
+
+    .tribute-player {
+      background: #fffdf8;
+      color: var(--black);
+      border-left: 7px solid var(--gold);
+      padding: 24px;
+      margin: 28px 0;
+    }
+
+    .tribute-player h2 {
+      margin-top: 0;
+      color: var(--orange);
+    }
+
+    .tribute-player p {
+      margin-top: 0;
+    }
+
+    .player-controls {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      margin-top: 12px;
+    }
+
+    .player-controls button {
+      margin-top: 0;
+      background: var(--gold);
+      color: var(--black);
+      border-radius: 999px;
+      padding: 10px 16px;
+    }
+
+    .player-controls button:hover {
+      background: var(--orange);
+      color: white;
+    }
+
+    audio {
+      width: 100%;
+      margin-top: 10px;
+    }
+
+    .playlist-link {
+      display: inline-block;
+      margin-top: 12px;
+      color: var(--orange);
+      font-weight: bold;
+    }
   </style>
 </head>
 
@@ -172,6 +221,25 @@
       </form>
     </section>
 
+    <section class="tribute-player" aria-labelledby="tribute-player-title">
+      <h2 id="tribute-player-title">A little tribute soundtrack</h2>
+      <p>
+        This section uses royalty-free demo tracks for a simple, respectful tribute feel.
+        It will shuffle through a few tracks and keep the mood going.
+      </p>
+
+      <audio id="tribute-audio" controls preload="metadata"></audio>
+
+      <div class="player-controls">
+        <button id="play-tribute" type="button">Play / Pause</button>
+        <button id="next-tribute" type="button">Next track</button>
+      </div>
+
+      <a class="playlist-link" href="https://www.youtube.com/results?search_query=royalty+free+southern+rock+instrumental" target="_blank" rel="noopener noreferrer">
+        Find more royalty-free southern rock / live-jam style music
+      </a>
+    </section>
+
     <section>
       <h2>Memories already shared</h2>
       <div id="memories">
@@ -211,7 +279,56 @@
     const submitButton = document.querySelector("#submit-button");
     const status = document.querySelector("#form-status");
     const memories = document.querySelector("#memories");
+    const tributeAudio = document.querySelector("#tribute-audio");
+    const playTributeButton = document.querySelector("#play-tribute");
+    const nextTributeButton = document.querySelector("#next-tribute");
     const STORAGE_KEY = "rocky-memories-fallback";
+
+    const tributeTracks = [
+      "https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3",
+      "https://www.soundhelix.com/examples/mp3/SoundHelix-Song-2.mp3",
+      "https://www.soundhelix.com/examples/mp3/SoundHelix-Song-3.mp3"
+    ];
+
+    let tributeIndex = 0;
+    let tributeOrder = [];
+
+    function shuffle(array) {
+      const copy = [...array];
+      for (let i = copy.length - 1; i > 0; i -= 1) {
+        const j = Math.floor(Math.random() * (i + 1));
+        [copy[i], copy[j]] = [copy[j], copy[i]];
+      }
+      return copy;
+    }
+
+    function playTributeTrack(index) {
+      tributeIndex = index;
+      tributeAudio.src = tributeOrder[index];
+      tributeAudio.load();
+      tributeAudio.play().catch(() => {
+        // Ignore autoplay restrictions until the user interacts.
+      });
+    }
+
+    function nextTributeTrack() {
+      const nextIndex = (tributeIndex + 1) % tributeOrder.length;
+      playTributeTrack(nextIndex);
+    }
+
+    tributeOrder = shuffle(tributeTracks);
+    playTributeTrack(0);
+
+    playTributeButton.addEventListener("click", () => {
+      if (tributeAudio.paused) {
+        tributeAudio.play().catch(() => {});
+      } else {
+        tributeAudio.pause();
+      }
+    });
+
+    nextTributeButton.addEventListener("click", nextTributeTrack);
+    tributeAudio.addEventListener("ended", nextTributeTrack);
 
     function getFallbackMemories() {
       try {
