@@ -343,7 +343,6 @@
       collection,
       getDocs,
       getFirestore,
-      orderBy,
       query,
       serverTimestamp
     } from "https://www.gstatic.com/firebasejs/12.16.0/firebase-firestore.js";
@@ -445,6 +444,32 @@
       }
     }
 
+    function getMemoryTime(memory) {
+      if (memory?.submittedAt?.toDate) {
+        return memory.submittedAt.toDate().getTime();
+      }
+
+      if (memory?.submittedAt?.seconds) {
+        return memory.submittedAt.seconds * 1000;
+      }
+
+      if (typeof memory?.submittedAt === "string") {
+        const parsed = Date.parse(memory.submittedAt);
+        if (!Number.isNaN(parsed)) {
+          return parsed;
+        }
+      }
+
+      if (memory?.createdAt) {
+        const parsed = Date.parse(memory.createdAt);
+        if (!Number.isNaN(parsed)) {
+          return parsed;
+        }
+      }
+
+      return 0;
+    }
+
     function renderMemoryList(entries) {
       const malboroVotes = entries.filter((memory) => memory.reaction === "Malboro Reds").length;
       const pallMallVotes = entries.filter((memory) => memory.reaction === "Pall Mall").length;
@@ -499,11 +524,7 @@
       let firestoreMemories = [];
 
       try {
-        const memoriesQuery = query(
-          collection(db, "approved_memories"),
-          orderBy("submittedAt", "desc")
-        );
-
+        const memoriesQuery = query(collection(db, "approved_memories"));
         const snapshot = await getDocs(memoriesQuery);
         firestoreMemories = snapshot.docs.map((doc) => ({
           id: doc.id,
@@ -513,7 +534,11 @@
         console.warn("Could not load Firestore memories, showing fallback memories:", error);
       }
 
-      const combinedMemories = [...firestoreMemories, ...fallbackMemories];
+      const combinedMemories = [...firestoreMemories, ...fallbackMemories]
+        .map((memory) => ({ ...memory, _sortTime: getMemoryTime(memory) }))
+        .sort((a, b) => b._sortTime - a._sortTime)
+        .map(({ _sortTime, ...memory }) => memory);
+
       const uniqueMemories = combinedMemories.filter(
         (memory, index, array) =>
           array.findIndex((candidate) =>
