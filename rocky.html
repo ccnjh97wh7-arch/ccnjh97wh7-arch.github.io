@@ -323,7 +323,7 @@
         <textarea id="story" name="story" required maxlength="2500"></textarea>
 
         <div class="reaction-group" role="radiogroup" aria-label="Choose a reaction">
-          <button class="reaction-option" type="button" data-reaction="Malboro Reds">Malboro Reds</button>
+          <button class="reaction-option" type="button" data-reaction="Marlboro Reds">Marlboro Reds</button>
           <button class="reaction-option" type="button" data-reaction="Pall Mall">Pall Mall</button>
           <button class="reaction-option" type="button" data-reaction="Newports">Newports</button>
           <input type="hidden" id="reaction-value" name="reaction" value="">
@@ -591,12 +591,12 @@
     }
 
     function renderMemoryList(entries) {
-      const malboroVotes = entries.filter((memory) => memory.reaction === "Malboro Reds").length;
+      const malboroVotes = entries.filter((memory) => memory.reaction === "Marlboro Reds").length;
       const pallMallVotes = entries.filter((memory) => memory.reaction === "Pall Mall").length;
       const newportsVotes = entries.filter((memory) => memory.reaction === "Newports").length;
 
       voteSummary.innerHTML = `
-        Votes so far: <span class="vote-pill">Malboro Reds ${malboroVotes}</span>
+        Votes so far: <span class="vote-pill">Marlboro Reds ${malboroVotes}</span>
         <span class="vote-pill">Pall Mall ${pallMallVotes}</span>
         <span class="vote-pill">Newports ${newportsVotes}</span>
       `;
