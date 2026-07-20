@@ -221,25 +221,6 @@
       </form>
     </section>
 
-    <section class="tribute-player" aria-labelledby="tribute-player-title">
-      <h2 id="tribute-player-title">A road-side tribute soundtrack</h2>
-      <p>
-        A little southern-road, late-night, trucker-and-meth-country kind of soundtrack for a friend who loved the long haul.
-        These are royalty-free demo tracks meant to carry the mood without using copyrighted songs.
-      </p>
-
-      <audio id="tribute-audio" controls preload="metadata"></audio>
-
-      <div class="player-controls">
-        <button id="play-tribute" type="button">Play / Pause</button>
-        <button id="next-tribute" type="button">Next track</button>
-      </div>
-
-      <a class="playlist-link" href="https://www.youtube.com/results?search_query=royalty+free+southern+rock+instrumental" target="_blank" rel="noopener noreferrer">
-        Find more royalty-free southern rock / live-jam style music
-      </a>
-    </section>
-
     <section>
       <h2>Memories already shared</h2>
       <div id="memories">
@@ -248,6 +229,24 @@
           <p>Check back soon.</p>
         </article>
       </div>
+    </section>
+
+    <section class="tribute-player" aria-labelledby="tribute-player-title">
+      <h2 id="tribute-player-title">A road-side tribute soundtrack</h2>
+      <p>
+        A little southern-road, late-night, trucker-and-meth-country kind of soundtrack for a friend who loved the long haul.
+        These are royalty-free demo tracks meant to carry the mood without using copyrighted songs.
+      </p>
+
+      <audio id="tribute-audio" controls preload="metadata" autoplay></audio>
+
+      <div class="player-controls">
+        <button id="next-tribute" type="button">Next track</button>
+      </div>
+
+      <a class="playlist-link" href="https://www.youtube.com/results?search_query=royalty+free+southern+rock+instrumental" target="_blank" rel="noopener noreferrer">
+        Find more royalty-free southern rock / live-jam style music
+      </a>
     </section>
   </main>
 
@@ -280,7 +279,6 @@
     const status = document.querySelector("#form-status");
     const memories = document.querySelector("#memories");
     const tributeAudio = document.querySelector("#tribute-audio");
-    const playTributeButton = document.querySelector("#play-tribute");
     const nextTributeButton = document.querySelector("#next-tribute");
     const STORAGE_KEY = "rocky-memories-fallback";
 
@@ -323,14 +321,6 @@
 
     tributeOrder = shuffle(tributeTracks);
     playTributeTrack(0);
-
-    playTributeButton.addEventListener("click", () => {
-      if (tributeAudio.paused) {
-        tributeAudio.play().catch(() => {});
-      } else {
-        tributeAudio.pause();
-      }
-    });
 
     nextTributeButton.addEventListener("click", nextTributeTrack);
     tributeAudio.addEventListener("ended", nextTributeTrack);
