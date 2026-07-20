@@ -215,21 +215,33 @@
 
     .reaction-group {
       margin: 20px 0 8px;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
     }
 
-    .reaction-group label {
-      display: inline-flex;
-      align-items: center;
-      gap: 8px;
-      margin-right: 16px;
-      margin-top: 0;
-      font-weight: bold;
+    .reaction-option {
+      padding: 10px 16px;
+      border: 2px solid var(--orange);
+      border-radius: 999px;
+      background: #fffdf8;
+      color: var(--black);
+      font: bold 0.95rem Arial, sans-serif;
       cursor: pointer;
+      transition: all 0.2s ease;
     }
 
-    .reaction-group input {
-      width: auto;
-      margin: 0;
+    .reaction-option:hover,
+    .reaction-option:focus-visible {
+      background: var(--gold);
+      border-color: var(--gold);
+      outline: none;
+    }
+
+    .reaction-option.is-selected {
+      background: var(--orange);
+      border-color: var(--orange);
+      color: white;
     }
 
     .vote-summary {
@@ -285,14 +297,9 @@
         <textarea id="story" name="story" required maxlength="2500"></textarea>
 
         <div class="reaction-group" role="radiogroup" aria-label="Choose a reaction">
-          <label>
-            <input type="radio" name="reaction" value="Malboro Reds">
-            Malboro Reds
-          </label>
-          <label>
-            <input type="radio" name="reaction" value="Pall Mall">
-            Pall Mall
-          </label>
+          <button class="reaction-option" type="button" data-reaction="Malboro Reds">Malboro Reds</button>
+          <button class="reaction-option" type="button" data-reaction="Pall Mall">Pall Mall</button>
+          <input type="hidden" id="reaction-value" name="reaction" value="">
         </div>
 
         <button id="submit-button" type="submit">Share memory</button>
@@ -364,6 +371,8 @@
     const status = document.querySelector("#form-status");
     const memories = document.querySelector("#memories");
     const voteSummary = document.querySelector("#vote-summary");
+    const reactionButtons = Array.from(document.querySelectorAll(".reaction-option"));
+    const reactionValueInput = document.querySelector("#reaction-value");
     const tributeAudio = document.querySelector("#tribute-audio");
     const nextTributeButton = document.querySelector("#next-tribute");
     const titlePlayButton = document.querySelector("#title-play-button");
@@ -423,6 +432,19 @@
 
     nextTributeButton.addEventListener("click", nextTributeTrack);
     tributeAudio.addEventListener("ended", nextTributeTrack);
+
+    function setReactionSelection(value) {
+      reactionValueInput.value = value;
+      reactionButtons.forEach((button) => {
+        button.classList.toggle("is-selected", button.dataset.reaction === value);
+      });
+    }
+
+    reactionButtons.forEach((button) => {
+      button.addEventListener("click", () => setReactionSelection(button.dataset.reaction));
+    });
+
+    form.addEventListener("reset", () => setReactionSelection(""));
 
     function getFallbackMemories() {
       try {
@@ -557,7 +579,7 @@
       const name = document.querySelector("#name").value.trim();
       const nickname = document.querySelector("#nickname").value.trim();
       const story = document.querySelector("#story").value.trim();
-      const reaction = document.querySelector('input[name="reaction"]:checked')?.value || "";
+      const reaction = reactionValueInput.value;
 
       if (!story) {
         status.textContent = "Please write a memory before sending it.";
