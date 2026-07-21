@@ -1,0 +1,1047 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#0d0b09">
+  <meta name="description" content="More Images — photographs, fragments, clippings, and accidents collected by Eric Stone.">
+  <title>More Images | Eric Stone</title>
+
+  <style>
+    :root {
+      --ink: #0d0b09;
+      --ink-soft: #17130f;
+      --paper: #efe5cf;
+      --paper-dim: #cdbf9f;
+      --gold: #d5a839;
+      --orange: #c45722;
+      --blood: #7d111d;
+      --track-width: min(1180px, calc(100vw - 32px));
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    html {
+      color-scheme: dark;
+      scroll-behavior: smooth;
+    }
+
+    body {
+      min-width: 320px;
+      margin: 0;
+      overflow-x: hidden;
+      background: var(--ink);
+      color: var(--paper);
+      font-family: Georgia, "Times New Roman", serif;
+    }
+
+    body::before {
+      content: "";
+      position: fixed;
+      inset: 0;
+      z-index: -2;
+      background:
+        linear-gradient(rgba(8, 7, 6, 0.42), rgba(8, 7, 6, 0.78)),
+        url("more-images/assets/projector-texture.webp") center / cover;
+    }
+
+    body::after {
+      content: "";
+      position: fixed;
+      inset: 0;
+      z-index: 20;
+      pointer-events: none;
+      background: radial-gradient(circle at 50% 42%, transparent 42%, rgba(0, 0, 0, 0.35) 72%, rgba(0, 0, 0, 0.82) 118%);
+      mix-blend-mode: multiply;
+    }
+
+    a {
+      color: inherit;
+    }
+
+    button {
+      font: inherit;
+    }
+
+    .skip-link {
+      position: fixed;
+      top: 10px;
+      left: 10px;
+      z-index: 100;
+      padding: 10px 14px;
+      transform: translateY(-150%);
+      border: 1px solid var(--gold);
+      background: var(--ink);
+      color: var(--paper);
+      opacity: 0;
+      pointer-events: none;
+    }
+
+    .skip-link:focus-visible {
+      transform: translateY(0);
+      opacity: 1;
+      pointer-events: auto;
+    }
+
+    .site-bar {
+      position: relative;
+      z-index: 21;
+      display: flex;
+      width: var(--track-width);
+      margin: 0 auto;
+      padding: 24px 0 8px;
+      align-items: center;
+      justify-content: space-between;
+      gap: 18px;
+      font-family: Arial, Helvetica, sans-serif;
+      font-size: 0.74rem;
+      font-weight: 700;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+    }
+
+    .site-bar a {
+      text-decoration: none;
+    }
+
+    .site-bar a:hover,
+    .site-bar a:focus-visible {
+      color: var(--gold);
+    }
+
+    .site-bar__links {
+      display: flex;
+      gap: 20px;
+    }
+
+    .masthead {
+      position: relative;
+      z-index: 2;
+      display: grid;
+      width: var(--track-width);
+      min-height: 50vh;
+      margin: 0 auto;
+      padding: clamp(52px, 9vw, 125px) clamp(8px, 4vw, 52px) 74px;
+      place-content: center;
+      text-align: center;
+    }
+
+    .masthead::before {
+      content: "";
+      position: absolute;
+      top: 15%;
+      left: 50%;
+      width: min(72vw, 780px);
+      aspect-ratio: 1.45;
+      transform: translateX(-50%);
+      border-radius: 50%;
+      background: rgba(219, 173, 71, 0.08);
+      filter: blur(46px);
+      animation: projector-breathe 5.5s ease-in-out infinite alternate;
+    }
+
+    .eyebrow {
+      position: relative;
+      margin: 0 0 14px;
+      color: var(--gold);
+      font-family: Arial, Helvetica, sans-serif;
+      font-size: 0.7rem;
+      font-weight: 700;
+      letter-spacing: 0.34em;
+      text-transform: uppercase;
+    }
+
+    h1 {
+      position: relative;
+      margin: 0;
+      font-size: clamp(4rem, 12vw, 9rem);
+      font-weight: 400;
+      letter-spacing: -0.075em;
+      line-height: 0.76;
+      text-shadow: 0 6px 32px rgba(0, 0, 0, 0.72);
+    }
+
+    .masthead__deck {
+      position: relative;
+      max-width: 590px;
+      margin: 34px auto 0;
+      color: var(--paper-dim);
+      font-size: clamp(1rem, 2vw, 1.28rem);
+      font-style: italic;
+      line-height: 1.55;
+    }
+
+    .masthead__instruction {
+      position: relative;
+      margin: 38px 0 0;
+      color: rgba(239, 229, 207, 0.64);
+      font-family: Arial, Helvetica, sans-serif;
+      font-size: 0.68rem;
+      font-weight: 700;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+    }
+
+    .carousel-section {
+      position: relative;
+      z-index: 2;
+      padding-bottom: 70px;
+    }
+
+    .carousel-topline {
+      display: flex;
+      width: var(--track-width);
+      margin: 0 auto 18px;
+      padding: 0 4px;
+      align-items: center;
+      justify-content: space-between;
+      gap: 20px;
+      border-bottom: 1px solid rgba(239, 229, 207, 0.18);
+    }
+
+    .carousel-topline p {
+      margin: 0 0 10px;
+      color: var(--paper-dim);
+      font-family: Arial, Helvetica, sans-serif;
+      font-size: 0.7rem;
+      font-weight: 700;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+    }
+
+    .carousel-controls {
+      display: flex;
+      margin-bottom: 9px;
+      gap: 8px;
+    }
+
+    .carousel-controls button,
+    .lightbox__control,
+    .lightbox__close {
+      display: inline-grid;
+      width: 42px;
+      height: 42px;
+      padding: 0;
+      place-items: center;
+      border: 1px solid rgba(239, 229, 207, 0.28);
+      border-radius: 50%;
+      background: rgba(13, 11, 9, 0.74);
+      color: var(--paper);
+      cursor: pointer;
+      transition: border-color 180ms ease, color 180ms ease, transform 180ms ease;
+    }
+
+    .carousel-controls button:hover,
+    .carousel-controls button:focus-visible,
+    .lightbox__control:hover,
+    .lightbox__control:focus-visible,
+    .lightbox__close:hover,
+    .lightbox__close:focus-visible {
+      border-color: var(--gold);
+      color: var(--gold);
+      transform: scale(1.06);
+    }
+
+    .carousel-controls button:disabled {
+      opacity: 0.28;
+      cursor: default;
+      transform: none;
+    }
+
+    .carousel-track {
+      display: flex;
+      width: 100%;
+      align-items: flex-start;
+      overflow-x: auto;
+      overscroll-behavior-inline: contain;
+      scroll-behavior: smooth;
+      scroll-snap-type: x mandatory;
+      scrollbar-width: none;
+      transition: height 260ms ease;
+    }
+
+    .carousel-track::-webkit-scrollbar {
+      display: none;
+    }
+
+    .reel {
+      position: relative;
+      flex: 0 0 100%;
+      min-width: 100%;
+      padding: 16px max(16px, calc((100vw - 1180px) / 2));
+      scroll-snap-align: start;
+      scroll-snap-stop: always;
+    }
+
+    .reel::before {
+      content: attr(data-number);
+      position: absolute;
+      top: 2%;
+      right: max(25px, calc((100vw - 1120px) / 2));
+      z-index: -1;
+      color: rgba(239, 229, 207, 0.045);
+      font-family: Arial, Helvetica, sans-serif;
+      font-size: clamp(9rem, 25vw, 23rem);
+      font-weight: 900;
+      letter-spacing: -0.1em;
+      line-height: 0.78;
+    }
+
+    .reel__heading {
+      position: relative;
+      z-index: 3;
+      display: flex;
+      width: min(100%, 1180px);
+      margin: 0 auto 10px;
+      align-items: baseline;
+      gap: 16px;
+    }
+
+    .reel__heading h2 {
+      margin: 0;
+      color: var(--paper);
+      font-size: clamp(1.6rem, 4vw, 3rem);
+      font-weight: 400;
+      line-height: 1;
+    }
+
+    .reel__heading span {
+      color: var(--gold);
+      font-family: Arial, Helvetica, sans-serif;
+      font-size: 0.65rem;
+      font-weight: 700;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+    }
+
+    .collage {
+      display: grid;
+      width: min(100%, 1180px);
+      min-height: 720px;
+      margin: 0 auto;
+      padding: 18px 12px 56px;
+      grid-template-columns: repeat(12, 1fr);
+      grid-template-rows: repeat(9, 68px);
+      isolation: isolate;
+    }
+
+    .frame {
+      position: relative;
+      z-index: var(--z, 1);
+      margin: 0;
+      transform: rotate(var(--r, 0deg));
+      transition: transform 280ms cubic-bezier(0.2, 0.8, 0.2, 1), z-index 0s;
+    }
+
+    .frame:hover,
+    .frame:focus-within {
+      z-index: 10;
+      transform: rotate(0deg) translateY(-8px) scale(1.025);
+    }
+
+    .frame__button {
+      position: relative;
+      display: block;
+      width: 100%;
+      height: 100%;
+      padding: var(--mat, 10px);
+      overflow: hidden;
+      border: 0;
+      background: #e7dcc3;
+      box-shadow: 0 18px 38px rgba(0, 0, 0, 0.56), 0 2px 4px rgba(0, 0, 0, 0.5);
+      color: var(--ink);
+      cursor: zoom-in;
+    }
+
+    .frame__button::after {
+      content: "";
+      position: absolute;
+      inset: var(--mat, 10px);
+      pointer-events: none;
+      background: radial-gradient(circle, transparent 55%, rgba(0, 0, 0, 0.34) 118%);
+      box-shadow: inset 0 0 28px rgba(32, 17, 5, 0.22);
+      mix-blend-mode: multiply;
+    }
+
+    .frame img,
+    .frame video {
+      display: block;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      background: #090806;
+      filter: saturate(0.92) contrast(1.03);
+    }
+
+    .frame--contain img {
+      object-fit: contain;
+      background: #f1eadc;
+    }
+
+    .frame figcaption {
+      position: absolute;
+      right: 6px;
+      bottom: -27px;
+      left: 6px;
+      overflow: hidden;
+      color: rgba(239, 229, 207, 0.8);
+      font-family: Arial, Helvetica, sans-serif;
+      font-size: 0.61rem;
+      font-weight: 700;
+      letter-spacing: 0.13em;
+      text-overflow: ellipsis;
+      text-transform: uppercase;
+      white-space: nowrap;
+    }
+
+    .frame--dark .frame__button {
+      background: #080806;
+    }
+
+    .frame--dark figcaption {
+      color: rgba(239, 229, 207, 0.72);
+    }
+
+    .frame--blood .frame__button {
+      padding: 13px 13px 32px;
+      background: #e7dcc3;
+    }
+
+    .frame--blood .frame__button::before {
+      content: "MARK TWAIN / 1884";
+      position: absolute;
+      right: 14px;
+      bottom: 10px;
+      left: 14px;
+      z-index: 2;
+      color: #5d1118;
+      font-family: Arial, Helvetica, sans-serif;
+      font-size: 0.56rem;
+      font-weight: 800;
+      letter-spacing: 0.18em;
+      text-align: right;
+    }
+
+    .frame--blood .frame__button::after {
+      bottom: 32px;
+    }
+
+    .video-badge {
+      position: absolute;
+      right: 20px;
+      bottom: 20px;
+      z-index: 3;
+      display: inline-flex;
+      padding: 7px 9px;
+      align-items: center;
+      gap: 7px;
+      border: 1px solid rgba(239, 229, 207, 0.45);
+      border-radius: 999px;
+      background: rgba(8, 7, 6, 0.72);
+      color: var(--paper);
+      font-family: Arial, Helvetica, sans-serif;
+      font-size: 0.58rem;
+      font-weight: 800;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+    }
+
+    .video-badge::before {
+      content: "";
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background: var(--orange);
+      box-shadow: 0 0 9px var(--orange);
+    }
+
+    .r1-a { grid-area: 1 / 1 / 7 / 5; --r: -3deg; --z: 2; }
+    .r1-b { grid-area: 1 / 8 / 7 / 13; --r: 2.5deg; --z: 1; }
+    .r1-c { grid-area: 3 / 4 / 9 / 9; --r: -0.8deg; --z: 4; }
+    .r1-d { grid-area: 6 / 1 / 10 / 7; --r: 1.5deg; --z: 3; }
+
+    .r2-a { grid-area: 1 / 1 / 7 / 7; --r: -1.8deg; --z: 3; }
+    .r2-b { grid-area: 2 / 7 / 7 / 12; --r: 2.2deg; --z: 2; }
+    .r2-c { grid-area: 5 / 2 / 10 / 7; --r: 2.4deg; --z: 4; }
+    .r2-d { grid-area: 5 / 7 / 10 / 11; --r: -2.4deg; --z: 5; }
+    .r2-e { grid-area: 1 / 10 / 5 / 13; --r: -4deg; --z: 6; }
+
+    .r3-a { grid-area: 1 / 1 / 9 / 8; --r: -1deg; --z: 4; }
+    .r3-b { grid-area: 1 / 8 / 6 / 13; --r: 2.2deg; --z: 2; }
+    .r3-c { grid-area: 5 / 7 / 10 / 12; --r: -2.4deg; --z: 5; }
+    .r3-d { grid-area: 6 / 2 / 10 / 7; --r: 3deg; --z: 6; }
+
+    .r4-a { grid-area: 1 / 1 / 6 / 6; --r: -2.6deg; --z: 2; }
+    .r4-b { grid-area: 1 / 6 / 6 / 10; --r: 1.5deg; --z: 3; }
+    .r4-c { grid-area: 1 / 10 / 5 / 13; --r: -2deg; --z: 4; }
+    .r4-d { grid-area: 5 / 1 / 9 / 5; --r: 2deg; --z: 6; }
+    .r4-e { grid-area: 5 / 5 / 10 / 10; --r: -1.2deg; --z: 5; }
+    .r4-f { grid-area: 5 / 9 / 10 / 13; --r: 2.4deg; --z: 7; }
+
+    .pagination {
+      display: flex;
+      width: var(--track-width);
+      margin: 4px auto 0;
+      align-items: center;
+      justify-content: center;
+      gap: 12px;
+    }
+
+    .pagination button {
+      width: 34px;
+      height: 5px;
+      padding: 0;
+      border: 0;
+      background: rgba(239, 229, 207, 0.2);
+      cursor: pointer;
+      transition: width 200ms ease, background 200ms ease;
+    }
+
+    .pagination button[aria-current="true"] {
+      width: 58px;
+      background: var(--gold);
+    }
+
+    .page-footer {
+      position: relative;
+      z-index: 21;
+      display: flex;
+      width: var(--track-width);
+      margin: 0 auto;
+      padding: 34px 4px 50px;
+      justify-content: space-between;
+      gap: 18px;
+      border-top: 1px solid rgba(239, 229, 207, 0.16);
+      color: rgba(239, 229, 207, 0.55);
+      font-family: Arial, Helvetica, sans-serif;
+      font-size: 0.63rem;
+      font-weight: 700;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+    }
+
+    .lightbox {
+      width: 100vw;
+      max-width: none;
+      height: 100vh;
+      max-height: none;
+      margin: 0;
+      padding: 0;
+      border: 0;
+      background: rgba(5, 4, 3, 0.94);
+      color: var(--paper);
+    }
+
+    .lightbox::backdrop {
+      background: rgba(5, 4, 3, 0.92);
+      backdrop-filter: blur(10px);
+    }
+
+    .lightbox[open] {
+      display: grid;
+      place-items: center;
+    }
+
+    .lightbox__stage {
+      display: grid;
+      width: min(1120px, 92vw);
+      height: min(82vh, 900px);
+      place-items: center;
+    }
+
+    .lightbox__stage img,
+    .lightbox__stage video {
+      display: block;
+      max-width: 100%;
+      max-height: calc(82vh - 80px);
+      object-fit: contain;
+      box-shadow: 0 24px 72px rgba(0, 0, 0, 0.74);
+    }
+
+    .lightbox__caption {
+      align-self: end;
+      margin: 18px 0 0;
+      color: var(--paper-dim);
+      font-size: 0.95rem;
+      font-style: italic;
+      text-align: center;
+    }
+
+    .lightbox__close {
+      position: fixed;
+      top: 22px;
+      right: 22px;
+      z-index: 2;
+    }
+
+    .lightbox__control {
+      position: fixed;
+      top: 50%;
+      z-index: 2;
+      transform: translateY(-50%);
+    }
+
+    .lightbox__control:hover,
+    .lightbox__control:focus-visible {
+      transform: translateY(-50%) scale(1.06);
+    }
+
+    .lightbox__previous { left: 22px; }
+    .lightbox__next { right: 22px; }
+
+    @keyframes projector-breathe {
+      from { opacity: 0.72; transform: translateX(-50%) scale(0.96); }
+      to { opacity: 1; transform: translateX(-50%) scale(1.03); }
+    }
+
+    @media (max-width: 760px) {
+      :root {
+        --track-width: calc(100vw - 24px);
+      }
+
+      .site-bar {
+        padding-top: 18px;
+      }
+
+      .site-bar__name {
+        font-size: 0;
+      }
+
+      .site-bar__name::after {
+        content: "ES";
+        font-size: 0.74rem;
+      }
+
+      .masthead {
+        min-height: 56vh;
+        padding-bottom: 54px;
+      }
+
+      h1 {
+        font-size: clamp(4rem, 22vw, 7rem);
+        line-height: 0.8;
+      }
+
+      .carousel-topline p {
+        max-width: 170px;
+        line-height: 1.45;
+      }
+
+      .reel {
+        padding-inline: 12px;
+      }
+
+      .reel__heading {
+        padding: 0 8px;
+        align-items: flex-start;
+        flex-direction: column;
+        gap: 6px;
+      }
+
+      .collage {
+        min-height: 0;
+        padding: 20px 8px 42px;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        grid-template-rows: none;
+        grid-auto-flow: dense;
+        grid-auto-rows: 160px;
+        gap: 34px 12px;
+      }
+
+      .frame {
+        grid-area: auto !important;
+        transform: rotate(calc(var(--r, 0deg) * 0.5));
+      }
+
+      .frame:nth-of-type(3n + 1) {
+        grid-column: 1 / -1;
+        grid-row: span 2;
+      }
+
+      .frame:nth-of-type(3n + 2),
+      .frame:nth-of-type(3n + 3) {
+        grid-row: span 1;
+      }
+
+      .frame figcaption {
+        font-size: 0.56rem;
+        line-height: 1.25;
+        white-space: normal;
+      }
+
+      .lightbox__control {
+        top: auto;
+        bottom: 22px;
+      }
+
+      .lightbox__previous { left: 22px; }
+      .lightbox__next { right: 22px; }
+
+      .lightbox__stage {
+        width: 90vw;
+        height: 76vh;
+      }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      html,
+      .carousel-track {
+        scroll-behavior: auto;
+      }
+
+      .masthead::before {
+        animation: none;
+      }
+
+      .frame,
+      .carousel-track,
+      .carousel-controls button,
+      .pagination button {
+        transition: none;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <a class="skip-link" href="#carousel">Skip to the images</a>
+
+  <nav class="site-bar" aria-label="Site navigation">
+    <a class="site-bar__name" href="index.html">Eric Stone</a>
+    <div class="site-bar__links">
+      <a href="photos.html">Photos</a>
+      <a href="index.html">Home</a>
+    </div>
+  </nav>
+
+  <header class="masthead">
+    <p class="eyebrow">Archive / Reel Two</p>
+    <h1>More<br>Images</h1>
+    <p class="masthead__deck">Some pictures belong together for no better reason than memory says they do.</p>
+    <p class="masthead__instruction">Use the arrows, swipe the carousel, or open any frame</p>
+  </header>
+
+  <main id="carousel" class="carousel-section">
+    <div class="carousel-topline">
+      <p id="reel-status" aria-live="polite">Reel 1 of 4 — Familiar light</p>
+      <div class="carousel-controls" aria-label="Carousel controls">
+        <button id="previous-reel" type="button" aria-label="Previous reel">←</button>
+        <button id="next-reel" type="button" aria-label="Next reel">→</button>
+      </div>
+    </div>
+
+    <div id="carousel-track" class="carousel-track" tabindex="0" aria-label="Four reels of images">
+      <section class="reel" data-number="01" data-title="Familiar light" aria-labelledby="reel-one-title">
+        <div class="reel__heading">
+          <h2 id="reel-one-title">Familiar light</h2>
+          <span>People, animals, afternoons</span>
+        </div>
+        <div class="collage">
+          <figure class="frame r1-a">
+            <button class="frame__button" type="button" data-src="more-images/assets/bearded-man-blue-sky.webp" data-caption="Blue sky portrait" aria-label="Open blue sky portrait">
+              <img src="more-images/assets/bearded-man-blue-sky.webp" alt="Bearded man photographed against a clear blue sky" fetchpriority="high">
+            </button>
+            <figcaption>Blue sky portrait</figcaption>
+          </figure>
+
+          <figure class="frame r1-b">
+            <button class="frame__button" type="button" data-src="more-images/assets/man-in-woods.webp" data-caption="Working in the woods" aria-label="Open photograph of a man in the woods">
+              <img src="more-images/assets/man-in-woods.webp" alt="Man kneeling in autumn woods beside an open gear bag" loading="lazy">
+            </button>
+            <figcaption>Working in the woods</figcaption>
+          </figure>
+
+          <figure class="frame r1-c" style="--mat: 12px;">
+            <button class="frame__button" type="button" data-src="more-images/assets/buddy-magenta.webp" data-caption="Buddy in magenta light" aria-label="Open photograph of Buddy in magenta light">
+              <img src="more-images/assets/buddy-magenta.webp" alt="Black-and-white dog lit by vivid magenta light" loading="lazy">
+            </button>
+            <figcaption>Buddy in magenta light</figcaption>
+          </figure>
+
+          <figure class="frame r1-d">
+            <button class="frame__button" type="button" data-src="more-images/assets/deck-siesta.webp" data-caption="A deck, a dog, and a patch of sun" aria-label="Open deck photograph">
+              <img src="more-images/assets/deck-siesta.webp" alt="A dog and a person resting in separate patches of shade and sun on a wooden deck" loading="lazy">
+            </button>
+            <figcaption>A deck, a dog, and a patch of sun</figcaption>
+          </figure>
+        </div>
+      </section>
+
+      <section class="reel" data-number="02" data-title="Places to disappear" aria-labelledby="reel-two-title">
+        <div class="reel__heading">
+          <h2 id="reel-two-title">Places to disappear</h2>
+          <span>Water, roads, impossible maps</span>
+        </div>
+        <div class="collage">
+          <figure class="frame r2-a">
+            <button class="frame__button" type="button" data-src="more-images/assets/autumn-creek.webp" data-caption="Cold water and leaves" aria-label="Open autumn creek photograph">
+              <img src="more-images/assets/autumn-creek.webp" alt="Small blue creek moving through mossy rocks and autumn leaves" loading="lazy">
+            </button>
+            <figcaption>Cold water and leaves</figcaption>
+          </figure>
+
+          <figure class="frame r2-b frame--dark">
+            <button class="frame__button" type="button" data-src="more-images/assets/road-reel.mp4" data-type="video" data-caption="The road keeps moving" aria-label="Open road video">
+              <video src="more-images/assets/road-reel.mp4" muted autoplay loop playsinline preload="metadata" aria-label="Moving view of a two-lane country road"></video>
+              <span class="video-badge">Moving reel</span>
+            </button>
+            <figcaption>The road keeps moving</figcaption>
+          </figure>
+
+          <figure class="frame r2-c frame--contain">
+            <button class="frame__button" type="button" data-src="more-images/assets/abstract-emblem.webp" data-caption="Emblem for an imaginary place" aria-label="Open abstract emblem">
+              <img src="more-images/assets/abstract-emblem.webp" alt="Layered abstract emblem in orange, blue, black, and cream" loading="lazy">
+            </button>
+            <figcaption>Emblem for an imaginary place</figcaption>
+          </figure>
+
+          <figure class="frame r2-d frame--contain">
+            <button class="frame__button" type="button" data-src="more-images/assets/red-dynasty-collage.webp" data-caption="Red dynasty collage" aria-label="Open red dynasty collage">
+              <img src="more-images/assets/red-dynasty-collage.webp" alt="Geometric red collage with rows of blue dragon currency and a framed document" loading="lazy">
+            </button>
+            <figcaption>Red dynasty collage</figcaption>
+          </figure>
+
+          <figure class="frame r2-e frame--contain">
+            <button class="frame__button" type="button" data-src="more-images/assets/new-yorker-map.webp" data-caption="The New Yorker, March 29, 1976" aria-label="Open New Yorker cover">
+              <img src="more-images/assets/new-yorker-map.webp" alt="New Yorker cover showing a compressed map looking west from New York City" loading="lazy">
+            </button>
+            <figcaption>The New Yorker / 1976</figcaption>
+          </figure>
+        </div>
+      </section>
+
+      <section class="reel" data-number="03" data-title="Words with teeth" aria-labelledby="reel-three-title">
+        <div class="reel__heading">
+          <h2 id="reel-three-title">Words with teeth</h2>
+          <span>Warnings, arguments, postponements</span>
+        </div>
+        <div class="collage">
+          <figure class="frame r3-a frame--blood">
+            <button class="frame__button" type="button" data-src="more-images/assets/twain-notice-blood.gif" data-caption="Mark Twain’s notice, slowly overtaken by red" aria-label="Open animated Mark Twain notice">
+              <img src="more-images/assets/twain-notice-blood.gif" alt="Mark Twain notice from Huckleberry Finn slowly changing from gray to dark red" loading="lazy">
+            </button>
+            <figcaption>Notice / Mark Twain / the red creeps in</figcaption>
+          </figure>
+
+          <figure class="frame r3-b">
+            <button class="frame__button" type="button" data-src="more-images/assets/manipulate-the-world.webp" data-caption="Manipulate the World — a page worth arguing with" aria-label="Open photographed book page">
+              <img src="more-images/assets/manipulate-the-world.webp" alt="Photographed book page headed Manipulate the World" loading="lazy">
+            </button>
+            <figcaption>Manipulate the world</figcaption>
+          </figure>
+
+          <figure class="frame r3-c">
+            <button class="frame__button" type="button" data-src="more-images/assets/lyrics-fragment.webp" data-caption="Regroup and lounge" aria-label="Open lyrics fragment">
+              <img src="more-images/assets/lyrics-fragment.webp" alt="Cropped fragment of song lyrics beginning Regroup and lounge" loading="lazy">
+            </button>
+            <figcaption>Regroup and lounge</figcaption>
+          </figure>
+
+          <figure class="frame r3-d frame--dark">
+            <button class="frame__button" type="button" data-src="more-images/assets/procrastination.webp" data-caption="Procrastination — I’ll find a picture tomorrow" aria-label="Open procrastination poster">
+              <img src="more-images/assets/procrastination.webp" alt="Blank motivational poster reading Procrastination, I’ll find a picture tomorrow" loading="lazy">
+            </button>
+            <figcaption>I’ll find a picture tomorrow</figcaption>
+          </figure>
+        </div>
+      </section>
+
+      <section class="reel" data-number="04" data-title="Broadcast fragments" aria-labelledby="reel-four-title">
+        <div class="reel__heading">
+          <h2 id="reel-four-title">Broadcast fragments</h2>
+          <span>Music, jokes, signals from elsewhere</span>
+        </div>
+        <div class="collage">
+          <figure class="frame r4-a">
+            <button class="frame__button" type="button" data-src="more-images/assets/society-if-mtv.webp" data-caption="Society if MTV had kept playing music" aria-label="Open MTV collage">
+              <img src="more-images/assets/society-if-mtv.webp" alt="Retro-futurist city and aircraft meme imagining a society where MTV kept playing music" loading="lazy">
+            </button>
+            <figcaption>Society if MTV kept playing music</figcaption>
+          </figure>
+
+          <figure class="frame r4-b">
+            <button class="frame__button" type="button" data-src="more-images/assets/hall-oates-rich-girl.webp" data-caption="Hall & Oates — Rich Girl" aria-label="Open Hall and Oates music screenshot">
+              <img src="more-images/assets/hall-oates-rich-girl.webp" alt="Music player screenshot for Rich Girl by Daryl Hall and John Oates" loading="lazy">
+            </button>
+            <figcaption>Hall & Oates / Rich Girl</figcaption>
+          </figure>
+
+          <figure class="frame r4-c frame--dark">
+            <button class="frame__button" type="button" data-src="more-images/assets/kanye-follow-god.webp" data-caption="Kanye West — Follow God" aria-label="Open Kanye West music screenshot">
+              <img src="more-images/assets/kanye-follow-god.webp" alt="Music player screenshot for Follow God by Kanye West" loading="lazy">
+            </button>
+            <figcaption>Kanye West / Follow God</figcaption>
+          </figure>
+
+          <figure class="frame r4-d frame--dark">
+            <button class="frame__button" type="button" data-src="more-images/assets/ben-folds-lullabye.webp" data-caption="Ben Folds Five — Lullabye" aria-label="Open Ben Folds Five music screenshot">
+              <img src="more-images/assets/ben-folds-lullabye.webp" alt="Music player screenshot for Lullabye by Ben Folds Five" loading="lazy">
+            </button>
+            <figcaption>Ben Folds Five / Lullabye</figcaption>
+          </figure>
+
+          <figure class="frame r4-e frame--dark">
+            <button class="frame__button" type="button" data-src="more-images/assets/skeleton-family.webp" data-caption="Family portrait, eventually" aria-label="Open skeleton family illustration">
+              <img src="more-images/assets/skeleton-family.webp" alt="Illustration of three skeletons embracing like a family portrait" loading="lazy">
+            </button>
+            <figcaption>Family portrait, eventually</figcaption>
+          </figure>
+
+          <figure class="frame r4-f">
+            <button class="frame__button" type="button" data-src="more-images/assets/just-do-it.webp" data-caption="Just do it, you little bastard" aria-label="Open just do it parody">
+              <img src="more-images/assets/just-do-it.webp" alt="Crying baby parody of a Just Do It advertisement" loading="lazy">
+            </button>
+            <figcaption>Just do it</figcaption>
+          </figure>
+        </div>
+      </section>
+    </div>
+
+    <div id="pagination" class="pagination" aria-label="Choose a reel"></div>
+  </main>
+
+  <footer class="page-footer">
+    <span>Eric Stone / More Images</span>
+    <span>End of reel</span>
+  </footer>
+
+  <dialog id="lightbox" class="lightbox" aria-label="Expanded image viewer">
+    <button class="lightbox__close" type="button" aria-label="Close viewer">×</button>
+    <button class="lightbox__control lightbox__previous" type="button" aria-label="Previous image">←</button>
+    <div class="lightbox__stage">
+      <div id="lightbox-media"></div>
+      <p id="lightbox-caption" class="lightbox__caption"></p>
+    </div>
+    <button class="lightbox__control lightbox__next" type="button" aria-label="Next image">→</button>
+  </dialog>
+
+  <script>
+    const track = document.querySelector("#carousel-track");
+    const reels = [...document.querySelectorAll(".reel")];
+    const previousReel = document.querySelector("#previous-reel");
+    const nextReel = document.querySelector("#next-reel");
+    const status = document.querySelector("#reel-status");
+    const pagination = document.querySelector("#pagination");
+    let activeReel = 0;
+
+    reels.forEach((reel, index) => {
+      const dot = document.createElement("button");
+      dot.type = "button";
+      dot.setAttribute("aria-label", `Show reel ${index + 1}: ${reel.dataset.title}`);
+      dot.addEventListener("click", () => showReel(index));
+      pagination.append(dot);
+    });
+
+    const dots = [...pagination.querySelectorAll("button")];
+
+    function updateCarousel(index) {
+      activeReel = Math.max(0, Math.min(reels.length - 1, index));
+      status.textContent = `Reel ${activeReel + 1} of ${reels.length} — ${reels[activeReel].dataset.title}`;
+      dots.forEach((dot, dotIndex) => dot.setAttribute("aria-current", String(dotIndex === activeReel)));
+      previousReel.disabled = activeReel === 0;
+      nextReel.disabled = activeReel === reels.length - 1;
+      requestAnimationFrame(() => {
+        track.style.height = `${reels[activeReel].offsetHeight}px`;
+      });
+    }
+
+    function showReel(index) {
+      updateCarousel(index);
+      reels[activeReel].scrollIntoView({ behavior: "smooth", block: "nearest", inline: "start" });
+    }
+
+    previousReel.addEventListener("click", () => showReel(activeReel - 1));
+    nextReel.addEventListener("click", () => showReel(activeReel + 1));
+
+    track.addEventListener("keydown", (event) => {
+      if (event.key === "ArrowLeft") {
+        event.preventDefault();
+        showReel(activeReel - 1);
+      }
+      if (event.key === "ArrowRight") {
+        event.preventDefault();
+        showReel(activeReel + 1);
+      }
+    });
+
+    let scrollTimer;
+    track.addEventListener("scroll", () => {
+      clearTimeout(scrollTimer);
+      scrollTimer = setTimeout(() => {
+        const nearest = Math.round(track.scrollLeft / track.clientWidth);
+        updateCarousel(nearest);
+      }, 80);
+    }, { passive: true });
+
+    updateCarousel(0);
+    window.addEventListener("load", () => updateCarousel(activeReel));
+    window.addEventListener("resize", () => updateCarousel(activeReel));
+
+    const lightbox = document.querySelector("#lightbox");
+    const lightboxMedia = document.querySelector("#lightbox-media");
+    const lightboxCaption = document.querySelector("#lightbox-caption");
+    const closeLightbox = document.querySelector(".lightbox__close");
+    const previousImage = document.querySelector(".lightbox__previous");
+    const nextImage = document.querySelector(".lightbox__next");
+    const mediaButtons = [...document.querySelectorAll(".frame__button")];
+    let activeImage = 0;
+
+    function renderLightbox(index) {
+      activeImage = (index + mediaButtons.length) % mediaButtons.length;
+      const source = mediaButtons[activeImage].dataset.src;
+      const type = mediaButtons[activeImage].dataset.type || "image";
+      const caption = mediaButtons[activeImage].dataset.caption || "";
+      const media = document.createElement(type === "video" ? "video" : "img");
+
+      lightboxMedia.replaceChildren();
+      media.src = source;
+      if (type === "video") {
+        media.controls = true;
+        media.autoplay = true;
+        media.loop = true;
+        media.playsInline = true;
+      } else {
+        media.alt = mediaButtons[activeImage].querySelector("img")?.alt || caption;
+      }
+      lightboxMedia.append(media);
+      lightboxCaption.textContent = `${String(activeImage + 1).padStart(2, "0")} / ${String(mediaButtons.length).padStart(2, "0")} — ${caption}`;
+    }
+
+    function openLightbox(index) {
+      renderLightbox(index);
+      lightbox.showModal();
+      document.body.style.overflow = "hidden";
+    }
+
+    function shutLightbox() {
+      lightbox.close();
+      document.body.style.overflow = "";
+      lightboxMedia.replaceChildren();
+      mediaButtons[activeImage].focus();
+    }
+
+    mediaButtons.forEach((button, index) => button.addEventListener("click", () => openLightbox(index)));
+    closeLightbox.addEventListener("click", shutLightbox);
+    previousImage.addEventListener("click", () => renderLightbox(activeImage - 1));
+    nextImage.addEventListener("click", () => renderLightbox(activeImage + 1));
+
+    lightbox.addEventListener("click", (event) => {
+      if (event.target === lightbox) shutLightbox();
+    });
+
+    lightbox.addEventListener("cancel", (event) => {
+      event.preventDefault();
+      shutLightbox();
+    });
+
+    document.addEventListener("keydown", (event) => {
+      if (!lightbox.open) return;
+      if (event.key === "ArrowLeft") renderLightbox(activeImage - 1);
+      if (event.key === "ArrowRight") renderLightbox(activeImage + 1);
+    });
+  </script>
+</body>
+</html>
