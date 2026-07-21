@@ -281,3 +281,195 @@ nav p {
 .nav-card:hover .nav-card-badge.featured {
     box-shadow: 0 6px 16px rgba(0, 61, 165, 0.45);
 }
+
+/* Mobile Responsive Design */
+/* Tablets (768px and below) */
+@media (max-width: 768px) {
+    header {
+        padding: 50px 20px;
+        border-bottom: 8px solid var(--patriotic-red);
+    }
+
+    header h1 {
+        font-size: clamp(2rem, 7vw, 48px);
+        letter-spacing: 3px;
+    }
+
+    header p {
+        font-size: 16px;
+        letter-spacing: 0.5px;
+    }
+
+    main {
+        margin: 30px auto;
+        padding: 0 15px;
+    }
+
+    section {
+        padding: 20px 18px;
+        margin-bottom: 18px;
+        border-left: 5px solid var(--patriotic-blue);
+    }
+
+    h2 {
+        font-size: 28px;
+        margin-bottom: 12px;
+    }
+
+    section p {
+        font-size: 16px;
+        line-height: 1.6;
+    }
+
+    nav {
+        grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+        gap: 15px;
+        margin-top: 15px;
+    }
+
+    .nav-card {
+        padding: 20px 16px;
+        border-radius: 10px;
+    }
+
+    .nav-card:hover {
+        transform: translateY(-6px) scale(1.02);
+    }
+
+    .nav-card-icon {
+        font-size: 2rem;
+        margin-bottom: 10px;
+    }
+
+    .nav-card-title {
+        font-size: 1.1rem;
+        margin-bottom: 6px;
+    }
+
+    .nav-card-description {
+        font-size: 0.9rem;
+        line-height: 1.5;
+    }
+
+    .nav-card-badge {
+        top: 10px;
+        right: 10px;
+        padding: 5px 10px;
+        font-size: 0.65rem;
+    }
+
+    .photo-gallery {
+        grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+        gap: 15px;
+    }
+
+    .photo-card img {
+        height: 200px;
+    }
+}
+
+/* Mobile phones (480px and below) */
+@media (max-width: 480px) {
+    header {
+        padding: 35px 15px;
+        border-bottom: 6px solid var(--patriotic-red);
+    }
+
+    header h1 {
+        font-size: clamp(1.5rem, 6vw, 36px);
+        letter-spacing: 2px;
+    }
+
+    header p {
+        font-size: 14px;
+        margin-top: 10px;
+        letter-spacing: 0px;
+    }
+
+    main {
+        max-width: 100%;
+        margin: 20px auto;
+        padding: 0 12px;
+    }
+
+    section {
+        padding: 16px 14px;
+        margin-bottom: 14px;
+        border-left: 4px solid var(--patriotic-blue);
+        box-shadow: 0 1px 6px rgba(0, 0, 0, 0.06), 0 2px 12px rgba(0, 0, 0, 0.02);
+    }
+
+    section:hover {
+        box-shadow: 0 2px 10px rgba(0, 0, 0, 0.09);
+    }
+
+    h2 {
+        font-size: 22px;
+        margin-bottom: 10px;
+    }
+
+    section p {
+        font-size: 15px;
+        line-height: 1.5;
+    }
+
+    nav {
+        grid-template-columns: 1fr;
+        gap: 12px;
+        margin-top: 12px;
+    }
+
+    .nav-card {
+        padding: 16px 14px;
+        border-radius: 8px;
+        border: 2px solid var(--patriotic-blue);
+    }
+
+    .nav-card:hover {
+        transform: translateY(-4px) scale(1.01);
+        box-shadow: 0 6px 16px rgba(196, 30, 58, 0.18), 0 0 0 1px rgba(196, 30, 58, 0.12);
+    }
+
+    .nav-card-icon {
+        font-size: 1.8rem;
+        margin-bottom: 8px;
+    }
+
+    .nav-card-title {
+        font-size: 1rem;
+        margin-bottom: 6px;
+    }
+
+    .nav-card-description {
+        font-size: 0.85rem;
+        line-height: 1.5;
+    }
+
+    .nav-card-badge {
+        top: 8px;
+        right: 8px;
+        padding: 4px 8px;
+        font-size: 0.6rem;
+        letter-spacing: 0.5px;
+    }
+
+    .photo-gallery {
+        grid-template-columns: 1fr;
+        gap: 12px;
+        margin-top: 12px;
+    }
+
+    .photo-card img {
+        height: 250px;
+    }
+
+    .photo-card figcaption {
+        padding: 8px 10px;
+        font-size: 13px;
+    }
+
+    .gallery-loading,
+    .gallery-empty {
+        font-size: 14px;
+    }
+}
