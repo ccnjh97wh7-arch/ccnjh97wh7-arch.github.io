@@ -10,7 +10,8 @@ body {
     margin: 0;
     background-color: var(--warm-paper);
     color: var(--near-black);
-    font-family: Arial, sans-serif;
+    font-family: Georgia, "Times New Roman", serif;
+    line-height: 1.6;
 }
 header {
     background-color: var(--near-black);
@@ -18,6 +19,7 @@ header {
     padding: 80px 30px;
     text-align: center;
     border-bottom: 10px solid var(--patriotic-red);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
 }
 
 header h1 {
@@ -25,11 +27,16 @@ header h1 {
     color: var(--patriotic-red);
     font-size: 64px;
     letter-spacing: 5px;
+    font-family: Georgia, "Times New Roman", serif;
+    font-weight: 700;
 }
 
 header p {
     margin-top: 15px;
     font-size: 20px;
+    font-family: Arial, sans-serif;
+    font-weight: 500;
+    letter-spacing: 1px;
 }
 main {
     max-width: 900px;
@@ -38,13 +45,27 @@ main {
 }
 
 section {
-    border-left: 8px solid var(--patriotic-blue);
-    padding: 10px 25px;
+    background: rgba(255, 255, 255, 0.85);
+    border-left: 7px solid var(--patriotic-blue);
+    border-radius: 8px;
+    padding: 28px 25px;
+    margin-bottom: 24px;
+    box-shadow: 0 2px 12px rgba(0, 0, 0, 0.08), 0 4px 20px rgba(0, 0, 0, 0.04);
+    transition: box-shadow 0.3s ease;
+}
+
+section:hover {
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.12), 0 8px 28px rgba(0, 0, 0, 0.06);
 }
 
 h2 {
     color: var(--patriotic-blue);
     font-size: 36px;
+    margin-top: 0;
+    margin-bottom: 16px;
+    font-weight: 600;
+    letter-spacing: 0.5px;
+    transition: color 0.3s ease;
 }
 
 section p {
@@ -60,11 +81,17 @@ section p {
 }
 
 .photo-card {
-    background: rgba(255, 255, 255, 0.6);
-    border: 1px solid rgba(0, 0, 0, 0.08);
+    background: rgba(255, 255, 255, 0.7);
+    border: 1px solid rgba(0, 0, 0, 0.1);
     border-radius: 8px;
     overflow: hidden;
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
+    box-shadow: 0 2px 12px rgba(0, 0, 0, 0.1);
+    transition: all 0.3s ease;
+}
+
+.photo-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
 }
 
 .photo-card img {
@@ -146,15 +173,16 @@ nav p {
 .nav-card {
     display: flex;
     flex-direction: column;
-    background: linear-gradient(135deg, rgba(196, 30, 58, 0.05), rgba(0, 61, 165, 0.05));
+    background: linear-gradient(135deg, rgba(196, 30, 58, 0.04), rgba(0, 61, 165, 0.04));
     border: 2px solid var(--patriotic-blue);
     border-radius: 12px;
-    padding: 24px 20px;
+    padding: 28px 24px;
     transition: all 0.3s ease;
     text-decoration: none;
     color: var(--near-black);
     position: relative;
     overflow: hidden;
+    box-shadow: 0 2px 8px rgba(0, 82, 204, 0.12), inset 0 0 0 1px rgba(0, 82, 204, 0.1);
 }
 
 .nav-card::before {
@@ -173,10 +201,10 @@ nav p {
 }
 
 .nav-card:hover {
-    transform: translateY(-6px) scale(1.02);
+    transform: translateY(-8px) scale(1.03);
     border-color: var(--patriotic-red);
-    box-shadow: 0 12px 24px rgba(196, 30, 58, 0.15);
-    background: linear-gradient(135deg, rgba(196, 30, 58, 0.12), rgba(0, 61, 165, 0.12));
+    box-shadow: 0 8px 24px rgba(196, 30, 58, 0.22), 0 0 0 1px rgba(196, 30, 58, 0.15), inset 0 0 0 1px rgba(255, 255, 255, 0.4);
+    background: linear-gradient(135deg, rgba(196, 30, 58, 0.10), rgba(0, 61, 165, 0.08));
 }
 
 .nav-card-icon {
@@ -199,8 +227,14 @@ nav p {
 
 .nav-card-description {
     font-size: 0.95rem;
-    color: #666;
-    line-height: 1.5;
+    color: #555;
+    line-height: 1.6;
     margin: 0;
     flex-grow: 1;
+    font-family: Arial, sans-serif;
+    transition: color 0.3s ease;
+}
+
+.nav-card:hover .nav-card-description {
+    color: #333;
 }
