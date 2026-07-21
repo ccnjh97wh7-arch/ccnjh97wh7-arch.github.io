@@ -366,6 +366,11 @@
     .vote-summary-popular strong {
       color: var(--paper);
     }
+
+    .vote-summary-sentiment strong {
+      color: var(--black);
+      font-size: 1.05rem;
+    }
   </style>
 </head>
 
@@ -801,8 +806,8 @@
         });
 
       let voteSummaryHTML = `
-        <div style="margin-bottom: 16px;">
-          <strong>Community sentiment:</strong>
+        <div class="vote-summary-sentiment" style="margin-bottom: 16px;">
+          <strong>Community sentiment (total tally):</strong>
           <span class="vote-pill">👍 ${totalUpvotes}</span>
           <span class="vote-pill">👎 ${totalDownvotes}</span>
         </div>
