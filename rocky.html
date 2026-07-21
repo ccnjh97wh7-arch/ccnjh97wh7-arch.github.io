@@ -397,6 +397,21 @@
       pointer-events: none;
       z-index: 9999;
     }
+
+    @keyframes vote-pulse {
+      0%, 100% {
+        opacity: 1;
+      }
+      50% {
+        opacity: 0.6;
+      }
+    }
+
+    .memory-feedback button.is-loading {
+      animation: vote-pulse 0.6s ease-in-out infinite;
+      cursor: wait;
+      pointer-events: none;
+    }
   </style>
 </head>
 
@@ -945,14 +960,40 @@
         upButton.textContent = `👍 ${feedback.upvotes}`;
         upButton.className = feedback.userReaction === "up" ? "is-active" : "";
         upButton.setAttribute("aria-pressed", feedback.userReaction === "up" ? "true" : "false");
-        upButton.addEventListener("click", () => handleMemoryFeedback(memory, "up"));
+        upButton.addEventListener("click", async () => {
+          upButton.classList.add("is-loading");
+          downButton.classList.add("is-loading");
+          downButton.disabled = true;
+          upButton.disabled = true;
+          try {
+            await handleMemoryFeedback(memory, "up");
+          } finally {
+            upButton.classList.remove("is-loading");
+            downButton.classList.remove("is-loading");
+            downButton.disabled = false;
+            upButton.disabled = false;
+          }
+        });
 
         const downButton = document.createElement("button");
         downButton.type = "button";
         downButton.textContent = `👎 ${feedback.downvotes}`;
         downButton.className = feedback.userReaction === "down" ? "is-active" : "";
         downButton.setAttribute("aria-pressed", feedback.userReaction === "down" ? "true" : "false");
-        downButton.addEventListener("click", () => handleMemoryFeedback(memory, "down"));
+        downButton.addEventListener("click", async () => {
+          upButton.classList.add("is-loading");
+          downButton.classList.add("is-loading");
+          downButton.disabled = true;
+          upButton.disabled = true;
+          try {
+            await handleMemoryFeedback(memory, "down");
+          } finally {
+            upButton.classList.remove("is-loading");
+            downButton.classList.remove("is-loading");
+            downButton.disabled = false;
+            upButton.disabled = false;
+          }
+        });
 
         feedbackGroup.append(upButton, downButton);
 
