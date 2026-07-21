@@ -116,6 +116,32 @@
       gap: 20px;
     }
 
+    .back-button {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      margin: 18px auto 0;
+      padding: 0.85rem 1.2rem;
+      border: 1px solid var(--paper);
+      border-radius: 999px;
+      background: rgba(239, 229, 207, 0.04);
+      color: var(--paper);
+      font-family: Arial, Helvetica, sans-serif;
+      font-size: 0.85rem;
+      font-weight: 700;
+      letter-spacing: 0.12em;
+      text-decoration: none;
+      text-transform: uppercase;
+      transition: border-color 160ms ease, color 160ms ease, transform 160ms ease;
+    }
+
+    .back-button:hover,
+    .back-button:focus-visible {
+      color: var(--gold);
+      border-color: var(--gold);
+      transform: translateY(-1px);
+    }
+
     .masthead {
       position: relative;
       z-index: 2;
@@ -721,6 +747,7 @@
     <h1>More<br>Images</h1>
     <p class="masthead__deck">Some pictures belong together for no better reason than memory says they do.</p>
     <p class="masthead__instruction">Use the arrows, swipe the carousel, or open any frame</p>
+    <a class="back-button" href="index.html">← Back to Home</a>
   </header>
 
   <main id="carousel" class="carousel-section">
