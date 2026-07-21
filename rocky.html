@@ -465,10 +465,29 @@
       }
     }
 
+    @keyframes success-glow {
+      0% {
+        box-shadow: 0 0 0 0 rgba(196, 30, 58, 0.7);
+        transform: scale(1);
+      }
+      50% {
+        box-shadow: 0 0 12px 4px rgba(196, 30, 58, 0.3);
+        transform: scale(1.08);
+      }
+      100% {
+        box-shadow: 0 0 0 0 rgba(196, 30, 58, 0);
+        transform: scale(1);
+      }
+    }
+
     .memory-feedback button.is-loading {
       animation: vote-pulse 0.6s ease-in-out infinite;
       cursor: wait;
       pointer-events: none;
+    }
+
+    .memory-feedback button.is-success {
+      animation: success-glow 0.6s ease-out 1;
     }
 
     .sort-controls {
@@ -1135,6 +1154,8 @@
           upButton.disabled = true;
           try {
             await handleMemoryFeedback(memory, "up");
+            upButton.classList.add("is-success");
+            setTimeout(() => upButton.classList.remove("is-success"), 600);
           } finally {
             upButton.classList.remove("is-loading");
             downButton.classList.remove("is-loading");
@@ -1155,6 +1176,8 @@
           upButton.disabled = true;
           try {
             await handleMemoryFeedback(memory, "down");
+            downButton.classList.add("is-success");
+            setTimeout(() => downButton.classList.remove("is-success"), 600);
           } finally {
             upButton.classList.remove("is-loading");
             downButton.classList.remove("is-loading");
