@@ -343,6 +343,21 @@
       letter-spacing: 0.04em;
       box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.6), 0 0 0 1px rgba(255, 255, 255, 0.2);
     }
+
+    .vote-summary {
+      background: var(--paper);
+      color: var(--black);
+      padding: 20px;
+      border-left: 7px solid var(--gold);
+      margin-bottom: 28px;
+      border-radius: 4px;
+    }
+
+    .vote-summary strong {
+      display: block;
+      margin-bottom: 8px;
+      color: var(--black);
+    }
   </style>
 </head>
 
@@ -764,12 +779,46 @@
       const malboroVotes = sortedEntries.filter((memory) => memory.reaction === "Marlboro Reds").length;
       const pallMallVotes = sortedEntries.filter((memory) => memory.reaction === "Pall Mall").length;
       const newportsVotes = sortedEntries.filter((memory) => memory.reaction === "Newports").length;
+      
+      const totalUpvotes = sortedEntries.reduce((sum, memory) => sum + (getMemoryFeedback(memory).upvotes || 0), 0);
+      const totalDownvotes = sortedEntries.reduce((sum, memory) => sum + (getMemoryFeedback(memory).downvotes || 0), 0);
+      
+      const topMemories = sortedEntries
+        .filter((memory) => getMemoryFeedback(memory).upvotes > 0)
+        .slice(0, 5)
+        .map((memory, index) => {
+          const name = memory.nickname || memory.name || "A friend of Rocky";
+          const feedback = getMemoryFeedback(memory);
+          return `<div style="margin-bottom: 8px;"><span style="font-weight: bold;">${index + 1}.</span> ${name.substring(0, 30)} — 👍 ${feedback.upvotes}</div>`;
+        });
 
-      voteSummary.innerHTML = `
-        Votes so far: <span class="vote-pill">Marlboro Reds ${malboroVotes}</span>
-        <span class="vote-pill">Pall Mall ${pallMallVotes}</span>
-        <span class="vote-pill">Newports ${newportsVotes}</span>
+      let voteSummaryHTML = `
+        <div style="margin-bottom: 16px;">
+          <strong>Community sentiment:</strong>
+          <span class="vote-pill">👍 ${totalUpvotes}</span>
+          <span class="vote-pill">👎 ${totalDownvotes}</span>
+        </div>
       `;
+      
+      if (topMemories.length > 0) {
+        voteSummaryHTML += `
+          <div style="margin-bottom: 16px;">
+            <strong>Most popular memories:</strong>
+            ${topMemories.join("")}
+          </div>
+        `;
+      }
+      
+      voteSummaryHTML += `
+        <div>
+          <strong>Favorite cigarette brands mentioned:</strong>
+          <span class="vote-pill">Marlboro Reds ${malboroVotes}</span>
+          <span class="vote-pill">Pall Mall ${pallMallVotes}</span>
+          <span class="vote-pill">Newports ${newportsVotes}</span>
+        </div>
+      `;
+
+      voteSummary.innerHTML = voteSummaryHTML;
 
       if (!sortedEntries.length) {
         memories.innerHTML = `
