@@ -1,7 +1,5 @@
-const repoOwner = 'ccnjh97wh7-arch';
-const repoName = 'ccnjh97wh7-arch.github.io';
-const branch = 'main';
 const gallery = document.getElementById('photo-gallery');
+const photoListUrl = 'scripts/photos-list.json';
 
 const featuredFiles = ['eric-in-the-woods.jpg', 'buddy-sleeping.jpg', 'water-tower-sunset.jpg', 'downtown-greenville.jpg'];
 const displayNameOverrides = {
@@ -61,30 +59,11 @@ function buildPhotoSections(photos) {
   return [...featuredOrder, ...archiveOrder];
 }
 
-async function getPhotoDate(photo) {
-  try {
-    const response = await fetch(
-      `https://api.github.com/repos/${repoOwner}/${repoName}/commits?path=${encodeURIComponent(photo.path)}&per_page=1`,
-      {
-        headers: {
-          Accept: 'application/vnd.github+json',
-        },
-      }
-    );
-
-    if (!response.ok) {
-      throw new Error(`Commit lookup failed with ${response.status}`);
-    }
-
-    const commits = await response.json();
-    if (commits.length) {
-      return new Date(commits[0].commit.committer.date).getTime();
-    }
-  } catch (error) {
-    return 0;
-  }
-
-  return 0;
+function createPhotoObjects(fileNames) {
+  return fileNames.map((name) => ({
+    name,
+    download_url: `images/${encodeURIComponent(name)}`,
+  }));
 }
 
 async function loadPhotos() {
@@ -95,30 +74,15 @@ async function loadPhotos() {
   gallery.innerHTML = '<p class="gallery-loading">Loading photos…</p>';
 
   try {
-    const response = await fetch(
-      `https://api.github.com/repos/${repoOwner}/${repoName}/contents/images?ref=${branch}`,
-      {
-        headers: {
-          Accept: 'application/vnd.github+json',
-        },
-      }
-    );
-
+    const response = await fetch(photoListUrl);
     if (!response.ok) {
-      throw new Error(`GitHub API request failed with ${response.status}`);
+      throw new Error(`Local photo list request failed with ${response.status}`);
     }
 
-    const items = await response.json();
-    const imageFiles = items.filter((item) => item.type === 'file' && /\.(jpe?g|png|gif|webp|avif|svg)$/i.test(item.name));
-
-    const photosWithDates = await Promise.all(
-      imageFiles.map(async (photo) => ({
-        ...photo,
-        sortDate: await getPhotoDate(photo),
-      }))
-    );
-
-    const sortedPhotos = buildPhotoSections(photosWithDates);
+    const fileNames = await response.json();
+    const imageFiles = fileNames.filter((name) => /\.(jpe?g|png|gif|webp|avif|svg)$/i.test(name));
+    const photos = createPhotoObjects(imageFiles);
+    const sortedPhotos = buildPhotoSections(photos);
 
     gallery.innerHTML = '';
 
@@ -131,6 +95,7 @@ async function loadPhotos() {
     sortedPhotos.forEach((photo) => fragment.appendChild(createPhotoCard(photo)));
     gallery.appendChild(fragment);
   } catch (error) {
+    console.error(error);
     gallery.innerHTML = '<p class="gallery-empty">Photos could not be loaded right now. Please refresh the page.</p>';
   }
 }
