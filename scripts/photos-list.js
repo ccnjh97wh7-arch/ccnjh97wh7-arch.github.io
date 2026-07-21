@@ -1,4 +1,5 @@
-[
+// Generated photo list for local page loading
+const photoFileNames = [
   "17859123052678626.jpg",
   "17860860022461031.jpg",
   "17862320398845653.jpg",
@@ -74,4 +75,4 @@
   "quiet-evening.jpg",
   "scenic-road.jpg",
   "water-tower-sunset.jpg"
-]
+];
