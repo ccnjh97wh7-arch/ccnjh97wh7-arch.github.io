@@ -449,6 +449,56 @@
       color: var(--black);
       box-shadow: 0 2px 6px rgba(196, 30, 58, 0.3);
     }
+
+    .top-memory-item {
+      position: relative;
+      cursor: pointer;
+      transition: opacity 0.2s ease;
+    }
+
+    .top-memory-item:hover {
+      opacity: 0.8;
+    }
+
+    .memory-preview-tooltip {
+      position: absolute;
+      bottom: 100%;
+      left: 0;
+      right: 0;
+      background: rgba(255, 255, 255, 0.95);
+      color: var(--black);
+      border: 2px solid var(--gold);
+      border-radius: 6px;
+      padding: 12px;
+      margin-bottom: 8px;
+      font-size: 0.85rem;
+      line-height: 1.4;
+      max-width: 280px;
+      box-shadow: 0 6px 16px rgba(0, 0, 0, 0.3);
+      z-index: 1000;
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.2s ease;
+      white-space: normal;
+      word-wrap: break-word;
+    }
+
+    .top-memory-item:hover .memory-preview-tooltip {
+      opacity: 1;
+      pointer-events: auto;
+    }
+
+    .memory-preview-tooltip::after {
+      content: "";
+      position: absolute;
+      top: 100%;
+      left: 12px;
+      width: 0;
+      height: 0;
+      border-left: 6px solid transparent;
+      border-right: 6px solid transparent;
+      border-top: 6px solid var(--gold);
+    }
   </style>
 </head>
 
@@ -917,7 +967,9 @@
         .map((memory, index) => {
           const name = memory.nickname || memory.name || "A friend of Rocky";
           const feedback = getMemoryFeedback(memory);
-          return `<div style="margin-bottom: 8px;"><span style="font-weight: bold;">${index + 1}.</span> ${name.substring(0, 30)} — 👍 ${feedback.upvotes}</div>`;
+          const preview = memory.story.substring(0, 120).replace(/</g, "&lt;").replace(/>/g, "&gt;");
+          const previewText = preview.length < memory.story.length ? preview + "..." : preview;
+          return `<div class="top-memory-item" style="margin-bottom: 8px;"><span style="font-weight: bold;">${index + 1}.</span> ${name.substring(0, 30)} — 👍 ${feedback.upvotes}<div class="memory-preview-tooltip">${previewText}</div></div>`;
         });
 
       let voteSummaryHTML = `
