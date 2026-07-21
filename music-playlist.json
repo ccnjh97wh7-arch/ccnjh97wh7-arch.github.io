@@ -1,87 +1,147 @@
 [
   {
-    "title": "Don Gato Season",
-    "note": "Track from Don Gato Season",
-    "src": "music/Don-Gato-Season.mp3"
-  },
-  {
-    "title": "Im On Drugs",
-    "note": "Track from Im On Drugs",
-    "src": "music/Im-on-drugs.mp3"
-  },
-  {
-    "title": "It Fuckin Cold",
-    "note": "Track from It Fuckin Cold",
-    "src": "music/It fuckin cold.mp3"
-  },
-  {
-    "title": "It'S Still Cold",
-    "note": "Track from It'S Still Cold",
-    "src": "music/It's still cold.mp3"
-  },
-  {
-    "title": "Yeah\u2026 (1)",
-    "note": "Track from Yeah\u2026 (1)",
-    "src": "music/Yeah\u2026 (1).mp3"
-  },
-  {
-    "title": "Big Country Cover",
-    "note": "Track from Big Country Cover",
-    "src": "music/big-country-cover.mp3"
-  },
-  {
-    "title": "Czarface Cover Mashup",
-    "note": "Track from Czarface Cover Mashup",
-    "src": "music/czarFace-Cover-Mashup.mp3"
-  },
-  {
-    "title": "Duh Duh Dumb",
-    "note": "Track from Duh Duh Dumb",
-    "src": "music/duh-duh-dumb.mp3"
-  },
-  {
-    "title": "Fatgirls",
-    "note": "Track from Fatgirls",
-    "src": "music/fatgirls.mp3"
-  },
-  {
-    "title": "Fish In A Bowl",
-    "note": "Track from Fish In A Bowl",
-    "src": "music/fish-in-a-bowl.mp3"
-  },
-  {
-    "title": "Ho Ho Ho",
-    "note": "Track from Ho Ho Ho",
-    "src": "music/ho-ho-ho.mp3"
-  },
-  {
-    "title": "Japanese Boom Bap",
-    "note": "Track from Japanese Boom Bap",
-    "src": "music/japanese-boom-bap.mp3"
-  },
-  {
     "title": "Lil Static",
-    "note": "Track from Lil Static",
+    "note": "Opening—the world awakens",
     "src": "music/lil-static.mp3"
   },
   {
-    "title": "Shippity",
-    "note": "Track from Shippity",
-    "src": "music/shippity.mp3"
-  },
-  {
     "title": "Sound Track",
-    "note": "Track from Sound Track",
+    "note": "Theme—establishing the story",
     "src": "music/sound-track.mp3"
   },
   {
-    "title": "The Bullshit",
-    "note": "Track from The Bullshit",
-    "src": "music/the_bullshit.mp3"
+    "title": "Tv Broadcast",
+    "note": "First signal",
+    "src": "music/tv-broadcast.mp3"
+  },
+  {
+    "title": "Don Gato Season",
+    "note": "Setting and mood",
+    "src": "music/Don-Gato-Season.mp3"
+  },
+  {
+    "title": "Big Country Cover",
+    "note": "Reflection on home",
+    "src": "music/big-country-cover.mp3"
+  },
+  {
+    "title": "Movin Around",
+    "note": "Journey begins",
+    "src": "music/movin-around.mp3"
+  },
+  {
+    "title": "Japanese Clerks",
+    "note": "Strange encounters",
+    "src": "music/japanese-clerks.mp3"
+  },
+  {
+    "title": "Japanese Boom Bap",
+    "note": "Energy shift",
+    "src": "music/japanese-boom-bap.mp3"
+  },
+  {
+    "title": "Fish In A Bowl",
+    "note": "Introspection",
+    "src": "music/fish-in-a-bowl.mp3"
+  },
+  {
+    "title": "Czarface Cover Mashup",
+    "note": "Funky transition",
+    "src": "music/czarFace-Cover-Mashup.mp3"
+  },
+  {
+    "title": "Straight Banger",
+    "note": "Momentum builds",
+    "src": "music/straight-banger.mp3"
+  },
+  {
+    "title": "Im On Drugs",
+    "note": "Things get strange",
+    "src": "music/Im-on-drugs.mp3"
+  },
+  {
+    "title": "Chick Problems",
+    "note": "Character moment",
+    "src": "music/chick-problems.mp3"
+  },
+  {
+    "title": "At The Jack Shack",
+    "note": "Narrative peak—a place of gathering",
+    "src": "music/At the Jack Shack! ....mp3"
+  },
+  {
+    "title": "Saloon Future",
+    "note": "Western meets sci-fi",
+    "src": "music/saloon-future.mp3"
+  },
+  {
+    "title": "It Fuckin Cold",
+    "note": "Struggle and hardship",
+    "src": "music/It fuckin cold.mp3"
+  },
+  {
+    "title": "Duh Duh Dumb",
+    "note": "Comedic relief",
+    "src": "music/duh-duh-dumb.mp3"
   },
   {
     "title": "Tokyo Slaughter",
-    "note": "Track from Tokyo Slaughter",
+    "note": "Climax—intensity peaks",
     "src": "music/tokyo-slaughter.mp3"
+  },
+  {
+    "title": "End Of The Innocents",
+    "note": "Things change forever",
+    "src": "music/end-of-da-ino¢_s.mp3"
+  },
+  {
+    "title": "Miracle Solve X",
+    "note": "Solution emerges",
+    "src": "music/miracle-solve-x.mp3"
+  },
+  {
+    "title": "Commander King Ad",
+    "note": "Authority speaks",
+    "src": "music/commander-king-ad.mp3"
+  },
+  {
+    "title": "It's Still Cold",
+    "note": "Reflection on struggle",
+    "src": "music/It's still cold.mp3"
+  },
+  {
+    "title": "Ho Ho Ho",
+    "note": "Strange humor emerges",
+    "src": "music/ho-ho-ho.mp3"
+  },
+  {
+    "title": "Fatgirls",
+    "note": "Celebration",
+    "src": "music/fatgirls.mp3"
+  },
+  {
+    "title": "The Bullshit",
+    "note": "Darkly comedic truth",
+    "src": "music/the_bullshit.mp3"
+  },
+  {
+    "title": "Yeah…",
+    "note": "Affirmation",
+    "src": "music/Yeah… (1).mp3"
+  },
+  {
+    "title": "Shippity",
+    "note": "Uplifting journey",
+    "src": "music/shippity.mp3"
+  },
+  {
+    "title": "Happy Day Vitamins",
+    "note": "Credits roll—life continues",
+    "src": "music/happy-day-vitamins.mp3"
+  },
+  {
+    "title": "Happy Day Vitamins (Reprise)",
+    "note": "Epilogue—the final moment",
+    "src": "music/happy-day-vitamins(1).mp3"
   }
 ]
