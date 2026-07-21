@@ -60,46 +60,59 @@
         <section>
             <h2>Explore</h2>
 
-            <nav>
-                <a href="photos.html" class="nav-card">
+            <div class="filter-section">
+                <input type="text" id="search-input" class="search-input" placeholder="Search projects...">
+                <div class="filter-buttons">
+                    <button class="filter-btn active" data-filter="all">All</button>
+                    <button class="filter-btn" data-filter="visual">Visual</button>
+                    <button class="filter-btn" data-filter="writing">Writing</button>
+                    <button class="filter-btn" data-filter="animation">Animation</button>
+                    <button class="filter-btn" data-filter="audio">Audio</button>
+                    <button class="filter-btn" data-filter="code">Code</button>
+                    <button class="filter-btn" data-filter="personal">Personal</button>
+                </div>
+            </div>
+
+            <nav id="nav-container">
+                <a href="photos.html" class="nav-card" data-category="visual" data-tags="photos pictures visual">
                     <span class="nav-card-icon">📸</span>
                     <div class="nav-card-title">Photos</div>
                     <p class="nav-card-description">Photographs, old pictures, and whatever else belongs here.</p>
                 </a>
 
-                <a href="more-images.html" class="nav-card">
+                <a href="more-images.html" class="nav-card" data-category="visual" data-tags="images art visual fragments">
                     <span class="nav-card-icon">🖼️</span>
                     <div class="nav-card-title">More Images</div>
                     <p class="nav-card-description">Photographs, fragments, clippings, and accidents collected by Eric Stone.</p>
                 </a>
 
-                <a href="https://abefroman1978.substack.com/" target="_blank" rel="noopener noreferrer" class="nav-card">
+                <a href="https://abefroman1978.substack.com/" target="_blank" rel="noopener noreferrer" class="nav-card" data-category="writing" data-tags="stories essays writing substack">
                     <span class="nav-card-badge featured">FEATURED</span>
                     <span class="nav-card-icon">✍️</span>
                     <div class="nav-card-title">My Substack Stories</div>
                     <p class="nav-card-description">Essays, movie thoughts, memories, and writing.</p>
                 </a>
 
-                <a href="https://youtube.com/playlist?list=PLbaYlPY2lbIItsGmHkmv5vWe0Lj4_GJqr&si=2LMokRVzgl2abDVl" target="_blank" class="nav-card">
+                <a href="https://youtube.com/playlist?list=PLbaYlPY2lbIItsGmHkmv5vWe0Lj4_GJqr&si=2LMokRVzgl2abDVl" target="_blank" class="nav-card" data-category="animation" data-tags="animation jaffar video youtube">
                     <span class="nav-card-badge featured">FEATURED</span>
                     <span class="nav-card-icon">🎬</span>
                     <div class="nav-card-title">Life of Jaffar</div>
                     <p class="nav-card-description">Animation, characters, and strange little worlds.</p>
                 </a>
 
-                <a href="music.html" class="nav-card">
+                <a href="music.html" class="nav-card" data-category="audio" data-tags="music tracks suno songs library">
                     <span class="nav-card-icon">🎵</span>
                     <div class="nav-card-title">Music Library</div>
                     <p class="nav-card-description">Suno songs, homemade tracks, and the music archive.</p>
                 </a>
 
-                <a href="python-projects.html" class="nav-card">
+                <a href="python-projects.html" class="nav-card" data-category="code" data-tags="python projects games code programming">
                     <span class="nav-card-icon">🐍</span>
                     <div class="nav-card-title">Python Projects</div>
                     <p class="nav-card-description">Games, experiments, and things I am learning to build.</p>
                 </a>
 
-                <a href="rocky.html" class="nav-card">
+                <a href="rocky.html" class="nav-card" data-category="personal" data-tags="rocky james taylor memorial stories">
                     <span class="nav-card-badge new">NEW</span>
                     <span class="nav-card-icon">🇺🇸</span>
                     <div class="nav-card-title">Stories About Rocky</div>
@@ -140,5 +153,64 @@
             <p><a href="#top" class="back-to-top">↑ Back to Top</a></p>
         </div>
     </footer>
+
+    <script>
+        // Filter functionality
+        const searchInput = document.getElementById('search-input');
+        const filterButtons = document.querySelectorAll('.filter-btn');
+        const navCards = document.querySelectorAll('.nav-card');
+        let activeFilter = 'all';
+
+        // Filter cards based on search term and category
+        function filterCards() {
+            const searchTerm = searchInput.value.toLowerCase();
+            
+            navCards.forEach(card => {
+                const category = card.dataset.category;
+                const tags = card.dataset.tags.toLowerCase();
+                const title = card.querySelector('.nav-card-title').textContent.toLowerCase();
+                const description = card.querySelector('.nav-card-description').textContent.toLowerCase();
+                
+                // Check if card matches search term
+                const matchesSearch = !searchTerm || 
+                    title.includes(searchTerm) || 
+                    description.includes(searchTerm) || 
+                    tags.includes(searchTerm);
+                
+                // Check if card matches category filter
+                const matchesCategory = activeFilter === 'all' || category === activeFilter;
+                
+                // Show or hide card with smooth transition
+                if (matchesSearch && matchesCategory) {
+                    card.style.display = 'flex';
+                    card.style.opacity = '1';
+                    card.style.pointerEvents = 'auto';
+                } else {
+                    card.style.display = 'none';
+                    card.style.opacity = '0';
+                    card.style.pointerEvents = 'none';
+                }
+            });
+        }
+
+        // Search input event listener
+        searchInput.addEventListener('input', filterCards);
+
+        // Filter button event listeners
+        filterButtons.forEach(button => {
+            button.addEventListener('click', () => {
+                // Remove active class from all buttons
+                filterButtons.forEach(btn => btn.classList.remove('active'));
+                // Add active class to clicked button
+                button.classList.add('active');
+                // Update active filter
+                activeFilter = button.dataset.filter;
+                // Clear search input when filtering by category
+                searchInput.value = '';
+                // Refilter cards
+                filterCards();
+            });
+        });
+    </script>
 </body>
 </html>
