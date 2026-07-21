@@ -60,6 +60,40 @@
       margin: 0;
     }
 
+    .music-suggestion {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 4px;
+      margin-left: auto;
+      text-align: right;
+      cursor: pointer;
+      padding: 8px 12px;
+      border-radius: 6px;
+      transition: all 0.2s ease;
+    }
+
+    .music-suggestion:hover {
+      background: rgba(196, 30, 58, 0.1);
+      transform: scale(1.05);
+    }
+
+    .music-suggestion-text {
+      margin: 0;
+      color: var(--gold);
+      font-size: 1rem;
+      font-weight: bold;
+      letter-spacing: 0.5px;
+    }
+
+    .music-track-name {
+      margin: 0;
+      color: var(--orange);
+      font-size: 0.8rem;
+      font-style: italic;
+      opacity: 0.9;
+    }
+
     .title-play-button {
       display: inline-flex;
       align-items: center;
@@ -165,11 +199,11 @@
     }
 
     .tribute-player {
-      background: #FFFFFF;
+      background: transparent;
       color: var(--black);
-      border-left: 7px solid var(--orange);
-      padding: 24px;
-      margin: 28px 0;
+      border: none;
+      padding: 0;
+      margin: 40px 0 28px 0;
     }
 
     .tribute-player h2 {
@@ -230,6 +264,23 @@
     audio {
       width: 100%;
       margin-top: 10px;
+      accent-color: var(--gold);
+      filter: brightness(1.1);
+    }
+
+    audio::-webkit-media-controls-panel {
+      background-color: rgba(196, 30, 58, 0.05);
+      border: 1px solid var(--gold);
+      border-radius: 4px;
+    }
+
+    audio::-webkit-media-controls-play-button {
+      background-color: var(--orange);
+      border-radius: 50%;
+    }
+
+    audio::-webkit-media-controls-volume-slider {
+      accent-color: var(--gold);
     }
 
     .playlist-link {
@@ -509,7 +560,10 @@
 
     <div class="page-title-row">
       <h1>Stories About Rocky</h1>
-      <button class="title-play-button" id="title-play-button" type="button" aria-label="Play tribute soundtrack">▶</button>
+      <div class="music-suggestion">
+        <p class="music-suggestion-text">🎵 music for reflection</p>
+        <p class="music-track-name" id="music-track-name"></p>
+      </div>
     </div>
 
     <p class="intro">
@@ -570,31 +624,18 @@
     </section>
 
     <section class="tribute-player" aria-labelledby="tribute-player-title">
-      <h2 id="tribute-player-title">A road-side tribute soundtrack</h2>
-      <p>
-        A little southern-road, late-night, trucker-and-meth-country kind of soundtrack for a friend who loved the long haul.
-        These are royalty-free demo tracks meant to carry the mood without using copyrighted songs.
-      </p>
-      <p class="notice">
-        The soundtrack is optional and only there to add ambience when you want it.
-      </p>
-
-      <div id="audio-consent-banner" class="audio-consent-banner" role="dialog" aria-live="polite">
+      <div id="audio-consent-banner" class="audio-consent-banner" role="dialog" aria-live="polite" style="display: none;">
         <p>Enable the soundtrack for the full ambience. This stores a browser preference so it can play on later visits.</p>
         <div class="audio-consent-actions">
           <button id="audio-consent-accept" type="button">Allow soundtrack</button>
         </div>
       </div>
 
-      <audio id="tribute-audio" controls preload="metadata"></audio>
+      <audio id="tribute-audio" controls preload="metadata" style="width: 100%; margin: 20px 0;"></audio>
 
       <div class="player-controls">
         <button id="next-tribute" type="button">Next track</button>
       </div>
-
-      <a class="playlist-link" href="https://www.youtube.com/results?search_query=royalty+free+southern+rock+instrumental" target="_blank" rel="noopener noreferrer">
-        Find more royalty-free southern rock / live-jam style music
-      </a>
     </section>
   </main>
 
@@ -638,6 +679,17 @@
     const STORAGE_KEY = "rocky-memories-fallback";
     const AUDIO_CONSENT_KEY = "rocky-audio-consent";
     const AUDIO_CONSENT_COOKIE_NAME = "rocky_audio_consent";
+
+    const tributeTrackNames = [
+      "Opening Theme",
+      "Gentle Road",
+      "Southern Drive",
+      "Evening Light",
+      "Quiet Reflection",
+      "Steady Journey",
+      "Distant Horizon",
+      "Final Notes"
+    ];
 
     const tributeTracks = [
       "https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3",
@@ -693,10 +745,20 @@
       return copy;
     }
 
+    function updateTrackName() {
+      const trackNameEl = document.getElementById("music-track-name");
+      if (trackNameEl && tributeOrder[tributeIndex]) {
+        const trackIndex = tributeTracks.indexOf(tributeOrder[tributeIndex]);
+        const trackName = trackIndex >= 0 ? tributeTrackNames[trackIndex] : "Now Playing";
+        trackNameEl.textContent = trackName;
+      }
+    }
+
     function playTributeTrack(index) {
       tributeIndex = index;
       tributeAudio.src = tributeOrder[index];
       tributeAudio.load();
+      updateTrackName();
       tributeAudio.play().catch((error) => {
         console.warn("Playback was blocked until the user interacts:", error);
       });
@@ -732,7 +794,11 @@
       playTributeTrack(0);
     });
 
-    titlePlayButton.addEventListener("click", startTributeAudio);
+    const musicSuggestion = document.querySelector(".music-suggestion");
+    if (musicSuggestion) {
+      musicSuggestion.addEventListener("click", startTributeAudio);
+    }
+
     document.addEventListener("touchstart", () => {
       if (!hasAudioConsent()) {
         showAudioConsentBanner();
