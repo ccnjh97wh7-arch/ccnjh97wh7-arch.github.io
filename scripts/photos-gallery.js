@@ -74,12 +74,18 @@ async function loadPhotos() {
   gallery.innerHTML = '<p class="gallery-loading">Loading photos…</p>';
 
   try {
-    const response = await fetch(photoListUrl);
-    if (!response.ok) {
-      throw new Error(`Local photo list request failed with ${response.status}`);
+    let fileNames;
+
+    if (typeof photoFileNames !== 'undefined' && Array.isArray(photoFileNames)) {
+      fileNames = photoFileNames;
+    } else {
+      const response = await fetch(photoListUrl);
+      if (!response.ok) {
+        throw new Error(`Local photo list request failed with ${response.status}`);
+      }
+      fileNames = await response.json();
     }
 
-    const fileNames = await response.json();
     const imageFiles = fileNames.filter((name) => /\.(jpe?g|png|gif|webp|avif|svg)$/i.test(name));
     const photos = createPhotoObjects(imageFiles);
     const sortedPhotos = buildPhotoSections(photos);
