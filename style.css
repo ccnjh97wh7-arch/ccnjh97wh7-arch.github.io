@@ -1,8 +1,10 @@
 :root {
-    --goldenrod: #DAA520;
+    --patriotic-red: #C41E3A;
+    --patriotic-blue: #003DA5;
+    --newport-green: #2D5016;
     --near-black: #111111;
     --warm-paper: #F2EBDD;
-    --burnt-orange: #C45722;
+    --white: #FFFFFF;
 }
 body {
     margin: 0;
@@ -15,12 +17,12 @@ header {
     color: var(--warm-paper);
     padding: 80px 30px;
     text-align: center;
-    border-bottom: 10px solid var(--goldenrod);
+    border-bottom: 10px solid var(--patriotic-red);
 }
 
 header h1 {
     margin: 0;
-    color: var(--goldenrod);
+    color: var(--patriotic-red);
     font-size: 64px;
     letter-spacing: 5px;
 }
@@ -36,12 +38,12 @@ main {
 }
 
 section {
-    border-left: 8px solid var(--burnt-orange);
+    border-left: 8px solid var(--patriotic-blue);
     padding: 10px 25px;
 }
 
 h2 {
-    color: var(--burnt-orange);
+    color: var(--patriotic-blue);
     font-size: 36px;
 }
 
@@ -81,5 +83,48 @@ section p {
 .gallery-loading,
 .gallery-empty {
     font-size: 16px;
-    color: var(--burnt-orange);
+    color: var(--patriotic-red);
+}
+
+/* Navigation link hover effects */
+nav a {
+    color: var(--patriotic-blue);
+    text-decoration: none;
+    transition: all 0.3s ease;
+    position: relative;
+    display: inline-block;
+    font-weight: 500;
+}
+
+nav a::after {
+    content: '';
+    position: absolute;
+    bottom: -3px;
+    left: 0;
+    width: 0;
+    height: 2px;
+    background: linear-gradient(90deg, var(--patriotic-red), var(--patriotic-blue));
+    transition: width 0.3s ease;
+}
+
+nav a:hover {
+    color: var(--patriotic-red);
+    transform: translateY(-2px);
+}
+
+nav a:hover::after {
+    width: 100%;
+}
+
+nav a:active {
+    color: var(--newport-green);
+}
+
+nav p {
+    transition: all 0.2s ease;
+}
+
+nav p:hover {
+    padding-left: 10px;
+    color: var(--patriotic-blue);
 }
