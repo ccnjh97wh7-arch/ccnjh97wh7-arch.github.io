@@ -128,3 +128,79 @@ nav p:hover {
     padding-left: 10px;
     color: var(--patriotic-blue);
 }
+
+/* Navigation Card Grid Layout */
+nav {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 20px;
+    margin-top: 20px;
+}
+
+nav p {
+    margin: 0;
+    padding: 0;
+    display: contents;
+}
+
+.nav-card {
+    display: flex;
+    flex-direction: column;
+    background: linear-gradient(135deg, rgba(196, 30, 58, 0.05), rgba(0, 61, 165, 0.05));
+    border: 2px solid var(--patriotic-blue);
+    border-radius: 12px;
+    padding: 24px 20px;
+    transition: all 0.3s ease;
+    text-decoration: none;
+    color: var(--near-black);
+    position: relative;
+    overflow: hidden;
+}
+
+.nav-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 4px;
+    background: linear-gradient(90deg, var(--patriotic-red), var(--patriotic-blue), var(--newport-green));
+    transition: left 0.3s ease;
+}
+
+.nav-card:hover::before {
+    left: 0;
+}
+
+.nav-card:hover {
+    transform: translateY(-6px) scale(1.02);
+    border-color: var(--patriotic-red);
+    box-shadow: 0 12px 24px rgba(196, 30, 58, 0.15);
+    background: linear-gradient(135deg, rgba(196, 30, 58, 0.12), rgba(0, 61, 165, 0.12));
+}
+
+.nav-card-icon {
+    font-size: 2.5rem;
+    margin-bottom: 12px;
+    display: block;
+}
+
+.nav-card-title {
+    font-size: 1.3rem;
+    font-weight: bold;
+    color: var(--patriotic-blue);
+    margin-bottom: 8px;
+    transition: color 0.3s ease;
+}
+
+.nav-card:hover .nav-card-title {
+    color: var(--patriotic-red);
+}
+
+.nav-card-description {
+    font-size: 0.95rem;
+    color: #666;
+    line-height: 1.5;
+    margin: 0;
+    flex-grow: 1;
+}
