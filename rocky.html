@@ -692,6 +692,29 @@
       return 0;
     }
 
+    function formatTimeAgo(timestamp) {
+      if (!timestamp) return "Recently";
+      
+      const now = Date.now();
+      const diff = now - timestamp;
+      
+      const seconds = Math.floor(diff / 1000);
+      const minutes = Math.floor(seconds / 60);
+      const hours = Math.floor(minutes / 60);
+      const days = Math.floor(hours / 24);
+      const weeks = Math.floor(days / 7);
+      const months = Math.floor(days / 30);
+      const years = Math.floor(days / 365);
+      
+      if (seconds < 60) return "Just now";
+      if (minutes < 60) return `${minutes}m ago`;
+      if (hours < 24) return `${hours}h ago`;
+      if (days < 7) return `${days}d ago`;
+      if (weeks < 4) return `${weeks}w ago`;
+      if (months < 12) return `${months}mo ago`;
+      return `${years}y ago`;
+    }
+
     function createMemoryKey(memory) {
       return [
         memory?.id || "",
@@ -822,6 +845,9 @@
         });
 
       let voteSummaryHTML = `
+        <div style="margin-bottom: 16px;">
+          <strong>${sortedEntries.length} ${sortedEntries.length === 1 ? "memory" : "memories"} shared</strong>
+        </div>
         <div class="vote-summary-sentiment" style="margin-bottom: 16px;">
           <strong>Community sentiment (total tally):</strong>
           <span class="vote-pill">👍 ${totalUpvotes}</span>
@@ -872,12 +898,21 @@
           memory.name ||
           "A friend of Rocky";
 
+        const timestamp = document.createElement("div");
+        timestamp.style.fontSize = "0.85rem";
+        timestamp.style.color = "var(--orange)";
+        timestamp.style.marginBottom = "12px";
+        timestamp.style.fontStyle = "italic";
+        timestamp.textContent = `Posted ${formatTimeAgo(getMemoryTime(memory))}`;
+
         if (index === 0) {
           const popularBadge = document.createElement("div");
           popularBadge.className = "memory-popular-badge";
           popularBadge.textContent = "Most popular";
           article.append(popularBadge);
         }
+
+        article.append(name, timestamp);
 
         const story = document.createElement("p");
         story.textContent = memory.story;
@@ -915,9 +950,9 @@
           reaction.textContent = `Reaction: ${memory.reaction}`;
           reaction.style.marginTop = "10px";
           reaction.style.fontWeight = "bold";
-          article.append(name, story, reaction, feedbackGroup);
+          article.append(story, reaction, feedbackGroup);
         } else {
-          article.append(name, story, feedbackGroup);
+          article.append(story, feedbackGroup);
         }
 
         memories.append(article);
