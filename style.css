@@ -238,3 +238,46 @@ nav p {
 .nav-card:hover .nav-card-description {
     color: #333;
 }
+
+/* Badge Styling */
+.nav-card-badge {
+    position: absolute;
+    top: 12px;
+    right: 12px;
+    display: inline-block;
+    padding: 6px 12px;
+    border-radius: 999px;
+    font-size: 0.75rem;
+    font-weight: bold;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+    transition: all 0.3s ease;
+    z-index: 10;
+}
+
+.nav-card-badge.new {
+    background: var(--patriotic-red);
+    color: #FFFFFF;
+    box-shadow: 0 4px 12px rgba(196, 30, 58, 0.35);
+}
+
+.nav-card-badge.featured {
+    background: var(--patriotic-blue);
+    color: #FFFFFF;
+    box-shadow: 0 4px 12px rgba(0, 61, 165, 0.35);
+}
+
+/* Badge hover animation */
+.nav-card:hover .nav-card-badge {
+    transform: scale(1.1) rotate(2deg);
+    box-shadow: 0 6px 16px rgba(0, 0, 0, 0.25);
+}
+
+.nav-card:hover .nav-card-badge.new {
+    box-shadow: 0 6px 16px rgba(196, 30, 58, 0.45);
+}
+
+.nav-card:hover .nav-card-badge.featured {
+    box-shadow: 0 6px 16px rgba(0, 61, 165, 0.45);
+}
