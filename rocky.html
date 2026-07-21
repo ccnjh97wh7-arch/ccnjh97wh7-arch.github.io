@@ -358,6 +358,14 @@
       margin-bottom: 8px;
       color: var(--black);
     }
+
+    .vote-summary-popular {
+      color: var(--paper);
+    }
+
+    .vote-summary-popular strong {
+      color: var(--paper);
+    }
   </style>
 </head>
 
@@ -802,7 +810,7 @@
       
       if (topMemories.length > 0) {
         voteSummaryHTML += `
-          <div style="margin-bottom: 16px;">
+          <div class="vote-summary-popular" style="margin-bottom: 16px;">
             <strong>Most popular memories:</strong>
             ${topMemories.join("")}
           </div>
