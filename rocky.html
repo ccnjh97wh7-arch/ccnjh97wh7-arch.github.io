@@ -7,10 +7,14 @@
 
   <style>
     :root {
-      --gold: #C41E3A;
-      --paper: #FFFFFF;
-      --orange: #0052CC;
-      --black: #000000;
+      --gold: #E6B325;
+      --paper: #FFF7DF;
+      --orange: #7A170A;
+      --black: #120B05;
+      --coin-deep: #7B4A08;
+      --coin-mid: #B77A15;
+      --coin-bright: #F8D46B;
+      --coin-shadow: rgba(33, 18, 3, 0.58);
     }
 
     * {
@@ -19,16 +23,50 @@
 
     body {
       margin: 0;
-      background: var(--black);
+      background:
+        radial-gradient(1200px 500px at 12% -10%, rgba(246, 198, 77, 0.34), transparent 60%),
+        radial-gradient(900px 420px at 90% -8%, rgba(183, 122, 21, 0.38), transparent 64%),
+        linear-gradient(160deg, #0D0804 0%, #1B1006 48%, #120B05 100%);
       color: var(--paper);
-      font-family: Georgia, "Times New Roman", serif;
+      font-family: Cambria, "Hoefler Text", Garamond, "Times New Roman", serif;
       line-height: 1.6;
+      min-height: 100vh;
+      position: relative;
+      overflow-x: hidden;
+    }
+
+    body::before,
+    body::after {
+      content: "";
+      position: fixed;
+      inset: 0;
+      pointer-events: none;
+      z-index: -1;
+    }
+
+    body::before {
+      opacity: 0.27;
+      background-image:
+        radial-gradient(circle at 20% 20%, rgba(248, 212, 107, 0.22) 0 1px, transparent 1.4px),
+        radial-gradient(circle at 80% 35%, rgba(183, 122, 21, 0.22) 0 1px, transparent 1.4px),
+        radial-gradient(circle at 45% 70%, rgba(230, 179, 37, 0.2) 0 1px, transparent 1.3px);
+      background-size: 180px 180px, 220px 220px, 160px 160px;
+      animation: coin-texture-drift 38s linear infinite;
+    }
+
+    body::after {
+      opacity: 0.65;
+      background:
+        radial-gradient(700px 300px at 12% 0%, rgba(248, 212, 107, 0.16), transparent 68%),
+        radial-gradient(640px 260px at 87% 0%, rgba(183, 122, 21, 0.22), transparent 70%);
+      filter: blur(2px);
     }
 
     main {
-      width: min(760px, calc(100% - 32px));
+      width: min(860px, calc(100% - 28px));
       margin: 0 auto;
-      padding: 48px 0 70px;
+      padding: 46px 0 76px;
+      position: relative;
     }
 
     a {
@@ -43,9 +81,16 @@
 
     h1 {
       color: var(--gold);
-      font-size: clamp(2.3rem, 8vw, 4.5rem);
-      line-height: 1;
+      font-size: clamp(2.3rem, 8vw, 4.7rem);
+      line-height: 0.95;
       margin: 0 0 16px;
+      letter-spacing: 0.02em;
+      text-transform: uppercase;
+      text-shadow: 0 2px 0 #3D2203, 0 6px 16px rgba(0, 0, 0, 0.5);
+      background: linear-gradient(180deg, #FFE6A8 0%, #F5C653 38%, #B97D16 68%, #724209 100%);
+      -webkit-background-clip: text;
+      background-clip: text;
+      -webkit-text-fill-color: transparent;
     }
 
     .page-title-row {
@@ -58,6 +103,181 @@
 
     .page-title-row h1 {
       margin: 0;
+    }
+
+    .royal-decree-divider {
+      position: relative;
+      height: 14px;
+      margin: 6px 0 20px;
+      border-radius: 999px;
+      background: linear-gradient(90deg, transparent 0%, rgba(248, 212, 107, 0.22) 12%, rgba(183, 122, 21, 0.75) 50%, rgba(248, 212, 107, 0.22) 88%, transparent 100%);
+      overflow: hidden;
+      box-shadow: 0 0 0 1px rgba(183, 122, 21, 0.45), 0 4px 16px rgba(0, 0, 0, 0.35);
+    }
+
+    .royal-decree-divider::before {
+      content: "✦ Coin Dynasty Decree ✦";
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      font: 700 0.74rem "Trebuchet MS", Verdana, sans-serif;
+      letter-spacing: 0.16em;
+      color: #FFEAB8;
+      text-transform: uppercase;
+      text-shadow: 0 1px 0 #6A3F07;
+      white-space: nowrap;
+      pointer-events: none;
+    }
+
+    .royal-decree-divider::after {
+      content: "";
+      position: absolute;
+      top: -70%;
+      left: -35%;
+      width: 30%;
+      height: 260%;
+      transform: rotate(18deg);
+      background: linear-gradient(90deg, transparent, rgba(255, 246, 210, 0.92), transparent);
+      animation: decree-shine 4.8s linear infinite;
+    }
+
+    .coin-bank-panel {
+      margin: 0 0 18px;
+      padding: 14px 16px;
+      border-radius: 12px;
+      border: 1px solid rgba(255, 220, 124, 0.52);
+      background: linear-gradient(155deg, rgba(255, 241, 188, 0.18), rgba(194, 130, 30, 0.25));
+      box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.2), 0 8px 18px rgba(0, 0, 0, 0.32);
+      backdrop-filter: blur(2px);
+    }
+
+    .coin-bank-head {
+      display: flex;
+      align-items: baseline;
+      gap: 10px;
+      flex-wrap: wrap;
+      margin-bottom: 10px;
+    }
+
+    .coin-bank-title {
+      font: 700 0.95rem "Trebuchet MS", Verdana, sans-serif;
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+      color: #FFE6A2;
+    }
+
+    .coin-balance {
+      font: 800 1.18rem "Trebuchet MS", Verdana, sans-serif;
+      color: #FFF4D4;
+      text-shadow: 0 1px 0 #6A3F07;
+    }
+
+    .coin-rank {
+      margin-left: auto;
+      padding: 3px 10px;
+      border-radius: 999px;
+      border: 1px solid rgba(255, 226, 142, 0.7);
+      background: rgba(115, 67, 8, 0.45);
+      font: 700 0.74rem "Trebuchet MS", Verdana, sans-serif;
+      color: #FFE9B6;
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+    }
+
+    .coin-progress-track {
+      height: 10px;
+      border-radius: 999px;
+      background: rgba(46, 22, 2, 0.5);
+      overflow: hidden;
+      border: 1px solid rgba(255, 224, 139, 0.28);
+    }
+
+    .coin-progress-fill {
+      width: 0;
+      height: 100%;
+      border-radius: inherit;
+      background: linear-gradient(90deg, #C78619 0%, #F7C956 45%, #FFE7AA 100%);
+      box-shadow: 0 0 12px rgba(255, 216, 115, 0.6);
+      transition: width 0.4s ease;
+    }
+
+    .coin-bank-meta {
+      margin-top: 9px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 10px;
+      flex-wrap: wrap;
+      color: #FFEFCB;
+      font-size: 0.82rem;
+      opacity: 0.95;
+    }
+
+    .coin-powerups {
+      margin-top: 10px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      flex-wrap: wrap;
+    }
+
+    .coin-powerup-button {
+      margin-top: 0;
+      padding: 8px 14px;
+      font-size: 0.82rem;
+      border-radius: 999px;
+      border: 1px solid rgba(255, 220, 140, 0.75);
+      background: linear-gradient(180deg, #FFE7AA 0%, #D59B26 100%);
+      color: #2C1702;
+      box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.72), 0 5px 12px rgba(0, 0, 0, 0.32);
+    }
+
+    .coin-powerup-button:disabled {
+      cursor: not-allowed;
+      opacity: 0.65;
+      filter: grayscale(0.25);
+    }
+
+    .coin-powerup-status {
+      padding: 4px 10px;
+      border-radius: 999px;
+      border: 1px solid rgba(255, 220, 140, 0.45);
+      background: rgba(92, 53, 8, 0.45);
+      color: #FFE9B6;
+      font: 700 0.74rem "Trebuchet MS", Verdana, sans-serif;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+    }
+
+    .coin-powerup-status.is-active {
+      background: linear-gradient(180deg, rgba(255, 230, 152, 0.78), rgba(198, 128, 23, 0.78));
+      color: #2A1401;
+      border-color: rgba(255, 232, 164, 0.88);
+      box-shadow: 0 0 12px rgba(255, 223, 136, 0.45);
+    }
+
+    .coin-toast {
+      position: fixed;
+      right: 16px;
+      bottom: 18px;
+      z-index: 10040;
+      pointer-events: none;
+      padding: 8px 12px;
+      border-radius: 999px;
+      border: 1px solid rgba(255, 226, 144, 0.8);
+      background: linear-gradient(180deg, rgba(255, 242, 200, 0.96), rgba(206, 140, 34, 0.96));
+      color: #2D1802;
+      font: 700 0.82rem "Trebuchet MS", Verdana, sans-serif;
+      letter-spacing: 0.02em;
+      box-shadow: 0 8px 18px rgba(0, 0, 0, 0.34);
+      transform: translateY(18px) scale(0.9);
+      opacity: 0;
+      animation: coin-toast-pop 1300ms ease-out forwards;
+    }
+
+    .coin-toast.is-spend {
+      background: linear-gradient(180deg, rgba(255, 225, 188, 0.96), rgba(175, 104, 17, 0.96));
     }
 
     .music-suggestion {
@@ -124,16 +344,57 @@
 
     .form-box,
     .memory {
-      background: var(--paper);
+      background:
+        linear-gradient(175deg, rgba(255, 248, 222, 0.98), rgba(245, 232, 194, 0.96));
       color: var(--black);
-      padding: 25px;
-      border-left: 7px solid var(--orange);
+      padding: 26px;
+      border: 1px solid rgba(183, 122, 21, 0.55);
+      border-left: 8px solid var(--coin-mid);
+      border-radius: 12px;
       margin-bottom: 28px;
+      box-shadow: 0 14px 30px var(--coin-shadow), inset 0 1px 0 rgba(255, 255, 255, 0.9);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .form-box::before,
+    .memory::before {
+      content: "";
+      position: absolute;
+      top: -120px;
+      right: -120px;
+      width: 240px;
+      height: 240px;
+      border-radius: 999px;
+      background: radial-gradient(circle, rgba(248, 212, 107, 0.26), transparent 70%);
+      pointer-events: none;
+    }
+
+    .memory::after {
+      content: "";
+      position: absolute;
+      top: -30%;
+      left: -130%;
+      width: 70%;
+      height: 180%;
+      transform: rotate(16deg);
+      background: linear-gradient(90deg, transparent, rgba(255, 247, 221, 0.58), rgba(255, 226, 156, 0.4), transparent);
+      transition: left 0.8s ease;
+      pointer-events: none;
+    }
+
+    .memory:hover::after {
+      left: 160%;
+    }
+
+    .memory:hover {
+      box-shadow: 0 16px 34px rgba(22, 12, 2, 0.66), inset 0 1px 0 rgba(255, 255, 255, 0.92);
     }
 
     h2 {
       margin-top: 0;
-      color: var(--orange);
+      color: var(--coin-deep);
+      letter-spacing: 0.02em;
     }
 
     label {
@@ -166,15 +427,21 @@
     button {
       margin-top: 22px;
       padding: 13px 20px;
-      border: 0;
-      background: var(--orange);
-      color: white;
-      font: bold 1rem Arial, sans-serif;
+      border: 1px solid rgba(122, 71, 8, 0.72);
+      background: linear-gradient(180deg, #F6CC66 0%, #D9A52D 60%, #B77A15 100%);
+      color: #2A1500;
+      font: bold 1rem "Trebuchet MS", Verdana, sans-serif;
+      letter-spacing: 0.02em;
       cursor: pointer;
+      border-radius: 999px;
+      box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.65), 0 7px 16px rgba(0, 0, 0, 0.35);
+      transition: transform 0.2s ease, box-shadow 0.2s ease, filter 0.2s ease;
     }
 
     button:hover {
-      background: #A01030;
+      transform: translateY(-2px);
+      filter: brightness(1.05);
+      box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.7), 0 10px 18px rgba(0, 0, 0, 0.38);
     }
 
     button:disabled {
@@ -196,6 +463,11 @@
     .memory p {
       margin-bottom: 0;
       white-space: pre-wrap;
+    }
+
+    section {
+      position: relative;
+      padding: 10px 0;
     }
 
     .tribute-player {
@@ -299,13 +571,13 @@
 
     .reaction-option {
       padding: 10px 16px;
-      border: 2px solid var(--orange);
+      border: 2px solid var(--coin-mid);
       border-radius: 999px;
-      background: #FFFFFF;
-      color: var(--black);
+      background: linear-gradient(180deg, #FFF6D9 0%, #F1DCA8 100%);
+      color: #3A2204;
       font: bold 0.95rem Arial, sans-serif;
       cursor: pointer;
-      box-shadow: inset 0 0 0 1px rgba(0, 82, 204, 0.45), 0 0 0 1px rgba(0, 82, 204, 0.2);
+      box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.7), 0 0 0 1px rgba(183, 122, 21, 0.3);
       transition: all 0.2s ease;
     }
 
@@ -314,13 +586,13 @@
       background: var(--gold);
       border-color: var(--gold);
       outline: none;
-      box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.65), 0 0 0 2px rgba(255, 255, 255, 0.2);
+      box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.65), 0 0 0 2px rgba(230, 179, 37, 0.24);
     }
 
     .reaction-option.is-selected {
-      background: var(--orange);
-      border-color: var(--orange);
-      color: white;
+      background: linear-gradient(180deg, #B77A15 0%, #8F5C0E 100%);
+      border-color: #8F5C0E;
+      color: #FFF8DF;
       box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.65), 0 0 0 2px rgba(255, 255, 255, 0.25);
     }
 
@@ -351,30 +623,36 @@
     }
 
     .memory-feedback button {
-      border: 1px solid rgba(0, 82, 204, 0.6);
-      background: #0052CC;
-      color: #FFFFFF;
+      border: 1px solid rgba(122, 71, 8, 0.72);
+      background: linear-gradient(180deg, #F7CF6D 0%, #DFAE39 58%, #B77A15 100%);
+      color: #2A1602;
       border-radius: 999px;
       padding: 6px 10px;
       cursor: pointer;
       font: inherit;
       font-weight: bold;
-      box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.3), 0 0 0 1px rgba(0, 82, 204, 0.4);
+      box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.4), 0 0 0 1px rgba(122, 71, 8, 0.26);
       transition: all 0.2s ease;
     }
 
     .memory-feedback button:hover,
     .memory-feedback button:focus-visible {
-      background: #0066FF;
+      background: linear-gradient(180deg, #FFD97E 0%, #E7B646 56%, #C2871C 100%);
       outline: none;
-      box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.5), 0 0 0 2px rgba(0, 82, 204, 0.3);
+      box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.6), 0 0 0 2px rgba(230, 179, 37, 0.3);
+    }
+
+    .memory-feedback button:disabled {
+      opacity: 0.7;
+      cursor: not-allowed;
+      filter: saturate(0.8);
     }
 
     .memory-feedback button.is-active {
-      background: linear-gradient(135deg, #C41E3A, #E63E5C);
-      color: #FFFFFF;
-      border-color: rgba(196, 30, 58, 0.8);
-      box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.65), 0 0 0 3px rgba(196, 30, 58, 0.5), 0 0 10px rgba(196, 30, 58, 0.3);
+      background: linear-gradient(135deg, #FFDD8C, #D79E2A 55%, #A76B10);
+      color: #241202;
+      border-color: rgba(122, 71, 8, 0.9);
+      box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.72), 0 0 0 3px rgba(230, 179, 37, 0.5), 0 0 12px rgba(230, 179, 37, 0.45);
       font-weight: bold;
       position: relative;
     }
@@ -383,6 +661,13 @@
       content: " ✓";
       font-weight: bold;
       margin-left: 2px;
+    }
+
+    .vote-lock-note {
+      font-size: 0.82rem;
+      color: var(--black);
+      opacity: 0.72;
+      margin-top: 2px;
     }
 
     .memory.is-popular {
@@ -446,24 +731,80 @@
       font-size: 1.05rem;
     }
 
-    .share-section {
+    .hands-display {
+      margin-top: 12px;
+      padding: 12px;
+      border-radius: 8px;
       background: rgba(196, 30, 58, 0.08);
-      border: 2px solid var(--gold);
+      border: 1px solid rgba(196, 30, 58, 0.25);
+    }
+
+    .hands-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      align-items: center;
+      margin-top: 8px;
+    }
+
+    .hands-label {
+      font-size: 0.86rem;
+      font-weight: bold;
+      color: var(--black);
+      min-width: 98px;
+    }
+
+    .hands-ribbon {
+      display: inline-flex;
+      flex-wrap: wrap;
+      gap: 3px;
+      align-items: center;
+    }
+
+    .hand-chip {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.08rem;
+      line-height: 1;
+      padding: 2px 3px;
+      border-radius: 6px;
+      background: rgba(255, 255, 255, 0.72);
+      box-shadow: inset 0 0 0 1px rgba(0, 82, 204, 0.12);
+    }
+
+    .hand-chip.down {
+      background: rgba(0, 82, 204, 0.12);
+      box-shadow: inset 0 0 0 1px rgba(0, 82, 204, 0.25);
+    }
+
+    .hands-overflow {
+      margin-left: 4px;
+      font-size: 0.82rem;
+      font-weight: bold;
+      color: var(--black);
+      opacity: 0.72;
+    }
+
+    .share-section {
+      background: linear-gradient(160deg, rgba(255, 244, 208, 0.17), rgba(196, 142, 40, 0.2));
+      border: 2px solid var(--coin-mid);
       border-radius: 12px;
       padding: 28px 20px;
       margin: 32px 0;
       text-align: center;
+      box-shadow: 0 10px 24px rgba(0, 0, 0, 0.28);
     }
 
     .share-section h3 {
       margin: 0 0 8px;
-      color: var(--gold);
+      color: #FFD97E;
       font-size: 1.3rem;
     }
 
     .share-section p {
       margin: 0 0 16px;
-      color: var(--paper);
+      color: #FFF2CC;
       font-size: 0.95rem;
       line-height: 1.5;
     }
@@ -497,43 +838,44 @@
     }
 
     .share-button.facebook {
-      background: #1877F2;
-      color: white;
+      background: linear-gradient(180deg, #F7CF6D, #B77A15);
+      color: #251405;
     }
 
     .share-button.twitter {
-      background: #000000;
-      color: white;
+      background: linear-gradient(180deg, #FFD97E, #C3871C);
+      color: #241405;
     }
 
     .share-button.email {
-      background: var(--orange);
-      color: white;
+      background: linear-gradient(180deg, #F7CF6D, #A76B10);
+      color: #231301;
     }
 
     .share-button.copy {
-      background: var(--gold);
-      color: var(--black);
+      background: linear-gradient(180deg, #FFE7A6, #D39A23);
+      color: #1D1203;
     }
 
     .export-section {
-      background: rgba(196, 30, 58, 0.08);
-      border: 2px solid var(--gold);
+      background: linear-gradient(160deg, rgba(255, 244, 208, 0.17), rgba(196, 142, 40, 0.2));
+      border: 2px solid var(--coin-mid);
       border-radius: 12px;
       padding: 28px 20px;
       margin: 32px 0;
       text-align: center;
+      box-shadow: 0 10px 24px rgba(0, 0, 0, 0.28);
     }
 
     .export-section h3 {
       margin: 0 0 8px;
-      color: var(--gold);
+      color: #FFD97E;
       font-size: 1.3rem;
     }
 
     .export-section p {
       margin: 0 0 16px;
-      color: var(--paper);
+      color: #FFF2CC;
       font-size: 0.95rem;
       line-height: 1.5;
     }
@@ -566,19 +908,25 @@
     }
 
     .export-button.print {
-      background: var(--orange);
-      color: white;
+      background: linear-gradient(180deg, #F7CF6D, #B77A15);
+      color: #251405;
     }
 
     .export-button.download {
-      background: var(--gold);
-      color: var(--black);
+      background: linear-gradient(180deg, #FFE7A6, #D39A23);
+      color: #1D1203;
     }
 
     @media print {
       body {
         background: white;
         color: black;
+      }
+
+      body::before,
+      body::after,
+      .coin-drift-layer {
+        display: none;
       }
 
       main {
@@ -690,6 +1038,15 @@
       }
     }
 
+    @keyframes coin-texture-drift {
+      0% {
+        transform: translate3d(0, 0, 0);
+      }
+      100% {
+        transform: translate3d(120px, 80px, 0);
+      }
+    }
+
     .memory-feedback button.is-loading {
       animation: vote-pulse 0.6s ease-in-out infinite;
       cursor: wait;
@@ -698,6 +1055,245 @@
 
     .memory-feedback button.is-success {
       animation: success-glow 0.6s ease-out 1;
+    }
+
+    .glitter-particle {
+      position: fixed;
+      width: 8px;
+      height: 8px;
+      border-radius: 2px;
+      pointer-events: none;
+      z-index: 10001;
+      opacity: 0;
+      transform: translate3d(0, 0, 0) rotate(0deg) scale(0.7);
+      animation: glitter-burst 820ms cubic-bezier(0.2, 0.8, 0.2, 1) forwards;
+      animation-delay: var(--delay, 0ms);
+      box-shadow: 0 0 8px rgba(255, 255, 255, 0.75);
+      mix-blend-mode: screen;
+      filter: saturate(1.2);
+    }
+
+    .glitter-particle.is-star {
+      clip-path: polygon(50% 0%, 62% 35%, 98% 35%, 68% 56%, 80% 92%, 50% 70%, 20% 92%, 32% 56%, 2% 35%, 38% 35%);
+      border-radius: 0;
+    }
+
+    .glitter-particle.is-diamond {
+      border-radius: 0;
+      transform: translate3d(0, 0, 0) rotate(45deg) scale(0.7);
+    }
+
+    .glitter-ring {
+      position: fixed;
+      width: 18px;
+      height: 18px;
+      border-radius: 999px;
+      border: 3px solid rgba(255, 255, 255, 0.92);
+      pointer-events: none;
+      z-index: 10000;
+      transform: translate(-50%, -50%) scale(0.4);
+      animation: glitter-ring-expand 520ms ease-out forwards;
+      box-shadow: 0 0 14px rgba(255, 255, 255, 0.8);
+    }
+
+    .coin-drift-layer {
+      position: fixed;
+      inset: 0;
+      pointer-events: none;
+      z-index: 3;
+      overflow: hidden;
+    }
+
+    .coin-token {
+      position: absolute;
+      top: -20vh;
+      color: rgba(255, 217, 126, 0.28);
+      text-shadow: 0 0 10px rgba(247, 205, 95, 0.6), 0 0 24px rgba(183, 122, 21, 0.36);
+      animation-name: coin-fall;
+      animation-timing-function: linear;
+      animation-iteration-count: infinite;
+      will-change: transform, opacity;
+      user-select: none;
+    }
+
+    .jackpot-flash {
+      position: fixed;
+      inset: 0;
+      pointer-events: none;
+      z-index: 10020;
+      background:
+        radial-gradient(circle at 50% 50%, rgba(255, 242, 190, 0.6) 0%, rgba(255, 211, 104, 0.38) 22%, rgba(255, 198, 78, 0.14) 45%, transparent 70%);
+      animation: jackpot-flash-pulse 780ms ease-out forwards;
+    }
+
+    .royal-proclamation {
+      position: fixed;
+      top: 18px;
+      left: 50%;
+      transform: translateX(-50%);
+      z-index: 10030;
+      pointer-events: none;
+      padding: 10px 18px;
+      border-radius: 999px;
+      border: 1px solid rgba(255, 228, 145, 0.85);
+      background: linear-gradient(180deg, rgba(255, 239, 187, 0.95), rgba(213, 152, 43, 0.95));
+      color: #2B1702;
+      font: 700 0.86rem "Trebuchet MS", Verdana, sans-serif;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      box-shadow: 0 10px 24px rgba(0, 0, 0, 0.38);
+      opacity: 0;
+      animation: proclamation-pop 1700ms ease-out forwards;
+      white-space: nowrap;
+      max-width: min(94vw, 720px);
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
+    main.dynasty-quake {
+      animation: dynasty-quake 460ms ease-out 1;
+    }
+
+    .coin-shower-token {
+      position: fixed;
+      top: -8vh;
+      pointer-events: none;
+      z-index: 10015;
+      color: rgba(255, 222, 132, 0.86);
+      text-shadow: 0 0 12px rgba(252, 214, 118, 0.85), 0 0 22px rgba(168, 108, 17, 0.42);
+      animation: coin-shower-fall var(--fall, 1500ms) linear forwards;
+      transform: translate3d(0, 0, 0) rotate(0deg);
+    }
+
+    @keyframes glitter-burst {
+      0% {
+        opacity: 0;
+        transform: translate3d(0, 0, 0) rotate(0deg) scale(0.5);
+      }
+      10% {
+        opacity: 1;
+      }
+      60% {
+        opacity: 0.95;
+      }
+      100% {
+        opacity: 0;
+        transform: translate3d(var(--dx, 0px), var(--dy, -40px), 0) rotate(var(--rot, 180deg)) scale(0.15);
+      }
+    }
+
+    @keyframes glitter-ring-expand {
+      0% {
+        opacity: 0.95;
+        transform: translate(-50%, -50%) scale(0.35);
+      }
+      100% {
+        opacity: 0;
+        transform: translate(-50%, -50%) scale(7.5);
+      }
+    }
+
+    @keyframes coin-fall {
+      0% {
+        transform: translate3d(var(--drift, 0px), -18vh, 0) rotate(0deg);
+        opacity: 0;
+      }
+      8% {
+        opacity: 1;
+      }
+      100% {
+        transform: translate3d(calc(var(--drift, 0px) + var(--sway, 40px)), 120vh, 0) rotate(var(--spin, 1turn));
+        opacity: 0;
+      }
+    }
+
+    @keyframes decree-shine {
+      0% {
+        left: -35%;
+      }
+      100% {
+        left: 120%;
+      }
+    }
+
+    @keyframes jackpot-flash-pulse {
+      0% {
+        opacity: 0;
+      }
+      12% {
+        opacity: 1;
+      }
+      100% {
+        opacity: 0;
+      }
+    }
+
+    @keyframes proclamation-pop {
+      0% {
+        opacity: 0;
+        transform: translateX(-50%) translateY(-10px) scale(0.88);
+      }
+      15% {
+        opacity: 1;
+        transform: translateX(-50%) translateY(0) scale(1);
+      }
+      82% {
+        opacity: 1;
+      }
+      100% {
+        opacity: 0;
+        transform: translateX(-50%) translateY(-8px) scale(0.98);
+      }
+    }
+
+    @keyframes dynasty-quake {
+      0% {
+        transform: translate3d(0, 0, 0) scale(1);
+      }
+      25% {
+        transform: translate3d(-4px, 0, 0) rotate(-0.3deg) scale(1.005);
+      }
+      55% {
+        transform: translate3d(5px, -1px, 0) rotate(0.3deg) scale(1.007);
+      }
+      80% {
+        transform: translate3d(-2px, 1px, 0) rotate(-0.2deg) scale(1.003);
+      }
+      100% {
+        transform: translate3d(0, 0, 0) scale(1);
+      }
+    }
+
+    @keyframes coin-shower-fall {
+      0% {
+        opacity: 0;
+        transform: translate3d(var(--drift, 0px), -8vh, 0) rotate(0turn);
+      }
+      10% {
+        opacity: 1;
+      }
+      100% {
+        opacity: 0;
+        transform: translate3d(calc(var(--drift, 0px) + var(--sway, 20px)), 115vh, 0) rotate(var(--spin, 1turn));
+      }
+    }
+
+    @keyframes coin-toast-pop {
+      0% {
+        opacity: 0;
+        transform: translateY(18px) scale(0.88);
+      }
+      14% {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+      }
+      82% {
+        opacity: 1;
+      }
+      100% {
+        opacity: 0;
+        transform: translateY(-8px) scale(0.98);
+      }
     }
 
     .sort-controls {
@@ -794,6 +1390,27 @@
         <p class="music-track-name" id="music-track-name"></p>
       </div>
     </div>
+
+    <div class="royal-decree-divider" aria-hidden="true"></div>
+
+    <section class="coin-bank-panel" aria-live="polite">
+      <div class="coin-bank-head">
+        <span class="coin-bank-title">Dynasty Coin Bank</span>
+        <span class="coin-balance" id="coin-balance">0 coins</span>
+        <span class="coin-rank" id="coin-rank">Bronze Citizen</span>
+      </div>
+      <div class="coin-progress-track" aria-hidden="true">
+        <div class="coin-progress-fill" id="coin-progress-fill"></div>
+      </div>
+      <div class="coin-bank-meta">
+        <span id="coin-next-goal">Next rank: Silver Baron (120)</span>
+        <span id="coin-actions">Actions rewarded: 0</span>
+      </div>
+      <div class="coin-powerups">
+        <button class="coin-powerup-button" id="mega-glitter-button" type="button">Activate Mega Glitter (120)</button>
+        <span class="coin-powerup-status" id="mega-glitter-status">Mega Glitter offline</span>
+      </div>
+    </section>
 
     <p class="intro">
       This page is for anyone who knew James “Rocky” Taylor.
@@ -927,9 +1544,277 @@
     const audioConsentAcceptButton = document.querySelector("#audio-consent-accept");
     const nextTributeButton = document.querySelector("#next-tribute");
     const titlePlayButton = document.querySelector("#title-play-button");
+    const coinBalanceEl = document.querySelector("#coin-balance");
+    const coinRankEl = document.querySelector("#coin-rank");
+    const coinProgressFillEl = document.querySelector("#coin-progress-fill");
+    const coinNextGoalEl = document.querySelector("#coin-next-goal");
+    const coinActionsEl = document.querySelector("#coin-actions");
+    const megaGlitterButtonEl = document.querySelector("#mega-glitter-button");
+    const megaGlitterStatusEl = document.querySelector("#mega-glitter-status");
     const STORAGE_KEY = "rocky-memories-fallback";
+    const FEEDBACK_LOCKS_KEY = "rocky-memory-feedback-locks";
+    const COIN_BANK_KEY = "rocky-coin-bank";
+    const COIN_ACTIVITY_KEY = "rocky-coin-activity";
+    const COIN_DAILY_STAMP_KEY = "rocky-coin-daily-stamp";
+    const COIN_POWERUPS_KEY = "rocky-coin-powerups";
     const AUDIO_CONSENT_KEY = "rocky-audio-consent";
     const AUDIO_CONSENT_COOKIE_NAME = "rocky_audio_consent";
+    const MEGA_GLITTER_COST = 120;
+    const MEGA_GLITTER_CHARGES = 3;
+
+    const COIN_REWARD_TABLE = {
+      daily_visit: { amount: 25, label: "Daily blessing", cooldownMs: 20 * 60 * 60 * 1000 },
+      submit_memory: { amount: 40, label: "Shared a memory", cooldownMs: 15000 },
+      vote_memory: { amount: 8, label: "Voted on a memory", cooldownMs: 0 },
+      share_social: { amount: 12, label: "Shared the memorial", cooldownMs: 9000 },
+      copy_link: { amount: 6, label: "Copied memorial link", cooldownMs: 8000 },
+      export_print: { amount: 15, label: "Printed keepsake", cooldownMs: 12000 },
+      export_download: { amount: 15, label: "Downloaded keepsake", cooldownMs: 12000 },
+      play_music: { amount: 4, label: "Started soundtrack", cooldownMs: 30000 },
+      next_track: { amount: 2, label: "Switched track", cooldownMs: 10000 },
+      random_event: { amount: 3, label: "Dynasty chaos event", cooldownMs: 45000 }
+    };
+
+    const COIN_RANKS = [
+      { name: "Bronze Citizen", min: 0, next: 120 },
+      { name: "Silver Baron", min: 120, next: 320 },
+      { name: "Golden Regent", min: 320, next: 720 },
+      { name: "Imperial Treasurer", min: 720, next: 1500 },
+      { name: "Coin Dynasty Legend", min: 1500, next: null }
+    ];
+
+    function readCoinBank() {
+      try {
+        const stored = localStorage.getItem(COIN_BANK_KEY);
+        if (!stored) {
+          return { balance: 0, actions: 0, lifetimeEarned: 0 };
+        }
+        const parsed = JSON.parse(stored);
+        return {
+          balance: Math.max(0, Number(parsed.balance || 0)),
+          actions: Math.max(0, Number(parsed.actions || 0)),
+          lifetimeEarned: Math.max(0, Number(parsed.lifetimeEarned || 0))
+        };
+      } catch (error) {
+        console.warn("Could not read coin bank:", error);
+        return { balance: 0, actions: 0, lifetimeEarned: 0 };
+      }
+    }
+
+    function saveCoinBank(bank) {
+      try {
+        localStorage.setItem(COIN_BANK_KEY, JSON.stringify(bank));
+      } catch (error) {
+        console.warn("Could not save coin bank:", error);
+      }
+    }
+
+    function readCoinActivity() {
+      try {
+        const stored = localStorage.getItem(COIN_ACTIVITY_KEY);
+        if (!stored) return {};
+        const parsed = JSON.parse(stored);
+        return parsed && typeof parsed === "object" ? parsed : {};
+      } catch (error) {
+        console.warn("Could not read coin activity:", error);
+        return {};
+      }
+    }
+
+    function saveCoinActivity(activityMap) {
+      try {
+        localStorage.setItem(COIN_ACTIVITY_KEY, JSON.stringify(activityMap));
+      } catch (error) {
+        console.warn("Could not save coin activity:", error);
+      }
+    }
+
+    function readCoinPowerups() {
+      try {
+        const stored = localStorage.getItem(COIN_POWERUPS_KEY);
+        if (!stored) {
+          return { megaGlitterCharges: 0 };
+        }
+        const parsed = JSON.parse(stored);
+        return {
+          megaGlitterCharges: Math.max(0, Number(parsed.megaGlitterCharges || 0))
+        };
+      } catch (error) {
+        console.warn("Could not read coin powerups:", error);
+        return { megaGlitterCharges: 0 };
+      }
+    }
+
+    function saveCoinPowerups(powerups) {
+      try {
+        localStorage.setItem(COIN_POWERUPS_KEY, JSON.stringify(powerups));
+      } catch (error) {
+        console.warn("Could not save coin powerups:", error);
+      }
+    }
+
+    function getCoinRankInfo(balance) {
+      let current = COIN_RANKS[0];
+      for (const rank of COIN_RANKS) {
+        if (balance >= rank.min) {
+          current = rank;
+        }
+      }
+      return current;
+    }
+
+    function renderCoinBank() {
+      const bank = readCoinBank();
+      const rank = getCoinRankInfo(bank.balance);
+      const nextThreshold = rank.next;
+
+      if (coinBalanceEl) {
+        coinBalanceEl.textContent = `${bank.balance.toLocaleString()} coins`;
+      }
+
+      if (coinRankEl) {
+        coinRankEl.textContent = rank.name;
+      }
+
+      if (coinActionsEl) {
+        coinActionsEl.textContent = `Actions rewarded: ${bank.actions.toLocaleString()}`;
+      }
+
+      if (coinNextGoalEl) {
+        if (nextThreshold === null) {
+          coinNextGoalEl.textContent = "Max rank reached: Coin Dynasty Legend";
+        } else {
+          const nextRank = COIN_RANKS.find((entry) => entry.min === nextThreshold);
+          coinNextGoalEl.textContent = `Next rank: ${nextRank ? nextRank.name : "Unknown"} (${nextThreshold.toLocaleString()})`;
+        }
+      }
+
+      if (coinProgressFillEl) {
+        let progress = 100;
+        if (nextThreshold !== null) {
+          const segment = Math.max(1, nextThreshold - rank.min);
+          progress = Math.max(0, Math.min(100, ((bank.balance - rank.min) / segment) * 100));
+        }
+        coinProgressFillEl.style.width = `${progress}%`;
+      }
+
+      const powerups = readCoinPowerups();
+      const hasMega = powerups.megaGlitterCharges > 0;
+
+      if (megaGlitterStatusEl) {
+        megaGlitterStatusEl.textContent = hasMega
+          ? `Mega Glitter active (${powerups.megaGlitterCharges} left)`
+          : "Mega Glitter offline";
+        megaGlitterStatusEl.classList.toggle("is-active", hasMega);
+      }
+
+      if (megaGlitterButtonEl) {
+        megaGlitterButtonEl.textContent = hasMega
+          ? `Recharge Mega Glitter (${MEGA_GLITTER_COST})`
+          : `Activate Mega Glitter (${MEGA_GLITTER_COST})`;
+        megaGlitterButtonEl.disabled = bank.balance < MEGA_GLITTER_COST;
+      }
+    }
+
+    function showCoinToast(amount, label, isSpend = false) {
+      const toast = document.createElement("div");
+      toast.className = "coin-toast";
+      if (isSpend) {
+        toast.classList.add("is-spend");
+      }
+      if (amount === 0) {
+        toast.textContent = label;
+      } else {
+        const absAmount = Math.abs(amount);
+        const sign = amount >= 0 ? "+" : "-";
+        toast.textContent = `${sign}${absAmount} coins • ${label}`;
+      }
+      document.body.append(toast);
+      setTimeout(() => toast.remove(), 1400);
+    }
+
+    function spendCoins(amount, label) {
+      const bank = readCoinBank();
+      if (bank.balance < amount) {
+        return false;
+      }
+
+      bank.balance -= amount;
+      saveCoinBank(bank);
+      renderCoinBank();
+      showCoinToast(-amount, label, true);
+      return true;
+    }
+
+    function rewardCoins(activityKey, contextKey = "global") {
+      const reward = COIN_REWARD_TABLE[activityKey];
+      if (!reward) {
+        return false;
+      }
+
+      const now = Date.now();
+      const map = readCoinActivity();
+      const lockKey = `${activityKey}:${contextKey}`;
+      const lastAt = Number(map[lockKey] || 0);
+
+      if (reward.cooldownMs > 0 && now - lastAt < reward.cooldownMs) {
+        return false;
+      }
+
+      map[lockKey] = now;
+      saveCoinActivity(map);
+
+      const bank = readCoinBank();
+      bank.balance += reward.amount;
+      bank.actions += 1;
+      bank.lifetimeEarned += reward.amount;
+      saveCoinBank(bank);
+      renderCoinBank();
+      showCoinToast(reward.amount, reward.label);
+      return true;
+    }
+
+    function activateMegaGlitter() {
+      const paid = spendCoins(MEGA_GLITTER_COST, "Mega Glitter activation");
+      if (!paid) {
+        return false;
+      }
+
+      const powerups = readCoinPowerups();
+      powerups.megaGlitterCharges += MEGA_GLITTER_CHARGES;
+      saveCoinPowerups(powerups);
+      renderCoinBank();
+      showCoinToast(0, `Mega Glitter ready (${powerups.megaGlitterCharges} charges)`);
+      return true;
+    }
+
+    function consumeMegaGlitterCharge() {
+      const powerups = readCoinPowerups();
+      if (powerups.megaGlitterCharges <= 0) {
+        return false;
+      }
+
+      powerups.megaGlitterCharges -= 1;
+      saveCoinPowerups(powerups);
+      renderCoinBank();
+      return true;
+    }
+
+    function applyDailyCoinBonus() {
+      const stamp = new Date().toISOString().slice(0, 10);
+      try {
+        const previous = localStorage.getItem(COIN_DAILY_STAMP_KEY);
+        if (previous === stamp) {
+          return;
+        }
+        localStorage.setItem(COIN_DAILY_STAMP_KEY, stamp);
+      } catch (error) {
+        console.warn("Could not update daily coin stamp:", error);
+        return;
+      }
+
+      rewardCoins("daily_visit", stamp);
+    }
 
     const tributeTrackNames = [
       "Opening Theme",
@@ -1019,6 +1904,7 @@
       tributeOrder = shuffle(tributeOrder);
       const nextIndex = (tributeIndex + 1) % tributeOrder.length;
       playTributeTrack(nextIndex);
+      rewardCoins("next_track");
     }
 
     tributeOrder = shuffle(tributeTracks);
@@ -1031,6 +1917,7 @@
 
       if (tributeAudio.paused) {
         playTributeTrack(0);
+        rewardCoins("play_music");
       } else {
         tributeAudio.pause();
       }
@@ -1165,40 +2052,250 @@
       const feedback = memory?.feedback && typeof memory.feedback === "object" ? memory.feedback : {};
       return {
         upvotes: Number(feedback.upvotes || 0),
-        downvotes: Number(feedback.downvotes || 0),
-        userReaction: feedback.userReaction || ""
+        downvotes: Number(feedback.downvotes || 0)
       };
     }
 
     function calculateNextFeedback(currentFeedback, desiredReaction) {
       let upvotes = Number(currentFeedback.upvotes || 0);
       let downvotes = Number(currentFeedback.downvotes || 0);
-      let userReaction = currentFeedback.userReaction || "";
 
-      if (desiredReaction === userReaction) {
-        userReaction = "";
-        if (desiredReaction === "up") {
-          upvotes = Math.max(0, upvotes - 1);
-        } else if (desiredReaction === "down") {
-          downvotes = Math.max(0, downvotes - 1);
-        }
-      } else {
-        if (userReaction === "up") {
-          upvotes = Math.max(0, upvotes - 1);
-        } else if (userReaction === "down") {
-          downvotes = Math.max(0, downvotes - 1);
-        }
-
-        userReaction = desiredReaction;
-        if (desiredReaction === "up") {
-          upvotes += 1;
-        } else if (desiredReaction === "down") {
-          downvotes += 1;
-        }
+      if (desiredReaction === "up") {
+        upvotes += 1;
+      } else if (desiredReaction === "down") {
+        downvotes += 1;
       }
 
-      return { upvotes, downvotes, userReaction };
+      return { upvotes, downvotes };
     }
+
+    function getFeedbackLocks() {
+      try {
+        const stored = localStorage.getItem(FEEDBACK_LOCKS_KEY);
+        if (!stored) return {};
+        const parsed = JSON.parse(stored);
+        return parsed && typeof parsed === "object" ? parsed : {};
+      } catch (error) {
+        console.warn("Could not read feedback locks:", error);
+        return {};
+      }
+    }
+
+    function saveFeedbackLocks(locks) {
+      try {
+        localStorage.setItem(FEEDBACK_LOCKS_KEY, JSON.stringify(locks));
+      } catch (error) {
+        console.warn("Could not save feedback locks:", error);
+      }
+    }
+
+    function isFeedbackLocked(memoryKey) {
+      const locks = getFeedbackLocks();
+      return Boolean(locks[memoryKey]);
+    }
+
+    function lockFeedback(memoryKey, reaction) {
+      const locks = getFeedbackLocks();
+      locks[memoryKey] = reaction;
+      saveFeedbackLocks(locks);
+    }
+
+    function buildHandsRibbon(total, directionClass = "") {
+      if (!total) {
+        return '<span class="hands-overflow">none yet</span>';
+      }
+
+      const upHands = ["👍🏻", "👍🏼", "👍🏽", "👍🏾", "👍🏿"];
+      const downHands = ["👎🏻", "👎🏼", "👎🏽", "👎🏾", "👎🏿"];
+      const palette = directionClass === "down" ? downHands : upHands;
+      const maxHands = 45;
+      const visibleHands = Math.min(total, maxHands);
+
+      let ribbon = "";
+      for (let i = 0; i < visibleHands; i += 1) {
+        ribbon += `<span class="hand-chip ${directionClass}">${palette[i % palette.length]}</span>`;
+      }
+
+      if (total > maxHands) {
+        ribbon += `<span class="hands-overflow">+${total - maxHands}</span>`;
+      }
+
+      return ribbon;
+    }
+
+    function shootGlitterFromElement(element, isDownvote = false, intensity = 1) {
+      if (!element) {
+        return;
+      }
+
+      const burstIntensity = Math.max(1, Number(intensity || 1));
+
+      const rect = element.getBoundingClientRect();
+      const originX = rect.left + rect.width / 2;
+      const originY = rect.top + rect.height / 2;
+      const colors = isDownvote
+        ? ["#66A3FF", "#8CC7FF", "#C7E3FF", "#A7B8FF", "#FFD166", "#FFFFFF"]
+        : ["#FFD166", "#F6C945", "#FF7F50", "#FFB347", "#FFFFFF", "#FFE9A8"];
+
+      const ring = document.createElement("span");
+      ring.className = "glitter-ring";
+      ring.style.left = `${originX}px`;
+      ring.style.top = `${originY}px`;
+      ring.style.borderColor = isDownvote ? "rgba(140, 199, 255, 0.95)" : "rgba(255, 224, 130, 0.95)";
+      document.body.append(ring);
+      setTimeout(() => ring.remove(), 700);
+
+      const waveConfigs = [
+        { count: Math.floor(30 * burstIntensity), spreadMin: 45, spreadMax: 100 + (burstIntensity - 1) * 55, delayMax: 90 },
+        { count: Math.floor(26 * burstIntensity), spreadMin: 70, spreadMax: 135 + (burstIntensity - 1) * 65, delayMax: 150 },
+        { count: Math.floor(22 * burstIntensity), spreadMin: 95, spreadMax: 170 + (burstIntensity - 1) * 75, delayMax: 220 }
+      ];
+
+      waveConfigs.forEach((wave, waveIndex) => {
+        for (let i = 0; i < wave.count; i += 1) {
+          const particle = document.createElement("span");
+          particle.className = "glitter-particle";
+
+          if (Math.random() < 0.22) {
+            particle.classList.add("is-star");
+          } else if (Math.random() < 0.34) {
+            particle.classList.add("is-diamond");
+          }
+
+          particle.style.left = `${originX}px`;
+          particle.style.top = `${originY}px`;
+          particle.style.background = colors[(i + waveIndex) % colors.length];
+
+          const size = 3 + Math.random() * 7;
+          particle.style.width = `${size}px`;
+          particle.style.height = `${size}px`;
+          particle.style.borderRadius = Math.random() > 0.5 ? "50%" : "2px";
+
+          const angle = Math.random() * Math.PI * 2;
+          const spread = wave.spreadMin + Math.random() * (wave.spreadMax - wave.spreadMin);
+          const dx = Math.cos(angle) * spread;
+          const dyBase = Math.sin(angle) * spread;
+          const lift = 28 + waveIndex * 12;
+          const dy = isDownvote ? Math.abs(dyBase) * 0.7 + 10 : dyBase - lift;
+
+          particle.style.setProperty("--dx", `${dx.toFixed(1)}px`);
+          particle.style.setProperty("--dy", `${dy.toFixed(1)}px`);
+          particle.style.setProperty("--rot", `${Math.floor(Math.random() * 720)}deg`);
+          particle.style.setProperty("--delay", `${Math.floor(Math.random() * wave.delayMax)}ms`);
+
+          document.body.append(particle);
+          setTimeout(() => particle.remove(), 1200);
+        }
+      });
+
+      if (burstIntensity > 1.3) {
+        triggerCoinShower();
+      }
+    }
+
+    function enableCoinDynastyAmbience() {
+      const layer = document.createElement("div");
+      layer.className = "coin-drift-layer";
+      layer.setAttribute("aria-hidden", "true");
+
+      const symbols = ["🪙", "✦", "◆"];
+      const tokenCount = 26;
+
+      for (let i = 0; i < tokenCount; i += 1) {
+        const token = document.createElement("span");
+        token.className = "coin-token";
+        token.textContent = symbols[i % symbols.length];
+        token.style.left = `${Math.random() * 100}%`;
+        token.style.fontSize = `${12 + Math.random() * 18}px`;
+        token.style.animationDuration = `${10 + Math.random() * 16}s`;
+        token.style.animationDelay = `${-Math.random() * 18}s`;
+        token.style.setProperty("--drift", `${Math.floor((Math.random() - 0.5) * 90)}px`);
+        token.style.setProperty("--sway", `${Math.floor((Math.random() - 0.5) * 150)}px`);
+        token.style.setProperty("--spin", `${(Math.random() > 0.5 ? 1 : -1) * (0.7 + Math.random() * 1.4)}turn`);
+
+        if (token.textContent === "🪙") {
+          token.style.opacity = "0.34";
+        }
+
+        layer.append(token);
+      }
+
+      document.body.append(layer);
+    }
+
+    function triggerJackpotFlash() {
+      if (Math.random() > 0.14) {
+        return;
+      }
+
+      const flash = document.createElement("div");
+      flash.className = "jackpot-flash";
+      flash.setAttribute("aria-hidden", "true");
+      document.body.append(flash);
+      setTimeout(() => flash.remove(), 900);
+    }
+
+    function triggerCoinShower() {
+      const tokenTotal = 42;
+      for (let i = 0; i < tokenTotal; i += 1) {
+        const token = document.createElement("span");
+        token.className = "coin-shower-token";
+        token.textContent = i % 3 === 0 ? "🪙" : i % 3 === 1 ? "✦" : "◆";
+        token.style.left = `${Math.random() * 100}vw`;
+        token.style.fontSize = `${12 + Math.random() * 20}px`;
+        token.style.setProperty("--drift", `${Math.floor((Math.random() - 0.5) * 70)}px`);
+        token.style.setProperty("--sway", `${Math.floor((Math.random() - 0.5) * 110)}px`);
+        token.style.setProperty("--spin", `${(Math.random() > 0.5 ? 1 : -1) * (0.8 + Math.random() * 1.3)}turn`);
+        token.style.setProperty("--fall", `${1200 + Math.random() * 900}ms`);
+        document.body.append(token);
+        setTimeout(() => token.remove(), 2300);
+      }
+    }
+
+    function triggerProclamation() {
+      const phrases = [
+        "Royal Treasury Blessing Activated",
+        "Imperial Vote Decree Confirmed",
+        "Golden Court Applauds This Memory"
+      ];
+
+      const banner = document.createElement("div");
+      banner.className = "royal-proclamation";
+      banner.textContent = phrases[Math.floor(Math.random() * phrases.length)];
+      document.body.append(banner);
+      setTimeout(() => banner.remove(), 1800);
+    }
+
+    function triggerDynastyQuake() {
+      const mainElement = document.querySelector("main");
+      if (!mainElement) {
+        return;
+      }
+
+      mainElement.classList.remove("dynasty-quake");
+      void mainElement.offsetWidth;
+      mainElement.classList.add("dynasty-quake");
+      setTimeout(() => mainElement.classList.remove("dynasty-quake"), 520);
+    }
+
+    function triggerRandomDynastyEvent() {
+      const randomEventIndex = Math.floor(Math.random() * 3);
+
+      if (randomEventIndex === 0) {
+        triggerCoinShower();
+      } else if (randomEventIndex === 1) {
+        triggerProclamation();
+      } else {
+        triggerDynastyQuake();
+      }
+
+      rewardCoins("random_event");
+    }
+
+    enableCoinDynastyAmbience();
+    renderCoinBank();
+    applyDailyCoinBonus();
+    megaGlitterButtonEl?.addEventListener("click", activateMegaGlitter);
 
     function applyFeedbackChange(entries, memoryKey, desiredReaction) {
       return entries.map((entry) => {
@@ -1219,6 +2316,11 @@
 
     async function handleMemoryFeedback(memory, desiredReaction) {
       const memoryKey = memory.id || createMemoryKey(memory);
+
+      if (isFeedbackLocked(memoryKey)) {
+        return false;
+      }
+
       const nextFallbackMemories = applyFeedbackChange(getFallbackMemories(), memoryKey, desiredReaction);
       saveFallbackMemories(nextFallbackMemories);
 
@@ -1234,6 +2336,8 @@
         };
       });
 
+      lockFeedback(memoryKey, desiredReaction);
+
       renderMemoryList(memoryEntries);
 
       if (memory.id) {
@@ -1246,6 +2350,8 @@
           console.warn("Could not save feedback to Firestore:", error);
         }
       }
+
+      return true;
     }
 
     function sortMemoriesForDisplay(entries, sortMode = "popular") {
@@ -1297,6 +2403,16 @@
           <strong>Community sentiment (total tally):</strong>
           <span class="vote-pill">👍 ${totalUpvotes}</span>
           <span class="vote-pill">👎 ${totalDownvotes}</span>
+          <div class="hands-display">
+            <div class="hands-row">
+              <span class="hands-label">Thumbs up</span>
+              <span class="hands-ribbon">${buildHandsRibbon(totalUpvotes)}</span>
+            </div>
+            <div class="hands-row">
+              <span class="hands-label">Thumbs down</span>
+              <span class="hands-ribbon">${buildHandsRibbon(totalDownvotes, "down")}</span>
+            </div>
+          </div>
         </div>
       `;
       
@@ -1332,6 +2448,8 @@
 
       memories.innerHTML = "";
 
+      const feedbackLocks = getFeedbackLocks();
+
       sortedEntries.forEach((memory, index) => {
         const article = document.createElement("article");
         article.className = `memory${index === 0 ? " is-popular" : ""}`;
@@ -1362,6 +2480,10 @@
         const story = document.createElement("p");
         story.textContent = memory.story;
 
+        const memoryKey = memory.id || createMemoryKey(memory);
+        const lockedReaction = feedbackLocks[memoryKey] || "";
+        const isLocked = Boolean(lockedReaction);
+
         const feedback = getMemoryFeedback(memory);
         const feedbackGroup = document.createElement("div");
         feedbackGroup.className = "memory-feedback";
@@ -1377,48 +2499,71 @@
         const upButton = document.createElement("button");
         upButton.type = "button";
         upButton.textContent = `👍 ${feedback.upvotes}`;
-        upButton.className = feedback.userReaction === "up" ? "is-active" : "";
-        upButton.setAttribute("aria-pressed", feedback.userReaction === "up" ? "true" : "false");
+        upButton.className = lockedReaction === "up" ? "is-active" : "";
+        upButton.setAttribute("aria-pressed", lockedReaction === "up" ? "true" : "false");
+        upButton.disabled = isLocked;
         upButton.addEventListener("click", async () => {
           upButton.classList.add("is-loading");
           downButton.classList.add("is-loading");
           downButton.disabled = true;
           upButton.disabled = true;
           try {
-            await handleMemoryFeedback(memory, "up");
-            upButton.classList.add("is-success");
-            setTimeout(() => upButton.classList.remove("is-success"), 600);
+            const wasRecorded = await handleMemoryFeedback(memory, "up");
+            if (wasRecorded) {
+              rewardCoins("vote_memory", memoryKey);
+              const megaActive = consumeMegaGlitterCharge();
+              shootGlitterFromElement(upButton, false, megaActive ? 2.05 : 1);
+              triggerJackpotFlash();
+              triggerRandomDynastyEvent();
+              upButton.classList.add("is-success");
+              setTimeout(() => upButton.classList.remove("is-success"), 600);
+            }
           } finally {
             upButton.classList.remove("is-loading");
             downButton.classList.remove("is-loading");
-            downButton.disabled = false;
-            upButton.disabled = false;
+            downButton.disabled = isLocked;
+            upButton.disabled = isLocked;
           }
         });
 
         const downButton = document.createElement("button");
         downButton.type = "button";
         downButton.textContent = `👎 ${feedback.downvotes}`;
-        downButton.className = feedback.userReaction === "down" ? "is-active" : "";
-        downButton.setAttribute("aria-pressed", feedback.userReaction === "down" ? "true" : "false");
+        downButton.className = lockedReaction === "down" ? "is-active" : "";
+        downButton.setAttribute("aria-pressed", lockedReaction === "down" ? "true" : "false");
+        downButton.disabled = isLocked;
         downButton.addEventListener("click", async () => {
           upButton.classList.add("is-loading");
           downButton.classList.add("is-loading");
           downButton.disabled = true;
           upButton.disabled = true;
           try {
-            await handleMemoryFeedback(memory, "down");
-            downButton.classList.add("is-success");
-            setTimeout(() => downButton.classList.remove("is-success"), 600);
+            const wasRecorded = await handleMemoryFeedback(memory, "down");
+            if (wasRecorded) {
+              rewardCoins("vote_memory", memoryKey);
+              const megaActive = consumeMegaGlitterCharge();
+              shootGlitterFromElement(downButton, true, megaActive ? 2.05 : 1);
+              triggerJackpotFlash();
+              triggerRandomDynastyEvent();
+              downButton.classList.add("is-success");
+              setTimeout(() => downButton.classList.remove("is-success"), 600);
+            }
           } finally {
             upButton.classList.remove("is-loading");
             downButton.classList.remove("is-loading");
-            downButton.disabled = false;
-            upButton.disabled = false;
+            downButton.disabled = isLocked;
+            upButton.disabled = isLocked;
           }
         });
 
         feedbackGroup.append(upButton, downButton);
+
+        const lockNote = document.createElement("div");
+        lockNote.className = "vote-lock-note";
+        lockNote.textContent = isLocked
+          ? "Vote locked on this device for this memory."
+          : "One vote per memory on this device.";
+        feedbackGroup.append(lockNote);
 
         if (memory.reaction) {
           const reaction = document.createElement("p");
@@ -1511,6 +2656,7 @@
 
         form.reset();
         status.textContent = "Thank you. Your memory has been shared.";
+        rewardCoins("submit_memory");
         loadApprovedMemories();
       } catch (error) {
         console.error("Could not submit memory:", error);
@@ -1538,6 +2684,7 @@
             "Saved locally for now. Please try again in a moment if you want to sync it later.";
         }
 
+        rewardCoins("submit_memory");
         loadApprovedMemories();
       } finally {
         submitButton.disabled = false;
@@ -1554,16 +2701,19 @@
     document.getElementById("share-facebook").addEventListener("click", () => {
       const facebookUrl = `https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(pageUrl)}&quote=${encodeURIComponent(pageDescription)}`;
       window.open(facebookUrl, "facebook-share", "width=600,height=400");
+      rewardCoins("share_social", "facebook");
     });
 
     document.getElementById("share-twitter").addEventListener("click", () => {
       const twitterUrl = `https://twitter.com/intent/tweet?url=${encodeURIComponent(pageUrl)}&text=${encodeURIComponent(pageDescription)}`;
       window.open(twitterUrl, "twitter-share", "width=600,height=400");
+      rewardCoins("share_social", "twitter");
     });
 
     document.getElementById("share-email").addEventListener("click", () => {
       const mailtoLink = `mailto:?subject=${encodeURIComponent(pageTitle)}&body=${encodeURIComponent(pageDescription + "\n\n" + pageUrl)}`;
       window.location.href = mailtoLink;
+      rewardCoins("share_social", "email");
     });
 
     document.getElementById("share-copy").addEventListener("click", async () => {
@@ -1572,6 +2722,7 @@
         await navigator.clipboard.writeText(pageUrl);
         const originalText = copyButton.textContent;
         copyButton.textContent = "✓ Copied!";
+        rewardCoins("copy_link");
         setTimeout(() => {
           copyButton.textContent = originalText;
         }, 2000);
@@ -1734,6 +2885,7 @@
     document.getElementById("export-print").addEventListener("click", () => {
       const html = generateMemoriesDocument();
       if (!html) return;
+      rewardCoins("export_print");
       
       const printWindow = window.open("", "print", "height=auto,width=auto");
       printWindow.document.write(html);
@@ -1751,6 +2903,7 @@
     document.getElementById("export-download").addEventListener("click", () => {
       const html = generateMemoriesDocument();
       if (!html) return;
+      rewardCoins("export_download");
       
       const blob = new Blob([html], { type: "text/html" });
       const url = URL.createObjectURL(blob);
