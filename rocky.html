@@ -412,6 +412,36 @@
       cursor: wait;
       pointer-events: none;
     }
+
+    .sort-controls {
+      display: flex;
+      gap: 8px;
+      margin-bottom: 16px;
+      flex-wrap: wrap;
+    }
+
+    .sort-controls button {
+      margin-top: 0;
+      padding: 8px 14px;
+      border: 1px solid var(--gold);
+      border-radius: 999px;
+      background: transparent;
+      color: var(--gold);
+      font: bold 0.9rem Arial, sans-serif;
+      cursor: pointer;
+      transition: all 0.2s ease;
+    }
+
+    .sort-controls button:hover {
+      background: var(--gold);
+      color: var(--black);
+    }
+
+    .sort-controls button.is-active {
+      background: var(--gold);
+      color: var(--black);
+      box-shadow: 0 2px 6px rgba(196, 30, 58, 0.3);
+    }
   </style>
 </head>
 
@@ -468,6 +498,11 @@
 
     <section>
       <h2>Memories already shared</h2>
+      <div class="sort-controls" id="sort-controls">
+        <button class="sort-button is-active" data-sort="popular">Most Popular</button>
+        <button class="sort-button" data-sort="newest">Newest First</button>
+        <button class="sort-button" data-sort="oldest">Oldest First</button>
+      </div>
       <div id="vote-summary" class="vote-summary" aria-live="polite"></div>
       <div id="memories">
         <article class="memory">
@@ -806,6 +841,7 @@
     }
 
     let memoryEntries = [];
+    let currentSortMode = "popular";
 
     async function handleMemoryFeedback(memory, desiredReaction) {
       const memoryKey = memory.id || createMemoryKey(memory);
@@ -838,22 +874,29 @@
       }
     }
 
-    function sortMemoriesForDisplay(entries) {
+    function sortMemoriesForDisplay(entries, sortMode = "popular") {
       return [...entries].sort((left, right) => {
-        const leftFeedback = getMemoryFeedback(left);
-        const rightFeedback = getMemoryFeedback(right);
-        const upvoteDelta = rightFeedback.upvotes - leftFeedback.upvotes;
+        if (sortMode === "newest") {
+          return getMemoryTime(right) - getMemoryTime(left);
+        } else if (sortMode === "oldest") {
+          return getMemoryTime(left) - getMemoryTime(right);
+        } else {
+          // Default "popular" sort
+          const leftFeedback = getMemoryFeedback(left);
+          const rightFeedback = getMemoryFeedback(right);
+          const upvoteDelta = rightFeedback.upvotes - leftFeedback.upvotes;
 
-        if (upvoteDelta !== 0) {
-          return upvoteDelta;
+          if (upvoteDelta !== 0) {
+            return upvoteDelta;
+          }
+
+          return getMemoryTime(right) - getMemoryTime(left);
         }
-
-        return getMemoryTime(right) - getMemoryTime(left);
       });
     }
 
     function renderMemoryList(entries) {
-      const sortedEntries = sortMemoriesForDisplay(entries);
+      const sortedEntries = sortMemoriesForDisplay(entries, currentSortMode);
       const malboroVotes = sortedEntries.filter((memory) => memory.reaction === "Marlboro Reds").length;
       const pallMallVotes = sortedEntries.filter((memory) => memory.reaction === "Pall Mall").length;
       const newportsVotes = sortedEntries.filter((memory) => memory.reaction === "Newports").length;
@@ -1043,6 +1086,22 @@
       memoryEntries = uniqueMemories;
       renderMemoryList(memoryEntries);
     }
+
+    // Set up sort controls
+    const sortButtons = Array.from(document.querySelectorAll(".sort-button"));
+    sortButtons.forEach((button) => {
+      button.addEventListener("click", () => {
+        const sortMode = button.dataset.sort;
+        currentSortMode = sortMode;
+
+        // Update button states
+        sortButtons.forEach((btn) => btn.classList.remove("is-active"));
+        button.classList.add("is-active");
+
+        // Re-render with new sort
+        renderMemoryList(memoryEntries);
+      });
+    });
 
     form.addEventListener("submit", async (event) => {
       event.preventDefault();
