@@ -1905,6 +1905,7 @@
     const purpleMultiplierButtonEl = document.querySelector("#purple-multiplier-button");
     const purpleMultiplierStatusEl = document.querySelector("#purple-multiplier-status");
     const coinDashStatusEl = document.querySelector("#coin-dash-status");
+    const coinDashRowEl = document.querySelector("#coin-dash-row");
     const coinDashModeBadgeEl = document.querySelector("#coin-dash-mode-badge");
     const coinDashModeSelectEl = document.querySelector("#coin-dash-mode-select");
     const coinDashTriggerEl = document.querySelector("#coin-dash-trigger");
@@ -1938,6 +1939,7 @@
     const PURPLE_MULTIPLIER_GEM_COST = 5;
     const PURPLE_MULTIPLIER_VALUE = 3;
     const PURPLE_MULTIPLIER_REWARDS = 10;
+    const COIN_DASH_ENABLED = false;
     const DEFAULT_COIN_DASH_MODE = "arcade";
     const COIN_DASH_AUTO_START = false;
     const COIN_DASH_MODE_CONFIG = {
@@ -2547,6 +2549,17 @@
     }
 
     function initCoinDashSystem() {
+      if (!COIN_DASH_ENABLED) {
+        forceCloseCoinDash();
+        if (coinDashRowEl) {
+          coinDashRowEl.hidden = true;
+        }
+        if (coinDashOverlayEl) {
+          coinDashOverlayEl.hidden = true;
+        }
+        return;
+      }
+
       const stats = readCoinDashStats();
       coinDashState.mode = readCoinDashMode();
       coinDashState.nextStartAt = Math.max(Date.now() + 15000, Number(stats.nextStartAt || Date.now() + 90000));
