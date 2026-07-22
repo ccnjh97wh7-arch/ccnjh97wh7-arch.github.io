@@ -1945,7 +1945,7 @@
         badgeClass: "is-arcade",
         durationMs: 28000,
         spawnMs: 520,
-        countdownMs: 700,
+        countdownMs: 0,
         minDelayMs: 30000,
         maxDelayMs: 55000,
         gemChance: 0.06,
@@ -1981,7 +1981,7 @@
         badgeClass: "is-balanced",
         durationMs: 24000,
         spawnMs: 500,
-        countdownMs: 1100,
+        countdownMs: 250,
         minDelayMs: 45000,
         maxDelayMs: 75000,
         gemChance: 0.045,
@@ -2017,7 +2017,7 @@
         badgeClass: "is-sweaty",
         durationMs: 20000,
         spawnMs: 560,
-        countdownMs: 1500,
+        countdownMs: 400,
         minDelayMs: 50000,
         maxDelayMs: 85000,
         gemChance: 0.03,
@@ -2424,13 +2424,22 @@
     }
 
     function startCoinDashCountdown() {
+      const modeConfig = getCoinDashModeConfig();
+      const waitMs = Math.max(0, Number(modeConfig.countdownMs || 0));
+
+      if (waitMs === 0) {
+        if (coinDashCountdownEl) {
+          coinDashCountdownEl.hidden = true;
+        }
+        beginCoinDashAction();
+        return;
+      }
+
       if (!coinDashCountdownEl) {
         beginCoinDashAction();
         return;
       }
 
-      const modeConfig = getCoinDashModeConfig();
-      const waitMs = Math.max(250, Number(modeConfig.countdownMs || 900));
       coinDashCountdownEl.textContent = "DASH";
       coinDashCountdownEl.hidden = false;
       playCoinDashCountdownTick(1);
@@ -2518,6 +2527,16 @@
       updateCoinDashStatus();
     }
 
+    function handleCoinDashEscape(event) {
+      if (event.key !== "Escape") {
+        return;
+      }
+      if (!coinDashOverlayEl || coinDashOverlayEl.hidden) {
+        return;
+      }
+      forceCloseCoinDash();
+    }
+
     function initCoinDashSystem() {
       const stats = readCoinDashStats();
       coinDashState.mode = readCoinDashMode();
@@ -2541,7 +2560,20 @@
       });
 
       coinDashTriggerEl?.addEventListener("click", startCoinDashRound);
-      coinDashCloseEl?.addEventListener("click", forceCloseCoinDash);
+      coinDashCloseEl?.addEventListener("click", (event) => {
+        event.preventDefault();
+        forceCloseCoinDash();
+      });
+      coinDashCloseEl?.addEventListener("pointerdown", (event) => {
+        event.preventDefault();
+        forceCloseCoinDash();
+      });
+      coinDashOverlayEl?.addEventListener("click", (event) => {
+        if (event.target === coinDashOverlayEl) {
+          forceCloseCoinDash();
+        }
+      });
+      document.addEventListener("keydown", handleCoinDashEscape);
       coinDashArenaEl?.addEventListener("mousemove", onCoinDashPointerMove);
       coinDashArenaEl?.addEventListener("touchmove", onCoinDashPointerMove, { passive: true });
 
