@@ -82,6 +82,64 @@ section p {
     line-height: 1.7;
 }
 
+.pulp-time-feature {
+    margin-top: 28px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 14px;
+    padding: 16px 12px 8px;
+    text-decoration: none;
+    color: inherit;
+}
+
+.pulp-time-logo {
+    width: clamp(170px, 30vw, 260px);
+    height: auto;
+    display: block;
+    transform-origin: center;
+    animation: pulp-time-spin-cycle 8.5s infinite;
+    filter: drop-shadow(0 8px 18px rgba(196, 30, 58, 0.18));
+}
+
+.pulp-time-tagline {
+    margin: 0;
+    color: var(--patriotic-red);
+    font-size: clamp(1.35rem, 2.8vw, 2rem);
+    font-weight: 700;
+    letter-spacing: 0.6px;
+    text-align: center;
+}
+
+/* Fast spin -> slow drift -> fast spin, repeating */
+@keyframes pulp-time-spin-cycle {
+    0% {
+        transform: rotate(0deg);
+    }
+    20% {
+        transform: rotate(360deg);
+    }
+    38% {
+        transform: rotate(430deg);
+    }
+    58% {
+        transform: rotate(790deg);
+    }
+    76% {
+        transform: rotate(860deg);
+    }
+    100% {
+        transform: rotate(1220deg);
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .pulp-time-logo {
+        animation: none;
+    }
+}
+
 /* Quick Stats Grid */
 .stats-grid {
     display: grid;
@@ -552,6 +610,12 @@ nav p {
     .photo-card img {
         height: 200px;
     }
+
+    .pulp-time-feature {
+        margin-top: 20px;
+        gap: 10px;
+        padding-top: 10px;
+    }
 }
 
 /* Mobile phones (480px and below) */
@@ -696,6 +760,14 @@ nav p {
 
     .photo-card img {
         height: 250px;
+    }
+
+    .pulp-time-logo {
+        width: min(60vw, 220px);
+    }
+
+    .pulp-time-tagline {
+        font-size: clamp(1.15rem, 6vw, 1.55rem);
     }
 
     .photo-card figcaption {
