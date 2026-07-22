@@ -296,6 +296,244 @@
       box-shadow: 0 0 14px rgba(170, 118, 247, 0.52);
     }
 
+    .coin-dash-row {
+      margin-top: 10px;
+      padding: 10px;
+      border-radius: 10px;
+      border: 1px solid rgba(255, 219, 126, 0.36);
+      background: linear-gradient(180deg, rgba(55, 33, 6, 0.5), rgba(28, 16, 2, 0.52));
+    }
+
+    .coin-dash-head {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      flex-wrap: wrap;
+    }
+
+    .coin-dash-title {
+      color: #FFE4A5;
+      font: 700 0.8rem "Trebuchet MS", Verdana, sans-serif;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+    }
+
+    .coin-dash-mode-badge {
+      padding: 2px 8px;
+      border-radius: 999px;
+      border: 1px solid rgba(255, 230, 167, 0.55);
+      background: linear-gradient(180deg, rgba(255, 234, 180, 0.26), rgba(172, 112, 26, 0.3));
+      color: #FFEDC0;
+      font: 700 0.66rem "Trebuchet MS", Verdana, sans-serif;
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+      white-space: nowrap;
+    }
+
+    .coin-dash-mode-badge.is-arcade {
+      border-color: rgba(255, 231, 165, 0.7);
+      background: linear-gradient(180deg, rgba(255, 236, 182, 0.32), rgba(183, 119, 24, 0.35));
+      color: #FFEEBF;
+    }
+
+    .coin-dash-mode-badge.is-balanced {
+      border-color: rgba(161, 233, 186, 0.7);
+      background: linear-gradient(180deg, rgba(198, 250, 215, 0.28), rgba(35, 131, 84, 0.32));
+      color: #E8FFF2;
+    }
+
+    .coin-dash-mode-badge.is-sweaty {
+      border-color: rgba(255, 176, 176, 0.74);
+      background: linear-gradient(180deg, rgba(255, 210, 210, 0.3), rgba(168, 31, 31, 0.34));
+      color: #FFEAEA;
+    }
+
+    .coin-dash-mode-select {
+      margin-top: 0;
+      margin-left: 0;
+      padding: 4px 8px;
+      border-radius: 999px;
+      border: 1px solid rgba(255, 223, 145, 0.55);
+      background: rgba(67, 38, 8, 0.82);
+      color: #FFEFC8;
+      font: 700 0.68rem "Trebuchet MS", Verdana, sans-serif;
+      letter-spacing: 0.03em;
+    }
+
+    .coin-dash-status {
+      color: #FCE8BB;
+      font-size: 0.78rem;
+      opacity: 0.95;
+    }
+
+    .coin-dash-trigger {
+      margin-top: 0;
+      margin-left: auto;
+      padding: 6px 10px;
+      font-size: 0.74rem;
+      border-radius: 999px;
+    }
+
+    .coin-dash-metrics {
+      margin-top: 9px;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+    }
+
+    .coin-dash-chip {
+      padding: 3px 8px;
+      border-radius: 999px;
+      border: 1px solid rgba(255, 220, 140, 0.35);
+      background: rgba(129, 82, 16, 0.26);
+      color: #FCE9BF;
+      font: 700 0.7rem "Trebuchet MS", Verdana, sans-serif;
+      letter-spacing: 0.02em;
+    }
+
+    .coin-dash-overlay {
+      position: fixed;
+      inset: 0;
+      z-index: 10070;
+      display: grid;
+      place-items: center;
+      background: radial-gradient(circle at 50% 60%, rgba(18, 10, 2, 0.72), rgba(0, 0, 0, 0.86));
+      backdrop-filter: blur(1px);
+      padding: 12px;
+    }
+
+    .coin-dash-modal {
+      width: min(760px, 96vw);
+      border-radius: 14px;
+      border: 1px solid rgba(255, 219, 126, 0.45);
+      background: linear-gradient(180deg, rgba(93, 57, 10, 0.96), rgba(33, 19, 4, 0.96));
+      box-shadow: 0 18px 36px rgba(0, 0, 0, 0.5);
+      color: #FFEFC9;
+      overflow: hidden;
+    }
+
+    .coin-dash-modal-head {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      flex-wrap: wrap;
+      padding: 10px 12px;
+      border-bottom: 1px solid rgba(255, 219, 126, 0.3);
+      background: linear-gradient(180deg, rgba(255, 228, 160, 0.16), rgba(0, 0, 0, 0));
+    }
+
+    .coin-dash-modal-title {
+      font: 700 0.88rem "Trebuchet MS", Verdana, sans-serif;
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+      color: #FFE7AE;
+    }
+
+    .coin-dash-timer,
+    .coin-dash-counter,
+    .coin-dash-streak {
+      padding: 3px 8px;
+      border-radius: 999px;
+      border: 1px solid rgba(255, 220, 140, 0.4);
+      background: rgba(38, 20, 3, 0.5);
+      font: 700 0.72rem "Trebuchet MS", Verdana, sans-serif;
+      color: #FEECC3;
+    }
+
+    .coin-dash-close {
+      margin-top: 0;
+      margin-left: auto;
+      padding: 5px 9px;
+      font-size: 0.72rem;
+    }
+
+    .coin-dash-arena {
+      position: relative;
+      height: min(58vh, 430px);
+      overflow: hidden;
+      background:
+        radial-gradient(500px 220px at 50% 50%, rgba(84, 57, 16, 0.5), rgba(7, 5, 2, 0.95)),
+        repeating-linear-gradient(180deg, rgba(255, 255, 255, 0.03) 0 2px, transparent 2px 5px);
+      cursor: none;
+      touch-action: none;
+    }
+
+    .coin-dash-cursor {
+      position: absolute;
+      width: 28px;
+      height: 28px;
+      margin-left: -14px;
+      margin-top: -14px;
+      border-radius: 999px;
+      border: 2px solid rgba(255, 228, 158, 0.95);
+      box-shadow: 0 0 16px rgba(255, 218, 120, 0.8);
+      pointer-events: none;
+      transform: translate3d(-999px, -999px, 0);
+    }
+
+    .coin-dash-coin {
+      position: absolute;
+      width: 24px;
+      height: 24px;
+      border-radius: 999px;
+      border: 1px solid rgba(255, 236, 174, 0.75);
+      background: radial-gradient(circle at 35% 35%, #FFF3C1, #F5C346 60%, #B67717 100%);
+      box-shadow: 0 0 12px rgba(245, 194, 67, 0.72);
+      animation: coin-dash-bob 1.1s ease-in-out infinite;
+      pointer-events: none;
+    }
+
+    .coin-dash-coin.is-gem {
+      border-color: rgba(233, 214, 255, 0.92);
+      background: radial-gradient(circle at 40% 35%, #F4E8FF, #B06CF4 62%, #5B1C99 100%);
+      box-shadow: 0 0 13px rgba(184, 120, 249, 0.82);
+      transform: rotate(45deg);
+    }
+
+    .coin-dash-countdown {
+      position: absolute;
+      inset: 0;
+      display: grid;
+      place-items: center;
+      font: 700 clamp(2.2rem, 10vw, 5.8rem) "Trebuchet MS", Verdana, sans-serif;
+      color: #FFF1CC;
+      text-shadow: 0 0 18px rgba(255, 208, 95, 0.9), 0 0 32px rgba(143, 78, 11, 0.72);
+      letter-spacing: 0.04em;
+      background: radial-gradient(circle at 50% 50%, rgba(80, 42, 2, 0.5), rgba(0, 0, 0, 0));
+      animation: coin-dash-count-pulse 920ms ease-out forwards;
+      pointer-events: none;
+      z-index: 2;
+    }
+
+    .coin-dash-results {
+      border-top: 1px solid rgba(255, 219, 126, 0.3);
+      border-bottom: 1px solid rgba(255, 219, 126, 0.3);
+      background: linear-gradient(180deg, rgba(255, 236, 178, 0.12), rgba(0, 0, 0, 0));
+      padding: 10px 12px;
+      display: grid;
+      gap: 4px;
+    }
+
+    .coin-dash-results-title {
+      font: 700 0.78rem "Trebuchet MS", Verdana, sans-serif;
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+      color: #FFE3A1;
+    }
+
+    .coin-dash-results-line {
+      font-size: 0.78rem;
+      color: #FEEEC8;
+      opacity: 0.95;
+    }
+
+    .coin-dash-footer {
+      padding: 8px 12px 11px;
+      font-size: 0.78rem;
+      color: #FFEBC3;
+      opacity: 0.92;
+    }
+
     .coin-toast {
       position: fixed;
       right: 16px;
@@ -1335,6 +1573,30 @@
       }
     }
 
+    @keyframes coin-dash-bob {
+      0%,
+      100% {
+        transform: translateY(0) scale(1);
+      }
+      50% {
+        transform: translateY(-2px) scale(1.06);
+      }
+    }
+
+    @keyframes coin-dash-count-pulse {
+      0% {
+        opacity: 0;
+        transform: scale(0.48);
+      }
+      40% {
+        opacity: 1;
+      }
+      100% {
+        opacity: 0;
+        transform: scale(1.24);
+      }
+    }
+
     .sort-controls {
       display: flex;
       gap: 8px;
@@ -1456,6 +1718,25 @@
         <button class="coin-powerup-button purple-gem" id="purple-multiplier-button" type="button">Activate Purple Gem Multiplier (5 gems)</button>
         <span class="coin-powerup-status purple" id="purple-multiplier-status">Multiplier offline</span>
       </div>
+      <div class="coin-dash-row" id="coin-dash-row">
+        <div class="coin-dash-head">
+          <span class="coin-dash-title">Coin Dash</span>
+          <span class="coin-dash-mode-badge" id="coin-dash-mode-badge">Mode: Arcade Fair</span>
+          <label class="sr-only" for="coin-dash-mode-select">Coin Dash mode preset</label>
+          <select id="coin-dash-mode-select" class="coin-dash-mode-select" aria-label="Coin Dash mode preset">
+            <option value="arcade">Arcade Fair</option>
+            <option value="balanced">Balanced Grind</option>
+            <option value="sweaty">Sweaty Mode</option>
+          </select>
+          <span class="coin-dash-status" id="coin-dash-status">Next dash warming up...</span>
+          <button class="coin-powerup-button coin-dash-trigger" id="coin-dash-trigger" type="button">Start Dash</button>
+        </div>
+        <div class="coin-dash-metrics">
+          <span class="coin-dash-chip" id="coin-dash-high">Best Catch: 0</span>
+          <span class="coin-dash-chip" id="coin-dash-total">Total Caught: 0</span>
+          <span class="coin-dash-chip" id="coin-dash-rounds">Rounds: 0</span>
+        </div>
+      </div>
     </section>
 
     <p class="intro">
@@ -1553,6 +1834,29 @@
     </section>
   </main>
 
+  <div class="coin-dash-overlay" id="coin-dash-overlay" hidden>
+    <div class="coin-dash-modal">
+      <div class="coin-dash-modal-head">
+        <span class="coin-dash-modal-title">Coin Dash Live</span>
+        <span class="coin-dash-timer" id="coin-dash-timer">Time: 18.0s</span>
+        <span class="coin-dash-counter" id="coin-dash-counter">Caught: 0</span>
+        <span class="coin-dash-streak" id="coin-dash-streak">Streak: x1</span>
+        <button class="coin-dash-close" id="coin-dash-close" type="button">End</button>
+      </div>
+      <div class="coin-dash-arena" id="coin-dash-arena" aria-label="Coin Dash arena">
+        <div class="coin-dash-cursor" id="coin-dash-cursor" aria-hidden="true"></div>
+        <div class="coin-dash-countdown" id="coin-dash-countdown" hidden>3</div>
+      </div>
+      <div class="coin-dash-results" id="coin-dash-results" hidden>
+        <div class="coin-dash-results-title">Dash Results</div>
+        <div class="coin-dash-results-line" id="coin-dash-results-line-1">Caught: 0</div>
+        <div class="coin-dash-results-line" id="coin-dash-results-line-2">Gems: 0</div>
+        <div class="coin-dash-results-line" id="coin-dash-results-line-3">Payout: +0 coins</div>
+      </div>
+      <div class="coin-dash-footer">Glide your mouse to scoop coins and rare purple gems before time runs out.</div>
+    </div>
+  </div>
+
   <script type="module">
     import { initializeApp } from "https://www.gstatic.com/firebasejs/12.16.0/firebase-app.js";
     import {
@@ -1600,12 +1904,33 @@
     const purpleGemBalanceEl = document.querySelector("#purple-gem-balance");
     const purpleMultiplierButtonEl = document.querySelector("#purple-multiplier-button");
     const purpleMultiplierStatusEl = document.querySelector("#purple-multiplier-status");
+    const coinDashStatusEl = document.querySelector("#coin-dash-status");
+    const coinDashModeBadgeEl = document.querySelector("#coin-dash-mode-badge");
+    const coinDashModeSelectEl = document.querySelector("#coin-dash-mode-select");
+    const coinDashTriggerEl = document.querySelector("#coin-dash-trigger");
+    const coinDashHighEl = document.querySelector("#coin-dash-high");
+    const coinDashTotalEl = document.querySelector("#coin-dash-total");
+    const coinDashRoundsEl = document.querySelector("#coin-dash-rounds");
+    const coinDashOverlayEl = document.querySelector("#coin-dash-overlay");
+    const coinDashArenaEl = document.querySelector("#coin-dash-arena");
+    const coinDashCursorEl = document.querySelector("#coin-dash-cursor");
+    const coinDashTimerEl = document.querySelector("#coin-dash-timer");
+    const coinDashCounterEl = document.querySelector("#coin-dash-counter");
+    const coinDashStreakEl = document.querySelector("#coin-dash-streak");
+    const coinDashCloseEl = document.querySelector("#coin-dash-close");
+    const coinDashCountdownEl = document.querySelector("#coin-dash-countdown");
+    const coinDashResultsEl = document.querySelector("#coin-dash-results");
+    const coinDashResultsLine1El = document.querySelector("#coin-dash-results-line-1");
+    const coinDashResultsLine2El = document.querySelector("#coin-dash-results-line-2");
+    const coinDashResultsLine3El = document.querySelector("#coin-dash-results-line-3");
     const STORAGE_KEY = "rocky-memories-fallback";
     const FEEDBACK_LOCKS_KEY = "rocky-memory-feedback-locks";
     const COIN_BANK_KEY = "rocky-coin-bank";
     const COIN_ACTIVITY_KEY = "rocky-coin-activity";
     const COIN_DAILY_STAMP_KEY = "rocky-coin-daily-stamp";
     const COIN_POWERUPS_KEY = "rocky-coin-powerups";
+    const COIN_DASH_STATS_KEY = "rocky-coin-dash-stats";
+    const COIN_DASH_MODE_KEY = "rocky-coin-dash-mode";
     const AUDIO_CONSENT_KEY = "rocky-audio-consent";
     const AUDIO_CONSENT_COOKIE_NAME = "rocky_audio_consent";
     const MEGA_GLITTER_COST = 120;
@@ -1613,6 +1938,114 @@
     const PURPLE_MULTIPLIER_GEM_COST = 5;
     const PURPLE_MULTIPLIER_VALUE = 3;
     const PURPLE_MULTIPLIER_REWARDS = 10;
+    const DEFAULT_COIN_DASH_MODE = "arcade";
+    const COIN_DASH_MODE_CONFIG = {
+      arcade: {
+        label: "Arcade Fair",
+        badgeClass: "is-arcade",
+        durationMs: 28000,
+        spawnMs: 420,
+        minDelayMs: 30000,
+        maxDelayMs: 55000,
+        gemChance: 0.06,
+        megaGemChance: 0.14,
+        participationStipend: 28,
+        megaParticipationStipend: 42,
+        coinValueEarly: 5,
+        coinValueLate: 6,
+        megaCoinValueEarly: 7,
+        megaCoinValueLate: 8,
+        gemBonusEarly: 16,
+        gemBonusLate: 18,
+        noGemBoostCap: 0.12,
+        noGemBoostStep: 0.018,
+        roundBoostCap: 0.04,
+        roundBoostStep: 0.008,
+        roundBoostEvery: 10,
+        roundBonusMidThreshold: 12,
+        roundBonusMidAmount: 24,
+        roundBonusHighThreshold: 20,
+        roundBonusHighAmount: 40,
+        comboThreshold: 8,
+        comboAmount: 2,
+        coinCap: 42,
+        megaCoinCap: 60,
+        openingBurst: 10,
+        megaOpeningBurst: 18,
+        burst: 1,
+        megaBurst: 3
+      },
+      balanced: {
+        label: "Balanced Grind",
+        badgeClass: "is-balanced",
+        durationMs: 24000,
+        spawnMs: 500,
+        minDelayMs: 45000,
+        maxDelayMs: 75000,
+        gemChance: 0.045,
+        megaGemChance: 0.11,
+        participationStipend: 18,
+        megaParticipationStipend: 28,
+        coinValueEarly: 4,
+        coinValueLate: 5,
+        megaCoinValueEarly: 5,
+        megaCoinValueLate: 6,
+        gemBonusEarly: 12,
+        gemBonusLate: 14,
+        noGemBoostCap: 0.08,
+        noGemBoostStep: 0.012,
+        roundBoostCap: 0.025,
+        roundBoostStep: 0.005,
+        roundBoostEvery: 12,
+        roundBonusMidThreshold: 15,
+        roundBonusMidAmount: 16,
+        roundBonusHighThreshold: 25,
+        roundBonusHighAmount: 30,
+        comboThreshold: 10,
+        comboAmount: 1,
+        coinCap: 38,
+        megaCoinCap: 54,
+        openingBurst: 8,
+        megaOpeningBurst: 15,
+        burst: 1,
+        megaBurst: 2
+      },
+      sweaty: {
+        label: "Sweaty Mode",
+        badgeClass: "is-sweaty",
+        durationMs: 20000,
+        spawnMs: 560,
+        minDelayMs: 50000,
+        maxDelayMs: 85000,
+        gemChance: 0.03,
+        megaGemChance: 0.08,
+        participationStipend: 10,
+        megaParticipationStipend: 18,
+        coinValueEarly: 3,
+        coinValueLate: 4,
+        megaCoinValueEarly: 4,
+        megaCoinValueLate: 5,
+        gemBonusEarly: 10,
+        gemBonusLate: 12,
+        noGemBoostCap: 0.06,
+        noGemBoostStep: 0.01,
+        roundBoostCap: 0.02,
+        roundBoostStep: 0.004,
+        roundBoostEvery: 14,
+        roundBonusMidThreshold: 18,
+        roundBonusMidAmount: 12,
+        roundBonusHighThreshold: 30,
+        roundBonusHighAmount: 24,
+        comboThreshold: 12,
+        comboAmount: 1,
+        coinCap: 34,
+        megaCoinCap: 46,
+        openingBurst: 7,
+        megaOpeningBurst: 12,
+        burst: 1,
+        megaBurst: 2
+      }
+    };
 
     const COIN_REWARD_TABLE = {
       daily_visit: { amount: 25, label: "Daily blessing", cooldownMs: 20 * 60 * 60 * 1000 },
@@ -1624,7 +2057,8 @@
       export_download: { amount: 15, label: "Downloaded keepsake", cooldownMs: 12000 },
       play_music: { amount: 4, label: "Started soundtrack", cooldownMs: 30000 },
       next_track: { amount: 2, label: "Switched track", cooldownMs: 10000 },
-      random_event: { amount: 3, label: "Dynasty chaos event", cooldownMs: 45000 }
+      random_event: { amount: 3, label: "Dynasty chaos event", cooldownMs: 45000 },
+      coin_dash_round: { amount: 20, label: "Coin Dash round", cooldownMs: 0 }
     };
 
     const PURPLE_GEM_DROP_TABLE = {
@@ -1635,8 +2069,485 @@
       export_print: { chance: 0.45, min: 1, max: 2 },
       export_download: { chance: 0.45, min: 1, max: 2 },
       random_event: { chance: 0.35, min: 1, max: 2 },
-      daily_visit: { chance: 0.5, min: 1, max: 2 }
+      daily_visit: { chance: 0.5, min: 1, max: 2 },
+      coin_dash_round: { chance: 0.7, min: 2, max: 5 }
     };
+
+    const coinDashState = {
+      active: false,
+      starting: false,
+      mode: DEFAULT_COIN_DASH_MODE,
+      nextStartAt: Date.now() + 90000,
+      roundId: 0,
+      collected: 0,
+      gemsCollected: 0,
+      streak: 1,
+      maxStreak: 1,
+      lastCollectAt: 0,
+      endAt: 0,
+      megaMode: false,
+      countdownTimer: null,
+      spawnTimer: null,
+      uiTimer: null,
+      schedulerTimer: null,
+      statusTimer: null
+    };
+
+    function readCoinDashMode() {
+      try {
+        const stored = localStorage.getItem(COIN_DASH_MODE_KEY);
+        if (stored && COIN_DASH_MODE_CONFIG[stored]) {
+          return stored;
+        }
+      } catch (error) {
+        console.warn("Could not read Coin Dash mode:", error);
+      }
+      return DEFAULT_COIN_DASH_MODE;
+    }
+
+    function saveCoinDashMode(mode) {
+      try {
+        localStorage.setItem(COIN_DASH_MODE_KEY, mode);
+      } catch (error) {
+        console.warn("Could not save Coin Dash mode:", error);
+      }
+    }
+
+    function getCoinDashModeConfig(mode = coinDashState.mode) {
+      return COIN_DASH_MODE_CONFIG[mode] || COIN_DASH_MODE_CONFIG[DEFAULT_COIN_DASH_MODE];
+    }
+
+    function updateCoinDashModeUI() {
+      const config = getCoinDashModeConfig();
+      if (coinDashModeBadgeEl) {
+        coinDashModeBadgeEl.textContent = `Mode: ${config.label}`;
+        coinDashModeBadgeEl.classList.remove("is-arcade", "is-balanced", "is-sweaty");
+        coinDashModeBadgeEl.classList.add(config.badgeClass);
+      }
+      if (coinDashModeSelectEl && coinDashModeSelectEl.value !== coinDashState.mode) {
+        coinDashModeSelectEl.value = coinDashState.mode;
+      }
+    }
+
+    function readCoinDashStats() {
+      try {
+        const stored = localStorage.getItem(COIN_DASH_STATS_KEY);
+        if (!stored) {
+            return { rounds: 0, totalCaught: 0, bestRound: 0, nextStartAt: Date.now() + 90000, noGemRounds: 0 };
+        }
+        const parsed = JSON.parse(stored);
+        return {
+          rounds: Math.max(0, Number(parsed.rounds || 0)),
+          totalCaught: Math.max(0, Number(parsed.totalCaught || 0)),
+          bestRound: Math.max(0, Number(parsed.bestRound || 0)),
+            nextStartAt: Number(parsed.nextStartAt || Date.now() + 90000),
+            noGemRounds: Math.max(0, Number(parsed.noGemRounds || 0))
+        };
+      } catch (error) {
+        console.warn("Could not read Coin Dash stats:", error);
+          return { rounds: 0, totalCaught: 0, bestRound: 0, nextStartAt: Date.now() + 90000, noGemRounds: 0 };
+      }
+    }
+
+    function getCoinDashBalanceProfile() {
+      const stats = readCoinDashStats();
+      const modeConfig = getCoinDashModeConfig();
+      const noGemBoost = Math.min(modeConfig.noGemBoostCap, stats.noGemRounds * modeConfig.noGemBoostStep);
+      const roundBoost = Math.min(modeConfig.roundBoostCap, Math.floor(stats.rounds / modeConfig.roundBoostEvery) * modeConfig.roundBoostStep);
+      return {
+        coinValue: stats.rounds >= 20 ? modeConfig.coinValueLate : modeConfig.coinValueEarly,
+        megaCoinValue: stats.rounds >= 20 ? modeConfig.megaCoinValueLate : modeConfig.megaCoinValueEarly,
+        gemBonus: stats.rounds >= 16 ? modeConfig.gemBonusLate : modeConfig.gemBonusEarly,
+        gemChanceBoost: noGemBoost + roundBoost,
+        noGemRounds: stats.noGemRounds
+      };
+    }
+
+    function saveCoinDashStats(stats) {
+      try {
+        localStorage.setItem(COIN_DASH_STATS_KEY, JSON.stringify(stats));
+      } catch (error) {
+        console.warn("Could not save Coin Dash stats:", error);
+      }
+    }
+
+    function renderCoinDashStats() {
+      const stats = readCoinDashStats();
+      if (coinDashHighEl) {
+        coinDashHighEl.textContent = `Best Catch: ${stats.bestRound}`;
+      }
+      if (coinDashTotalEl) {
+        coinDashTotalEl.textContent = `Total Caught: ${stats.totalCaught}`;
+      }
+      if (coinDashRoundsEl) {
+        coinDashRoundsEl.textContent = `Rounds: ${stats.rounds}`;
+      }
+    }
+
+    function setNextCoinDashSchedule(delayMs = null) {
+      const modeConfig = getCoinDashModeConfig();
+      const delay = delayMs === null
+        ? modeConfig.minDelayMs + Math.floor(Math.random() * (modeConfig.maxDelayMs - modeConfig.minDelayMs + 1))
+        : delayMs;
+      coinDashState.nextStartAt = Date.now() + delay;
+      const stats = readCoinDashStats();
+      stats.nextStartAt = coinDashState.nextStartAt;
+      saveCoinDashStats(stats);
+    }
+
+    function updateCoinDashStatus() {
+      if (!coinDashStatusEl) {
+        return;
+      }
+
+      if (coinDashState.active || coinDashState.starting) {
+        coinDashStatusEl.textContent = "Dash running now";
+        if (coinDashTriggerEl) {
+          coinDashTriggerEl.disabled = true;
+        }
+        return;
+      }
+
+      const remainingMs = Math.max(0, coinDashState.nextStartAt - Date.now());
+      if (remainingMs <= 1200) {
+        coinDashStatusEl.textContent = "Dash incoming...";
+        if (coinDashTriggerEl) {
+          coinDashTriggerEl.disabled = false;
+        }
+      } else {
+        const seconds = Math.ceil(remainingMs / 1000);
+        coinDashStatusEl.textContent = `Next dash in ${seconds}s`;
+        if (coinDashTriggerEl) {
+          coinDashTriggerEl.disabled = false;
+        }
+      }
+    }
+
+    function spawnCoinDashCoin() {
+      if (!coinDashArenaEl || !coinDashState.active) {
+        return;
+      }
+
+      const existingCoins = coinDashArenaEl.querySelectorAll(".coin-dash-coin");
+      const modeConfig = getCoinDashModeConfig();
+      const cap = coinDashState.megaMode ? modeConfig.megaCoinCap : modeConfig.coinCap;
+      if (existingCoins.length > cap) {
+        existingCoins[0]?.remove();
+      }
+
+      const bounds = coinDashArenaEl.getBoundingClientRect();
+      const size = 24;
+      const padding = 8;
+      const x = padding + Math.random() * Math.max(1, bounds.width - size - padding * 2);
+      const y = padding + Math.random() * Math.max(1, bounds.height - size - padding * 2);
+
+      const coin = document.createElement("span");
+      coin.className = "coin-dash-coin";
+      const balanceProfile = getCoinDashBalanceProfile();
+      const baseGemChance = coinDashState.megaMode ? modeConfig.megaGemChance : modeConfig.gemChance;
+      const gemChance = Math.min(0.24, baseGemChance + balanceProfile.gemChanceBoost);
+      const isGem = Math.random() < gemChance;
+      if (isGem) {
+        coin.classList.add("is-gem");
+      }
+      coin.dataset.kind = isGem ? "gem" : "coin";
+      coin.style.left = `${x}px`;
+      coin.style.top = `${y}px`;
+      coinDashArenaEl.append(coin);
+    }
+
+    function updateCoinDashHud() {
+      coinDashCounterEl.textContent = `Caught: ${coinDashState.collected} • Gems: ${coinDashState.gemsCollected}`;
+      coinDashStreakEl.textContent = `Streak: x${coinDashState.streak}`;
+      const remaining = Math.max(0, coinDashState.endAt - Date.now());
+      coinDashTimerEl.textContent = `Time: ${(remaining / 1000).toFixed(1)}s`;
+    }
+
+    function endCoinDashRound(completed = true) {
+      if (!coinDashState.active && !coinDashState.starting) {
+        return;
+      }
+
+      coinDashState.active = false;
+      coinDashState.starting = false;
+      window.clearInterval(coinDashState.spawnTimer);
+      window.clearInterval(coinDashState.uiTimer);
+      window.clearInterval(coinDashState.countdownTimer);
+      coinDashState.spawnTimer = null;
+      coinDashState.uiTimer = null;
+      coinDashState.countdownTimer = null;
+
+      if (coinDashCountdownEl) {
+        coinDashCountdownEl.hidden = true;
+      }
+
+      const balanceProfile = getCoinDashBalanceProfile();
+      const modeConfig = getCoinDashModeConfig();
+      const coinValue = coinDashState.megaMode ? balanceProfile.megaCoinValue : balanceProfile.coinValue;
+      const participation = coinDashState.megaMode ? modeConfig.megaParticipationStipend : modeConfig.participationStipend;
+      const baseHaul = participation + coinDashState.collected * coinValue;
+      const streakBonus = Math.max(0, (coinDashState.maxStreak - 1) * 3);
+      const roundBonus = coinDashState.collected >= modeConfig.roundBonusHighThreshold
+        ? modeConfig.roundBonusHighAmount
+        : coinDashState.collected >= modeConfig.roundBonusMidThreshold
+          ? modeConfig.roundBonusMidAmount
+          : 0;
+      const gemBonus = coinDashState.gemsCollected * balanceProfile.gemBonus;
+      const payout = baseHaul + streakBonus + roundBonus + gemBonus;
+
+      if (completed) {
+        const stats = readCoinDashStats();
+        stats.rounds += 1;
+        stats.totalCaught += coinDashState.collected;
+        stats.bestRound = Math.max(stats.bestRound, coinDashState.collected);
+        if (coinDashState.gemsCollected > 0) {
+          stats.noGemRounds = 0;
+        } else {
+          stats.noGemRounds += 1;
+        }
+        saveCoinDashStats(stats);
+        renderCoinDashStats();
+      }
+
+      if (completed && coinDashState.gemsCollected > 0) {
+        const bank = readCoinBank();
+        bank.purpleGems += coinDashState.gemsCollected;
+        bank.lifetimePurpleGems += coinDashState.gemsCollected;
+        saveCoinBank(bank);
+        renderCoinBank();
+      }
+
+      if (completed && payout > 0) {
+        rewardCoins("coin_dash_round", `dash-${coinDashState.roundId}-${Date.now()}`, {
+          amount: payout,
+          label: `Coin Dash haul (${coinDashState.collected} caught, ${coinDashState.gemsCollected} gems)`
+        });
+      } else if (completed) {
+        showCoinToast(0, "Coin Dash ended. No coins caught this round.");
+      }
+
+      if (completed && coinDashState.gemsCollected > 0) {
+        showCoinToast(coinDashState.gemsCollected, "Dash purple gem pickup");
+      }
+
+      if (completed && coinDashResultsEl) {
+        coinDashResultsEl.hidden = false;
+        if (coinDashResultsLine1El) {
+          coinDashResultsLine1El.textContent = `Caught: ${coinDashState.collected} | Best streak: x${coinDashState.maxStreak}`;
+        }
+        if (coinDashResultsLine2El) {
+          coinDashResultsLine2El.textContent = `Gems: ${coinDashState.gemsCollected} | Coin value: ${coinValue}`;
+        }
+        if (coinDashResultsLine3El) {
+          coinDashResultsLine3El.textContent = `Payout: +${payout.toLocaleString()} coins (includes ${participation} participation)`;
+        }
+      }
+
+      coinDashArenaEl?.querySelectorAll(".coin-dash-coin").forEach((coin) => coin.remove());
+      if (coinDashOverlayEl) {
+        coinDashOverlayEl.hidden = true;
+      }
+
+      setNextCoinDashSchedule();
+      updateCoinDashStatus();
+    }
+
+    function playCoinDashCountdownTick(step) {
+      try {
+        const audioContext = new (window.AudioContext || window.webkitAudioContext)();
+        const now = audioContext.currentTime;
+        const oscillator = audioContext.createOscillator();
+        const gainNode = audioContext.createGain();
+
+        oscillator.type = "triangle";
+        oscillator.frequency.value = step > 1 ? 560 : 720;
+        gainNode.gain.value = step > 1 ? 0.035 : 0.055;
+
+        oscillator.connect(gainNode);
+        gainNode.connect(audioContext.destination);
+        oscillator.start(now);
+        oscillator.stop(now + 0.12);
+      } catch (error) {
+        // Silent fallback when browser blocks Web Audio.
+      }
+    }
+
+    function beginCoinDashAction() {
+      const modeConfig = getCoinDashModeConfig();
+      coinDashState.active = true;
+      coinDashState.starting = false;
+      coinDashState.endAt = Date.now() + modeConfig.durationMs;
+      updateCoinDashHud();
+      if (coinDashState.megaMode) {
+        showCoinToast(0, "Mega Glitter Coin Dash! Spawn intensity boosted");
+      }
+
+      const openingBurst = coinDashState.megaMode ? modeConfig.megaOpeningBurst : modeConfig.openingBurst;
+      for (let i = 0; i < openingBurst; i += 1) {
+        spawnCoinDashCoin();
+      }
+
+      coinDashState.spawnTimer = window.setInterval(() => {
+        const burst = coinDashState.megaMode ? modeConfig.megaBurst : modeConfig.burst;
+        for (let i = 0; i < burst; i += 1) {
+          spawnCoinDashCoin();
+        }
+      }, modeConfig.spawnMs);
+      coinDashState.uiTimer = window.setInterval(() => {
+        updateCoinDashHud();
+        if (Date.now() >= coinDashState.endAt) {
+          endCoinDashRound(true);
+        }
+      }, 100);
+    }
+
+    function startCoinDashCountdown() {
+      if (!coinDashCountdownEl) {
+        beginCoinDashAction();
+        return;
+      }
+
+      let count = 3;
+      coinDashCountdownEl.textContent = `${count}`;
+      coinDashCountdownEl.hidden = false;
+      playCoinDashCountdownTick(count);
+
+      coinDashState.countdownTimer = window.setInterval(() => {
+        count -= 1;
+        if (count <= 0) {
+          coinDashCountdownEl.textContent = "DASH!";
+          playCoinDashCountdownTick(1);
+          window.clearInterval(coinDashState.countdownTimer);
+          coinDashState.countdownTimer = null;
+          window.setTimeout(() => {
+            if (coinDashCountdownEl) {
+              coinDashCountdownEl.hidden = true;
+            }
+            if (!coinDashState.starting) {
+              return;
+            }
+            beginCoinDashAction();
+          }, 360);
+          return;
+        }
+
+        coinDashCountdownEl.textContent = `${count}`;
+        void coinDashCountdownEl.offsetWidth;
+        coinDashCountdownEl.style.animation = "none";
+        requestAnimationFrame(() => {
+          if (coinDashCountdownEl) {
+            coinDashCountdownEl.style.animation = "coin-dash-count-pulse 920ms ease-out forwards";
+          }
+        });
+        playCoinDashCountdownTick(count);
+      }, 1000);
+    }
+
+    function onCoinDashPointerMove(event) {
+      if (!coinDashState.active || !coinDashArenaEl || !coinDashCursorEl) {
+        return;
+      }
+
+      const point = event.touches ? event.touches[0] : event;
+      const bounds = coinDashArenaEl.getBoundingClientRect();
+      const x = point.clientX - bounds.left;
+      const y = point.clientY - bounds.top;
+
+      coinDashCursorEl.style.transform = `translate3d(${x}px, ${y}px, 0)`;
+
+      const now = Date.now();
+      const coins = Array.from(coinDashArenaEl.querySelectorAll(".coin-dash-coin"));
+      coins.forEach((coin) => {
+        const coinX = parseFloat(coin.style.left || "0") + 12;
+        const coinY = parseFloat(coin.style.top || "0") + 12;
+        const dx = coinX - x;
+        const dy = coinY - y;
+        if (dx * dx + dy * dy <= 900) {
+          coin.remove();
+          const kind = coin.dataset.kind || "coin";
+          if (kind === "gem") {
+            coinDashState.gemsCollected += 1;
+            showCoinToast(0, "Purple gem snagged");
+          } else {
+            if (now - coinDashState.lastCollectAt < 650) {
+              coinDashState.streak += 1;
+            } else {
+              coinDashState.streak = 1;
+            }
+            coinDashState.lastCollectAt = now;
+            coinDashState.maxStreak = Math.max(coinDashState.maxStreak, coinDashState.streak);
+            coinDashState.collected += 1;
+            const modeConfig = getCoinDashModeConfig();
+            if (coinDashState.streak > 0 && coinDashState.streak % modeConfig.comboThreshold === 0) {
+              coinDashState.collected += modeConfig.comboAmount;
+              showCoinToast(0, `Combo bonus! +${modeConfig.comboAmount} catch at streak x${coinDashState.streak}`);
+            }
+          }
+        }
+      });
+
+      updateCoinDashHud();
+    }
+
+    function startCoinDashRound() {
+      if (coinDashState.active || coinDashState.starting || !coinDashArenaEl || !coinDashOverlayEl) {
+        return;
+      }
+
+      coinDashState.starting = true;
+      coinDashState.roundId = Date.now();
+      coinDashState.collected = 0;
+      coinDashState.gemsCollected = 0;
+      coinDashState.streak = 1;
+      coinDashState.maxStreak = 1;
+      coinDashState.lastCollectAt = 0;
+      coinDashState.megaMode = consumeMegaGlitterCharge();
+
+      coinDashArenaEl.querySelectorAll(".coin-dash-coin").forEach((coin) => coin.remove());
+      coinDashOverlayEl.hidden = false;
+      if (coinDashResultsEl) {
+        coinDashResultsEl.hidden = true;
+      }
+      updateCoinDashHud();
+      startCoinDashCountdown();
+
+      updateCoinDashStatus();
+    }
+
+    function initCoinDashSystem() {
+      const stats = readCoinDashStats();
+      coinDashState.mode = readCoinDashMode();
+      coinDashState.nextStartAt = Math.max(Date.now() + 15000, Number(stats.nextStartAt || Date.now() + 90000));
+      updateCoinDashModeUI();
+      renderCoinDashStats();
+      updateCoinDashStatus();
+
+      coinDashModeSelectEl?.addEventListener("change", (event) => {
+        const nextMode = event.target.value;
+        if (!COIN_DASH_MODE_CONFIG[nextMode]) {
+          return;
+        }
+        coinDashState.mode = nextMode;
+        saveCoinDashMode(nextMode);
+        updateCoinDashModeUI();
+        if (!coinDashState.active && !coinDashState.starting) {
+          setNextCoinDashSchedule(6000);
+          updateCoinDashStatus();
+        }
+      });
+
+      coinDashTriggerEl?.addEventListener("click", startCoinDashRound);
+      coinDashCloseEl?.addEventListener("click", () => endCoinDashRound(false));
+      coinDashArenaEl?.addEventListener("mousemove", onCoinDashPointerMove);
+      coinDashArenaEl?.addEventListener("touchmove", onCoinDashPointerMove, { passive: true });
+
+      coinDashState.statusTimer = window.setInterval(updateCoinDashStatus, 1000);
+      coinDashState.schedulerTimer = window.setInterval(() => {
+        if (!coinDashState.active && !coinDashState.starting && Date.now() >= coinDashState.nextStartAt) {
+          startCoinDashRound();
+        }
+      }, 600);
+    }
 
     const COIN_RANKS = [
       { name: "Bronze Citizen", min: 0, next: 120 },
@@ -1865,7 +2776,7 @@
       return amount;
     }
 
-    function rewardCoins(activityKey, contextKey = "global") {
+    function rewardCoins(activityKey, contextKey = "global", options = {}) {
       const reward = COIN_REWARD_TABLE[activityKey];
       if (!reward) {
         return false;
@@ -1886,7 +2797,9 @@
       const bank = readCoinBank();
       const powerups = readCoinPowerups();
       const multiplier = powerups.purpleMultiplierRewards > 0 ? powerups.purpleMultiplierValue : 1;
-      const totalAward = reward.amount * multiplier;
+      const amount = Number.isFinite(options.amount) ? Math.max(0, Number(options.amount)) : reward.amount;
+      const label = typeof options.label === "string" && options.label.trim() ? options.label : reward.label;
+      const totalAward = amount * multiplier;
 
       bank.balance += totalAward;
       bank.actions += 1;
@@ -1899,7 +2812,7 @@
       }
 
       renderCoinBank();
-      showCoinToast(totalAward, multiplier > 1 ? `${reward.label} • Purple x${multiplier}` : reward.label);
+      showCoinToast(totalAward, multiplier > 1 ? `${label} • Purple x${multiplier}` : label);
       maybeAwardPurpleGems(activityKey);
       return true;
     }
@@ -2440,6 +3353,7 @@
     enableCoinDynastyAmbience();
     renderCoinBank();
     applyDailyCoinBonus();
+    initCoinDashSystem();
     megaGlitterButtonEl?.addEventListener("click", activateMegaGlitter);
     purpleMultiplierButtonEl?.addEventListener("click", activatePurpleGemMultiplier);
 
