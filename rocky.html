@@ -1944,7 +1944,8 @@
         label: "Arcade Fair",
         badgeClass: "is-arcade",
         durationMs: 28000,
-        spawnMs: 420,
+        spawnMs: 520,
+        countdownMs: 700,
         minDelayMs: 30000,
         maxDelayMs: 55000,
         gemChance: 0.06,
@@ -1968,18 +1969,19 @@
         roundBonusHighAmount: 40,
         comboThreshold: 8,
         comboAmount: 2,
-        coinCap: 42,
-        megaCoinCap: 60,
-        openingBurst: 10,
-        megaOpeningBurst: 18,
+        coinCap: 24,
+        megaCoinCap: 34,
+        openingBurst: 6,
+        megaOpeningBurst: 10,
         burst: 1,
-        megaBurst: 3
+        megaBurst: 2
       },
       balanced: {
         label: "Balanced Grind",
         badgeClass: "is-balanced",
         durationMs: 24000,
         spawnMs: 500,
+        countdownMs: 1100,
         minDelayMs: 45000,
         maxDelayMs: 75000,
         gemChance: 0.045,
@@ -2015,6 +2017,7 @@
         badgeClass: "is-sweaty",
         durationMs: 20000,
         spawnMs: 560,
+        countdownMs: 1500,
         minDelayMs: 50000,
         maxDelayMs: 85000,
         gemChance: 0.03,
@@ -2352,6 +2355,25 @@
       updateCoinDashStatus();
     }
 
+    function forceCloseCoinDash() {
+      coinDashState.active = false;
+      coinDashState.starting = false;
+      window.clearInterval(coinDashState.spawnTimer);
+      window.clearInterval(coinDashState.uiTimer);
+      window.clearInterval(coinDashState.countdownTimer);
+      coinDashState.spawnTimer = null;
+      coinDashState.uiTimer = null;
+      coinDashState.countdownTimer = null;
+      if (coinDashCountdownEl) {
+        coinDashCountdownEl.hidden = true;
+      }
+      coinDashArenaEl?.querySelectorAll(".coin-dash-coin").forEach((coin) => coin.remove());
+      if (coinDashOverlayEl) {
+        coinDashOverlayEl.hidden = true;
+      }
+      updateCoinDashStatus();
+    }
+
     function playCoinDashCountdownTick(step) {
       try {
         const audioContext = new (window.AudioContext || window.webkitAudioContext)();
@@ -2407,40 +2429,22 @@
         return;
       }
 
-      let count = 3;
-      coinDashCountdownEl.textContent = `${count}`;
+      const modeConfig = getCoinDashModeConfig();
+      const waitMs = Math.max(250, Number(modeConfig.countdownMs || 900));
+      coinDashCountdownEl.textContent = "DASH";
       coinDashCountdownEl.hidden = false;
-      playCoinDashCountdownTick(count);
+      playCoinDashCountdownTick(1);
 
-      coinDashState.countdownTimer = window.setInterval(() => {
-        count -= 1;
-        if (count <= 0) {
-          coinDashCountdownEl.textContent = "DASH!";
-          playCoinDashCountdownTick(1);
-          window.clearInterval(coinDashState.countdownTimer);
-          coinDashState.countdownTimer = null;
-          window.setTimeout(() => {
-            if (coinDashCountdownEl) {
-              coinDashCountdownEl.hidden = true;
-            }
-            if (!coinDashState.starting) {
-              return;
-            }
-            beginCoinDashAction();
-          }, 360);
+      coinDashState.countdownTimer = window.setTimeout(() => {
+        coinDashState.countdownTimer = null;
+        if (coinDashCountdownEl) {
+          coinDashCountdownEl.hidden = true;
+        }
+        if (!coinDashState.starting) {
           return;
         }
-
-        coinDashCountdownEl.textContent = `${count}`;
-        void coinDashCountdownEl.offsetWidth;
-        coinDashCountdownEl.style.animation = "none";
-        requestAnimationFrame(() => {
-          if (coinDashCountdownEl) {
-            coinDashCountdownEl.style.animation = "coin-dash-count-pulse 920ms ease-out forwards";
-          }
-        });
-        playCoinDashCountdownTick(count);
-      }, 1000);
+        beginCoinDashAction();
+      }, waitMs);
     }
 
     function onCoinDashPointerMove(event) {
@@ -2537,7 +2541,7 @@
       });
 
       coinDashTriggerEl?.addEventListener("click", startCoinDashRound);
-      coinDashCloseEl?.addEventListener("click", () => endCoinDashRound(false));
+      coinDashCloseEl?.addEventListener("click", forceCloseCoinDash);
       coinDashArenaEl?.addEventListener("mousemove", onCoinDashPointerMove);
       coinDashArenaEl?.addEventListener("touchmove", onCoinDashPointerMove, { passive: true });
 
