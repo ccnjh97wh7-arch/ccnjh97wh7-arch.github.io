@@ -1939,6 +1939,7 @@
     const PURPLE_MULTIPLIER_VALUE = 3;
     const PURPLE_MULTIPLIER_REWARDS = 10;
     const DEFAULT_COIN_DASH_MODE = "arcade";
+    const COIN_DASH_AUTO_START = false;
     const COIN_DASH_MODE_CONFIG = {
       arcade: {
         label: "Arcade Fair",
@@ -2207,6 +2208,14 @@
         coinDashStatusEl.textContent = "Dash running now";
         if (coinDashTriggerEl) {
           coinDashTriggerEl.disabled = true;
+        }
+        return;
+      }
+
+      if (!COIN_DASH_AUTO_START) {
+        coinDashStatusEl.textContent = "Ready - press Start Dash";
+        if (coinDashTriggerEl) {
+          coinDashTriggerEl.disabled = false;
         }
         return;
       }
@@ -2541,6 +2550,7 @@
       const stats = readCoinDashStats();
       coinDashState.mode = readCoinDashMode();
       coinDashState.nextStartAt = Math.max(Date.now() + 15000, Number(stats.nextStartAt || Date.now() + 90000));
+      forceCloseCoinDash();
       updateCoinDashModeUI();
       renderCoinDashStats();
       updateCoinDashStatus();
@@ -2578,11 +2588,13 @@
       coinDashArenaEl?.addEventListener("touchmove", onCoinDashPointerMove, { passive: true });
 
       coinDashState.statusTimer = window.setInterval(updateCoinDashStatus, 1000);
-      coinDashState.schedulerTimer = window.setInterval(() => {
-        if (!coinDashState.active && !coinDashState.starting && Date.now() >= coinDashState.nextStartAt) {
-          startCoinDashRound();
-        }
-      }, 600);
+      if (COIN_DASH_AUTO_START) {
+        coinDashState.schedulerTimer = window.setInterval(() => {
+          if (!coinDashState.active && !coinDashState.starting && Date.now() >= coinDashState.nextStartAt) {
+            startCoinDashRound();
+          }
+        }, 600);
+      }
     }
 
     const COIN_RANKS = [
