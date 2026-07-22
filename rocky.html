@@ -1718,25 +1718,6 @@
         <button class="coin-powerup-button purple-gem" id="purple-multiplier-button" type="button">Activate Purple Gem Multiplier (5 gems)</button>
         <span class="coin-powerup-status purple" id="purple-multiplier-status">Multiplier offline</span>
       </div>
-      <div class="coin-dash-row" id="coin-dash-row">
-        <div class="coin-dash-head">
-          <span class="coin-dash-title">Coin Dash</span>
-          <span class="coin-dash-mode-badge" id="coin-dash-mode-badge">Mode: Arcade Fair</span>
-          <label class="sr-only" for="coin-dash-mode-select">Coin Dash mode preset</label>
-          <select id="coin-dash-mode-select" class="coin-dash-mode-select" aria-label="Coin Dash mode preset">
-            <option value="arcade">Arcade Fair</option>
-            <option value="balanced">Balanced Grind</option>
-            <option value="sweaty">Sweaty Mode</option>
-          </select>
-          <span class="coin-dash-status" id="coin-dash-status">Next dash warming up...</span>
-          <button class="coin-powerup-button coin-dash-trigger" id="coin-dash-trigger" type="button">Start Dash</button>
-        </div>
-        <div class="coin-dash-metrics">
-          <span class="coin-dash-chip" id="coin-dash-high">Best Catch: 0</span>
-          <span class="coin-dash-chip" id="coin-dash-total">Total Caught: 0</span>
-          <span class="coin-dash-chip" id="coin-dash-rounds">Rounds: 0</span>
-        </div>
-      </div>
     </section>
 
     <p class="intro">
@@ -1833,29 +1814,6 @@
       </div>
     </section>
   </main>
-
-  <div class="coin-dash-overlay" id="coin-dash-overlay" hidden>
-    <div class="coin-dash-modal">
-      <div class="coin-dash-modal-head">
-        <span class="coin-dash-modal-title">Coin Dash Live</span>
-        <span class="coin-dash-timer" id="coin-dash-timer">Time: 18.0s</span>
-        <span class="coin-dash-counter" id="coin-dash-counter">Caught: 0</span>
-        <span class="coin-dash-streak" id="coin-dash-streak">Streak: x1</span>
-        <button class="coin-dash-close" id="coin-dash-close" type="button">End</button>
-      </div>
-      <div class="coin-dash-arena" id="coin-dash-arena" aria-label="Coin Dash arena">
-        <div class="coin-dash-cursor" id="coin-dash-cursor" aria-hidden="true"></div>
-        <div class="coin-dash-countdown" id="coin-dash-countdown" hidden>3</div>
-      </div>
-      <div class="coin-dash-results" id="coin-dash-results" hidden>
-        <div class="coin-dash-results-title">Dash Results</div>
-        <div class="coin-dash-results-line" id="coin-dash-results-line-1">Caught: 0</div>
-        <div class="coin-dash-results-line" id="coin-dash-results-line-2">Gems: 0</div>
-        <div class="coin-dash-results-line" id="coin-dash-results-line-3">Payout: +0 coins</div>
-      </div>
-      <div class="coin-dash-footer">Glide your mouse to scoop coins and rare purple gems before time runs out.</div>
-    </div>
-  </div>
 
   <script type="module">
     import { initializeApp } from "https://www.gstatic.com/firebasejs/12.16.0/firebase-app.js";
@@ -3414,7 +3372,6 @@
     enableCoinDynastyAmbience();
     renderCoinBank();
     applyDailyCoinBonus();
-    initCoinDashSystem();
     megaGlitterButtonEl?.addEventListener("click", activateMegaGlitter);
     purpleMultiplierButtonEl?.addEventListener("click", activatePurpleGemMultiplier);
 
