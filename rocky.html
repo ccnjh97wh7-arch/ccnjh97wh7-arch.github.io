@@ -257,6 +257,45 @@
       box-shadow: 0 0 12px rgba(255, 223, 136, 0.45);
     }
 
+    .coin-gem-row {
+      margin-top: 8px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      flex-wrap: wrap;
+    }
+
+    .gem-balance {
+      padding: 4px 10px;
+      border-radius: 999px;
+      border: 1px solid rgba(190, 145, 255, 0.6);
+      background: linear-gradient(180deg, rgba(160, 82, 255, 0.34), rgba(98, 45, 186, 0.46));
+      color: #F4E7FF;
+      font: 700 0.74rem "Trebuchet MS", Verdana, sans-serif;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+    }
+
+    .coin-powerup-button.purple-gem {
+      border-color: rgba(196, 156, 255, 0.8);
+      background: linear-gradient(180deg, #D9BBFF 0%, #B079FF 58%, #7A35D8 100%);
+      color: #210A43;
+      box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.65), 0 5px 12px rgba(82, 33, 153, 0.4);
+    }
+
+    .coin-powerup-status.purple {
+      border-color: rgba(196, 156, 255, 0.52);
+      background: rgba(88, 42, 150, 0.45);
+      color: #EBDDFF;
+    }
+
+    .coin-powerup-status.purple.is-active {
+      background: linear-gradient(180deg, rgba(213, 184, 255, 0.86), rgba(128, 64, 224, 0.86));
+      color: #2A0D54;
+      border-color: rgba(221, 195, 255, 0.88);
+      box-shadow: 0 0 14px rgba(170, 118, 247, 0.52);
+    }
+
     .coin-toast {
       position: fixed;
       right: 16px;
@@ -1406,9 +1445,16 @@
         <span id="coin-next-goal">Next rank: Silver Baron (120)</span>
         <span id="coin-actions">Actions rewarded: 0</span>
       </div>
+      <div class="coin-gem-row">
+        <span class="gem-balance" id="purple-gem-balance">0 purple gems</span>
+      </div>
       <div class="coin-powerups">
         <button class="coin-powerup-button" id="mega-glitter-button" type="button">Activate Mega Glitter (120)</button>
         <span class="coin-powerup-status" id="mega-glitter-status">Mega Glitter offline</span>
+      </div>
+      <div class="coin-powerups">
+        <button class="coin-powerup-button purple-gem" id="purple-multiplier-button" type="button">Activate Purple Gem Multiplier (5 gems)</button>
+        <span class="coin-powerup-status purple" id="purple-multiplier-status">Multiplier offline</span>
       </div>
     </section>
 
@@ -1551,6 +1597,9 @@
     const coinActionsEl = document.querySelector("#coin-actions");
     const megaGlitterButtonEl = document.querySelector("#mega-glitter-button");
     const megaGlitterStatusEl = document.querySelector("#mega-glitter-status");
+    const purpleGemBalanceEl = document.querySelector("#purple-gem-balance");
+    const purpleMultiplierButtonEl = document.querySelector("#purple-multiplier-button");
+    const purpleMultiplierStatusEl = document.querySelector("#purple-multiplier-status");
     const STORAGE_KEY = "rocky-memories-fallback";
     const FEEDBACK_LOCKS_KEY = "rocky-memory-feedback-locks";
     const COIN_BANK_KEY = "rocky-coin-bank";
@@ -1561,6 +1610,9 @@
     const AUDIO_CONSENT_COOKIE_NAME = "rocky_audio_consent";
     const MEGA_GLITTER_COST = 120;
     const MEGA_GLITTER_CHARGES = 3;
+    const PURPLE_MULTIPLIER_GEM_COST = 5;
+    const PURPLE_MULTIPLIER_VALUE = 3;
+    const PURPLE_MULTIPLIER_REWARDS = 10;
 
     const COIN_REWARD_TABLE = {
       daily_visit: { amount: 25, label: "Daily blessing", cooldownMs: 20 * 60 * 60 * 1000 },
@@ -1573,6 +1625,17 @@
       play_music: { amount: 4, label: "Started soundtrack", cooldownMs: 30000 },
       next_track: { amount: 2, label: "Switched track", cooldownMs: 10000 },
       random_event: { amount: 3, label: "Dynasty chaos event", cooldownMs: 45000 }
+    };
+
+    const PURPLE_GEM_DROP_TABLE = {
+      submit_memory: { chance: 0.65, min: 2, max: 4 },
+      vote_memory: { chance: 0.22, min: 1, max: 2 },
+      share_social: { chance: 0.5, min: 1, max: 3 },
+      copy_link: { chance: 0.35, min: 1, max: 2 },
+      export_print: { chance: 0.45, min: 1, max: 2 },
+      export_download: { chance: 0.45, min: 1, max: 2 },
+      random_event: { chance: 0.35, min: 1, max: 2 },
+      daily_visit: { chance: 0.5, min: 1, max: 2 }
     };
 
     const COIN_RANKS = [
@@ -1593,11 +1656,13 @@
         return {
           balance: Math.max(0, Number(parsed.balance || 0)),
           actions: Math.max(0, Number(parsed.actions || 0)),
-          lifetimeEarned: Math.max(0, Number(parsed.lifetimeEarned || 0))
+          lifetimeEarned: Math.max(0, Number(parsed.lifetimeEarned || 0)),
+          purpleGems: Math.max(0, Number(parsed.purpleGems || 0)),
+          lifetimePurpleGems: Math.max(0, Number(parsed.lifetimePurpleGems || 0))
         };
       } catch (error) {
         console.warn("Could not read coin bank:", error);
-        return { balance: 0, actions: 0, lifetimeEarned: 0 };
+        return { balance: 0, actions: 0, lifetimeEarned: 0, purpleGems: 0, lifetimePurpleGems: 0 };
       }
     }
 
@@ -1637,11 +1702,13 @@
         }
         const parsed = JSON.parse(stored);
         return {
-          megaGlitterCharges: Math.max(0, Number(parsed.megaGlitterCharges || 0))
+          megaGlitterCharges: Math.max(0, Number(parsed.megaGlitterCharges || 0)),
+          purpleMultiplierRewards: Math.max(0, Number(parsed.purpleMultiplierRewards || 0)),
+          purpleMultiplierValue: Math.max(1, Number(parsed.purpleMultiplierValue || 1))
         };
       } catch (error) {
         console.warn("Could not read coin powerups:", error);
-        return { megaGlitterCharges: 0 };
+        return { megaGlitterCharges: 0, purpleMultiplierRewards: 0, purpleMultiplierValue: 1 };
       }
     }
 
@@ -1680,6 +1747,10 @@
         coinActionsEl.textContent = `Actions rewarded: ${bank.actions.toLocaleString()}`;
       }
 
+      if (purpleGemBalanceEl) {
+        purpleGemBalanceEl.textContent = `${bank.purpleGems.toLocaleString()} purple gems`;
+      }
+
       if (coinNextGoalEl) {
         if (nextThreshold === null) {
           coinNextGoalEl.textContent = "Max rank reached: Coin Dynasty Legend";
@@ -1700,6 +1771,7 @@
 
       const powerups = readCoinPowerups();
       const hasMega = powerups.megaGlitterCharges > 0;
+      const hasPurpleMultiplier = powerups.purpleMultiplierRewards > 0;
 
       if (megaGlitterStatusEl) {
         megaGlitterStatusEl.textContent = hasMega
@@ -1713,6 +1785,20 @@
           ? `Recharge Mega Glitter (${MEGA_GLITTER_COST})`
           : `Activate Mega Glitter (${MEGA_GLITTER_COST})`;
         megaGlitterButtonEl.disabled = bank.balance < MEGA_GLITTER_COST;
+      }
+
+      if (purpleMultiplierStatusEl) {
+        purpleMultiplierStatusEl.textContent = hasPurpleMultiplier
+          ? `Purple x${powerups.purpleMultiplierValue} active (${powerups.purpleMultiplierRewards} rewards left)`
+          : "Multiplier offline";
+        purpleMultiplierStatusEl.classList.toggle("is-active", hasPurpleMultiplier);
+      }
+
+      if (purpleMultiplierButtonEl) {
+        purpleMultiplierButtonEl.textContent = hasPurpleMultiplier
+          ? `Recharge Purple Multiplier (${PURPLE_MULTIPLIER_GEM_COST} gems)`
+          : `Activate Purple Gem Multiplier (${PURPLE_MULTIPLIER_GEM_COST} gems)`;
+        purpleMultiplierButtonEl.disabled = bank.purpleGems < PURPLE_MULTIPLIER_GEM_COST;
       }
     }
 
@@ -1746,6 +1832,39 @@
       return true;
     }
 
+    function spendPurpleGems(amount, label) {
+      const bank = readCoinBank();
+      if (bank.purpleGems < amount) {
+        return false;
+      }
+
+      bank.purpleGems -= amount;
+      saveCoinBank(bank);
+      renderCoinBank();
+      showCoinToast(-amount, label, true);
+      return true;
+    }
+
+    function maybeAwardPurpleGems(activityKey) {
+      const drop = PURPLE_GEM_DROP_TABLE[activityKey];
+      if (!drop) {
+        return 0;
+      }
+
+      if (Math.random() > drop.chance) {
+        return 0;
+      }
+
+      const amount = drop.min + Math.floor(Math.random() * (drop.max - drop.min + 1));
+      const bank = readCoinBank();
+      bank.purpleGems += amount;
+      bank.lifetimePurpleGems += amount;
+      saveCoinBank(bank);
+      renderCoinBank();
+      showCoinToast(amount, "Purple gem drop");
+      return amount;
+    }
+
     function rewardCoins(activityKey, contextKey = "global") {
       const reward = COIN_REWARD_TABLE[activityKey];
       if (!reward) {
@@ -1765,12 +1884,23 @@
       saveCoinActivity(map);
 
       const bank = readCoinBank();
-      bank.balance += reward.amount;
+      const powerups = readCoinPowerups();
+      const multiplier = powerups.purpleMultiplierRewards > 0 ? powerups.purpleMultiplierValue : 1;
+      const totalAward = reward.amount * multiplier;
+
+      bank.balance += totalAward;
       bank.actions += 1;
-      bank.lifetimeEarned += reward.amount;
+      bank.lifetimeEarned += totalAward;
       saveCoinBank(bank);
+
+      if (powerups.purpleMultiplierRewards > 0) {
+        powerups.purpleMultiplierRewards -= 1;
+        saveCoinPowerups(powerups);
+      }
+
       renderCoinBank();
-      showCoinToast(reward.amount, reward.label);
+      showCoinToast(totalAward, multiplier > 1 ? `${reward.label} • Purple x${multiplier}` : reward.label);
+      maybeAwardPurpleGems(activityKey);
       return true;
     }
 
@@ -1785,6 +1915,21 @@
       saveCoinPowerups(powerups);
       renderCoinBank();
       showCoinToast(0, `Mega Glitter ready (${powerups.megaGlitterCharges} charges)`);
+      return true;
+    }
+
+    function activatePurpleGemMultiplier() {
+      const paid = spendPurpleGems(PURPLE_MULTIPLIER_GEM_COST, "Purple multiplier activation");
+      if (!paid) {
+        return false;
+      }
+
+      const powerups = readCoinPowerups();
+      powerups.purpleMultiplierRewards += PURPLE_MULTIPLIER_REWARDS;
+      powerups.purpleMultiplierValue = PURPLE_MULTIPLIER_VALUE;
+      saveCoinPowerups(powerups);
+      renderCoinBank();
+      showCoinToast(0, `Purple Gem Multiplier x${PURPLE_MULTIPLIER_VALUE} ready (${powerups.purpleMultiplierRewards} rewards)`);
       return true;
     }
 
@@ -2296,6 +2441,7 @@
     renderCoinBank();
     applyDailyCoinBonus();
     megaGlitterButtonEl?.addEventListener("click", activateMegaGlitter);
+    purpleMultiplierButtonEl?.addEventListener("click", activatePurpleGemMultiplier);
 
     function applyFeedbackChange(entries, memoryKey, desiredReaction) {
       return entries.map((entry) => {
