@@ -2577,13 +2577,25 @@
     ];
 
     function readCoinBank() {
+      const defaults = {
+        balance: 0,
+        actions: 0,
+        lifetimeEarned: 0,
+        purpleGems: 0,
+        lifetimePurpleGems: 0
+      };
+
       try {
         const stored = localStorage.getItem(COIN_BANK_KEY);
         if (!stored) {
-          return { balance: 0, actions: 0, lifetimeEarned: 0 };
+          return defaults;
         }
         const parsed = JSON.parse(stored);
+        if (!parsed || typeof parsed !== "object") {
+          return defaults;
+        }
         return {
+          ...defaults,
           balance: Math.max(0, Number(parsed.balance || 0)),
           actions: Math.max(0, Number(parsed.actions || 0)),
           lifetimeEarned: Math.max(0, Number(parsed.lifetimeEarned || 0)),
@@ -2592,7 +2604,7 @@
         };
       } catch (error) {
         console.warn("Could not read coin bank:", error);
-        return { balance: 0, actions: 0, lifetimeEarned: 0, purpleGems: 0, lifetimePurpleGems: 0 };
+        return defaults;
       }
     }
 
