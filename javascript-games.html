@@ -98,6 +98,22 @@
             color: #333;
         }
 
+        .game-display {
+            min-height: 36px;
+            display: flex;
+            align-items: center;
+            justify-content: flex-start;
+            margin: 8px 0 12px;
+            padding: 10px 12px;
+            border: 2px dashed rgba(0, 61, 165, 0.28);
+            border-radius: 10px;
+            background: rgba(255, 255, 255, 0.8);
+            font-family: Arial, sans-serif;
+            font-size: 1rem;
+            font-weight: 700;
+            color: var(--near-black);
+        }
+
         .ttt-board {
             display: grid;
             grid-template-columns: repeat(3, 78px);
@@ -221,6 +237,44 @@
                         <button id="math-reset" class="game-btn">Reset</button>
                     </div>
                     <div id="math-status" class="game-status">Score: 0 correct, 0 wrong.</div>
+                </article>
+
+                <article class="game-card">
+                    <h3>Reaction Time</h3>
+                    <p>Wait for the signal, then click as fast as you can.</p>
+                    <div id="reaction-display" class="game-display">Press Start and wait for green light.</div>
+                    <div class="inline-controls">
+                        <button id="reaction-start" class="game-btn">Start</button>
+                        <button id="reaction-click" class="game-btn" disabled>Click!</button>
+                        <button id="reaction-reset" class="game-btn">Reset</button>
+                    </div>
+                    <div id="reaction-status" class="game-status">Best time: --</div>
+                </article>
+
+                <article class="game-card">
+                    <h3>Word Scramble</h3>
+                    <p>Unscramble the word before getting a new one.</p>
+                    <div id="scramble-word" class="game-display">Press New Word.</div>
+                    <div class="inline-controls">
+                        <input id="scramble-input" type="text" placeholder="Your guess">
+                        <button id="scramble-submit" class="game-btn">Submit</button>
+                        <button id="scramble-new" class="game-btn">New Word</button>
+                        <button id="scramble-reset" class="game-btn">Reset</button>
+                    </div>
+                    <div id="scramble-status" class="game-status">Score: 0 solved, 0 missed.</div>
+                </article>
+
+                <article class="game-card">
+                    <h3>Higher or Lower</h3>
+                    <p>Guess whether the next card rank will be higher or lower.</p>
+                    <div id="higher-card" class="game-display">Current card: 7</div>
+                    <div class="inline-controls">
+                        <button id="higher-btn" class="game-btn">Higher</button>
+                        <button id="lower-btn" class="game-btn">Lower</button>
+                        <button id="higher-reset" class="game-btn">Reset</button>
+                    </div>
+                    <div id="higher-status" class="game-status">Make a guess to start your streak.</div>
+                    <div id="higher-score" class="scoreboard">Wins: 0 | Losses: 0 | Streak: 0</div>
                 </article>
             </div>
         </section>
@@ -571,6 +625,223 @@
                 submitMathAnswer();
             }
         });
+
+        // Reaction Time game
+        const reactionDisplay = document.getElementById('reaction-display');
+        const reactionStartBtn = document.getElementById('reaction-start');
+        const reactionClickBtn = document.getElementById('reaction-click');
+        const reactionResetBtn = document.getElementById('reaction-reset');
+        const reactionStatus = document.getElementById('reaction-status');
+
+        let reactionTimerId = null;
+        let reactionReadyAt = 0;
+        let reactionWaiting = false;
+        let reactionBest = null;
+
+        function resetReactionGame() {
+            if (reactionTimerId) {
+                window.clearTimeout(reactionTimerId);
+                reactionTimerId = null;
+            }
+            reactionReadyAt = 0;
+            reactionWaiting = false;
+            reactionDisplay.textContent = 'Press Start and wait for green light.';
+            reactionDisplay.style.background = 'rgba(255, 255, 255, 0.8)';
+            reactionClickBtn.disabled = true;
+            reactionStatus.textContent = 'Best time: ' + (reactionBest === null ? '--' : reactionBest + ' ms');
+        }
+
+        function startReactionGame() {
+            if (reactionWaiting) {
+                return;
+            }
+
+            resetReactionGame();
+            reactionWaiting = true;
+            reactionDisplay.textContent = 'Wait for it...';
+            reactionTimerId = window.setTimeout(() => {
+                reactionReadyAt = performance.now();
+                reactionDisplay.textContent = 'CLICK NOW!';
+                reactionDisplay.style.background = 'rgba(44, 153, 70, 0.18)';
+                reactionClickBtn.disabled = false;
+                reactionTimerId = null;
+            }, 1200 + Math.floor(Math.random() * 2200));
+        }
+
+        function finishReactionGame() {
+            if (!reactionWaiting) {
+                return;
+            }
+
+            if (!reactionReadyAt) {
+                reactionWaiting = false;
+                if (reactionTimerId) {
+                    window.clearTimeout(reactionTimerId);
+                    reactionTimerId = null;
+                }
+                reactionDisplay.textContent = 'Too early. Wait for the signal.';
+                reactionDisplay.style.background = 'rgba(196, 30, 58, 0.12)';
+                reactionClickBtn.disabled = true;
+                reactionStatus.textContent = 'False start. Best time: ' + (reactionBest === null ? '--' : reactionBest + ' ms');
+                return;
+            }
+
+            const elapsed = Math.max(1, Math.round(performance.now() - reactionReadyAt));
+            reactionWaiting = false;
+            reactionReadyAt = 0;
+            reactionClickBtn.disabled = true;
+            reactionDisplay.textContent = 'Time: ' + elapsed + ' ms';
+            if (reactionBest === null || elapsed < reactionBest) {
+                reactionBest = elapsed;
+                reactionStatus.textContent = 'New best: ' + elapsed + ' ms';
+            } else {
+                reactionStatus.textContent = 'Time: ' + elapsed + ' ms | Best: ' + reactionBest + ' ms';
+            }
+        }
+
+        reactionStartBtn.addEventListener('click', startReactionGame);
+        reactionClickBtn.addEventListener('click', finishReactionGame);
+        reactionResetBtn.addEventListener('click', resetReactionGame);
+        resetReactionGame();
+
+        // Word Scramble game
+        const scrambleWords = ['arcade', 'nostalgia', 'browser', 'jukebox', 'weekend', 'neon', 'mixtape', 'cassette'];
+        const scrambleWordEl = document.getElementById('scramble-word');
+        const scrambleInput = document.getElementById('scramble-input');
+        const scrambleSubmitBtn = document.getElementById('scramble-submit');
+        const scrambleNewBtn = document.getElementById('scramble-new');
+        const scrambleResetBtn = document.getElementById('scramble-reset');
+        const scrambleStatus = document.getElementById('scramble-status');
+
+        let scrambleAnswer = '';
+        let scrambleSolved = 0;
+        let scrambleMissed = 0;
+
+        function shuffleWord(word) {
+            const letters = word.split('');
+            for (let index = letters.length - 1; index > 0; index -= 1) {
+              const swapIndex = Math.floor(Math.random() * (index + 1));
+              const temp = letters[index];
+              letters[index] = letters[swapIndex];
+              letters[swapIndex] = temp;
+            }
+            return letters.join('');
+        }
+
+        function setNewScramble(countMiss = false) {
+            if (countMiss && scrambleAnswer) {
+                scrambleMissed += 1;
+            }
+
+            scrambleAnswer = scrambleWords[Math.floor(Math.random() * scrambleWords.length)];
+            let scrambled = shuffleWord(scrambleAnswer);
+            while (scrambled === scrambleAnswer) {
+                scrambled = shuffleWord(scrambleAnswer);
+            }
+            scrambleWordEl.textContent = scrambled;
+            scrambleInput.value = '';
+            scrambleStatus.textContent = 'Score: ' + scrambleSolved + ' solved, ' + scrambleMissed + ' missed.';
+        }
+
+        function resetScrambleGame() {
+            scrambleAnswer = '';
+            scrambleSolved = 0;
+            scrambleMissed = 0;
+            scrambleInput.value = '';
+            scrambleWordEl.textContent = 'Press New Word.';
+            scrambleStatus.textContent = 'Score: 0 solved, 0 missed.';
+        }
+
+        function submitScrambleGuess() {
+            if (!scrambleAnswer) {
+                scrambleStatus.textContent = 'Press New Word first.';
+                return;
+            }
+
+            const guess = scrambleInput.value.trim().toLowerCase();
+            if (!guess) {
+                scrambleStatus.textContent = 'Type your guess first.';
+                return;
+            }
+
+            if (guess === scrambleAnswer) {
+                scrambleSolved += 1;
+                scrambleStatus.textContent = 'Correct. Score: ' + scrambleSolved + ' solved, ' + scrambleMissed + ' missed.';
+                setNewScramble(false);
+                return;
+            }
+
+            scrambleStatus.textContent = 'Nope. Try again.';
+        }
+
+        scrambleSubmitBtn.addEventListener('click', submitScrambleGuess);
+        scrambleNewBtn.addEventListener('click', () => setNewScramble(Boolean(scrambleAnswer)));
+        scrambleResetBtn.addEventListener('click', resetScrambleGame);
+        scrambleInput.addEventListener('keydown', (event) => {
+            if (event.key === 'Enter') {
+                submitScrambleGuess();
+            }
+        });
+
+        // Higher or Lower game
+        const higherCardEl = document.getElementById('higher-card');
+        const higherBtn = document.getElementById('higher-btn');
+        const lowerBtn = document.getElementById('lower-btn');
+        const higherResetBtn = document.getElementById('higher-reset');
+        const higherStatus = document.getElementById('higher-status');
+        const higherScore = document.getElementById('higher-score');
+
+        let currentCard = 7;
+        let higherWins = 0;
+        let higherLosses = 0;
+        let higherStreak = 0;
+
+        function randomCardValue() {
+            return Math.floor(Math.random() * 13) + 1;
+        }
+
+        function updateHigherScore() {
+            higherScore.textContent = 'Wins: ' + higherWins + ' | Losses: ' + higherLosses + ' | Streak: ' + higherStreak;
+        }
+
+        function resetHigherGame() {
+            currentCard = 7;
+            higherWins = 0;
+            higherLosses = 0;
+            higherStreak = 0;
+            higherCardEl.textContent = 'Current card: ' + currentCard;
+            higherStatus.textContent = 'Make a guess to start your streak.';
+            updateHigherScore();
+        }
+
+        function playHigherOrLower(direction) {
+            const nextCard = randomCardValue();
+            let wonRound = false;
+
+            if (nextCard === currentCard) {
+                higherStatus.textContent = 'Tie card: ' + nextCard + '. Streak stays alive.';
+            } else {
+                wonRound = direction === 'higher' ? nextCard > currentCard : nextCard < currentCard;
+                if (wonRound) {
+                    higherWins += 1;
+                    higherStreak += 1;
+                    higherStatus.textContent = 'Nice. ' + nextCard + ' was the right call.';
+                } else {
+                    higherLosses += 1;
+                    higherStreak = 0;
+                    higherStatus.textContent = 'Missed it. Next card was ' + nextCard + '.';
+                }
+            }
+
+            currentCard = nextCard;
+            higherCardEl.textContent = 'Current card: ' + currentCard;
+            updateHigherScore();
+        }
+
+        higherBtn.addEventListener('click', () => playHigherOrLower('higher'));
+        lowerBtn.addEventListener('click', () => playHigherOrLower('lower'));
+        higherResetBtn.addEventListener('click', resetHigherGame);
+        resetHigherGame();
     </script>
 </body>
 </html>
