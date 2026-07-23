@@ -301,6 +301,19 @@
       border-top: 2px solid var(--patriotic-blue);
     }
 
+    .playlist-summary {
+      margin-top: 1rem;
+      font-family: Arial, Helvetica, sans-serif;
+      font-size: 0.84rem;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+      color: #2f2f2f;
+    }
+
+    .playlist-summary strong {
+      color: var(--patriotic-blue);
+    }
+
     .playlist li {
       border-bottom: 2px solid rgba(0, 61, 165, 0.35);
     }
@@ -529,6 +542,8 @@
 
       <a class="file-link" id="file-link" href="music/the_bullshit.mp3">Open current MP3 file</a>
 
+      <p class="playlist-summary" id="total-play-count" aria-live="polite">Total listens/views: 0 | Unique tracks listened: 0</p>
+
       <ol class="playlist" id="playlist" aria-label="Song playlist"></ol>
     </section>
 
@@ -551,6 +566,7 @@
     const previousButton = document.querySelector("#previous-track");
     const nextButton = document.querySelector("#next-track");
     const playlist = document.querySelector("#playlist");
+    const totalPlayCount = document.querySelector("#total-play-count");
     const PLAY_COUNT_KEY = "eric-stone-music-play-counts";
     const trackArtPool = [
       "images/quiet-evening.jpg",
@@ -605,6 +621,11 @@
     function renderTrackMeta() {
       const counts = readPlayCounts();
       const topTrackSources = new Set(getTopTrackSources());
+      const totalListens = playlistTracks.reduce((sum, track) => sum + (counts[track.src] || 0), 0);
+      const uniqueTracksListened = playlistTracks.reduce(
+        (sum, track) => sum + ((counts[track.src] || 0) > 0 ? 1 : 0),
+        0
+      );
 
       trackButtons.forEach((button) => {
         const count = counts[button.dataset.src] || 0;
@@ -622,6 +643,12 @@
 
         button.classList.toggle("top-track", isTopTrack);
       });
+
+      if (totalPlayCount) {
+        totalPlayCount.innerHTML =
+          "Total listens/views: <strong>" + totalListens + "</strong>" +
+          " | Unique tracks listened: <strong>" + uniqueTracksListened + "</strong>";
+      }
     }
 
     function recordTrackPlay() {
