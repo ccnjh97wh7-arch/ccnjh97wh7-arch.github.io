@@ -1,0 +1,627 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Play a 15-second Coin Dash. Catch falling coins to earn story credits.">
+  <title>Coin Dash | Late 1990s Stories</title>
+  <link rel="stylesheet" href="style.css">
+  <style>
+    :root {
+      --dash-bg: #101420;
+      --dash-panel: rgba(255, 255, 255, 0.9);
+      --dash-accent: #d54f2b;
+      --dash-coin: #f6b72d;
+      --dash-coin-edge: #9f6613;
+      --dash-good: #1f7a38;
+    }
+
+    body {
+      margin: 0;
+      min-height: 100vh;
+      background:
+        radial-gradient(900px 360px at 10% -10%, rgba(255, 199, 118, 0.16), transparent 58%),
+        radial-gradient(700px 340px at 92% -14%, rgba(213, 79, 43, 0.17), transparent 62%),
+        linear-gradient(170deg, #0d111a, var(--dash-bg));
+    }
+
+    .dash-wrap {
+      max-width: 920px;
+      margin: 28px auto 40px;
+      padding: 0 16px;
+    }
+
+    .dash-intro {
+      background: var(--dash-panel);
+      border-left: 6px solid var(--dash-accent);
+      border-radius: 12px;
+      padding: 18px;
+      margin-bottom: 16px;
+    }
+
+    .dash-intro h1 {
+      margin: 0 0 10px;
+      color: #1b2232;
+      font-size: clamp(1.9rem, 4.8vw, 2.8rem);
+    }
+
+    .dash-intro p {
+      margin: 0;
+      color: #263249;
+      font-family: Arial, sans-serif;
+    }
+
+    .dash-stats {
+      margin-top: 12px;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+    }
+
+    .dash-chip {
+      border-radius: 999px;
+      background: #fff;
+      border: 1px solid #cad2e1;
+      padding: 6px 12px;
+      font: 700 0.86rem Arial, sans-serif;
+      color: #1d2a41;
+    }
+
+    .dash-arena {
+      position: relative;
+      height: min(60vh, 520px);
+      border-radius: 14px;
+      border: 2px solid rgba(255, 255, 255, 0.25);
+      overflow: hidden;
+      background:
+        linear-gradient(180deg, rgba(255, 255, 255, 0.06), transparent 22%),
+        repeating-linear-gradient(0deg, rgba(255, 255, 255, 0.06) 0 2px, transparent 2px 30px),
+        linear-gradient(180deg, #151d2e 0%, #121a2a 60%, #0d1320 100%);
+      box-shadow: inset 0 0 30px rgba(90, 150, 255, 0.08), 0 10px 24px rgba(0, 0, 0, 0.35);
+    }
+
+    .dash-player {
+      position: absolute;
+      bottom: 16px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 88px;
+      height: 18px;
+      border-radius: 999px;
+      background: linear-gradient(180deg, #ffe0a0 0%, #e59928 68%, #b06d14 100%);
+      border: 1px solid rgba(255, 236, 192, 0.65);
+      box-shadow: 0 0 14px rgba(255, 183, 45, 0.45);
+      animation: catcher-breathe 1.4s ease-in-out infinite;
+    }
+
+    .dash-coin {
+      position: absolute;
+      width: 24px;
+      height: 24px;
+      border-radius: 999px;
+      background: radial-gradient(circle at 34% 34%, #fff5c5, var(--dash-coin) 58%, var(--dash-coin-edge) 100%);
+      border: 1px solid rgba(255, 229, 164, 0.75);
+      box-shadow: 0 0 10px rgba(246, 183, 45, 0.6);
+      animation: coin-shimmer 0.9s ease-in-out infinite alternate;
+    }
+
+    .dash-controls {
+      margin-top: 14px;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      align-items: center;
+    }
+
+    .dash-btn {
+      border: 1px solid #16304d;
+      border-radius: 999px;
+      background: linear-gradient(180deg, #f9fcff 0%, #d7e2ef 100%);
+      color: #172842;
+      font: 700 0.9rem Arial, sans-serif;
+      padding: 10px 14px;
+      cursor: pointer;
+    }
+
+    .dash-btn.primary {
+      border-color: #4e200f;
+      background: linear-gradient(180deg, #ffd2ad 0%, #d85b34 100%);
+      color: #251206;
+    }
+
+    .dash-btn:disabled {
+      opacity: 0.55;
+      cursor: not-allowed;
+    }
+
+    .dash-note {
+      font: 700 0.92rem Arial, sans-serif;
+      color: #f4f7ff;
+    }
+
+    .dash-note.good {
+      color: #b9ffd0;
+    }
+
+    .dash-impact {
+      margin-top: 12px;
+      padding: 12px;
+      border-radius: 10px;
+      border: 1px solid rgba(255, 255, 255, 0.2);
+      background: rgba(16, 24, 40, 0.58);
+      color: #ebf1ff;
+      font-family: Arial, sans-serif;
+      line-height: 1.45;
+    }
+
+    .dash-impact strong {
+      color: #ffe39c;
+    }
+
+    .dash-challenges {
+      margin-top: 12px;
+      display: grid;
+      gap: 8px;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    }
+
+    .dash-challenge-card {
+      padding: 10px 12px;
+      border-radius: 10px;
+      border: 1px solid rgba(255, 255, 255, 0.25);
+      background: rgba(255, 255, 255, 0.78);
+      color: #1c2a40;
+      font: 700 0.84rem Arial, sans-serif;
+    }
+
+    .dash-challenge-card.done {
+      background: linear-gradient(180deg, rgba(200, 255, 219, 0.9), rgba(151, 238, 181, 0.9));
+      border-color: rgba(46, 146, 80, 0.55);
+    }
+
+    .dash-challenge-title {
+      display: block;
+      margin-bottom: 4px;
+      color: #10213b;
+      letter-spacing: 0.02em;
+    }
+
+    @keyframes coin-shimmer {
+      from { transform: scale(0.94); filter: brightness(0.95); }
+      to { transform: scale(1.03); filter: brightness(1.15); }
+    }
+
+    @keyframes catcher-breathe {
+      0%, 100% { box-shadow: 0 0 14px rgba(255, 183, 45, 0.45); filter: brightness(1); }
+      50% { box-shadow: 0 0 22px rgba(255, 205, 99, 0.7); filter: brightness(1.08); }
+    }
+  </style>
+</head>
+<body>
+  <a class="skip-link" href="#main-content">Skip to main content</a>
+  <div class="global-nav" role="navigation" aria-label="Primary">
+    <a href="index.html">Home</a>
+    <a href="photos.html">Photos</a>
+    <a href="more-images.html">More Images</a>
+    <a href="music.html">Music</a>
+    <a href="javascript-games.html">Games</a>
+    <a href="rocky.html">90s Stories</a>
+  </div>
+
+  <main id="main-content" class="dash-wrap">
+    <section class="dash-intro">
+      <h1>Coin Dash</h1>
+      <p>Play for 15 seconds. Move the catcher and collect falling coins to earn story credits and vote credits for the stories page.</p>
+      <div class="dash-stats">
+        <span class="dash-chip" id="dash-time">Time: 15.0s</span>
+        <span class="dash-chip" id="dash-score">Coins: 0</span>
+        <span class="dash-chip" id="dash-story-credits">Story credits earned: 0</span>
+        <span class="dash-chip" id="dash-vote-credits">Vote credits earned: 0</span>
+        <span class="dash-chip" id="dash-bank">Your story credits: 0 | vote credits: 0</span>
+        <span class="dash-chip" id="dash-cooldown">Ready now</span>
+      </div>
+      <p style="margin-top:10px;font-family:Arial,sans-serif;color:#2a3550;">
+        Weekly prompt: <strong id="dash-weekly-prompt">Late-night mall memories</strong>
+      </p>
+    </section>
+
+    <section>
+      <div class="dash-arena" id="dash-arena" aria-label="Coin Dash arena">
+        <div class="dash-player" id="dash-player" aria-hidden="true"></div>
+      </div>
+      <div class="dash-controls">
+        <button class="dash-btn primary" id="start-dash" type="button">Start 15s Run</button>
+        <button class="dash-btn" id="go-story" type="button">Use Credits In Voting</button>
+        <span class="dash-note" id="dash-note">Start a run to earn credits.</span>
+      </div>
+      <div class="dash-impact" id="dash-impact">
+        <strong>Community goal:</strong> <span id="dash-goal-progress">0 / 1000</span> coins toward this week’s spotlight unlock.
+      </div>
+      <div class="dash-challenges" id="dash-challenges">
+        <div class="dash-challenge-card" id="dash-daily-card">
+          <span class="dash-challenge-title">Daily Challenge</span>
+          <span id="dash-daily-status">Catch 12+ coins in one run for +2 vote credits.</span>
+        </div>
+        <div class="dash-challenge-card" id="dash-weekly-card">
+          <span class="dash-challenge-title">Weekly Challenge</span>
+          <span id="dash-weekly-status">Catch 18+ coins in one run for +1 story credit and +3 vote credits.</span>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <script>
+    const STORY_CREDITS_KEY = "late90s-story-credits";
+    const VOTE_CREDITS_KEY = "late90s-vote-credits";
+    const COMMUNITY_COINS_KEY = "late90s-community-coins";
+    const WEEKLY_PROMPT_BONUS_KEY = "late90s-weekly-prompt-bonus";
+    const DAILY_DASH_LEDGER_KEY = "late90s-dash-ledger";
+    const RUN_COOLDOWN_MS = 4500;
+    const STORY_CREDIT_RUN_CAP = 4;
+    const VOTE_CREDIT_RUN_CAP = 5;
+    const DAILY_STORY_CREDIT_CAP = 18;
+    const DAILY_VOTE_CREDIT_CAP = 30;
+    const COMMUNITY_GOAL_TARGET = 1000;
+    const arena = document.getElementById("dash-arena");
+    const player = document.getElementById("dash-player");
+    const startBtn = document.getElementById("start-dash");
+    const goStoryBtn = document.getElementById("go-story");
+    const timeEl = document.getElementById("dash-time");
+    const scoreEl = document.getElementById("dash-score");
+    const storyCreditsEl = document.getElementById("dash-story-credits");
+    const voteCreditsEl = document.getElementById("dash-vote-credits");
+    const bankEl = document.getElementById("dash-bank");
+    const noteEl = document.getElementById("dash-note");
+    const goalProgressEl = document.getElementById("dash-goal-progress");
+    const weeklyPromptEl = document.getElementById("dash-weekly-prompt");
+    const cooldownEl = document.getElementById("dash-cooldown");
+    const dailyCardEl = document.getElementById("dash-daily-card");
+    const weeklyCardEl = document.getElementById("dash-weekly-card");
+    const dailyStatusEl = document.getElementById("dash-daily-status");
+    const weeklyStatusEl = document.getElementById("dash-weekly-status");
+
+    const GAME_MS = 15000;
+    let running = false;
+    let score = 0;
+    let earnedStoryCredits = 0;
+    let earnedVoteCredits = 0;
+    let playerX = 0;
+    let animationId = null;
+    let spawnId = null;
+    let uiId = null;
+    let endAt = 0;
+    let coins = [];
+    let lastRunEndedAt = 0;
+
+    function readCredits() {
+      try {
+        return Math.max(0, Number(localStorage.getItem(STORY_CREDITS_KEY) || "0"));
+      } catch {
+        return 0;
+      }
+    }
+
+    function readVoteCredits() {
+      try {
+        return Math.max(0, Number(localStorage.getItem(VOTE_CREDITS_KEY) || "0"));
+      } catch {
+        return 0;
+      }
+    }
+
+    function writeCredits(value) {
+      const next = Math.max(0, Number(value || 0));
+      localStorage.setItem(STORY_CREDITS_KEY, String(next));
+      return next;
+    }
+
+    function writeVoteCredits(value) {
+      const next = Math.max(0, Number(value || 0));
+      localStorage.setItem(VOTE_CREDITS_KEY, String(next));
+      return next;
+    }
+
+    function getWeekStamp() {
+      const now = new Date();
+      const start = new Date(Date.UTC(now.getUTCFullYear(), 0, 1));
+      const day = Math.floor((Date.UTC(now.getUTCFullYear(), now.getUTCMonth(), now.getUTCDate()) - start.getTime()) / 86400000);
+      const week = Math.floor((day + start.getUTCDay()) / 7) + 1;
+      return `${now.getUTCFullYear()}-W${String(week).padStart(2, "0")}`;
+    }
+
+    function getWeeklyPromptText() {
+      const prompts = [
+        "Late-night mall memories",
+        "Dial-up internet chaos",
+        "Best 90s CD burn mix",
+        "Arcade and movie theater nights"
+      ];
+      const weekStamp = getWeekStamp();
+      const seed = Number(weekStamp.slice(-2));
+      return prompts[seed % prompts.length];
+    }
+
+    function readCommunityCoins() {
+      return Math.max(0, Number(localStorage.getItem(COMMUNITY_COINS_KEY) || "0"));
+    }
+
+    function writeCommunityCoins(value) {
+      const next = Math.max(0, Number(value || 0));
+      localStorage.setItem(COMMUNITY_COINS_KEY, String(next));
+      return next;
+    }
+
+    function getDayStamp() {
+      const now = new Date();
+      return `${now.getFullYear()}-${String(now.getMonth() + 1).padStart(2, "0")}-${String(now.getDate()).padStart(2, "0")}`;
+    }
+
+    function readDashLedger() {
+      const today = getDayStamp();
+      try {
+        const parsed = JSON.parse(localStorage.getItem(DAILY_DASH_LEDGER_KEY) || "{}");
+        if (parsed.stamp !== today) {
+          return { stamp: today, storyEarned: 0, voteEarned: 0, runs: 0, bestScore: 0 };
+        }
+        return {
+          stamp: today,
+          storyEarned: Math.max(0, Number(parsed.storyEarned || 0)),
+          voteEarned: Math.max(0, Number(parsed.voteEarned || 0)),
+          runs: Math.max(0, Number(parsed.runs || 0)),
+          bestScore: Math.max(0, Number(parsed.bestScore || 0))
+        };
+      } catch {
+        return { stamp: today, storyEarned: 0, voteEarned: 0, runs: 0, bestScore: 0 };
+      }
+    }
+
+    function writeDashLedger(ledger) {
+      localStorage.setItem(DAILY_DASH_LEDGER_KEY, JSON.stringify(ledger));
+    }
+
+    function updateCooldownLabel() {
+      if (!cooldownEl) {
+        return;
+      }
+      if (running) {
+        cooldownEl.textContent = "Run active";
+        return;
+      }
+      const remaining = Math.max(0, RUN_COOLDOWN_MS - (Date.now() - lastRunEndedAt));
+      cooldownEl.textContent = remaining > 0 ? `Cooldown: ${(remaining / 1000).toFixed(1)}s` : "Ready now";
+    }
+
+    function renderChallenges() {
+      const weekStamp = getWeekStamp();
+      const dayStamp = getDayStamp();
+      const dailyDone = localStorage.getItem("late90s-daily-challenge") === dayStamp;
+      const weeklyDone = localStorage.getItem("late90s-weekly-challenge") === weekStamp;
+
+      if (dailyCardEl && dailyStatusEl) {
+        dailyCardEl.classList.toggle("done", dailyDone);
+        dailyStatusEl.textContent = dailyDone
+          ? "Completed today. Bonus collected: +2 vote credits."
+          : "Catch 12+ coins in one run for +2 vote credits.";
+      }
+
+      if (weeklyCardEl && weeklyStatusEl) {
+        weeklyCardEl.classList.toggle("done", weeklyDone);
+        weeklyStatusEl.textContent = weeklyDone
+          ? "Completed this week. Bonus collected: +1 story and +3 vote credits."
+          : "Catch 18+ coins in one run for +1 story credit and +3 vote credits.";
+      }
+    }
+
+    function refreshGoal() {
+      const total = readCommunityCoins();
+      const clamped = Math.min(total, COMMUNITY_GOAL_TARGET);
+      goalProgressEl.textContent = `${clamped} / ${COMMUNITY_GOAL_TARGET}`;
+    }
+
+    function refreshBank() {
+      bankEl.textContent = "Your story credits: " + readCredits() + " | vote credits: " + readVoteCredits();
+      weeklyPromptEl.textContent = getWeeklyPromptText();
+      refreshGoal();
+      renderChallenges();
+      updateCooldownLabel();
+    }
+
+    function setPlayerFromClientX(clientX) {
+      const rect = arena.getBoundingClientRect();
+      const width = player.offsetWidth;
+      const raw = clientX - rect.left - width / 2;
+      const clamped = Math.max(0, Math.min(rect.width - width, raw));
+      playerX = clamped;
+      player.style.left = clamped + "px";
+      player.style.transform = "none";
+    }
+
+    function spawnCoin() {
+      if (!running) {
+        return;
+      }
+
+      const rect = arena.getBoundingClientRect();
+      const size = 24;
+      const x = Math.random() * Math.max(1, rect.width - size);
+      const speed = 130 + Math.random() * 120;
+      const node = document.createElement("div");
+      node.className = "dash-coin";
+      node.style.left = x + "px";
+      node.style.top = "-28px";
+      arena.appendChild(node);
+
+      coins.push({ node, x, y: -28, speed, size });
+    }
+
+    function step() {
+      if (!running) {
+        return;
+      }
+
+      const rect = arena.getBoundingClientRect();
+      const playerTop = rect.height - 16 - player.offsetHeight;
+      const playerWidth = player.offsetWidth;
+      const dt = 1 / 60;
+
+      coins = coins.filter((coin) => {
+        coin.y += coin.speed * dt;
+        coin.node.style.top = coin.y + "px";
+
+        const caughtHorizontally = coin.x + coin.size >= playerX && coin.x <= playerX + playerWidth;
+        const caughtVertically = coin.y + coin.size >= playerTop && coin.y <= playerTop + player.offsetHeight + 6;
+
+        if (caughtHorizontally && caughtVertically) {
+          score += 1;
+          coin.node.remove();
+          return false;
+        }
+
+        if (coin.y > rect.height + 30) {
+          coin.node.remove();
+          return false;
+        }
+
+        return true;
+      });
+
+      scoreEl.textContent = "Coins: " + score;
+      animationId = requestAnimationFrame(step);
+    }
+
+    function endRound() {
+      running = false;
+      window.clearInterval(spawnId);
+      window.clearInterval(uiId);
+      spawnId = null;
+      uiId = null;
+      cancelAnimationFrame(animationId);
+      lastRunEndedAt = Date.now();
+
+      coins.forEach((coin) => coin.node.remove());
+      coins = [];
+
+      const ledger = readDashLedger();
+      const diminishingFactor = ledger.runs >= 10 ? 0.55 : ledger.runs >= 6 ? 0.72 : 1;
+      earnedStoryCredits = Math.max(1, Math.floor((score / 3) * diminishingFactor));
+      earnedVoteCredits = Math.max(1, Math.floor((score / 4) * diminishingFactor));
+      earnedStoryCredits = Math.min(STORY_CREDIT_RUN_CAP, earnedStoryCredits);
+      earnedVoteCredits = Math.min(VOTE_CREDIT_RUN_CAP, earnedVoteCredits);
+
+      const storyCapLeft = Math.max(0, DAILY_STORY_CREDIT_CAP - ledger.storyEarned);
+      const voteCapLeft = Math.max(0, DAILY_VOTE_CREDIT_CAP - ledger.voteEarned);
+      earnedStoryCredits = Math.min(earnedStoryCredits, storyCapLeft);
+      earnedVoteCredits = Math.min(earnedVoteCredits, voteCapLeft);
+
+      const weekStamp = getWeekStamp();
+      const dayStamp = getDayStamp();
+      const bonusStamp = localStorage.getItem(WEEKLY_PROMPT_BONUS_KEY) || "";
+      let weeklyBonus = 0;
+      if (bonusStamp !== weekStamp && score >= 8) {
+        weeklyBonus = 2;
+        localStorage.setItem(WEEKLY_PROMPT_BONUS_KEY, weekStamp);
+      }
+
+      let dailyChallengeBonus = 0;
+      if (score >= 12 && localStorage.getItem("late90s-daily-challenge") !== dayStamp) {
+        dailyChallengeBonus = Math.min(2, Math.max(0, DAILY_VOTE_CREDIT_CAP - (ledger.voteEarned + earnedVoteCredits + weeklyBonus)));
+        localStorage.setItem("late90s-daily-challenge", dayStamp);
+      }
+
+      let weeklyChallengeStoryBonus = 0;
+      let weeklyChallengeVoteBonus = 0;
+      if (score >= 18 && localStorage.getItem("late90s-weekly-challenge") !== weekStamp) {
+        weeklyChallengeStoryBonus = Math.min(1, Math.max(0, DAILY_STORY_CREDIT_CAP - (ledger.storyEarned + earnedStoryCredits)));
+        weeklyChallengeVoteBonus = Math.min(3, Math.max(0, DAILY_VOTE_CREDIT_CAP - (ledger.voteEarned + earnedVoteCredits + weeklyBonus + dailyChallengeBonus)));
+        localStorage.setItem("late90s-weekly-challenge", weekStamp);
+      }
+
+      const finalStoryGain = earnedStoryCredits + weeklyChallengeStoryBonus;
+      const finalVoteGain = earnedVoteCredits + weeklyBonus + dailyChallengeBonus + weeklyChallengeVoteBonus;
+
+      const totalStory = writeCredits(readCredits() + finalStoryGain);
+      const totalVote = writeVoteCredits(readVoteCredits() + finalVoteGain);
+      writeCommunityCoins(readCommunityCoins() + score);
+
+      ledger.storyEarned += finalStoryGain;
+      ledger.voteEarned += finalVoteGain;
+      ledger.runs += 1;
+      ledger.bestScore = Math.max(ledger.bestScore, score);
+      writeDashLedger(ledger);
+
+      storyCreditsEl.textContent = "Story credits earned: " + finalStoryGain;
+      voteCreditsEl.textContent = "Vote credits earned: " + finalVoteGain;
+      bankEl.textContent = "Your story credits: " + totalStory + " | vote credits: " + totalVote;
+      refreshGoal();
+      renderChallenges();
+      const capNote = finalStoryGain === 0 || finalVoteGain === 0 ? " Daily cap reached for one reward type." : "";
+      noteEl.textContent = "Run complete. Use your vote credits to cast stronger votes on the stories page." + capNote;
+      noteEl.classList.add("good");
+      startBtn.disabled = false;
+      updateCooldownLabel();
+    }
+
+    function startRound() {
+      if (running) {
+        return;
+      }
+
+      const cooldownRemaining = Math.max(0, RUN_COOLDOWN_MS - (Date.now() - lastRunEndedAt));
+      if (cooldownRemaining > 0) {
+        noteEl.textContent = "Cooldown active. Wait " + (cooldownRemaining / 1000).toFixed(1) + "s.";
+        noteEl.classList.remove("good");
+        updateCooldownLabel();
+        return;
+      }
+
+      const ledger = readDashLedger();
+      if (ledger.storyEarned >= DAILY_STORY_CREDIT_CAP && ledger.voteEarned >= DAILY_VOTE_CREDIT_CAP) {
+        noteEl.textContent = "Daily credit caps reached. Come back tomorrow for fresh rewards.";
+        noteEl.classList.remove("good");
+        updateCooldownLabel();
+        return;
+      }
+
+      running = true;
+      score = 0;
+      earnedStoryCredits = 0;
+      earnedVoteCredits = 0;
+      noteEl.textContent = "Catch as many coins as you can.";
+      noteEl.classList.remove("good");
+      storyCreditsEl.textContent = "Story credits earned: 0";
+      voteCreditsEl.textContent = "Vote credits earned: 0";
+      scoreEl.textContent = "Coins: 0";
+      endAt = Date.now() + GAME_MS;
+      startBtn.disabled = true;
+      updateCooldownLabel();
+
+      spawnCoin();
+      spawnId = window.setInterval(spawnCoin, 260);
+      uiId = window.setInterval(() => {
+        const remain = Math.max(0, endAt - Date.now());
+        timeEl.textContent = "Time: " + (remain / 1000).toFixed(1) + "s";
+        if (remain <= 0) {
+          timeEl.textContent = "Time: 0.0s";
+          endRound();
+        }
+      }, 60);
+
+      animationId = requestAnimationFrame(step);
+    }
+
+    arena.addEventListener("mousemove", (event) => setPlayerFromClientX(event.clientX));
+    arena.addEventListener("touchmove", (event) => {
+      if (!event.touches[0]) return;
+      setPlayerFromClientX(event.touches[0].clientX);
+    }, { passive: true });
+
+    startBtn.addEventListener("click", startRound);
+    goStoryBtn.addEventListener("click", () => {
+      window.location.href = "rocky.html#stories-section";
+    });
+
+    refreshBank();
+    window.setInterval(updateCooldownLabel, 200);
+  </script>
+</body>
+</html>

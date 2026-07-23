@@ -3,18 +3,29 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Eric Stone's creative archive: Life of Jaffar, photos, music, JavaScript games, and stories.">
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="Eric Stone">
+    <meta property="og:description" content="Watch Life of Jaffar and explore stories, music, photos, games, and more.">
+    <meta property="og:url" content="https://ccnjh97wh7-arch.github.io/">
+    <meta property="og:image" content="https://ccnjh97wh7-arch.github.io/pulp-time-mark.png">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Eric Stone">
+    <meta name="twitter:description" content="Watch Life of Jaffar and explore stories, music, photos, games, and more.">
+    <meta name="twitter:image" content="https://ccnjh97wh7-arch.github.io/pulp-time-mark.png">
     <title>Eric Stone</title>
     <link rel="stylesheet" href="style.css">
 </head>
 
 <body>
+    <a class="skip-link" href="#main-content">Skip to main content</a>
     <div class="global-nav" role="navigation" aria-label="Primary">
         <a href="index.html">Home</a>
         <a href="photos.html">Photos</a>
         <a href="more-images.html">More Images</a>
         <a href="music.html">Music</a>
         <a href="javascript-games.html">Games</a>
-        <a href="rocky.html">Rocky Stories</a>
+        <a href="rocky.html">90s Stories</a>
     </div>
 
     <header>
@@ -26,12 +37,12 @@
 
             <aside class="header-support" aria-label="Support my work">
                 <p>Support my work</p>
-                <a href="https://venmo.com/Eric-Stone-262" target="_blank" rel="noopener noreferrer" class="donate-btn">💳 Donate via Venmo</a>
+                <a href="https://venmo.com/Eric-Stone-262" target="_blank" rel="noopener noreferrer" class="donate-btn" data-track="donate-venmo">💳 Donate via Venmo</a>
             </aside>
         </div>
     </header>
 
-    <main>
+    <main id="main-content">
         <section>
             <h2>Welcome</h2>
 
@@ -48,6 +59,7 @@
                     target="_blank"
                     rel="noopener noreferrer"
                     class="hero-cta-btn"
+                    data-track="watch-life-of-jaffar-hero"
                 >
                     ▶ Watch Life of Jaffar
                 </a>
@@ -66,23 +78,23 @@
             <p>Start with the projects people visit most.</p>
 
             <div class="featured-grid">
-                <a href="https://youtube.com/playlist?list=PLbaYlPY2lbIItsGmHkmv5vWe0Lj4_GJqr&si=2LMokRVzgl2abDVl" target="_blank" class="nav-card featured-project-card">
+                <a href="https://youtube.com/playlist?list=PLbaYlPY2lbIItsGmHkmv5vWe0Lj4_GJqr&si=2LMokRVzgl2abDVl" target="_blank" class="nav-card featured-project-card" data-track="featured-jaffar">
                     <span class="nav-card-badge featured">FEATURED</span>
-                    <img src="images/water-tower-sunset.jpg" alt="Life of Jaffar preview" class="nav-card-thumb" loading="lazy">
+                    <img src="images/water-tower-sunset.jpg" alt="Life of Jaffar preview" class="nav-card-thumb" loading="lazy" decoding="async" width="640" height="360">
                     <span class="nav-card-icon">🎬</span>
                     <div class="nav-card-title">Life of Jaffar</div>
                     <p class="nav-card-description">Animation, characters, and strange little worlds.</p>
                 </a>
 
-                <a href="javascript-games.html" class="nav-card featured-project-card">
-                    <img src="images/old-bridge.jpg" alt="JavaScript games preview" class="nav-card-thumb" loading="lazy">
+                <a href="javascript-games.html" class="nav-card featured-project-card" data-track="featured-games">
+                    <img src="images/old-bridge.jpg" alt="JavaScript games preview" class="nav-card-thumb" loading="lazy" decoding="async" width="640" height="360">
                     <span class="nav-card-icon">🎮</span>
                     <div class="nav-card-title">JavaScript Games</div>
                     <p class="nav-card-description">Simple browser games inspired by earlier coding projects.</p>
                 </a>
 
-                <a href="https://abefroman1978.substack.com/" target="_blank" rel="noopener noreferrer" class="nav-card featured-project-card">
-                    <img src="images/porch-dusk.jpg" alt="Writing preview" class="nav-card-thumb" loading="lazy">
+                <a href="https://abefroman1978.substack.com/" target="_blank" rel="noopener noreferrer" class="nav-card featured-project-card" data-track="featured-substack">
+                    <img src="images/porch-dusk.jpg" alt="Writing preview" class="nav-card-thumb" loading="lazy" decoding="async" width="640" height="360">
                     <span class="nav-card-icon">✍️</span>
                     <div class="nav-card-title">My Substack Stories</div>
                     <p class="nav-card-description">Essays, movie thoughts, memories, and writing.</p>
@@ -108,14 +120,14 @@
 
             <nav id="nav-container">
                 <a href="photos.html" class="nav-card" data-category="visual" data-tags="photos pictures visual">
-                    <img src="images/buddy-sleeping.jpg" alt="Photos preview" class="nav-card-thumb" loading="eager">
+                    <img src="images/buddy-sleeping.jpg" alt="Photos preview" class="nav-card-thumb" loading="lazy" decoding="async" width="640" height="360">
                     <span class="nav-card-icon">📸</span>
                     <div class="nav-card-title">Photos</div>
                     <p class="nav-card-description">Photographs, old pictures, and whatever else belongs here.</p>
                 </a>
 
                 <a href="more-images.html" class="nav-card" data-category="visual" data-tags="images art visual fragments">
-                    <img src="images/mountain-view.jpg" alt="More images preview" class="nav-card-thumb" loading="lazy">
+                    <img src="images/mountain-view.jpg" alt="More images preview" class="nav-card-thumb" loading="lazy" decoding="async" width="640" height="360">
                     <span class="nav-card-icon">🖼️</span>
                     <div class="nav-card-title">More Images</div>
                     <p class="nav-card-description">Photographs, fragments, clippings, and accidents collected by Eric Stone.</p>
@@ -123,7 +135,7 @@
 
                 <a href="https://abefroman1978.substack.com/" target="_blank" rel="noopener noreferrer" class="nav-card" data-category="writing" data-tags="stories essays writing substack">
                     <span class="nav-card-badge featured">FEATURED</span>
-                    <img src="images/eric-in-the-woods.jpg" alt="Substack stories preview" class="nav-card-thumb thumb-top-left" loading="lazy">
+                    <img src="images/eric-in-the-woods.jpg" alt="Substack stories preview" class="nav-card-thumb thumb-top-left" loading="lazy" decoding="async" width="640" height="360">
                     <span class="nav-card-icon">✍️</span>
                     <div class="nav-card-title">My Substack Stories</div>
                     <p class="nav-card-description">Essays, movie thoughts, memories, and writing.</p>
@@ -131,32 +143,32 @@
 
                 <a href="https://youtube.com/playlist?list=PLbaYlPY2lbIItsGmHkmv5vWe0Lj4_GJqr&si=2LMokRVzgl2abDVl" target="_blank" class="nav-card" data-category="animation" data-tags="animation jaffar video youtube">
                     <span class="nav-card-badge featured">FEATURED</span>
-                    <img src="images/quiet-evening.jpg" alt="Life of Jaffar preview" class="nav-card-thumb" loading="lazy">
+                    <img src="images/quiet-evening.jpg" alt="Life of Jaffar preview" class="nav-card-thumb" loading="lazy" decoding="async" width="640" height="360">
                     <span class="nav-card-icon">🎬</span>
                     <div class="nav-card-title">Life of Jaffar</div>
                     <p class="nav-card-description">Animation, characters, and strange little worlds.</p>
                 </a>
 
                 <a href="music.html" class="nav-card" data-category="audio" data-tags="music tracks suno songs library">
-                    <img src="images/downtown-greenville.jpg" alt="Music library preview" class="nav-card-thumb" loading="lazy">
+                    <img src="images/downtown-greenville.jpg" alt="Music library preview" class="nav-card-thumb" loading="lazy" decoding="async" width="640" height="360">
                     <span class="nav-card-icon">🎵</span>
                     <div class="nav-card-title">Music Library</div>
                     <p class="nav-card-description">Suno songs, homemade tracks, and the music archive.</p>
                 </a>
 
                 <a href="javascript-games.html" class="nav-card" data-category="code" data-tags="javascript games code programming arcade">
-                    <img src="images/scenic-road.jpg" alt="JavaScript games preview" class="nav-card-thumb" loading="lazy">
+                    <img src="images/scenic-road.jpg" alt="JavaScript games preview" class="nav-card-thumb" loading="lazy" decoding="async" width="640" height="360">
                     <span class="nav-card-icon">🎮</span>
                     <div class="nav-card-title">JavaScript Games</div>
                     <p class="nav-card-description">Simple browser games inspired by my earlier coding projects.</p>
                 </a>
 
-                <a href="rocky.html" class="nav-card" data-category="personal" data-tags="rocky james taylor memorial stories">
+                <a href="rocky.html" class="nav-card" data-category="personal" data-tags="late 1990s stories nostalgia memories">
                     <span class="nav-card-badge new">NEW</span>
-                    <img src="images/17882340400264763.jpg" alt="Stories about Rocky preview" class="nav-card-thumb" loading="lazy">
+                    <img src="images/17882340400264763.jpg" alt="Late 1990s stories preview" class="nav-card-thumb" loading="lazy" decoding="async" width="640" height="360">
                     <span class="nav-card-icon">🇺🇸</span>
-                    <div class="nav-card-title">Stories About Rocky</div>
-                    <p class="nav-card-description">A place for friends to share memories of James "Rocky" Taylor.</p>
+                    <div class="nav-card-title">Late 1990s Stories</div>
+                    <p class="nav-card-description">A place for people to share stories and moments from the late 1990s.</p>
                 </a>
             </nav>
         </section>
@@ -199,8 +211,8 @@
 
         <section class="friend-spotlight" aria-label="Friend channel spotlight">
             <p class="friend-spotlight-label">Friend Spotlight</p>
-            <a href="https://pulptime.com/channel" target="_blank" rel="noopener noreferrer" class="pulp-time-feature compact" aria-label="Open my friend's Pulp Time page">
-                <img src="pulp-time-mark.png" alt="Pulp Time logo" class="pulp-time-logo compact">
+            <a href="https://pulptime.com/channel" target="_blank" rel="noopener noreferrer" class="pulp-time-feature compact" aria-label="Open my friend's Pulp Time page" data-track="friend-spotlight-pulptime">
+                <img src="pulp-time-mark.png" alt="Pulp Time logo" class="pulp-time-logo compact" loading="lazy" decoding="async" width="96" height="96">
                 <div class="friend-spotlight-copy">
                     <p class="pulp-time-tagline compact">Pulp Time</p>
                     <p id="pulp-now-playing" class="pulp-now-playing">Checking now playing...</p>
@@ -217,7 +229,7 @@
                     <li><a href="index.html">Home</a></li>
                     <li><a href="photos.html">Photos</a></li>
                     <li><a href="music.html">Music</a></li>
-                    <li><a href="rocky.html">Stories About Rocky</a></li>
+                    <li><a href="rocky.html">Late 1990s Stories</a></li>
                 </ul>
             </div>
 
@@ -259,8 +271,8 @@
             {
                 href: 'rocky.html',
                 date: 'Jul 2026',
-                title: 'Rocky Memory Page',
-                description: 'Friends can post memories, reactions, and tributes in one place.'
+                title: 'Late 1990s Stories',
+                description: 'People can share stories, vibes, and moments from the late 1990s.'
             },
             {
                 href: 'music.html',
@@ -322,6 +334,39 @@
         }
 
         updatePulpNowPlaying();
+
+        // Lightweight click analytics stored in localStorage for key links.
+        const clickAnalyticsKey = 'eric-site-clicks-v1';
+
+        function getClickAnalytics() {
+            try {
+                const raw = localStorage.getItem(clickAnalyticsKey);
+                return raw ? JSON.parse(raw) : {};
+            } catch (error) {
+                return {};
+            }
+        }
+
+        function recordTrackedClick(eventName) {
+            if (!eventName) {
+                return;
+            }
+            const data = getClickAnalytics();
+            const existing = data[eventName] || { count: 0, lastClicked: '' };
+            data[eventName] = {
+                count: existing.count + 1,
+                lastClicked: new Date().toISOString()
+            };
+            localStorage.setItem(clickAnalyticsKey, JSON.stringify(data));
+        }
+
+        document.querySelectorAll('a[data-track]').forEach((link) => {
+            link.addEventListener('click', () => {
+                recordTrackedClick(link.dataset.track);
+            });
+        });
+
+        window.getSiteClickAnalytics = getClickAnalytics;
 
         // Filter functionality
         const searchInput = document.getElementById('search-input');

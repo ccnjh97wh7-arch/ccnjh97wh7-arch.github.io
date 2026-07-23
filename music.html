@@ -3,9 +3,23 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Music Library by Eric Stone: Suno songs, experiments, and archive tracks.">
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="Music Library | Eric Stone">
+  <meta property="og:description" content="Listen to the Eric Stone music archive and playlist.">
+  <meta property="og:url" content="https://ccnjh97wh7-arch.github.io/music.html">
+  <meta property="og:image" content="https://ccnjh97wh7-arch.github.io/images/downtown-greenville.jpg">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Music Library | Eric Stone">
+  <meta name="twitter:description" content="Listen to the Eric Stone music archive and playlist.">
+  <meta name="twitter:image" content="https://ccnjh97wh7-arch.github.io/images/downtown-greenville.jpg">
   <title>Music Library</title>
   <style>
     :root {
+      --patriotic-red: #C41E3A;
+      --patriotic-blue: #003DA5;
+      --near-black: #111111;
+      --warm-paper: #F2EBDD;
       --ink: #111111;
       --paper: #f2ebdd;
       --gold: #daa520;
@@ -21,53 +35,114 @@
     body {
       margin: 0;
       font-family: Georgia, "Times New Roman", serif;
-      color: var(--ink);
-      background:
-        radial-gradient(circle at top left, rgba(218, 165, 32, 0.22), transparent 34rem),
-        linear-gradient(135deg, var(--paper), #e5d7bd);
+      color: var(--near-black);
+      background: var(--warm-paper);
       line-height: 1.6;
     }
 
-    header {
-      border-bottom: 4px solid var(--ink);
-      background: var(--ink);
-      color: var(--paper);
-    }
-
-    nav {
-      max-width: 960px;
-      margin: 0 auto;
-      padding: 1rem;
-      display: flex;
-      gap: 1rem;
-      flex-wrap: wrap;
-      align-items: center;
-      justify-content: space-between;
-    }
-
-    nav a {
-      color: var(--gold);
+    .skip-link {
+      position: absolute;
+      top: -48px;
+      left: 12px;
+      z-index: 1000;
+      padding: 8px 12px;
+      border-radius: 8px;
+      background: var(--patriotic-blue);
+      color: #fff;
+      font: 700 0.8rem Arial, Helvetica, sans-serif;
       text-decoration: none;
-      font-weight: 700;
+      transition: top 0.2s ease;
     }
 
-    nav a:hover {
-      color: var(--paper);
+    .skip-link:focus {
+      top: 10px;
+    }
+
+    .global-nav {
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+      display: flex;
+      justify-content: center;
+      gap: 10px;
+      flex-wrap: wrap;
+      padding: 10px 14px;
+      background: rgba(17, 17, 17, 0.95);
+      border-bottom: 2px solid var(--patriotic-red);
+      backdrop-filter: blur(6px);
+    }
+
+    .global-nav a {
+      color: var(--warm-paper);
+      text-decoration: none;
+      font-family: Arial, sans-serif;
+      font-size: 0.88rem;
+      font-weight: 700;
+      letter-spacing: 0.03em;
+      text-transform: uppercase;
+      padding: 6px 10px;
+      border-radius: 999px;
+      border: 1px solid rgba(242, 235, 221, 0.25);
+      transition: background-color 0.25s ease, color 0.25s ease, border-color 0.25s ease;
+    }
+
+    .global-nav a:hover {
+      background: var(--patriotic-red);
+      color: #fff;
+      border-color: var(--patriotic-red);
+    }
+
+    a:focus-visible,
+    button:focus-visible,
+    input:focus-visible {
+      outline: 3px solid var(--patriotic-red);
+      outline-offset: 2px;
+    }
+
+    header {
+      border-bottom: 10px solid var(--patriotic-red);
+      background: var(--near-black);
+      color: var(--warm-paper);
+      text-align: center;
+      padding: clamp(36px, 9vw, 72px) 20px;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+    }
+
+    header h1 {
+      margin: 0 0 8px;
+      color: var(--patriotic-red);
+      font-size: clamp(2.2rem, 7vw, 4.5rem);
+      letter-spacing: 0.08em;
+    }
+
+    header p {
+      margin: 0;
+      color: rgba(242, 235, 221, 0.9);
+      font-family: Arial, Helvetica, sans-serif;
     }
 
     main {
-      max-width: 960px;
+      max-width: 900px;
       margin: 0 auto;
-      padding: 2rem 1rem 4rem;
+      padding: 2rem 1rem 3rem;
+    }
+
+    .shell-section {
+      background: rgba(255, 255, 255, 0.86);
+      border-left: 7px solid var(--patriotic-blue);
+      border-radius: 8px;
+      padding: 22px 20px;
+      margin-bottom: 20px;
+      box-shadow: 0 2px 10px rgba(0, 0, 0, 0.08);
     }
 
     .hero {
-      padding: 3rem 0 2rem;
+      padding-top: 0;
     }
 
     .eyebrow {
       margin: 0 0 0.5rem;
-      color: var(--orange);
+      color: var(--patriotic-blue);
       font-family: Arial, Helvetica, sans-serif;
       font-size: 0.85rem;
       font-weight: 800;
@@ -78,25 +153,26 @@
     h1 {
       margin: 0;
       max-width: 760px;
-      font-size: clamp(2.4rem, 8vw, 5rem);
-      line-height: 0.95;
+      color: var(--patriotic-blue);
+      font-size: clamp(2rem, 6vw, 3.4rem);
+      line-height: 1.05;
     }
 
     .intro {
       max-width: 680px;
       margin: 1rem 0 0;
-      color: #30291f;
-      font-size: 1.15rem;
+      color: #2f2f2f;
+      font-size: 1.02rem;
     }
 
     .hero-cta {
       display: inline-block;
       margin-top: 1rem;
       padding: 0.65rem 1rem;
-      border: 2px solid var(--ink);
+      border: 2px solid var(--patriotic-blue);
       border-radius: 999px;
-      background: var(--gold);
-      color: var(--ink);
+      background: var(--patriotic-blue);
+      color: #fff;
       text-decoration: none;
       font: 800 0.9rem Arial, Helvetica, sans-serif;
       letter-spacing: 0.04em;
@@ -104,19 +180,19 @@
     }
 
     .hero-cta:hover {
-      background: var(--orange);
-      color: var(--cream);
+      background: var(--patriotic-red);
+      color: #fff;
     }
 
     .music-card {
       position: relative;
       overflow: hidden;
-      margin-top: 1.5rem;
-      padding: 1.25rem;
-      border: 3px solid var(--ink);
+      margin-top: 0;
+      padding: 1.1rem;
+      border: 2px solid var(--patriotic-blue);
       border-radius: 8px;
-      background: var(--cream);
-      box-shadow: 8px 8px 0 var(--ink);
+      background: rgba(255, 255, 255, 0.92);
+      box-shadow: none;
     }
 
     .music-card::before {
@@ -126,12 +202,12 @@
       height: 0.55rem;
       background: repeating-linear-gradient(
         90deg,
-        var(--gold) 0,
-        var(--gold) 24px,
-        var(--orange) 24px,
-        var(--orange) 48px,
-        var(--ink) 48px,
-        var(--ink) 72px
+        var(--patriotic-red) 0,
+        var(--patriotic-red) 20px,
+        var(--patriotic-blue) 20px,
+        var(--patriotic-blue) 40px,
+        var(--near-black) 40px,
+        var(--near-black) 60px
       );
     }
 
@@ -155,7 +231,8 @@
 
     h2 {
       margin: 0;
-      font-size: 2rem;
+      color: var(--patriotic-blue);
+      font-size: 1.8rem;
       line-height: 1.05;
     }
 
@@ -201,13 +278,15 @@
     .player-controls button {
       padding: 0.65rem 1rem;
       border-radius: 999px;
-      background: var(--gold);
+      background: var(--patriotic-blue);
+      color: #fff;
+      border-color: var(--patriotic-blue);
     }
 
     .player-controls button:hover:not(:disabled),
     .player-controls button:focus-visible {
-      background: var(--orange);
-      color: var(--cream);
+      background: var(--patriotic-red);
+      color: #fff;
     }
 
     .player-controls button:disabled {
@@ -219,16 +298,16 @@
       margin: 2.25rem 0 0;
       padding: 0;
       list-style: none;
-      border-top: 3px solid var(--ink);
+      border-top: 2px solid var(--patriotic-blue);
     }
 
     .playlist li {
-      border-bottom: 2px solid var(--ink);
+      border-bottom: 2px solid rgba(0, 61, 165, 0.35);
     }
 
     .track-button {
       display: grid;
-      grid-template-columns: 2.5rem 1fr auto;
+      grid-template-columns: 2.2rem 48px 1fr auto;
       gap: 0.75rem;
       align-items: center;
       width: 100%;
@@ -236,6 +315,34 @@
       border: 0;
       background: transparent;
       text-align: left;
+    }
+
+    .track-art {
+      width: 48px;
+      height: 48px;
+      border-radius: 8px;
+      object-fit: cover;
+      border: 1px solid rgba(0, 61, 165, 0.28);
+    }
+
+    .track-title-wrap {
+      display: flex;
+      flex-direction: column;
+      min-width: 0;
+    }
+
+    .track-title {
+      font-size: 0.98rem;
+      line-height: 1.3;
+      color: #1f1f1f;
+    }
+
+    .track-note-preview {
+      font-size: 0.78rem;
+      color: #585858;
+      line-height: 1.3;
+      margin-top: 2px;
+      font-family: Arial, Helvetica, sans-serif;
     }
 
     .track-button:hover,
@@ -246,36 +353,41 @@
     }
 
     .track-button[aria-current="true"] {
-      background: var(--ink);
-      color: var(--cream);
+      background: var(--near-black);
+      color: var(--warm-paper);
     }
 
     .track-number {
-      color: var(--orange);
+      color: var(--patriotic-red);
     }
 
     .track-button[aria-current="true"] .track-number {
-      color: var(--gold);
+      color: var(--warm-paper);
+    }
+
+    .track-button[aria-current="true"] .track-title,
+    .track-button[aria-current="true"] .track-note-preview {
+      color: var(--warm-paper);
     }
 
     .playing-label {
-      color: var(--orange);
+      color: var(--patriotic-red);
       font-size: 0.78rem;
       letter-spacing: 0.08em;
       text-transform: uppercase;
     }
 
     .track-button[aria-current="true"] .playing-label {
-      color: var(--gold);
+      color: var(--warm-paper);
     }
 
     .library-note {
       max-width: 720px;
-      margin-top: 2.5rem;
+      margin: 0;
       padding-left: 1rem;
-      border-left: 6px solid var(--orange);
+      border-left: 6px solid var(--patriotic-red);
       color: #352c20;
-      font-size: 1.05rem;
+      font-size: 0.98rem;
     }
 
     footer {
@@ -288,6 +400,16 @@
     }
 
     @media (max-width: 620px) {
+      .global-nav {
+        justify-content: flex-start;
+        gap: 8px;
+      }
+
+      .global-nav a {
+        font-size: 0.8rem;
+        padding: 5px 9px;
+      }
+
       .track-top {
         align-items: flex-start;
       }
@@ -297,43 +419,53 @@
         border-width: 6px;
       }
 
-      .music-card {
-        box-shadow: 5px 5px 0 var(--ink);
+      .shell-section {
+        padding: 16px 14px;
+        margin-bottom: 14px;
       }
 
       .track-button {
-        grid-template-columns: 2rem 1fr;
+        grid-template-columns: 1.8rem 42px 1fr;
+        gap: 0.55rem;
+      }
+
+      .track-art {
+        width: 42px;
+        height: 42px;
       }
 
       .playing-label {
-        grid-column: 2;
+        grid-column: 3;
       }
     }
   </style>
 </head>
 <body>
+  <a class="skip-link" href="#main-content">Skip to main content</a>
+  <div class="global-nav" role="navigation" aria-label="Primary">
+    <a href="index.html">Home</a>
+    <a href="photos.html">Photos</a>
+    <a href="more-images.html">More Images</a>
+    <a href="music.html">Music</a>
+    <a href="javascript-games.html">Games</a>
+    <a href="rocky.html">90s Stories</a>
+  </div>
   <header>
-    <nav>
-      <a href="index.html">Home</a>
-      <a href="photos.html">Photos</a>
-      <a href="more-images.html">More Images</a>
-      <a href="music.html">Music</a>
-      <a href="javascript-games.html">Games</a>
-      <a href="rocky.html">Rocky Stories</a>
-    </nav>
+    <h1>MUSIC LIBRARY</h1>
+    <p>Songs, experiments, and strange little hits from the archive.</p>
   </header>
 
-  <main>
-    <section class="hero">
+  <main id="main-content">
+    <section class="hero shell-section">
       <p class="eyebrow">Suno Songs</p>
-      <h1>Music Library</h1>
+      <h1>Listen Through The Catalog</h1>
       <p class="intro">
         A home for the songs, experiments, weird little hits, and half-serious bangers that came out of the Suno era.
       </p>
       <a class="hero-cta" href="#audio-player">Start Listening</a>
     </section>
 
-    <section class="music-card" aria-labelledby="now-playing-title">
+    <section class="music-card shell-section" aria-labelledby="now-playing-title">
       <div class="track-top">
         <div class="record" aria-hidden="true"></div>
         <div>
@@ -358,9 +490,11 @@
       <ol class="playlist" id="playlist" aria-label="Song playlist"></ol>
     </section>
 
-    <p class="library-note">
-      Choose a song from the playlist. When a track ends, the next one will begin automatically.
-    </p>
+    <section class="shell-section">
+      <p class="library-note">
+        Choose a song from the playlist. When a track ends, the next one will begin automatically.
+      </p>
+    </section>
   </main>
 
   <footer>
@@ -375,8 +509,33 @@
     const previousButton = document.querySelector("#previous-track");
     const nextButton = document.querySelector("#next-track");
     const playlist = document.querySelector("#playlist");
+    const trackArtPool = [
+      "images/quiet-evening.jpg",
+      "images/downtown-greenville.jpg",
+      "images/water-tower-sunset.jpg",
+      "images/scenic-road.jpg",
+      "images/mountain-view.jpg",
+      "images/old-bridge.jpg",
+      "images/buddy-sleeping.jpg",
+      "images/porch-dusk.jpg",
+      "images/17882340400264763.jpg",
+      "images/eric-in-the-woods.jpg"
+    ];
     let trackButtons = [];
     let currentTrackIndex = 0;
+
+    function escapeHtml(value) {
+      return String(value)
+        .replace(/&/g, "&amp;")
+        .replace(/</g, "&lt;")
+        .replace(/>/g, "&gt;")
+        .replace(/\"/g, "&quot;")
+        .replace(/'/g, "&#39;");
+    }
+
+    function getTrackArtSrc(index) {
+      return trackArtPool[index % trackArtPool.length];
+    }
 
     async function loadPlaylist() {
       const response = await fetch("music-playlist.json");
@@ -387,13 +546,17 @@
           <button
             class="track-button"
             type="button"
-            data-title="${track.title}"
-            data-note="${track.note}"
-            data-src="${track.src}"
+            data-title="${escapeHtml(track.title)}"
+            data-note="${escapeHtml(track.note)}"
+            data-src="${escapeHtml(track.src)}"
             aria-current="${index === 0 ? "true" : "false"}"
           >
             <span class="track-number">${String(index + 1).padStart(2, "0")}</span>
-            <span>${track.title}</span>
+            <img class="track-art" src="${getTrackArtSrc(index)}" alt="" loading="lazy" decoding="async" width="48" height="48">
+            <span class="track-title-wrap">
+              <span class="track-title">${escapeHtml(track.title)}</span>
+              <span class="track-note-preview">${escapeHtml(track.note)}</span>
+            </span>
             <span class="playing-label">${index === 0 ? "Playing" : "Play"}</span>
           </button>
         </li>

@@ -3,7 +3,17 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Stories About Rocky</title>
+  <meta name="description" content="Late 1990s stories: a shared page for memories, scenes, and moments from the era.">
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="Late 1990s Stories | Eric Stone">
+  <meta property="og:description" content="Share your late 1990s memories and play Coin Dash with falling coins.">
+  <meta property="og:url" content="https://ccnjh97wh7-arch.github.io/rocky.html">
+  <meta property="og:image" content="https://ccnjh97wh7-arch.github.io/images/17882340400264763.jpg">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Late 1990s Stories | Eric Stone">
+  <meta name="twitter:description" content="Share your late 1990s memories and play Coin Dash with falling coins.">
+  <meta name="twitter:image" content="https://ccnjh97wh7-arch.github.io/images/17882340400264763.jpg">
+  <title>Late 1990s Stories</title>
 
   <style>
     :root {
@@ -71,6 +81,33 @@
 
     a {
       color: var(--gold);
+    }
+
+    .skip-link {
+      position: absolute;
+      top: -48px;
+      left: 12px;
+      z-index: 1200;
+      padding: 8px 12px;
+      border-radius: 8px;
+      background: #FFE39C;
+      color: #1E1205;
+      text-decoration: none;
+      font: 700 0.8rem "Trebuchet MS", Verdana, sans-serif;
+      letter-spacing: 0.04em;
+      transition: top 0.2s ease;
+    }
+
+    .skip-link:focus {
+      top: 10px;
+    }
+
+    a:focus-visible,
+    button:focus-visible,
+    input:focus-visible,
+    textarea:focus-visible {
+      outline: 3px solid #FFE39C;
+      outline-offset: 2px;
     }
 
     .rocky-nav {
@@ -1725,6 +1762,7 @@
 </head>
 
 <body>
+  <a class="skip-link" href="#main-content">Skip to main content</a>
   <canvas id="eagle-canvas"></canvas>
   <div class="rocky-nav" aria-label="Primary">
     <a href="index.html">Home</a>
@@ -1732,13 +1770,13 @@
     <a href="more-images.html">More Images</a>
     <a href="music.html">Music</a>
     <a href="javascript-games.html">Games</a>
-    <a href="rocky.html">Rocky Stories</a>
+    <a href="rocky.html">90s Stories</a>
   </div>
-  <main>
+  <main id="main-content">
     <a class="back-link" href="index.html">← Back to the main page</a>
 
     <div class="page-title-row">
-      <h1>Stories About Rocky</h1>
+      <h1>Late 1990s Stories</h1>
       <div class="music-suggestion">
         <p class="music-suggestion-text">🎵 music for reflection</p>
         <p class="music-track-name" id="music-track-name"></p>
@@ -1749,7 +1787,7 @@
 
     <section class="coin-bank-panel" aria-live="polite">
       <div class="coin-bank-head">
-        <span class="coin-bank-title">Dynasty Coin Bank</span>
+        <span class="coin-bank-title">Story Credit Bank</span>
         <span class="coin-balance" id="coin-balance">0 coins</span>
         <span class="coin-rank" id="coin-rank">Bronze Citizen</span>
       </div>
@@ -1759,6 +1797,10 @@
       <div class="coin-bank-meta">
         <span id="coin-next-goal">Next rank: Silver Baron (120)</span>
         <span id="coin-actions">Actions rewarded: 0</span>
+      </div>
+      <div class="coin-bank-meta">
+        <span id="vote-credit-bank">Vote credits: 0</span>
+        <span id="weekly-prompt-headline">Weekly prompt: Late-night mall memories</span>
       </div>
       <div class="coin-gem-row">
         <span class="gem-balance" id="purple-gem-balance">0 purple gems</span>
@@ -1774,15 +1816,21 @@
     </section>
 
     <p class="intro">
-      This page is for anyone who knew James “Rocky” Taylor.
-      Leave a story, a nickname, or one small piece of him that deserves
-      to be remembered.
+      This page is for anyone who remembers the late 1990s.
+      Share a story, a nickname, or one scene that still feels vivid.
     </p>
 
-    <a class="intro-cta" href="#memory-form">Leave a Memory</a>
+    <a class="intro-cta" href="coin-dash.html">Play 15s Coin Dash First</a>
 
     <section class="form-box">
-      <h2>Leave a memory</h2>
+      <h2>Share a late-90s story</h2>
+
+      <p class="notice" style="margin-top:0;">
+        Story credits: <strong id="story-credit-balance">0</strong>. You earn credits in the Coin Dash game.
+      </p>
+      <p class="notice" style="margin-top:-8px;">
+        <a href="coin-dash.html">Open Coin Dash</a> and play for 15 seconds, then come back here to post.
+      </p>
 
       <form id="memory-form">
         <label for="name">
@@ -1795,30 +1843,29 @@
         </label>
         <input id="nickname" name="nickname" type="text" maxlength="80">
 
-        <label for="story">Your story</label>
+        <label for="story">Your story from the late 1990s</label>
         <textarea id="story" name="story" required maxlength="2500"></textarea>
 
-        <div class="reaction-group" role="radiogroup" aria-label="Choose a reaction">
-          <button class="reaction-option" type="button" data-reaction="Marlboro Reds">Marlboro Reds</button>
-          <button class="reaction-option" type="button" data-reaction="Pall Mall">Pall Mall</button>
-          <button class="reaction-option" type="button" data-reaction="Newports">Newports</button>
+        <div class="reaction-group" role="radiogroup" aria-label="Choose a vibe">
+          <button class="reaction-option" type="button" data-reaction="Blockbuster Nights">Blockbuster Nights</button>
+          <button class="reaction-option" type="button" data-reaction="CD Burn Mix">CD Burn Mix</button>
+          <button class="reaction-option" type="button" data-reaction="Dial-up Era">Dial-up Era</button>
           <input type="hidden" id="reaction-value" name="reaction" value="">
         </div>
 
-        <button id="submit-button" type="submit">Share memory</button>
+        <button id="submit-button" type="submit">Share story</button>
 
         <p id="form-status" class="status" aria-live="polite"></p>
 
         <p class="notice">
-          Stories will appear publicly after they are submitted. Photo uploads
-          will be added soon.
+          Stories will appear publicly after they are submitted.
         </p>
       </form>
     </section>
 
     <section class="share-section" id="share-section">
-      <h3>Help us celebrate Rocky's memory</h3>
-      <p>Spread the word and invite others to share their memories. Every story honors his legacy.</p>
+      <h3>Invite people to share late-90s stories</h3>
+      <p>Spread the page and bring in more stories from the era.</p>
       <div class="share-buttons">
         <button class="share-button facebook" id="share-facebook" type="button" aria-label="Share on Facebook">📘 Facebook</button>
         <button class="share-button twitter" id="share-twitter" type="button" aria-label="Share on Twitter">𝕏 Twitter</button>
@@ -1827,14 +1874,24 @@
       </div>
     </section>
 
-    <section>
-      <h2>Memories already shared</h2>
+    <section id="stories-section">
+      <h2>Stories already shared</h2>
       <div class="sort-controls" id="sort-controls">
         <button class="sort-button is-active" data-sort="popular">Most Popular</button>
         <button class="sort-button" data-sort="newest">Newest First</button>
         <button class="sort-button" data-sort="oldest">Oldest First</button>
+        <label for="vote-weight-select" style="display:inline-flex;align-items:center;gap:6px;font-weight:bold;">
+          Vote Weight
+          <select id="vote-weight-select" style="padding:6px 8px;border-radius:999px;border:1px solid var(--gold);">
+            <option value="1">1x (cost 1)</option>
+            <option value="2">2x (cost 2)</option>
+            <option value="3">3x (cost 3)</option>
+          </select>
+        </label>
+        <span id="vote-credit-status" style="font-size:0.86rem;color:#2b1a06;opacity:0.8;">Use vote credits to cast stronger votes.</span>
       </div>
       <div id="vote-summary" class="vote-summary" aria-live="polite"></div>
+      <div id="curator-board" class="vote-summary" aria-live="polite"></div>
       <div id="memories">
         <article class="memory">
           <div class="memory-name">No memories have been posted yet.</div>
@@ -1844,8 +1901,8 @@
     </section>
 
     <section class="export-section" id="export-section">
-      <h3>Keep Rocky's memory with you</h3>
-      <p>Print or download all shared memories as a keepsake document to treasure and share.</p>
+      <h3>Keep the stories collection</h3>
+      <p>Print or download all shared stories as a keepsake document.</p>
       <div class="export-buttons">
         <button class="export-button print" id="export-print" type="button" aria-label="Print memories">🖨️ Print</button>
         <button class="export-button download" id="export-download" type="button" aria-label="Download as HTML">💾 Download</button>
@@ -1878,8 +1935,12 @@
       doc,
       getDocs,
       getFirestore,
+      increment,
+      limit,
+      orderBy,
       query,
       serverTimestamp,
+      setDoc,
       updateDoc
     } from "https://www.gstatic.com/firebasejs/12.16.0/firebase-firestore.js";
 
@@ -1917,6 +1978,12 @@
     const purpleGemBalanceEl = document.querySelector("#purple-gem-balance");
     const purpleMultiplierButtonEl = document.querySelector("#purple-multiplier-button");
     const purpleMultiplierStatusEl = document.querySelector("#purple-multiplier-status");
+    const storyCreditBalanceEl = document.querySelector("#story-credit-balance");
+    const voteCreditBankEl = document.querySelector("#vote-credit-bank");
+    const voteWeightSelectEl = document.querySelector("#vote-weight-select");
+    const voteCreditStatusEl = document.querySelector("#vote-credit-status");
+    const weeklyPromptHeadlineEl = document.querySelector("#weekly-prompt-headline");
+    const curatorBoardEl = document.querySelector("#curator-board");
     const coinDashStatusEl = document.querySelector("#coin-dash-status");
     const coinDashRowEl = document.querySelector("#coin-dash-row");
     const coinDashModeBadgeEl = document.querySelector("#coin-dash-mode-badge");
@@ -1947,6 +2014,17 @@
     const COIN_DASH_MODE_KEY = "rocky-coin-dash-mode";
     const AUDIO_CONSENT_KEY = "rocky-audio-consent";
     const AUDIO_CONSENT_COOKIE_NAME = "rocky_audio_consent";
+    const STORY_CREDITS_KEY = "late90s-story-credits";
+    const VOTE_CREDITS_KEY = "late90s-vote-credits";
+    const CURATOR_LEADERBOARD_KEY = "late90s-curator-board";
+    const CURATOR_LEADERBOARD_COLLECTION = "curator_leaderboard";
+    const VOTE_DAILY_SPEND_KEY = "late90s-vote-daily-spend";
+    const VOTE_DAILY_SPEND_CAP = 24;
+
+    let globalCuratorRows = [];
+    let globalCuratorSource = "local";
+    let globalCuratorLastFetchAt = 0;
+    let globalCuratorLastSyncedAt = 0;
     const MEGA_GLITTER_COST = 120;
     const MEGA_GLITTER_CHARGES = 3;
     const PURPLE_MULTIPLIER_GEM_COST = 5;
@@ -2079,6 +2157,34 @@
       random_event: { amount: 3, label: "Dynasty chaos event", cooldownMs: 45000 },
       coin_dash_round: { amount: 20, label: "Coin Dash round", cooldownMs: 0 }
     };
+
+    const WEEKLY_PROMPTS = [
+      "Late-night mall memories",
+      "Dial-up internet chaos",
+      "Best 90s CD burn mix",
+      "Arcade and movie theater nights"
+    ];
+
+    function getWeekStamp() {
+      const now = new Date();
+      const start = new Date(Date.UTC(now.getUTCFullYear(), 0, 1));
+      const day = Math.floor((Date.UTC(now.getUTCFullYear(), now.getUTCMonth(), now.getUTCDate()) - start.getTime()) / 86400000);
+      const week = Math.floor((day + start.getUTCDay()) / 7) + 1;
+      return `${now.getUTCFullYear()}-W${String(week).padStart(2, "0")}`;
+    }
+
+    function getWeeklyPromptText() {
+      const weekStamp = getWeekStamp();
+      const seed = Number(weekStamp.slice(-2));
+      return WEEKLY_PROMPTS[seed % WEEKLY_PROMPTS.length];
+    }
+
+    function renderWeeklyPrompt() {
+      if (!weeklyPromptHeadlineEl) {
+        return;
+      }
+      weeklyPromptHeadlineEl.textContent = `Weekly prompt: ${getWeeklyPromptText()}`;
+    }
 
     const PURPLE_GEM_DROP_TABLE = {
       submit_memory: { chance: 0.65, min: 2, max: 4 },
@@ -2727,6 +2833,305 @@
       return current;
     }
 
+    function readStoryCredits() {
+      try {
+        return Math.max(0, Number(localStorage.getItem(STORY_CREDITS_KEY) || "0"));
+      } catch (error) {
+        console.warn("Could not read story credits:", error);
+        return 0;
+      }
+    }
+
+    function writeStoryCredits(value) {
+      const nextValue = Math.max(0, Number(value || 0));
+      try {
+        localStorage.setItem(STORY_CREDITS_KEY, String(nextValue));
+      } catch (error) {
+        console.warn("Could not save story credits:", error);
+      }
+      return nextValue;
+    }
+
+    function consumeStoryCredit() {
+      const current = readStoryCredits();
+      if (current <= 0) {
+        return false;
+      }
+      writeStoryCredits(current - 1);
+      return true;
+    }
+
+    function renderStoryCredits() {
+      if (storyCreditBalanceEl) {
+        storyCreditBalanceEl.textContent = String(readStoryCredits());
+      }
+    }
+
+    function readVoteCredits() {
+      try {
+        return Math.max(0, Number(localStorage.getItem(VOTE_CREDITS_KEY) || "0"));
+      } catch (error) {
+        console.warn("Could not read vote credits:", error);
+        return 0;
+      }
+    }
+
+    function writeVoteCredits(value) {
+      const nextValue = Math.max(0, Number(value || 0));
+      try {
+        localStorage.setItem(VOTE_CREDITS_KEY, String(nextValue));
+      } catch (error) {
+        console.warn("Could not save vote credits:", error);
+      }
+      return nextValue;
+    }
+
+    function addVoteCredits(amount) {
+      const current = readVoteCredits();
+      return writeVoteCredits(current + Math.max(0, Number(amount || 0)));
+    }
+
+    function consumeVoteCredits(amount) {
+      const cost = Math.max(1, Number(amount || 1));
+      const current = readVoteCredits();
+      if (current < cost) {
+        return false;
+      }
+      writeVoteCredits(current - cost);
+      return true;
+    }
+
+    function renderVoteCredits() {
+      if (voteCreditBankEl) {
+        voteCreditBankEl.textContent = `Vote credits: ${readVoteCredits()}`;
+      }
+      const daily = readDailyVoteSpend();
+      const remaining = Math.max(0, VOTE_DAILY_SPEND_CAP - daily.spent);
+      setVoteCreditStatus(`Use vote credits to cast stronger votes. Daily vote power left: ${remaining}/${VOTE_DAILY_SPEND_CAP}.`);
+    }
+
+    function getSelectedVoteWeight() {
+      const selected = Number(voteWeightSelectEl?.value || 1);
+      if (selected === 2 || selected === 3) {
+        return selected;
+      }
+      return 1;
+    }
+
+    function setVoteCreditStatus(message, isWarning = false) {
+      if (!voteCreditStatusEl) {
+        return;
+      }
+      voteCreditStatusEl.textContent = message;
+      voteCreditStatusEl.style.color = isWarning ? "#7A170A" : "#2b1a06";
+    }
+
+    function getDayStamp() {
+      const now = new Date();
+      const year = now.getFullYear();
+      const month = String(now.getMonth() + 1).padStart(2, "0");
+      const day = String(now.getDate()).padStart(2, "0");
+      return `${year}-${month}-${day}`;
+    }
+
+    function readDailyVoteSpend() {
+      const stamp = getDayStamp();
+      try {
+        const parsed = JSON.parse(localStorage.getItem(VOTE_DAILY_SPEND_KEY) || "{}");
+        if (parsed.stamp !== stamp) {
+          return { stamp, spent: 0 };
+        }
+        return { stamp, spent: Math.max(0, Number(parsed.spent || 0)) };
+      } catch (error) {
+        console.warn("Could not read daily vote spend:", error);
+        return { stamp, spent: 0 };
+      }
+    }
+
+    function writeDailyVoteSpend(spendState) {
+      try {
+        localStorage.setItem(VOTE_DAILY_SPEND_KEY, JSON.stringify(spendState));
+      } catch (error) {
+        console.warn("Could not save daily vote spend:", error);
+      }
+    }
+
+    function canSpendVoteCredits(cost) {
+      const daily = readDailyVoteSpend();
+      return daily.spent + cost <= VOTE_DAILY_SPEND_CAP;
+    }
+
+    function recordVoteSpend(cost) {
+      const daily = readDailyVoteSpend();
+      const next = { stamp: daily.stamp, spent: daily.spent + Math.max(0, Number(cost || 0)) };
+      writeDailyVoteSpend(next);
+      return next;
+    }
+
+    function readCuratorBoard() {
+      try {
+        const parsed = JSON.parse(localStorage.getItem(CURATOR_LEADERBOARD_KEY) || "{}");
+        return parsed && typeof parsed === "object" ? parsed : {};
+      } catch (error) {
+        console.warn("Could not read curator board:", error);
+        return {};
+      }
+    }
+
+    function saveCuratorBoard(board) {
+      try {
+        localStorage.setItem(CURATOR_LEADERBOARD_KEY, JSON.stringify(board));
+      } catch (error) {
+        console.warn("Could not save curator board:", error);
+      }
+    }
+
+    function getCuratorHandle() {
+      const nickname = (document.querySelector("#nickname")?.value || "").trim();
+      const name = (document.querySelector("#name")?.value || "").trim();
+      const candidate = nickname || name || "Anonymous Curator";
+      return candidate.slice(0, 28);
+    }
+
+    function toCuratorDocId(handle) {
+      return handle
+        .toLowerCase()
+        .replace(/[^a-z0-9]+/g, "-")
+        .replace(/^-+|-+$/g, "")
+        .slice(0, 48) || "anonymous-curator";
+    }
+
+    function mapCuratorBoardToRows(board) {
+      return Object.entries(board)
+        .map(([name, stats]) => ({
+          name,
+          weightedVotes: Math.max(0, Number(stats.weightedVotes || 0)),
+          actions: Math.max(0, Number(stats.actions || 0)),
+          upVotes: Math.max(0, Number(stats.upVotes || 0)),
+          downVotes: Math.max(0, Number(stats.downVotes || 0))
+        }))
+        .sort((a, b) => b.weightedVotes - a.weightedVotes)
+        .slice(0, 6);
+    }
+
+    async function syncCuratorContributionToFirestore(handle, weight, reaction) {
+      const docId = toCuratorDocId(handle);
+      const leaderboardRef = doc(db, CURATOR_LEADERBOARD_COLLECTION, docId);
+      const payload = {
+        name: handle,
+        weightedVotes: increment(weight),
+        actions: increment(1),
+        upVotes: increment(reaction === "up" ? weight : 0),
+        downVotes: increment(reaction === "down" ? weight : 0),
+        updatedAt: serverTimestamp()
+      };
+
+      await setDoc(leaderboardRef, payload, { merge: true });
+    }
+
+    async function refreshCuratorBoardFromFirestore(force = false) {
+      const now = Date.now();
+      if (!force && now - globalCuratorLastFetchAt < 4500) {
+        return;
+      }
+
+      try {
+        const leaderboardQuery = query(
+          collection(db, CURATOR_LEADERBOARD_COLLECTION),
+          orderBy("weightedVotes", "desc"),
+          limit(6)
+        );
+        const snapshot = await getDocs(leaderboardQuery);
+        globalCuratorRows = snapshot.docs.map((entry) => {
+          const data = entry.data() || {};
+          return {
+            name: String(data.name || "Anonymous Curator").slice(0, 28),
+            weightedVotes: Math.max(0, Number(data.weightedVotes || 0)),
+            actions: Math.max(0, Number(data.actions || 0)),
+            upVotes: Math.max(0, Number(data.upVotes || 0)),
+            downVotes: Math.max(0, Number(data.downVotes || 0))
+          };
+        });
+        globalCuratorSource = "global";
+        globalCuratorLastSyncedAt = Date.now();
+      } catch (error) {
+        console.warn("Could not load global curator board, falling back to local:", error);
+        globalCuratorRows = mapCuratorBoardToRows(readCuratorBoard());
+        globalCuratorSource = "local";
+        globalCuratorLastSyncedAt = 0;
+      }
+
+      globalCuratorLastFetchAt = now;
+    }
+
+    function formatCuratorSyncTime() {
+      if (!globalCuratorLastSyncedAt || globalCuratorSource !== "global") {
+        return "Using local fallback";
+      }
+
+      const deltaMs = Date.now() - globalCuratorLastSyncedAt;
+      const deltaSeconds = Math.max(0, Math.round(deltaMs / 1000));
+
+      if (deltaSeconds < 60) {
+        return `Synced ${deltaSeconds}s ago`;
+      }
+
+      const deltaMinutes = Math.round(deltaSeconds / 60);
+      if (deltaMinutes < 60) {
+        return `Synced ${deltaMinutes}m ago`;
+      }
+
+      const deltaHours = Math.round(deltaMinutes / 60);
+      return `Synced ${deltaHours}h ago`;
+    }
+
+    function recordCuratorContribution(weight, reaction) {
+      const board = readCuratorBoard();
+      const key = getCuratorHandle();
+      const current = board[key] || { weightedVotes: 0, upVotes: 0, downVotes: 0, actions: 0 };
+      current.weightedVotes += weight;
+      current.actions += 1;
+      if (reaction === "up") {
+        current.upVotes += weight;
+      } else {
+        current.downVotes += weight;
+      }
+      board[key] = current;
+      saveCuratorBoard(board);
+
+      syncCuratorContributionToFirestore(key, weight, reaction)
+        .then(() => refreshCuratorBoardFromFirestore(true))
+        .then(() => renderCuratorBoard())
+        .catch((error) => {
+          console.warn("Could not sync curator contribution globally:", error);
+        });
+    }
+
+    function renderCuratorBoard() {
+      if (!curatorBoardEl) {
+        return;
+      }
+
+      const localRows = mapCuratorBoardToRows(readCuratorBoard());
+      const rows = globalCuratorRows.length ? globalCuratorRows : localRows;
+      const sourceLabel = globalCuratorRows.length && globalCuratorSource === "global" ? "global" : "this browser";
+      const syncLabel = formatCuratorSyncTime();
+
+      const daily = readDailyVoteSpend();
+      const remaining = Math.max(0, VOTE_DAILY_SPEND_CAP - daily.spent);
+
+      if (!rows.length) {
+        curatorBoardEl.innerHTML = `<strong>Top Curators</strong><p style="margin:8px 0 0;">No curator votes yet. Play Coin Dash, then cast weighted votes.</p><p style="margin:8px 0 0;">Daily vote power left: ${remaining}/${VOTE_DAILY_SPEND_CAP}</p>`;
+        return;
+      }
+
+      const list = rows
+        .map((row, index) => `<div style="margin:6px 0;"><strong>#${index + 1} ${row.name}</strong> • Weight ${row.weightedVotes} • Votes ${row.actions} • 👍 ${row.upVotes} / 👎 ${row.downVotes}</div>`)
+        .join("");
+
+      curatorBoardEl.innerHTML = `<strong>Top Curators (${sourceLabel})</strong>${list}<p style="margin:8px 0 0;">${syncLabel}</p><p style="margin:8px 0 0;">Daily vote power left: ${remaining}/${VOTE_DAILY_SPEND_CAP}</p>`;
+    }
+
     function renderCoinBank() {
       const bank = readCoinBank();
       const rank = getCoinRankInfo(bank.balance);
@@ -3200,14 +3605,15 @@
       };
     }
 
-    function calculateNextFeedback(currentFeedback, desiredReaction) {
+    function calculateNextFeedback(currentFeedback, desiredReaction, amount = 1) {
+      const delta = Math.max(1, Number(amount || 1));
       let upvotes = Number(currentFeedback.upvotes || 0);
       let downvotes = Number(currentFeedback.downvotes || 0);
 
       if (desiredReaction === "up") {
-        upvotes += 1;
+        upvotes += delta;
       } else if (desiredReaction === "down") {
-        downvotes += 1;
+        downvotes += delta;
       }
 
       return { upvotes, downvotes };
@@ -3438,11 +3844,19 @@
 
     enableCoinDynastyAmbience();
     renderCoinBank();
+    renderVoteCredits();
+    renderCuratorBoard();
+    refreshCuratorBoardFromFirestore(true)
+      .then(() => renderCuratorBoard())
+      .catch((error) => {
+        console.warn("Could not initialize global curator board:", error);
+      });
+    renderWeeklyPrompt();
     applyDailyCoinBonus();
     megaGlitterButtonEl?.addEventListener("click", activateMegaGlitter);
     purpleMultiplierButtonEl?.addEventListener("click", activatePurpleGemMultiplier);
 
-    function applyFeedbackChange(entries, memoryKey, desiredReaction) {
+    function applyFeedbackChange(entries, memoryKey, desiredReaction, amount = 1) {
       return entries.map((entry) => {
         const entryKey = entry.id || createMemoryKey(entry);
         if (entryKey !== memoryKey) {
@@ -3451,7 +3865,7 @@
 
         return {
           ...entry,
-          feedback: calculateNextFeedback(getMemoryFeedback(entry), desiredReaction)
+          feedback: calculateNextFeedback(getMemoryFeedback(entry), desiredReaction, amount)
         };
       });
     }
@@ -3459,14 +3873,14 @@
     let memoryEntries = [];
     let currentSortMode = "popular";
 
-    async function handleMemoryFeedback(memory, desiredReaction) {
+    async function handleMemoryFeedback(memory, desiredReaction, amount = 1) {
       const memoryKey = memory.id || createMemoryKey(memory);
 
       if (isFeedbackLocked(memoryKey)) {
         return false;
       }
 
-      const nextFallbackMemories = applyFeedbackChange(getFallbackMemories(), memoryKey, desiredReaction);
+      const nextFallbackMemories = applyFeedbackChange(getFallbackMemories(), memoryKey, desiredReaction, amount);
       saveFallbackMemories(nextFallbackMemories);
 
       memoryEntries = memoryEntries.map((entry) => {
@@ -3477,7 +3891,7 @@
 
         return {
           ...entry,
-          feedback: calculateNextFeedback(getMemoryFeedback(entry), desiredReaction)
+          feedback: calculateNextFeedback(getMemoryFeedback(entry), desiredReaction, amount)
         };
       });
 
@@ -3522,18 +3936,22 @@
 
     function renderMemoryList(entries) {
       const sortedEntries = sortMemoriesForDisplay(entries, currentSortMode);
-      const malboroVotes = sortedEntries.filter((memory) => memory.reaction === "Marlboro Reds").length;
-      const pallMallVotes = sortedEntries.filter((memory) => memory.reaction === "Pall Mall").length;
-      const newportsVotes = sortedEntries.filter((memory) => memory.reaction === "Newports").length;
+      const blockbusterVotes = sortedEntries.filter((memory) => memory.reaction === "Blockbuster Nights").length;
+      const cdBurnVotes = sortedEntries.filter((memory) => memory.reaction === "CD Burn Mix").length;
+      const dialupVotes = sortedEntries.filter((memory) => memory.reaction === "Dial-up Era").length;
       
       const totalUpvotes = sortedEntries.reduce((sum, memory) => sum + (getMemoryFeedback(memory).upvotes || 0), 0);
       const totalDownvotes = sortedEntries.reduce((sum, memory) => sum + (getMemoryFeedback(memory).downvotes || 0), 0);
+      const currentPrompt = getWeeklyPromptText();
+      const localGoalProgress = Math.max(0, Number(localStorage.getItem("late90s-community-coins") || "0"));
+      const localGoalTarget = 1000;
+      const goalPct = Math.min(100, Math.round((localGoalProgress / localGoalTarget) * 100));
       
       const topMemories = sortedEntries
         .filter((memory) => getMemoryFeedback(memory).upvotes > 0)
         .slice(0, 5)
         .map((memory, index) => {
-          const name = memory.nickname || memory.name || "A friend of Rocky";
+          const name = memory.nickname || memory.name || "A friend from the 90s";
           const feedback = getMemoryFeedback(memory);
           const preview = memory.story.substring(0, 120).replace(/</g, "&lt;").replace(/>/g, "&gt;");
           const previewText = preview.length < memory.story.length ? preview + "..." : preview;
@@ -3543,6 +3961,10 @@
       let voteSummaryHTML = `
         <div style="margin-bottom: 16px;">
           <strong>${sortedEntries.length} ${sortedEntries.length === 1 ? "memory" : "memories"} shared</strong>
+        </div>
+        <div style="margin-bottom: 16px; padding: 10px 12px; border-radius: 8px; background: rgba(255,255,255,0.72); border: 1px solid rgba(183,122,21,0.35);">
+          <strong>Weekly prompt:</strong> ${currentPrompt}<br>
+          <strong>Community coin goal:</strong> ${localGoalProgress} / ${localGoalTarget} (${goalPct}%)
         </div>
         <div class="vote-summary-sentiment" style="margin-bottom: 16px;">
           <strong>Community sentiment (total tally):</strong>
@@ -3572,14 +3994,15 @@
       
       voteSummaryHTML += `
         <div>
-          <strong>Favorite cigarette brands mentioned:</strong>
-          <span class="vote-pill">Marlboro Reds ${malboroVotes}</span>
-          <span class="vote-pill">Pall Mall ${pallMallVotes}</span>
-          <span class="vote-pill">Newports ${newportsVotes}</span>
+          <strong>Favorite late-90s vibes mentioned:</strong>
+          <span class="vote-pill">Blockbuster Nights ${blockbusterVotes}</span>
+          <span class="vote-pill">CD Burn Mix ${cdBurnVotes}</span>
+          <span class="vote-pill">Dial-up Era ${dialupVotes}</span>
         </div>
       `;
 
       voteSummary.innerHTML = voteSummaryHTML;
+      renderCuratorBoard();
 
       if (!sortedEntries.length) {
         memories.innerHTML = `
@@ -3604,7 +4027,7 @@
         name.textContent =
           memory.nickname ||
           memory.name ||
-          "A friend of Rocky";
+          "A friend from the 90s";
 
         const timestamp = document.createElement("div");
         timestamp.style.fontSize = "0.85rem";
@@ -3653,8 +4076,23 @@
           downButton.disabled = true;
           upButton.disabled = true;
           try {
-            const wasRecorded = await handleMemoryFeedback(memory, "up");
+            const voteWeight = getSelectedVoteWeight();
+            if (!canSpendVoteCredits(voteWeight)) {
+              setVoteCreditStatus(`Daily vote power cap reached (${VOTE_DAILY_SPEND_CAP}). Come back tomorrow.`, true);
+              return;
+            }
+            if (!consumeVoteCredits(voteWeight)) {
+              setVoteCreditStatus(`Need ${voteWeight} vote credits for a ${voteWeight}x vote.`, true);
+              return;
+            }
+            recordVoteSpend(voteWeight);
+
+            const wasRecorded = await handleMemoryFeedback(memory, "up", voteWeight);
             if (wasRecorded) {
+              recordCuratorContribution(voteWeight, "up");
+              renderVoteCredits();
+              renderCuratorBoard();
+              setVoteCreditStatus(`Cast a ${voteWeight}x upvote. Keep dashing for more voting power.`);
               rewardCoins("vote_memory", memoryKey);
               const megaActive = consumeMegaGlitterCharge();
               shootGlitterFromElement(upButton, false, megaActive ? 2.05 : 1);
@@ -3683,8 +4121,23 @@
           downButton.disabled = true;
           upButton.disabled = true;
           try {
-            const wasRecorded = await handleMemoryFeedback(memory, "down");
+            const voteWeight = getSelectedVoteWeight();
+            if (!canSpendVoteCredits(voteWeight)) {
+              setVoteCreditStatus(`Daily vote power cap reached (${VOTE_DAILY_SPEND_CAP}). Come back tomorrow.`, true);
+              return;
+            }
+            if (!consumeVoteCredits(voteWeight)) {
+              setVoteCreditStatus(`Need ${voteWeight} vote credits for a ${voteWeight}x vote.`, true);
+              return;
+            }
+            recordVoteSpend(voteWeight);
+
+            const wasRecorded = await handleMemoryFeedback(memory, "down", voteWeight);
             if (wasRecorded) {
+              recordCuratorContribution(voteWeight, "down");
+              renderVoteCredits();
+              renderCuratorBoard();
+              setVoteCreditStatus(`Cast a ${voteWeight}x downvote. Keep dashing for more voting power.`);
               rewardCoins("vote_memory", memoryKey);
               const megaActive = consumeMegaGlitterCharge();
               shootGlitterFromElement(downButton, true, megaActive ? 2.05 : 1);
@@ -3786,8 +4239,14 @@
         return;
       }
 
+      if (!consumeStoryCredit()) {
+        status.textContent = "You need at least 1 story credit. Play Coin Dash for 15 seconds first.";
+        renderStoryCredits();
+        return;
+      }
+
       submitButton.disabled = true;
-      status.textContent = "Sharing your memory...";
+      status.textContent = "Sharing your story...";
 
       try {
         await addDoc(collection(db, "approved_memories"), {
@@ -3800,9 +4259,10 @@
         });
 
         form.reset();
-        status.textContent = "Thank you. Your memory has been shared.";
+        status.textContent = "Thanks. Your late-90s story has been shared.";
         rewardCoins("submit_memory");
         loadApprovedMemories();
+        renderStoryCredits();
       } catch (error) {
         console.error("Could not submit memory:", error);
 
@@ -3823,7 +4283,7 @@
 
         if (error && error.code === "permission-denied") {
           status.textContent =
-            "Saved locally for now because Firestore rules are blocking writes. Your memory is visible here.";
+            "Saved locally for now because Firestore rules are blocking writes. Your story is visible here.";
         } else {
           status.textContent =
             "Saved locally for now. Please try again in a moment if you want to sync it later.";
@@ -3831,17 +4291,19 @@
 
         rewardCoins("submit_memory");
         loadApprovedMemories();
+        renderStoryCredits();
       } finally {
         submitButton.disabled = false;
       }
     });
 
+    renderStoryCredits();
     loadApprovedMemories();
 
     // Social sharing functionality
     const pageUrl = window.location.href;
-    const pageTitle = "Stories About Rocky - A Memorial";
-    const pageDescription = "Share your memories and tributes to James 'Rocky' Taylor. Every story honors his legacy.";
+    const pageTitle = "Late 1990s Stories";
+    const pageDescription = "Share late 1990s stories and play a 15-second Coin Dash to earn story credits.";
 
     document.getElementById("share-facebook").addEventListener("click", () => {
       const facebookUrl = `https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(pageUrl)}&quote=${encodeURIComponent(pageDescription)}`;
@@ -3898,7 +4360,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Stories About Rocky - Memorial Keepsake</title>
+  <title>Late 1990s Stories - Keepsake Collection</title>
   <style>
     body {
       font-family: Georgia, "Times New Roman", serif;
@@ -3987,8 +4449,8 @@
 </head>
 <body>
   <div class="header">
-    <h1>Stories About Rocky</h1>
-    <p>A Memorial to James "Rocky" Taylor</p>
+    <h1>Late 1990s Stories</h1>
+    <p>A shared collection from the era</p>
   </div>
   <div class="date">Created on ${dateStr}</div>
   <div class="stats">
@@ -4000,7 +4462,7 @@
 
       // Add each memory
       memories.forEach((memory, index) => {
-        const name = memory.nickname || memory.name || "A friend of Rocky";
+        const name = memory.nickname || memory.name || "A friend from the 90s";
         const feedback = memory.feedback || { upvotes: 0, downvotes: 0 };
         const timeStr = memory.submittedAt ? new Date(memory.submittedAt).toLocaleDateString() : "Recently";
         
@@ -4009,7 +4471,7 @@
     <div class="memory-name">${index + 1}. ${name.replace(/</g, "&lt;").replace(/>/g, "&gt;")}</div>
     <div class="memory-time">Posted: ${timeStr}</div>
     <div class="memory-story">${memory.story.replace(/</g, "&lt;").replace(/>/g, "&gt;").replace(/\n/g, "<br>")}</div>
-    ${memory.reaction ? `<div class="memory-reaction">Cigarette: ${memory.reaction}</div>` : ""}
+    ${memory.reaction ? `<div class="memory-reaction">Vibe: ${memory.reaction}</div>` : ""}
     <div class="memory-feedback">Community feedback: 👍 ${feedback.upvotes} | 👎 ${feedback.downvotes}</div>
   </div>
 `;
@@ -4017,8 +4479,8 @@
 
       html += `
   <div class="footer">
-    <p>This is a digital keepsake of the memories shared about James "Rocky" Taylor.</p>
-    <p>Every story honors his legacy.</p>
+    <p>This is a digital keepsake of stories shared from the late 1990s.</p>
+    <p>Thanks to everyone who contributed.</p>
   </div>
 </body>
 </html>
@@ -4054,7 +4516,7 @@
       const url = URL.createObjectURL(blob);
       const a = document.createElement("a");
       a.href = url;
-      a.download = `Rocky-Taylor-Memorial-${new Date().getTime()}.html`;
+      a.download = `late-1990s-stories-${new Date().getTime()}.html`;
       document.body.appendChild(a);
       a.click();
       document.body.removeChild(a);
