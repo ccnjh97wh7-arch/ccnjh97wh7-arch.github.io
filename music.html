@@ -89,6 +89,25 @@
       font-size: 1.15rem;
     }
 
+    .hero-cta {
+      display: inline-block;
+      margin-top: 1rem;
+      padding: 0.65rem 1rem;
+      border: 2px solid var(--ink);
+      border-radius: 999px;
+      background: var(--gold);
+      color: var(--ink);
+      text-decoration: none;
+      font: 800 0.9rem Arial, Helvetica, sans-serif;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+    }
+
+    .hero-cta:hover {
+      background: var(--orange);
+      color: var(--cream);
+    }
+
     .music-card {
       position: relative;
       overflow: hidden;
@@ -296,7 +315,11 @@
   <header>
     <nav>
       <a href="index.html">Home</a>
+      <a href="photos.html">Photos</a>
+      <a href="more-images.html">More Images</a>
       <a href="music.html">Music</a>
+      <a href="javascript-games.html">Games</a>
+      <a href="rocky.html">Rocky Stories</a>
     </nav>
   </header>
 
@@ -307,6 +330,7 @@
       <p class="intro">
         A home for the songs, experiments, weird little hits, and half-serious bangers that came out of the Suno era.
       </p>
+      <a class="hero-cta" href="#audio-player">Start Listening</a>
     </section>
 
     <section class="music-card" aria-labelledby="now-playing-title">

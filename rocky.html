@@ -73,6 +73,32 @@
       color: var(--gold);
     }
 
+    .rocky-nav {
+      width: min(860px, calc(100% - 28px));
+      margin: 16px auto 0;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      align-items: center;
+    }
+
+    .rocky-nav a {
+      text-decoration: none;
+      font: 700 0.78rem "Trebuchet MS", Verdana, sans-serif;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      padding: 5px 9px;
+      border-radius: 999px;
+      border: 1px solid rgba(255, 220, 124, 0.5);
+      background: rgba(34, 19, 6, 0.45);
+      color: #FFE2A0;
+    }
+
+    .rocky-nav a:hover {
+      background: rgba(183, 122, 21, 0.35);
+      border-color: rgba(255, 230, 168, 0.85);
+    }
+
     .back-link {
       display: inline-block;
       margin-bottom: 35px;
@@ -617,6 +643,25 @@
       font-size: 1.15rem;
       max-width: 650px;
       margin-bottom: 34px;
+    }
+
+    .intro-cta {
+      display: inline-block;
+      margin: -12px 0 26px;
+      text-decoration: none;
+      font: 700 0.82rem "Trebuchet MS", Verdana, sans-serif;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: #1E1205;
+      background: linear-gradient(180deg, #FFE39C, #E6B325);
+      border: 1px solid rgba(255, 234, 184, 0.8);
+      border-radius: 999px;
+      padding: 8px 12px;
+      box-shadow: 0 3px 10px rgba(0, 0, 0, 0.35);
+    }
+
+    .intro-cta:hover {
+      background: linear-gradient(180deg, #FFEBC1, #F1C857);
     }
 
     .form-box,
@@ -1681,6 +1726,14 @@
 
 <body>
   <canvas id="eagle-canvas"></canvas>
+  <div class="rocky-nav" aria-label="Primary">
+    <a href="index.html">Home</a>
+    <a href="photos.html">Photos</a>
+    <a href="more-images.html">More Images</a>
+    <a href="music.html">Music</a>
+    <a href="javascript-games.html">Games</a>
+    <a href="rocky.html">Rocky Stories</a>
+  </div>
   <main>
     <a class="back-link" href="index.html">← Back to the main page</a>
 
@@ -1725,6 +1778,8 @@
       Leave a story, a nickname, or one small piece of him that deserves
       to be remembered.
     </p>
+
+    <a class="intro-cta" href="#memory-form">Leave a Memory</a>
 
     <section class="form-box">
       <h2>Leave a memory</h2>

@@ -1,0 +1,565 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JavaScript Games | Eric Stone</title>
+    <link rel="stylesheet" href="style.css">
+    <style>
+        .games-intro {
+            margin-bottom: 0;
+        }
+
+        .games-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 20px;
+            margin-top: 20px;
+        }
+
+        .game-card {
+            border: 2px solid var(--patriotic-blue);
+            border-radius: 12px;
+            padding: 18px;
+            background: linear-gradient(140deg, rgba(255, 255, 255, 0.94), rgba(196, 30, 58, 0.06));
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+        }
+
+        .game-card h3 {
+            margin: 0 0 10px;
+            color: var(--patriotic-blue);
+            font-size: 1.3rem;
+        }
+
+        .game-card p {
+            margin: 0 0 12px;
+            font-size: 0.96rem;
+        }
+
+        .game-status {
+            min-height: 24px;
+            font-family: Arial, sans-serif;
+            font-size: 0.95rem;
+            margin: 8px 0;
+        }
+
+        .inline-controls {
+            display: flex;
+            gap: 10px;
+            flex-wrap: wrap;
+            margin-bottom: 10px;
+        }
+
+        input[type="number"] {
+            padding: 8px 10px;
+            border: 2px solid var(--patriotic-blue);
+            border-radius: 8px;
+            width: 120px;
+            font-size: 1rem;
+        }
+
+        .game-btn {
+            border: 2px solid var(--patriotic-blue);
+            background: var(--white);
+            color: var(--patriotic-blue);
+            border-radius: 8px;
+            padding: 8px 12px;
+            font-weight: 700;
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+
+        .game-btn:hover {
+            background: var(--patriotic-blue);
+            color: var(--white);
+            transform: translateY(-1px);
+        }
+
+        .rps-buttons {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            margin-bottom: 10px;
+        }
+
+        .scoreboard {
+            font-family: Arial, sans-serif;
+            font-size: 0.95rem;
+            color: #333;
+        }
+
+        .ttt-board {
+            display: grid;
+            grid-template-columns: repeat(3, 78px);
+            gap: 8px;
+            justify-content: start;
+            margin-bottom: 12px;
+        }
+
+        .ttt-cell {
+            width: 78px;
+            height: 78px;
+            font-size: 1.8rem;
+            font-weight: 700;
+            border: 2px solid var(--patriotic-blue);
+            border-radius: 8px;
+            background: #fff;
+            color: var(--near-black);
+            cursor: pointer;
+            transition: background 0.2s ease;
+        }
+
+        .ttt-cell:hover {
+            background: rgba(0, 61, 165, 0.08);
+        }
+
+        .ttt-cell:disabled {
+            cursor: not-allowed;
+            color: #777;
+            background: #f3f3f3;
+        }
+
+        @media (max-width: 480px) {
+            .ttt-board {
+                grid-template-columns: repeat(3, 68px);
+            }
+
+            .ttt-cell {
+                width: 68px;
+                height: 68px;
+                font-size: 1.5rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="global-nav" role="navigation" aria-label="Primary">
+        <a href="index.html">Home</a>
+        <a href="photos.html">Photos</a>
+        <a href="more-images.html">More Images</a>
+        <a href="music.html">Music</a>
+        <a href="javascript-games.html">Games</a>
+        <a href="rocky.html">Rocky Stories</a>
+    </div>
+
+    <header>
+        <h1>JAVASCRIPT GAMES</h1>
+        <p>Simple browser games inspired by my earlier coding projects.</p>
+    </header>
+
+    <main>
+        <section>
+            <div class="page-intro-shell" aria-label="Page intro">
+                <h2>Play Here</h2>
+                <p class="games-intro">Simple browser games inspired by classic beginner coding projects.</p>
+                <a href="index.html" class="hero-cta-btn">Back to Home</a>
+            </div>
+
+            <div class="games-grid">
+                <article class="game-card">
+                    <h3>Number Guess</h3>
+                    <p>Guess the secret number from 1 to 100.</p>
+                    <div class="inline-controls">
+                        <input id="guess-input" type="number" min="1" max="100" placeholder="1-100">
+                        <button id="guess-btn" class="game-btn">Guess</button>
+                        <button id="guess-reset" class="game-btn">Reset</button>
+                    </div>
+                    <div id="guess-status" class="game-status">Start guessing.</div>
+                </article>
+
+                <article class="game-card">
+                    <h3>Rock Paper Scissors</h3>
+                    <p>Pick a move and play against the computer.</p>
+                    <div class="rps-buttons">
+                        <button class="game-btn rps-move" data-move="rock">Rock</button>
+                        <button class="game-btn rps-move" data-move="paper">Paper</button>
+                        <button class="game-btn rps-move" data-move="scissors">Scissors</button>
+                        <button id="rps-reset" class="game-btn">Reset</button>
+                    </div>
+                    <div id="rps-status" class="game-status">Choose your move.</div>
+                    <div id="rps-score" class="scoreboard">You: 0 | Computer: 0 | Ties: 0</div>
+                </article>
+
+                <article class="game-card">
+                    <h3>Tic-Tac-Toe</h3>
+                    <p>You are X. The computer is O.</p>
+                    <div id="ttt-board" class="ttt-board"></div>
+                    <button id="ttt-reset" class="game-btn">New Game</button>
+                    <div id="ttt-status" class="game-status">Your turn.</div>
+                </article>
+
+                <article class="game-card">
+                    <h3>Dice Duel</h3>
+                    <p>Roll against the computer. First to 20 points wins.</p>
+                    <div class="inline-controls">
+                        <button id="dice-roll" class="game-btn">Roll Dice</button>
+                        <button id="dice-reset" class="game-btn">Reset</button>
+                    </div>
+                    <div id="dice-status" class="game-status">Roll to start.</div>
+                    <div id="dice-score" class="scoreboard">You: 0 | Computer: 0</div>
+                </article>
+
+                <article class="game-card">
+                    <h3>Quick Math</h3>
+                    <p>Solve as many addition problems as you can.</p>
+                    <div id="math-question" class="game-status">Press Start to begin.</div>
+                    <div class="inline-controls">
+                        <input id="math-input" type="number" placeholder="Answer">
+                        <button id="math-submit" class="game-btn">Submit</button>
+                        <button id="math-start" class="game-btn">Start</button>
+                        <button id="math-reset" class="game-btn">Reset</button>
+                    </div>
+                    <div id="math-status" class="game-status">Score: 0 correct, 0 wrong.</div>
+                </article>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="footer-bottom">
+            <p>&copy; 2026 Eric Stone. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script>
+        // Number Guess game
+        const guessInput = document.getElementById('guess-input');
+        const guessBtn = document.getElementById('guess-btn');
+        const guessResetBtn = document.getElementById('guess-reset');
+        const guessStatus = document.getElementById('guess-status');
+
+        let targetNumber = randomOneToHundred();
+        let guessAttempts = 0;
+
+        function randomOneToHundred() {
+            return Math.floor(Math.random() * 100) + 1;
+        }
+
+        function resetGuessGame() {
+            targetNumber = randomOneToHundred();
+            guessAttempts = 0;
+            guessInput.value = '';
+            guessStatus.textContent = 'Start guessing.';
+        }
+
+        function submitGuess() {
+            const value = Number(guessInput.value);
+            if (!Number.isInteger(value) || value < 1 || value > 100) {
+                guessStatus.textContent = 'Enter a whole number from 1 to 100.';
+                return;
+            }
+
+            guessAttempts += 1;
+
+            if (value === targetNumber) {
+                guessStatus.textContent = 'Correct! You got it in ' + guessAttempts + ' tries.';
+                return;
+            }
+
+            if (value < targetNumber) {
+                guessStatus.textContent = 'Too low. Try again.';
+            } else {
+                guessStatus.textContent = 'Too high. Try again.';
+            }
+        }
+
+        guessBtn.addEventListener('click', submitGuess);
+        guessResetBtn.addEventListener('click', resetGuessGame);
+        guessInput.addEventListener('keydown', (event) => {
+            if (event.key === 'Enter') {
+                submitGuess();
+            }
+        });
+
+        // Rock Paper Scissors game
+        const rpsMoves = ['rock', 'paper', 'scissors'];
+        const rpsStatus = document.getElementById('rps-status');
+        const rpsScore = document.getElementById('rps-score');
+        const rpsButtons = document.querySelectorAll('.rps-move');
+        const rpsResetBtn = document.getElementById('rps-reset');
+
+        let rpsPlayer = 0;
+        let rpsComputer = 0;
+        let rpsTies = 0;
+
+        function updateRpsScore() {
+            rpsScore.textContent = 'You: ' + rpsPlayer + ' | Computer: ' + rpsComputer + ' | Ties: ' + rpsTies;
+        }
+
+        function playRps(playerMove) {
+            const computerMove = rpsMoves[Math.floor(Math.random() * rpsMoves.length)];
+            if (playerMove === computerMove) {
+                rpsTies += 1;
+                rpsStatus.textContent = 'Tie: both picked ' + playerMove + '.';
+                updateRpsScore();
+                return;
+            }
+
+            const wins =
+                (playerMove === 'rock' && computerMove === 'scissors') ||
+                (playerMove === 'paper' && computerMove === 'rock') ||
+                (playerMove === 'scissors' && computerMove === 'paper');
+
+            if (wins) {
+                rpsPlayer += 1;
+                rpsStatus.textContent = 'You win: ' + playerMove + ' beats ' + computerMove + '.';
+            } else {
+                rpsComputer += 1;
+                rpsStatus.textContent = 'Computer wins: ' + computerMove + ' beats ' + playerMove + '.';
+            }
+
+            updateRpsScore();
+        }
+
+        function resetRps() {
+            rpsPlayer = 0;
+            rpsComputer = 0;
+            rpsTies = 0;
+            rpsStatus.textContent = 'Choose your move.';
+            updateRpsScore();
+        }
+
+        rpsButtons.forEach((button) => {
+            button.addEventListener('click', () => playRps(button.dataset.move));
+        });
+        rpsResetBtn.addEventListener('click', resetRps);
+
+        // Tic-Tac-Toe game
+        const boardElement = document.getElementById('ttt-board');
+        const tttStatus = document.getElementById('ttt-status');
+        const tttResetBtn = document.getElementById('ttt-reset');
+
+        const lines = [
+            [0, 1, 2],
+            [3, 4, 5],
+            [6, 7, 8],
+            [0, 3, 6],
+            [1, 4, 7],
+            [2, 5, 8],
+            [0, 4, 8],
+            [2, 4, 6]
+        ];
+
+        let tttBoard = Array(9).fill('');
+        let gameOver = false;
+
+        function winnerOnBoard(board, token) {
+            return lines.some((line) => line.every((index) => board[index] === token));
+        }
+
+        function emptySpots(board) {
+            return board
+                .map((value, index) => (value === '' ? index : -1))
+                .filter((index) => index >= 0);
+        }
+
+        function renderBoard() {
+            boardElement.innerHTML = '';
+            tttBoard.forEach((value, index) => {
+                const cell = document.createElement('button');
+                cell.className = 'ttt-cell';
+                cell.type = 'button';
+                cell.textContent = value;
+                cell.disabled = value !== '' || gameOver;
+                cell.addEventListener('click', () => playerMove(index));
+                boardElement.appendChild(cell);
+            });
+        }
+
+        function playerMove(index) {
+            if (gameOver || tttBoard[index] !== '') {
+                return;
+            }
+
+            tttBoard[index] = 'X';
+
+            if (winnerOnBoard(tttBoard, 'X')) {
+                gameOver = true;
+                tttStatus.textContent = 'You win!';
+                renderBoard();
+                return;
+            }
+
+            if (emptySpots(tttBoard).length === 0) {
+                gameOver = true;
+                tttStatus.textContent = 'Draw game.';
+                renderBoard();
+                return;
+            }
+
+            tttStatus.textContent = 'Computer is thinking...';
+            renderBoard();
+            window.setTimeout(computerMove, 250);
+        }
+
+        function computerMove() {
+            if (gameOver) {
+                return;
+            }
+
+            const available = emptySpots(tttBoard);
+            const randomIndex = available[Math.floor(Math.random() * available.length)];
+            tttBoard[randomIndex] = 'O';
+
+            if (winnerOnBoard(tttBoard, 'O')) {
+                gameOver = true;
+                tttStatus.textContent = 'Computer wins.';
+                renderBoard();
+                return;
+            }
+
+            if (emptySpots(tttBoard).length === 0) {
+                gameOver = true;
+                tttStatus.textContent = 'Draw game.';
+                renderBoard();
+                return;
+            }
+
+            tttStatus.textContent = 'Your turn.';
+            renderBoard();
+        }
+
+        function resetTtt() {
+            tttBoard = Array(9).fill('');
+            gameOver = false;
+            tttStatus.textContent = 'Your turn.';
+            renderBoard();
+        }
+
+        tttResetBtn.addEventListener('click', resetTtt);
+        renderBoard();
+
+        // Dice Duel game
+        const diceRollBtn = document.getElementById('dice-roll');
+        const diceResetBtn = document.getElementById('dice-reset');
+        const diceStatus = document.getElementById('dice-status');
+        const diceScore = document.getElementById('dice-score');
+
+        let dicePlayerTotal = 0;
+        let diceComputerTotal = 0;
+
+        function updateDiceScore() {
+            diceScore.textContent = 'You: ' + dicePlayerTotal + ' | Computer: ' + diceComputerTotal;
+        }
+
+        function resetDice() {
+            dicePlayerTotal = 0;
+            diceComputerTotal = 0;
+            diceStatus.textContent = 'Roll to start.';
+            updateDiceScore();
+            diceRollBtn.disabled = false;
+        }
+
+        function rollDice() {
+            if (dicePlayerTotal >= 20 || diceComputerTotal >= 20) {
+                return;
+            }
+
+            const playerRoll = Math.floor(Math.random() * 6) + 1;
+            const computerRoll = Math.floor(Math.random() * 6) + 1;
+            dicePlayerTotal += playerRoll;
+            diceComputerTotal += computerRoll;
+
+            if (dicePlayerTotal >= 20 || diceComputerTotal >= 20) {
+                if (dicePlayerTotal > diceComputerTotal) {
+                    diceStatus.textContent = 'You rolled ' + playerRoll + '. Computer rolled ' + computerRoll + '. You win!';
+                } else if (diceComputerTotal > dicePlayerTotal) {
+                    diceStatus.textContent = 'You rolled ' + playerRoll + '. Computer rolled ' + computerRoll + '. Computer wins.';
+                } else {
+                    diceStatus.textContent = 'You rolled ' + playerRoll + '. Computer rolled ' + computerRoll + '. It is a tie.';
+                }
+                diceRollBtn.disabled = true;
+            } else {
+                diceStatus.textContent = 'You rolled ' + playerRoll + '. Computer rolled ' + computerRoll + '.';
+            }
+
+            updateDiceScore();
+        }
+
+        diceRollBtn.addEventListener('click', rollDice);
+        diceResetBtn.addEventListener('click', resetDice);
+
+        // Quick Math game
+        const mathQuestion = document.getElementById('math-question');
+        const mathInput = document.getElementById('math-input');
+        const mathSubmit = document.getElementById('math-submit');
+        const mathStart = document.getElementById('math-start');
+        const mathReset = document.getElementById('math-reset');
+        const mathStatus = document.getElementById('math-status');
+
+        let mathA = 0;
+        let mathB = 0;
+        let mathCorrect = 0;
+        let mathWrong = 0;
+        let mathActive = false;
+        let mathFeedback = '';
+
+        function newMathQuestion() {
+            mathA = Math.floor(Math.random() * 25) + 1;
+            mathB = Math.floor(Math.random() * 25) + 1;
+            mathQuestion.textContent = 'What is ' + mathA + ' + ' + mathB + '?';
+        }
+
+        function updateMathStatus() {
+            const scoreText = 'Score: ' + mathCorrect + ' correct, ' + mathWrong + ' wrong.';
+            mathStatus.textContent = mathFeedback ? mathFeedback + ' ' + scoreText : scoreText;
+        }
+
+        function startMath() {
+            mathActive = true;
+            mathInput.value = '';
+            newMathQuestion();
+            updateMathStatus();
+            mathInput.focus();
+        }
+
+        function resetMath() {
+            mathActive = false;
+            mathA = 0;
+            mathB = 0;
+            mathCorrect = 0;
+            mathWrong = 0;
+            mathInput.value = '';
+            mathQuestion.textContent = 'Press Start to begin.';
+            updateMathStatus();
+        }
+
+        function submitMathAnswer() {
+            if (!mathActive) {
+                mathFeedback = 'Press Start first.';
+                updateMathStatus();
+                return;
+            }
+
+            const value = Number(mathInput.value);
+            if (!Number.isFinite(value)) {
+                mathFeedback = 'Enter a number answer.';
+                updateMathStatus();
+                return;
+            }
+
+            if (value === mathA + mathB) {
+                mathCorrect += 1;
+                mathFeedback = 'Correct. Nice work.';
+            } else {
+                mathWrong += 1;
+                mathFeedback = 'Not quite. The answer was ' + (mathA + mathB) + '.';
+            }
+
+            mathInput.value = '';
+            updateMathStatus();
+            newMathQuestion();
+            mathInput.focus();
+        }
+
+        mathStart.addEventListener('click', startMath);
+        mathReset.addEventListener('click', resetMath);
+        mathSubmit.addEventListener('click', submitMathAnswer);
+        mathInput.addEventListener('keydown', (event) => {
+            if (event.key === 'Enter') {
+                submitMathAnswer();
+            }
+        });
+    </script>
+</body>
+</html>

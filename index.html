@@ -8,31 +8,86 @@
 </head>
 
 <body>
+    <div class="global-nav" role="navigation" aria-label="Primary">
+        <a href="index.html">Home</a>
+        <a href="photos.html">Photos</a>
+        <a href="more-images.html">More Images</a>
+        <a href="music.html">Music</a>
+        <a href="javascript-games.html">Games</a>
+        <a href="rocky.html">Rocky Stories</a>
+    </div>
+
     <header>
-        <h1>ERIC STONE</h1>
-        <p>Stories, animation, code, and strange ideas.</p>
+        <div class="header-main">
+            <div class="header-copy">
+                <h1>ERIC STONE</h1>
+                <p class="header-tagline">Watch Life of Jaffar, then explore stories, animation, games, and strange ideas.</p>
+            </div>
+
+            <aside class="header-support" aria-label="Support my work">
+                <p>Support my work</p>
+                <a href="https://venmo.com/Eric-Stone-262" target="_blank" rel="noopener noreferrer" class="donate-btn">💳 Donate via Venmo</a>
+            </aside>
+        </div>
     </header>
 
     <main>
         <section>
-            <h2>Support</h2>
-            <p style="font-size: 0.95rem; margin-bottom: 12px;">Enjoy my work? Buy me a coffee ☕</p>
-            <a href="https://venmo.com/Eric-Stone-262" target="_blank" rel="noopener noreferrer" class="donate-btn">💳 Donate via Venmo</a>
-        </section>
-
-        <section>
             <h2>Welcome</h2>
 
             <p>
-                This is where I keep the things I make:
-                stories, animation, Python projects, photographs,
+                Start here: Watch Life of Jaffar.
+                Then explore the things I make:
+                stories, animation, JavaScript games, photographs,
                 and whatever comes next.
             </p>
 
-            <a href="https://pulptime.com/channel" target="_blank" rel="noopener noreferrer" class="pulp-time-feature" aria-label="Open Pulp Time channel">
-                <img src="pulp-time-mark.png" alt="Pulp Time logo" class="pulp-time-logo">
-                <p class="pulp-time-tagline">Try Pulp Time!</p>
-            </a>
+            <p>
+                <a
+                    href="https://youtube.com/playlist?list=PLbaYlPY2lbIItsGmHkmv5vWe0Lj4_GJqr&si=2LMokRVzgl2abDVl"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    class="hero-cta-btn"
+                >
+                    ▶ Watch Life of Jaffar
+                </a>
+            </p>
+        </section>
+
+        <section>
+            <h2>Latest Updates</h2>
+            <p>Newest additions across games, photos, stories, and music.</p>
+
+            <div id="latest-updates-grid" class="latest-updates-grid"></div>
+        </section>
+
+        <section>
+            <h2>Featured Work</h2>
+            <p>Start with the projects people visit most.</p>
+
+            <div class="featured-grid">
+                <a href="https://youtube.com/playlist?list=PLbaYlPY2lbIItsGmHkmv5vWe0Lj4_GJqr&si=2LMokRVzgl2abDVl" target="_blank" class="nav-card featured-project-card">
+                    <span class="nav-card-badge featured">FEATURED</span>
+                    <img src="images/water-tower-sunset.jpg" alt="Life of Jaffar preview" class="nav-card-thumb" loading="lazy">
+                    <span class="nav-card-icon">🎬</span>
+                    <div class="nav-card-title">Life of Jaffar</div>
+                    <p class="nav-card-description">Animation, characters, and strange little worlds.</p>
+                </a>
+
+                <a href="javascript-games.html" class="nav-card featured-project-card">
+                    <img src="images/old-bridge.jpg" alt="JavaScript games preview" class="nav-card-thumb" loading="lazy">
+                    <span class="nav-card-icon">🎮</span>
+                    <div class="nav-card-title">JavaScript Games</div>
+                    <p class="nav-card-description">Simple browser games inspired by earlier coding projects.</p>
+                </a>
+
+                <a href="https://abefroman1978.substack.com/" target="_blank" rel="noopener noreferrer" class="nav-card featured-project-card">
+                    <img src="images/porch-dusk.jpg" alt="Writing preview" class="nav-card-thumb" loading="lazy">
+                    <span class="nav-card-icon">✍️</span>
+                    <div class="nav-card-title">My Substack Stories</div>
+                    <p class="nav-card-description">Essays, movie thoughts, memories, and writing.</p>
+                </a>
+            </div>
         </section>
 
         <section>
@@ -53,12 +108,14 @@
 
             <nav id="nav-container">
                 <a href="photos.html" class="nav-card" data-category="visual" data-tags="photos pictures visual">
+                    <img src="images/buddy-sleeping.jpg" alt="Photos preview" class="nav-card-thumb" loading="eager">
                     <span class="nav-card-icon">📸</span>
                     <div class="nav-card-title">Photos</div>
                     <p class="nav-card-description">Photographs, old pictures, and whatever else belongs here.</p>
                 </a>
 
                 <a href="more-images.html" class="nav-card" data-category="visual" data-tags="images art visual fragments">
+                    <img src="images/mountain-view.jpg" alt="More images preview" class="nav-card-thumb" loading="lazy">
                     <span class="nav-card-icon">🖼️</span>
                     <div class="nav-card-title">More Images</div>
                     <p class="nav-card-description">Photographs, fragments, clippings, and accidents collected by Eric Stone.</p>
@@ -66,6 +123,7 @@
 
                 <a href="https://abefroman1978.substack.com/" target="_blank" rel="noopener noreferrer" class="nav-card" data-category="writing" data-tags="stories essays writing substack">
                     <span class="nav-card-badge featured">FEATURED</span>
+                    <img src="images/eric-in-the-woods.jpg" alt="Substack stories preview" class="nav-card-thumb thumb-top-left" loading="lazy">
                     <span class="nav-card-icon">✍️</span>
                     <div class="nav-card-title">My Substack Stories</div>
                     <p class="nav-card-description">Essays, movie thoughts, memories, and writing.</p>
@@ -73,25 +131,29 @@
 
                 <a href="https://youtube.com/playlist?list=PLbaYlPY2lbIItsGmHkmv5vWe0Lj4_GJqr&si=2LMokRVzgl2abDVl" target="_blank" class="nav-card" data-category="animation" data-tags="animation jaffar video youtube">
                     <span class="nav-card-badge featured">FEATURED</span>
+                    <img src="images/quiet-evening.jpg" alt="Life of Jaffar preview" class="nav-card-thumb" loading="lazy">
                     <span class="nav-card-icon">🎬</span>
                     <div class="nav-card-title">Life of Jaffar</div>
                     <p class="nav-card-description">Animation, characters, and strange little worlds.</p>
                 </a>
 
                 <a href="music.html" class="nav-card" data-category="audio" data-tags="music tracks suno songs library">
+                    <img src="images/downtown-greenville.jpg" alt="Music library preview" class="nav-card-thumb" loading="lazy">
                     <span class="nav-card-icon">🎵</span>
                     <div class="nav-card-title">Music Library</div>
                     <p class="nav-card-description">Suno songs, homemade tracks, and the music archive.</p>
                 </a>
 
-                <a href="python-projects.html" class="nav-card" data-category="code" data-tags="python projects games code programming">
-                    <span class="nav-card-icon">🐍</span>
-                    <div class="nav-card-title">Python Projects</div>
-                    <p class="nav-card-description">Games, experiments, and things I am learning to build.</p>
+                <a href="javascript-games.html" class="nav-card" data-category="code" data-tags="javascript games code programming arcade">
+                    <img src="images/scenic-road.jpg" alt="JavaScript games preview" class="nav-card-thumb" loading="lazy">
+                    <span class="nav-card-icon">🎮</span>
+                    <div class="nav-card-title">JavaScript Games</div>
+                    <p class="nav-card-description">Simple browser games inspired by my earlier coding projects.</p>
                 </a>
 
                 <a href="rocky.html" class="nav-card" data-category="personal" data-tags="rocky james taylor memorial stories">
                     <span class="nav-card-badge new">NEW</span>
+                    <img src="images/17882340400264763.jpg" alt="Stories about Rocky preview" class="nav-card-thumb" loading="lazy">
                     <span class="nav-card-icon">🇺🇸</span>
                     <div class="nav-card-title">Stories About Rocky</div>
                     <p class="nav-card-description">A place for friends to share memories of James "Rocky" Taylor.</p>
@@ -118,9 +180,9 @@
                     <div class="stat-label">Stories & Essays</div>
                 </div>
                 <div class="stat-item">
-                    <div class="stat-icon">🐍</div>
-                    <div class="stat-number">6</div>
-                    <div class="stat-label">Python Projects</div>
+                    <div class="stat-icon">🎮</div>
+                    <div class="stat-number">5</div>
+                    <div class="stat-label">JS Games</div>
                 </div>
                 <div class="stat-item">
                     <div class="stat-icon">🎬</div>
@@ -133,6 +195,17 @@
                     <div class="stat-label">Images & Art</div>
                 </div>
             </div>
+        </section>
+
+        <section class="friend-spotlight" aria-label="Friend channel spotlight">
+            <p class="friend-spotlight-label">Friend Spotlight</p>
+            <a href="https://pulptime.com/channel" target="_blank" rel="noopener noreferrer" class="pulp-time-feature compact" aria-label="Open my friend's Pulp Time page">
+                <img src="pulp-time-mark.png" alt="Pulp Time logo" class="pulp-time-logo compact">
+                <div class="friend-spotlight-copy">
+                    <p class="pulp-time-tagline compact">Pulp Time</p>
+                    <p id="pulp-now-playing" class="pulp-now-playing">Checking now playing...</p>
+                </div>
+            </a>
         </section>
     </main>
 
@@ -169,10 +242,91 @@
     </footer>
 
     <script>
+        // Latest updates are managed here; add one object to publish a new update card.
+        const latestUpdates = [
+            {
+                href: 'javascript-games.html',
+                date: 'Jul 2026',
+                title: 'New Mini Games Added',
+                description: 'Dice Duel and Quick Math are now live in the JavaScript Games page.'
+            },
+            {
+                href: 'more-images.html',
+                date: 'Jul 2026',
+                title: 'More Images Carousel',
+                description: 'A fresh reel-style image archive with swipe, arrows, and lightbox view.'
+            },
+            {
+                href: 'rocky.html',
+                date: 'Jul 2026',
+                title: 'Rocky Memory Page',
+                description: 'Friends can post memories, reactions, and tributes in one place.'
+            },
+            {
+                href: 'music.html',
+                date: 'Jul 2026',
+                title: 'Music Library Refresh',
+                description: 'Playlist browsing and playback controls are streamlined for easier listening.'
+            }
+        ];
+
+        function renderLatestUpdates() {
+            const updatesGrid = document.getElementById('latest-updates-grid');
+            if (!updatesGrid) {
+                return;
+            }
+
+            updatesGrid.innerHTML = latestUpdates
+                .map((item) =>
+                    '<a href="' + item.href + '" class="latest-update-card">' +
+                        '<span class="latest-update-date">' + item.date + '</span>' +
+                        '<h3>' + item.title + '</h3>' +
+                        '<p>' + item.description + '</p>' +
+                    '</a>'
+                )
+                .join('');
+        }
+
+        renderLatestUpdates();
+
+        async function updatePulpNowPlaying() {
+            const output = document.getElementById('pulp-now-playing');
+            if (!output) {
+                return;
+            }
+
+            const fallbackText = 'Now showing updates are available on the channel page.';
+
+            try {
+                const response = await fetch('./pulptime-now-showing.json', { cache: 'no-store' });
+
+                if (!response.ok) {
+                    throw new Error('Now showing file fetch failed');
+                }
+
+                const payload = await response.json();
+                const nowShowing = typeof payload.nowShowing === 'string' ? payload.nowShowing.trim() : '';
+                const upNext = typeof payload.upNext === 'string' ? payload.upNext.trim() : '';
+
+                if (nowShowing) {
+                    output.textContent = upNext
+                        ? 'Now Showing: ' + nowShowing + ' | Up Next: ' + upNext
+                        : 'Now Showing: ' + nowShowing;
+                    return;
+                }
+
+                output.textContent = fallbackText;
+            } catch (error) {
+                output.textContent = fallbackText;
+            }
+        }
+
+        updatePulpNowPlaying();
+
         // Filter functionality
         const searchInput = document.getElementById('search-input');
         const filterButtons = document.querySelectorAll('.filter-btn');
-        const navCards = document.querySelectorAll('.nav-card');
+        const navCards = document.querySelectorAll('#nav-container .nav-card');
         let activeFilter = 'all';
 
         // Filter cards based on search term and category

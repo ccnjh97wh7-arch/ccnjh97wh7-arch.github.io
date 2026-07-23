@@ -1,0 +1,34 @@
+name: Update Pulp Time now showing
+
+on:
+  schedule:
+    - cron: '*/15 * * * *'
+  push:
+    paths:
+      - 'scripts/update-pulptime-now-showing.py'
+      - '.github/workflows/update-pulptime-now-showing.yml'
+  workflow_dispatch:
+
+jobs:
+  update:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.x'
+      - name: Fetch now showing
+        run: python3 scripts/update-pulptime-now-showing.py
+      - name: Commit now showing file
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add pulptime-now-showing.json
+          if git diff --cached --quiet; then
+            echo "No now-showing changes to commit"
+          else
+            git commit -m "Update Pulp Time now showing"
+            git push
+          fi
