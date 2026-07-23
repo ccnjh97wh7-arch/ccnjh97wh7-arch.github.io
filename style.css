@@ -122,7 +122,7 @@ header h1,
     display: grid;
     grid-template-columns: minmax(0, 1fr) auto;
     align-items: start;
-    gap: 14px 24px;
+    gap: 16px 24px;
 }
 
 .header-copy {
@@ -155,20 +155,27 @@ header h1 {
 }
 
 .header-support {
-    min-width: 192px;
+    min-width: 0;
+    max-width: 260px;
+    width: fit-content;
+    justify-self: end;
     text-align: right;
     background: rgba(255, 255, 255, 0.08);
     border: 1px solid rgba(196, 30, 58, 0.45);
     border-radius: 10px;
-    padding: 10px;
+    padding: 12px 14px;
     margin-top: 4px;
+    box-sizing: border-box;
 }
 
-.header-support p {
+.header-support-title {
     margin: 0 0 10px;
     font-size: 0.92rem;
     font-family: Arial, sans-serif;
     color: rgba(242, 235, 221, 0.95);
+    font-weight: 700;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
 }
 main {
     max-width: 900px;
@@ -1131,13 +1138,23 @@ nav p {
 /* Mobile phones (480px and below) */
 @media (max-width: 480px) {
     header {
-        padding: 35px 15px;
+        padding: 28px 14px 32px;
         border-bottom: 6px solid var(--patriotic-red);
     }
 
     .header-main {
         grid-template-columns: 1fr;
         gap: 12px;
+    }
+
+    .header-copy {
+        min-width: 0;
+    }
+
+    header h1 {
+        font-size: clamp(1.85rem, 8vw, 2.5rem);
+        letter-spacing: 0.08em;
+        margin-bottom: 6px;
     }
 
     .global-nav {
@@ -1158,8 +1175,23 @@ nav p {
     .header-support {
         min-width: 0;
         width: 100%;
+        max-width: none;
+        justify-self: stretch;
         text-align: left;
         margin-top: 0;
+        padding: 12px;
+    }
+
+    .header-support-title {
+        margin-bottom: 8px;
+    }
+
+    .donate-btn {
+        display: block;
+        width: 100%;
+        text-align: center;
+        padding: 12px 14px;
+        box-sizing: border-box;
     }
 
     main {
@@ -1169,7 +1201,7 @@ nav p {
     }
 
     section {
-        padding: 14px 12px;
+        padding: 16px 12px;
         margin-bottom: 14px;
         border-left: 4px solid var(--patriotic-blue);
         box-shadow: 0 1px 6px rgba(0, 0, 0, 0.06), 0 2px 12px rgba(0, 0, 0, 0.02);
@@ -1191,7 +1223,8 @@ nav p {
 
     .hero-link-row {
         flex-direction: column;
-        align-items: flex-start;
+        align-items: stretch;
+        gap: 10px;
     }
 
     .hero-link-row a,
@@ -1199,6 +1232,8 @@ nav p {
         display: block;
         width: 100%;
         text-align: center;
+        padding: 12px 14px;
+        box-sizing: border-box;
     }
 
     .explore-pillar-grid {
@@ -1281,7 +1316,7 @@ nav p {
 
     .nav-card {
         padding: 14px 12px;
-        border-radius: 8px;
+        border-radius: 10px;
         border: 2px solid var(--patriotic-blue);
     }
 
