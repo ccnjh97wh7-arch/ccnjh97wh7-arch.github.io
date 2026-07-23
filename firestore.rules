@@ -1,6 +1,23 @@
 rules_version = '2';
 service cloud.firestore {
   match /databases/{database}/documents {
+    function isValidCuratorPayload(data) {
+      return data.keys().hasOnly(['name', 'weightedVotes', 'actions', 'upVotes', 'downVotes', 'updatedAt'])
+        && data.name is string
+        && data.name.size() > 0
+        && data.name.size() <= 28
+        && data.weightedVotes is int
+        && data.actions is int
+        && data.upVotes is int
+        && data.downVotes is int
+        && data.weightedVotes >= 0
+        && data.actions >= 0
+        && data.upVotes >= 0
+        && data.downVotes >= 0
+        && data.weightedVotes == data.upVotes + data.downVotes
+        && data.updatedAt is timestamp;
+    }
+
     match /approved_memories/{memoryId} {
       allow read: if true;
       allow create: if request.resource.data.keys().hasAll(['name', 'nickname', 'story', 'submittedAt'])
@@ -10,6 +27,20 @@ service cloud.firestore {
         && request.resource.data.submittedAt is timestamp
         && request.resource.data.story.size() <= 2500;
       allow update, delete: if false;
+    }
+
+    match /curator_leaderboard/{curatorId} {
+      allow read: if true;
+      allow create: if curatorId.matches('^[a-z0-9-]{1,48}$')
+        && isValidCuratorPayload(request.resource.data);
+      allow update: if curatorId.matches('^[a-z0-9-]{1,48}$')
+        && isValidCuratorPayload(request.resource.data)
+        && request.resource.data.name == resource.data.name
+        && request.resource.data.weightedVotes >= resource.data.weightedVotes
+        && request.resource.data.actions >= resource.data.actions
+        && request.resource.data.upVotes >= resource.data.upVotes
+        && request.resource.data.downVotes >= resource.data.downVotes;
+      allow delete: if false;
     }
   }
 }
