@@ -33,6 +33,10 @@ jobs:
           fi
           echo "$FIREBASE_SERVICE_ACCOUNT" > "$RUNNER_TEMP/firebase-sa.json"
 
+      - name: Show service account identity
+        run: |
+          node -e "const fs=require('fs'); const p=process.env.RUNNER_TEMP + '/firebase-sa.json'; const key=JSON.parse(fs.readFileSync(p,'utf8')); console.log('Service account:', key.client_email); console.log('Service account project_id:', key.project_id);"
+
       - name: Deploy Firestore rules
         env:
           GOOGLE_APPLICATION_CREDENTIALS: ${{ runner.temp }}/firebase-sa.json
