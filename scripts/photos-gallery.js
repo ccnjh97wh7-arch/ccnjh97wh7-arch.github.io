@@ -24,7 +24,7 @@ function formatLabel(fileName) {
 
 function createPhotoCard(photo) {
   const figure = document.createElement('figure');
-  figure.className = 'photo-card';
+  figure.className = `photo-card${featuredFiles.includes(photo.name) ? ' featured' : ''}`;
 
   const img = document.createElement('img');
   img.src = photo.download_url;
@@ -32,7 +32,16 @@ function createPhotoCard(photo) {
   img.loading = 'lazy';
 
   const figcaption = document.createElement('figcaption');
-  figcaption.textContent = formatLabel(photo.name);
+  const label = document.createElement('span');
+  label.className = 'photo-card-label';
+  label.textContent = featuredFiles.includes(photo.name) ? 'Featured' : 'Archive';
+
+  const title = document.createElement('span');
+  title.className = 'photo-card-title';
+  title.textContent = formatLabel(photo.name);
+
+  figcaption.appendChild(label);
+  figcaption.appendChild(title);
 
   figure.appendChild(img);
   figure.appendChild(figcaption);

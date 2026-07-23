@@ -17,11 +17,11 @@
   <link rel="stylesheet" href="style.css">
 </head>
 
-<body>
+<body id="top">
   <a class="skip-link" href="#main-content">Skip to main content</a>
   <div class="global-nav" role="navigation" aria-label="Primary">
     <a href="index.html">Home</a>
-    <a href="photos.html">Photos</a>
+    <a href="photos.html" aria-current="page">Photos</a>
     <a href="more-images.html">More Images</a>
     <a href="music.html">Music</a>
     <a href="javascript-games.html">Games</a>
@@ -30,14 +30,20 @@
 
   <header>
     <h1>PHOTOS</h1>
-    <p>Pictures, places, Buddy, and whatever belongs here.</p>
+    <p>Places, people, Buddy, and a few quiet fragments worth keeping.</p>
   </header>
 
   <main id="main-content">
-    <section class="page-intro-shell" aria-label="Page intro">
-      <h2>Photo Gallery</h2>
-      <p>A quick look through places, people, Buddy, and snapshots that matter.</p>
-      <a href="./index.html" class="hero-cta-btn">Back to Home</a>
+    <section class="page-intro-shell gallery-intro-shell" aria-label="Page intro">
+      <div class="section-title-wrap">
+        <p class="section-kicker">Photo archive</p>
+        <h2>Moments from the collection.</h2>
+      </div>
+      <p>Some are favorites, some are small fragments, and all of them help hold a little more of the feeling of the place.</p>
+      <div class="gallery-highlights">
+        <a href="./index.html" class="secondary-cta-btn">Back to home</a>
+        <a href="more-images.html" class="secondary-cta-btn">See more images</a>
+      </div>
     </section>
 
     <section>

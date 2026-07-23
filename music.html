@@ -140,6 +140,10 @@
       padding-top: 0;
     }
 
+    .section-title-wrap {
+      margin-bottom: 0.8rem;
+    }
+
     .eyebrow {
       margin: 0 0 0.5rem;
       color: var(--patriotic-blue);
@@ -182,6 +186,33 @@
     .hero-cta:hover {
       background: var(--patriotic-red);
       color: #fff;
+    }
+
+    .hero-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.75rem;
+      margin-top: 1rem;
+    }
+
+    .secondary-cta {
+      display: inline-block;
+      padding: 0.65rem 1rem;
+      border: 1px solid rgba(0, 61, 165, 0.25);
+      border-radius: 999px;
+      background: rgba(0, 61, 165, 0.06);
+      color: var(--patriotic-blue);
+      text-decoration: none;
+      font: 800 0.9rem Arial, Helvetica, sans-serif;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+      transition: transform 0.2s ease, border-color 0.2s ease, background 0.2s ease;
+    }
+
+    .secondary-cta:hover {
+      transform: translateY(-2px);
+      border-color: var(--patriotic-blue);
+      background: rgba(0, 61, 165, 0.12);
     }
 
     .music-card {
@@ -316,6 +347,27 @@
 
     .playlist li {
       border-bottom: 2px solid rgba(0, 61, 165, 0.35);
+    }
+
+    @media (max-width: 480px) {
+      .hero-actions {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+
+      .hero-actions a {
+        width: 100%;
+        text-align: center;
+      }
+
+      .track-top {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+
+      .record {
+        width: 72px;
+      }
     }
 
     .track-button {

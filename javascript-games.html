@@ -33,6 +33,13 @@
             padding: 18px;
             background: linear-gradient(140deg, rgba(255, 255, 255, 0.94), rgba(196, 30, 58, 0.06));
             box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+            transition: transform 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease;
+        }
+
+        .game-card:hover {
+            transform: translateY(-4px);
+            border-color: var(--patriotic-red);
+            box-shadow: 0 10px 24px rgba(196, 30, 58, 0.12);
         }
 
         .game-card h3 {
@@ -155,6 +162,21 @@
                 height: 68px;
                 font-size: 1.5rem;
             }
+
+            .inline-controls {
+                flex-direction: column;
+                align-items: stretch;
+            }
+
+            input[type="number"],
+            .game-btn {
+                width: 100%;
+            }
+
+            .rps-buttons {
+                display: grid;
+                grid-template-columns: repeat(2, minmax(0, 1fr));
+            }
         }
     </style>
 </head>
@@ -177,9 +199,15 @@
     <main id="main-content">
         <section>
             <div class="page-intro-shell" aria-label="Page intro">
-                <h2>Play Here</h2>
-                <p class="games-intro">Simple browser games inspired by classic beginner coding projects.</p>
-                <a href="index.html" class="hero-cta-btn">Back to Home</a>
+                <div class="section-title-wrap">
+                    <p class="section-kicker">Playful experiments</p>
+                    <h2>Play Here</h2>
+                </div>
+                <p class="games-intro">A small set of browser games that mix simple mechanics with the same odd, low-stakes energy as the rest of the site.</p>
+                <div class="hero-link-row">
+                    <a href="index.html" class="hero-cta-btn">Back to Home</a>
+                    <a href="music.html" class="secondary-cta-btn">Open music</a>
+                </div>
             </div>
 
             <div class="games-grid">
