@@ -345,6 +345,42 @@
       font-family: Arial, Helvetica, sans-serif;
     }
 
+    .track-stats {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.45rem;
+      margin-top: 0.45rem;
+      font-family: Arial, Helvetica, sans-serif;
+      font-size: 0.72rem;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+    }
+
+    .play-count {
+      color: var(--patriotic-blue);
+      font-weight: 700;
+    }
+
+    .top-track-badge {
+      display: inline-flex;
+      align-items: center;
+      padding: 0.18rem 0.42rem;
+      border-radius: 999px;
+      background: rgba(218, 165, 32, 0.2);
+      color: #7a4b00;
+      font-weight: 800;
+    }
+
+    .top-track-badge[hidden] {
+      display: none;
+    }
+
+    .track-button.top-track {
+      border-color: var(--gold);
+      box-shadow: inset 0 0 0 1px rgba(218, 165, 32, 0.35);
+      background: linear-gradient(90deg, rgba(218, 165, 32, 0.12), rgba(255, 255, 255, 0.92));
+    }
+
     .track-button:hover,
     .track-button:focus-visible {
       background: rgba(218, 165, 32, 0.24);
@@ -366,8 +402,14 @@
     }
 
     .track-button[aria-current="true"] .track-title,
-    .track-button[aria-current="true"] .track-note-preview {
+    .track-button[aria-current="true"] .track-note-preview,
+    .track-button[aria-current="true"] .play-count,
+    .track-button[aria-current="true"] .top-track-badge {
       color: var(--warm-paper);
+    }
+
+    .track-button[aria-current="true"] .top-track-badge {
+      background: rgba(242, 235, 221, 0.18);
     }
 
     .playing-label {
@@ -509,6 +551,7 @@
     const previousButton = document.querySelector("#previous-track");
     const nextButton = document.querySelector("#next-track");
     const playlist = document.querySelector("#playlist");
+    const PLAY_COUNT_KEY = "eric-stone-music-play-counts";
     const trackArtPool = [
       "images/quiet-evening.jpg",
       "images/downtown-greenville.jpg",
@@ -521,8 +564,79 @@
       "images/17882340400264763.jpg",
       "images/eric-in-the-woods.jpg"
     ];
+    let playlistTracks = [];
     let trackButtons = [];
     let currentTrackIndex = 0;
+    let currentTrackPlayCounted = false;
+
+    function readPlayCounts() {
+      try {
+        const parsed = JSON.parse(localStorage.getItem(PLAY_COUNT_KEY) || "{}");
+        return parsed && typeof parsed === "object" ? parsed : {};
+      } catch (error) {
+        console.warn("Could not read play counts:", error);
+        return {};
+      }
+    }
+
+    function writePlayCounts(counts) {
+      try {
+        localStorage.setItem(PLAY_COUNT_KEY, JSON.stringify(counts));
+      } catch (error) {
+        console.warn("Could not save play counts:", error);
+      }
+    }
+
+    function getTopTrackSources() {
+      const counts = readPlayCounts();
+      return [...playlistTracks]
+        .sort((left, right) => {
+          const countGap = (counts[right.src] || 0) - (counts[left.src] || 0);
+          if (countGap !== 0) {
+            return countGap;
+          }
+          return left.title.localeCompare(right.title);
+        })
+        .slice(0, 5)
+        .filter((track) => (counts[track.src] || 0) > 0)
+        .map((track) => track.src);
+    }
+
+    function renderTrackMeta() {
+      const counts = readPlayCounts();
+      const topTrackSources = new Set(getTopTrackSources());
+
+      trackButtons.forEach((button) => {
+        const count = counts[button.dataset.src] || 0;
+        const countEl = button.querySelector(".play-count");
+        const badgeEl = button.querySelector(".top-track-badge");
+        const isTopTrack = topTrackSources.has(button.dataset.src);
+
+        if (countEl) {
+          countEl.textContent = count + " plays";
+        }
+
+        if (badgeEl) {
+          badgeEl.hidden = !isTopTrack;
+        }
+
+        button.classList.toggle("top-track", isTopTrack);
+      });
+    }
+
+    function recordTrackPlay() {
+      const currentTrack = trackButtons[currentTrackIndex];
+      if (!currentTrack || currentTrackPlayCounted) {
+        return;
+      }
+
+      const counts = readPlayCounts();
+      const src = currentTrack.dataset.src;
+      counts[src] = (counts[src] || 0) + 1;
+      writePlayCounts(counts);
+      currentTrackPlayCounted = true;
+      renderTrackMeta();
+    }
 
     function escapeHtml(value) {
       return String(value)
@@ -540,6 +654,9 @@
     async function loadPlaylist() {
       const response = await fetch("music-playlist.json");
       const tracks = await response.json();
+      const counts = readPlayCounts();
+      playlistTracks = tracks;
+      const topTrackSources = new Set(getTopTrackSources());
 
       playlist.innerHTML = tracks.map((track, index) => `
         <li>
@@ -556,6 +673,10 @@
             <span class="track-title-wrap">
               <span class="track-title">${escapeHtml(track.title)}</span>
               <span class="track-note-preview">${escapeHtml(track.note)}</span>
+              <span class="track-stats">
+                <span class="play-count">${counts[track.src] || 0} plays</span>
+                <span class="top-track-badge" ${topTrackSources.has(track.src) ? "" : "hidden"}>Top 5</span>
+              </span>
             </span>
             <span class="playing-label">${index === 0 ? "Playing" : "Play"}</span>
           </button>
@@ -571,6 +692,8 @@
         button.addEventListener("click", () => loadTrack(index, true));
       });
 
+      renderTrackMeta();
+
       if (trackButtons.length < 2) {
         previousButton.disabled = true;
         nextButton.disabled = true;
@@ -585,6 +708,7 @@
       if (!track) return;
 
       currentTrackIndex = index;
+      currentTrackPlayCounted = false;
       audioPlayer.src = track.dataset.src;
       nowPlayingTitle.textContent = track.dataset.title;
       nowPlayingNote.textContent = track.dataset.note;
@@ -615,6 +739,8 @@
         changeTrack(1);
       }
     });
+
+    audioPlayer.addEventListener("play", recordTrackPlay);
 
     loadPlaylist();
   </script>
