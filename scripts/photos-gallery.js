@@ -2,6 +2,7 @@ const gallery = document.getElementById('photo-gallery');
 const photoListUrl = 'scripts/photos-list.json';
 
 const featuredFiles = ['eric-in-the-woods.jpg', 'buddy-sleeping.jpg', 'water-tower-sunset.jpg', 'downtown-greenville.jpg'];
+const bottomPinnedFiles = new Set(['downtown-greenville.jpg', '17882340400264763.jpg']);
 const displayNameOverrides = {
   'eric-in-the-woods.jpg': 'Eric in the Woods',
   'buddy-sleeping.jpg': 'Buddy Sleeping',
@@ -30,6 +31,9 @@ function createPhotoCard(photo) {
   img.src = photo.download_url;
   img.alt = photo.name;
   img.loading = 'lazy';
+  if (bottomPinnedFiles.has(photo.name)) {
+    img.classList.add('photo-thumb-bottom');
+  }
 
   const figcaption = document.createElement('figcaption');
   const label = document.createElement('span');

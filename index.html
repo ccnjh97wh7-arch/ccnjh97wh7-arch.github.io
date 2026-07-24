@@ -88,6 +88,50 @@
             </div>
         </section>
 
+        <section class="archive-panel alaska-live-section" aria-labelledby="alaska-live-title">
+            <div class="section-title-wrap">
+                <p class="section-kicker">Live Weirdness</p>
+                <h2 id="alaska-live-title">Arctic Circle Live Tracker</h2>
+            </div>
+            <p class="alaska-live-intro">Real-time weather and daylight from high-latitude places where the sun behaves like science fiction.</p>
+
+            <div class="alaska-location-picker">
+                <label for="alaska-location-select">Track location:</label>
+                <select id="alaska-location-select" aria-label="Select Arctic location"></select>
+                <p id="alaska-place-meta" class="alaska-place-meta">Loading location details...</p>
+            </div>
+
+            <div class="alaska-live-grid" role="status" aria-live="polite" aria-atomic="false">
+                <div class="alaska-live-card alaska-live-card-primary">
+                    <p id="alaska-status-badge" class="alaska-status-badge">Loading polar conditions...</p>
+                    <p id="alaska-local-time" class="alaska-local-time">Local time: --</p>
+                    <p id="alaska-next-transition" class="alaska-next-transition">Next transition: --</p>
+                    <div class="alaska-daylight-meter-wrap" aria-label="Daylight progress">
+                        <p id="alaska-progress-label" class="alaska-progress-label">Daylight progress: --</p>
+                        <div class="alaska-daylight-meter" role="presentation">
+                            <div id="alaska-daylight-meter-fill" class="alaska-daylight-meter-fill"></div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="alaska-live-card">
+                    <h3>Weather</h3>
+                    <p id="alaska-weather" class="alaska-live-value">--</p>
+                    <p id="alaska-apparent" class="alaska-live-detail">Feels like: --</p>
+                    <p id="alaska-wind" class="alaska-live-detail">Wind: --</p>
+                </div>
+
+                <div class="alaska-live-card">
+                    <h3>Daylight</h3>
+                    <p id="alaska-daylight-mode" class="alaska-live-value">--</p>
+                    <p id="alaska-sun-window" class="alaska-live-detail">Sunrise/Sunset: --</p>
+                    <p id="alaska-daylight-duration" class="alaska-live-detail">Daylight duration: --</p>
+                </div>
+            </div>
+
+            <p id="alaska-updated" class="alaska-updated">Last weather refresh: waiting for first update...</p>
+        </section>
+
         <section class="archive-panel">
             <h2>Latest Updates</h2>
             <p>Newest additions across games, photos, stories, and music.</p>
@@ -172,7 +216,7 @@
                 </a>
 
                 <a href="music.html" class="nav-card" data-category="audio" data-tags="music tracks suno songs library">
-                    <img src="images/downtown-greenville.jpg" alt="Music library preview" class="nav-card-thumb" loading="lazy" decoding="async" width="640" height="360">
+                    <img src="images/downtown-greenville.jpg" alt="Music library preview" class="nav-card-thumb thumb-bottom" loading="lazy" decoding="async" width="640" height="360">
                     <span class="nav-card-icon">🎵</span>
                     <div class="nav-card-title">Music Library</div>
                     <p class="nav-card-description">Suno songs, homemade tracks, and the music archive.</p>
@@ -187,7 +231,7 @@
 
                 <a href="rocky.html" class="nav-card" data-category="personal" data-tags="late 1990s stories nostalgia memories">
                     <span class="nav-card-badge new">NEW</span>
-                    <img src="images/17882340400264763.jpg" alt="Late 1990s stories preview" class="nav-card-thumb" loading="lazy" decoding="async" width="640" height="360">
+                    <img src="images/17882340400264763.jpg" alt="Late 1990s stories preview" class="nav-card-thumb thumb-bottom" loading="lazy" decoding="async" width="640" height="360">
                     <span class="nav-card-icon">🇺🇸</span>
                     <div class="nav-card-title">Late 1990s Stories</div>
                     <p class="nav-card-description">A place for people to share stories and moments from the late 1990s.</p>
@@ -322,6 +366,387 @@
         }
 
         renderLatestUpdates();
+
+        const arcticLocations = {
+            utqiagvik: {
+                id: 'utqiagvik',
+                placeName: 'Utqiagvik, Alaska',
+                latitude: 71.2906,
+                longitude: -156.7886,
+                timezone: 'America/Anchorage'
+            },
+            tromso: {
+                id: 'tromso',
+                placeName: 'Tromso, Norway',
+                latitude: 69.6492,
+                longitude: 18.9553,
+                timezone: 'Europe/Oslo'
+            },
+            longyearbyen: {
+                id: 'longyearbyen',
+                placeName: 'Longyearbyen, Svalbard',
+                latitude: 78.2232,
+                longitude: 15.6469,
+                timezone: 'Arctic/Longyearbyen'
+            }
+        };
+
+        let activeLocationId = 'utqiagvik';
+
+        function getActiveLocation() {
+            return arcticLocations[activeLocationId] || arcticLocations.utqiagvik;
+        }
+
+        const alaskaElements = {
+            locationSelect: document.getElementById('alaska-location-select'),
+            placeMeta: document.getElementById('alaska-place-meta'),
+            statusBadge: document.getElementById('alaska-status-badge'),
+            localTime: document.getElementById('alaska-local-time'),
+            nextTransition: document.getElementById('alaska-next-transition'),
+            progressLabel: document.getElementById('alaska-progress-label'),
+            progressFill: document.getElementById('alaska-daylight-meter-fill'),
+            weather: document.getElementById('alaska-weather'),
+            apparent: document.getElementById('alaska-apparent'),
+            wind: document.getElementById('alaska-wind'),
+            daylightMode: document.getElementById('alaska-daylight-mode'),
+            sunWindow: document.getElementById('alaska-sun-window'),
+            daylightDuration: document.getElementById('alaska-daylight-duration'),
+            updated: document.getElementById('alaska-updated')
+        };
+
+        const alaskaState = {
+            timezone: getActiveLocation().timezone,
+            sunrise: null,
+            sunset: null,
+            daylightDurationSeconds: null,
+            isDay: null
+        };
+
+        const weatherCodeLabels = {
+            0: 'Clear sky',
+            1: 'Mostly clear',
+            2: 'Partly cloudy',
+            3: 'Overcast',
+            45: 'Fog',
+            48: 'Rime fog',
+            51: 'Light drizzle',
+            53: 'Drizzle',
+            55: 'Heavy drizzle',
+            56: 'Freezing drizzle',
+            57: 'Heavy freezing drizzle',
+            61: 'Light rain',
+            63: 'Rain',
+            65: 'Heavy rain',
+            66: 'Freezing rain',
+            67: 'Heavy freezing rain',
+            71: 'Light snow',
+            73: 'Snow',
+            75: 'Heavy snow',
+            77: 'Snow grains',
+            80: 'Rain showers',
+            81: 'Heavy rain showers',
+            82: 'Violent rain showers',
+            85: 'Snow showers',
+            86: 'Heavy snow showers',
+            95: 'Thunderstorm',
+            96: 'Thunderstorm with hail',
+            99: 'Strong thunderstorm with hail'
+        };
+
+        function formatTwoDigits(value) {
+            return String(value).padStart(2, '0');
+        }
+
+        function formatDateInTimezone(date, timezone) {
+            const formatter = new Intl.DateTimeFormat('en-US', {
+                timeZone: timezone,
+                hour: 'numeric',
+                minute: '2-digit',
+                second: '2-digit',
+                hour12: true,
+                weekday: 'short',
+                month: 'short',
+                day: 'numeric'
+            });
+            return formatter.format(date);
+        }
+
+        function formatDurationFromSeconds(seconds) {
+            if (!Number.isFinite(seconds) || seconds < 0) {
+                return '--';
+            }
+
+            const whole = Math.round(seconds);
+            const hours = Math.floor(whole / 3600);
+            const minutes = Math.floor((whole % 3600) / 60);
+            return formatTwoDigits(hours) + 'h ' + formatTwoDigits(minutes) + 'm';
+        }
+
+        function formatCountdown(milliseconds) {
+            if (!Number.isFinite(milliseconds) || milliseconds <= 0) {
+                return '00h 00m 00s';
+            }
+
+            const totalSeconds = Math.floor(milliseconds / 1000);
+            const hours = Math.floor(totalSeconds / 3600);
+            const minutes = Math.floor((totalSeconds % 3600) / 60);
+            const seconds = totalSeconds % 60;
+
+            return formatTwoDigits(hours) + 'h ' + formatTwoDigits(minutes) + 'm ' + formatTwoDigits(seconds) + 's';
+        }
+
+        function parseDateOrNull(value) {
+            if (typeof value === 'number' && Number.isFinite(value)) {
+                return new Date(value * 1000);
+            }
+
+            if (typeof value !== 'string' || !value.trim()) {
+                return null;
+            }
+
+            const parsed = new Date(value);
+            if (Number.isNaN(parsed.getTime())) {
+                return null;
+            }
+
+            return parsed;
+        }
+
+        function getWeatherLabel(code) {
+            return weatherCodeLabels[code] || 'Unknown conditions';
+        }
+
+        function setDaylightProgress(percent, label) {
+            if (alaskaElements.progressFill) {
+                const bounded = Math.max(0, Math.min(100, Number(percent) || 0));
+                alaskaElements.progressFill.style.width = bounded + '%';
+            }
+
+            if (alaskaElements.progressLabel) {
+                alaskaElements.progressLabel.textContent = label;
+            }
+        }
+
+        function renderLocationMeta(location) {
+            if (!alaskaElements.placeMeta) {
+                return;
+            }
+
+            const latText = Math.abs(location.latitude).toFixed(2) + ' ' + (location.latitude >= 0 ? 'N' : 'S');
+            const lonText = Math.abs(location.longitude).toFixed(2) + ' ' + (location.longitude >= 0 ? 'E' : 'W');
+            alaskaElements.placeMeta.textContent = location.placeName + ' | ' + latText + ', ' + lonText;
+        }
+
+        function populateLocationPicker() {
+            if (!alaskaElements.locationSelect) {
+                return;
+            }
+
+            const options = Object.values(arcticLocations)
+                .map((location) => '<option value="' + location.id + '">' + location.placeName + '</option>')
+                .join('');
+
+            alaskaElements.locationSelect.innerHTML = options;
+            alaskaElements.locationSelect.value = activeLocationId;
+            renderLocationMeta(getActiveLocation());
+        }
+
+        function setAlaskaFallback(message) {
+            if (!alaskaElements.statusBadge) {
+                return;
+            }
+
+            alaskaElements.statusBadge.textContent = message;
+            alaskaElements.weather.textContent = '--';
+            alaskaElements.apparent.textContent = 'Feels like: --';
+            alaskaElements.wind.textContent = 'Wind: --';
+            alaskaElements.daylightMode.textContent = '--';
+            alaskaElements.sunWindow.textContent = 'Sunrise/Sunset: --';
+            alaskaElements.daylightDuration.textContent = 'Daylight duration: --';
+            setDaylightProgress(0, 'Daylight progress: unavailable');
+        }
+
+        function updateAlaskaClock() {
+            if (!alaskaElements.localTime || !alaskaElements.nextTransition) {
+                return;
+            }
+
+            const now = new Date();
+            const location = getActiveLocation();
+            alaskaElements.localTime.textContent = 'Local time in ' + location.placeName + ': ' + formatDateInTimezone(now, alaskaState.timezone);
+
+            if (!alaskaState.sunrise || !alaskaState.sunset) {
+                alaskaElements.nextTransition.textContent = 'Next transition: sun transition not available for this date';
+                setDaylightProgress(0, 'Daylight progress: unavailable');
+                return;
+            }
+
+            const nowMs = now.getTime();
+            const sunriseMs = alaskaState.sunrise.getTime();
+            const sunsetMs = alaskaState.sunset.getTime();
+
+            if (alaskaState.daylightDurationSeconds !== null && alaskaState.daylightDurationSeconds >= 84600) {
+                alaskaElements.nextTransition.textContent = 'Next transition: midnight sun conditions';
+                setDaylightProgress(100, 'Daylight progress: 100% (midnight sun)');
+                return;
+            }
+
+            if (alaskaState.daylightDurationSeconds !== null && alaskaState.daylightDurationSeconds <= 1200) {
+                alaskaElements.nextTransition.textContent = 'Next transition: polar night conditions';
+                setDaylightProgress(0, 'Daylight progress: 0% (polar night)');
+                return;
+            }
+
+            if (nowMs < sunriseMs) {
+                alaskaElements.nextTransition.textContent = 'Next transition: sunrise in ' + formatCountdown(sunriseMs - nowMs);
+                setDaylightProgress(0, 'Daylight progress: 0% (before sunrise)');
+                return;
+            }
+
+            if (nowMs < sunsetMs) {
+                alaskaElements.nextTransition.textContent = 'Next transition: sunset in ' + formatCountdown(sunsetMs - nowMs);
+                const progress = ((nowMs - sunriseMs) / (sunsetMs - sunriseMs)) * 100;
+                setDaylightProgress(progress, 'Daylight progress: ' + Math.max(0, Math.min(100, Math.round(progress))) + '%');
+                return;
+            }
+
+            const tomorrowSunrise = new Date(alaskaState.sunrise);
+            tomorrowSunrise.setDate(tomorrowSunrise.getDate() + 1);
+            alaskaElements.nextTransition.textContent = 'Next transition: sunrise in ' + formatCountdown(tomorrowSunrise.getTime() - nowMs);
+            setDaylightProgress(100, 'Daylight progress: 100% (after sunset)');
+        }
+
+        function getDaylightMode(daylightDurationSeconds, isDay) {
+            if (Number.isFinite(daylightDurationSeconds) && daylightDurationSeconds >= 84600) {
+                return 'Midnight sun (24-hour daylight)';
+            }
+
+            if (Number.isFinite(daylightDurationSeconds) && daylightDurationSeconds <= 1200) {
+                return 'Polar night (almost no daylight)';
+            }
+
+            if (isDay === 1) {
+                return 'Daytime';
+            }
+
+            if (isDay === 0) {
+                return 'Nighttime';
+            }
+
+            return 'Transitioning';
+        }
+
+        async function updateAlaskaLiveTracker() {
+            if (!alaskaElements.statusBadge) {
+                return;
+            }
+
+            const location = getActiveLocation();
+            renderLocationMeta(location);
+
+            const endpoint =
+                'https://api.open-meteo.com/v1/forecast?latitude=' + location.latitude +
+                '&longitude=' + location.longitude +
+                '&current=temperature_2m,apparent_temperature,is_day,weather_code,wind_speed_10m' +
+                '&daily=sunrise,sunset,daylight_duration' +
+                '&forecast_days=1' +
+                '&timeformat=unixtime' +
+                '&timezone=' + encodeURIComponent(location.timezone);
+
+            try {
+                const response = await fetch(endpoint, { cache: 'no-store' });
+                if (!response.ok) {
+                    throw new Error('Weather fetch failed: ' + response.status);
+                }
+
+                const payload = await response.json();
+                const current = payload.current || {};
+                const daily = payload.daily || {};
+
+                const timezone = typeof payload.timezone === 'string' && payload.timezone
+                    ? payload.timezone
+                    : location.timezone;
+
+                alaskaState.timezone = timezone;
+                alaskaState.sunrise = Array.isArray(daily.sunrise) ? parseDateOrNull(daily.sunrise[0]) : null;
+                alaskaState.sunset = Array.isArray(daily.sunset) ? parseDateOrNull(daily.sunset[0]) : null;
+                alaskaState.daylightDurationSeconds = Array.isArray(daily.daylight_duration)
+                    ? Number(daily.daylight_duration[0])
+                    : null;
+                alaskaState.isDay = typeof current.is_day === 'number' ? current.is_day : null;
+
+                const weatherText = getWeatherLabel(current.weather_code);
+                const temp = Number.isFinite(current.temperature_2m) ? Math.round(current.temperature_2m) + ' C' : '--';
+                const feelsLike = Number.isFinite(current.apparent_temperature)
+                    ? Math.round(current.apparent_temperature) + ' C'
+                    : '--';
+                const wind = Number.isFinite(current.wind_speed_10m) ? Math.round(current.wind_speed_10m) + ' km/h' : '--';
+                const daylightMode = getDaylightMode(alaskaState.daylightDurationSeconds, alaskaState.isDay);
+
+                alaskaElements.statusBadge.textContent = daylightMode;
+                alaskaElements.weather.textContent = weatherText + ' | ' + temp;
+                alaskaElements.apparent.textContent = 'Feels like: ' + feelsLike;
+                alaskaElements.wind.textContent = 'Wind: ' + wind;
+                alaskaElements.daylightMode.textContent = daylightMode;
+
+                if (alaskaState.sunrise && alaskaState.sunset) {
+                    const sunriseText = new Intl.DateTimeFormat('en-US', {
+                        timeZone: alaskaState.timezone,
+                        hour: 'numeric',
+                        minute: '2-digit',
+                        hour12: true
+                    }).format(alaskaState.sunrise);
+
+                    const sunsetText = new Intl.DateTimeFormat('en-US', {
+                        timeZone: alaskaState.timezone,
+                        hour: 'numeric',
+                        minute: '2-digit',
+                        hour12: true
+                    }).format(alaskaState.sunset);
+
+                    alaskaElements.sunWindow.textContent = 'Sunrise/Sunset: ' + sunriseText + ' / ' + sunsetText;
+                } else {
+                    alaskaElements.sunWindow.textContent = 'Sunrise/Sunset: unavailable for this date';
+                }
+
+                alaskaElements.daylightDuration.textContent = 'Daylight duration: ' + formatDurationFromSeconds(alaskaState.daylightDurationSeconds);
+                alaskaElements.updated.textContent = 'Last weather refresh: ' + formatDateInTimezone(new Date(), alaskaState.timezone);
+                updateAlaskaClock();
+            } catch (error) {
+                setAlaskaFallback('Live polar tracker temporarily offline');
+                if (alaskaElements.updated) {
+                    alaskaElements.updated.textContent = 'Last weather refresh: request failed, retrying...';
+                }
+            }
+        }
+
+        if (alaskaElements.statusBadge) {
+            populateLocationPicker();
+
+            if (alaskaElements.locationSelect) {
+                alaskaElements.locationSelect.addEventListener('change', () => {
+                    const nextId = alaskaElements.locationSelect.value;
+                    if (!arcticLocations[nextId]) {
+                        return;
+                    }
+
+                    activeLocationId = nextId;
+                    alaskaState.timezone = getActiveLocation().timezone;
+                    alaskaState.sunrise = null;
+                    alaskaState.sunset = null;
+                    alaskaState.daylightDurationSeconds = null;
+                    alaskaState.isDay = null;
+                    setDaylightProgress(0, 'Daylight progress: refreshing...');
+                    updateAlaskaClock();
+                    updateAlaskaLiveTracker();
+                });
+            }
+
+            updateAlaskaClock();
+            updateAlaskaLiveTracker();
+            window.setInterval(updateAlaskaClock, 1000);
+            window.setInterval(updateAlaskaLiveTracker, 10 * 60 * 1000);
+        }
 
         async function updatePulpNowPlaying() {
             const output = document.getElementById('pulp-now-playing');
