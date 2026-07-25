@@ -1,0 +1,2257 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Red Clay Rally</title>
+  <style>
+    :root {
+      color-scheme: dark;
+      --ink: #0b0000;
+      --paper: #c7b994;
+      --case-light: #dfd2ac;
+      --case-dark: #8d8267;
+      --phosphor: #ff372f;
+      --phosphor-hot: #ffaba5;
+      --phosphor-dim: #7f0909;
+      --glass: #100000;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    html,
+    body {
+      min-height: 100%;
+      margin: 0;
+      overscroll-behavior: none;
+      -webkit-text-size-adjust: 100%;
+      background:
+        radial-gradient(circle at 50% -10%, #412a20 0, transparent 52%),
+        repeating-linear-gradient(90deg, rgba(255,255,255,0.012) 0 1px, transparent 1px 4px),
+        #17120d;
+      color: #2c261c;
+      font-family: "Courier New", Courier, monospace;
+    }
+
+    body {
+      display: grid;
+      place-items: center;
+      padding:
+        max(18px, env(safe-area-inset-top))
+        max(18px, env(safe-area-inset-right))
+        max(18px, env(safe-area-inset-bottom))
+        max(18px, env(safe-area-inset-left));
+    }
+
+    .game-shell {
+      width: min(1080px, 100%);
+      border: 3px solid #6d654f;
+      border-radius: 24px;
+      overflow: hidden;
+      background:
+        linear-gradient(110deg, rgba(255,255,255,0.2), transparent 20% 72%, rgba(48,40,27,0.16)),
+        var(--paper);
+      box-shadow:
+        0 24px 70px rgba(0, 0, 0, 0.55),
+        inset 0 0 0 3px var(--case-light),
+        0 0 0 6px #393328;
+    }
+
+    .masthead {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+      padding: 13px 24px;
+      background: linear-gradient(#d8cba5, #b7a985);
+      border-bottom: 2px solid #746b54;
+      box-shadow: inset 0 2px 0 rgba(255,255,255,0.45);
+    }
+
+    .brand {
+      display: flex;
+      align-items: baseline;
+      gap: 12px;
+      min-width: 0;
+    }
+
+    h1 {
+      margin: 0;
+      color: #40392b;
+      font-size: clamp(1.2rem, 3.8vw, 2rem);
+      line-height: 1;
+      letter-spacing: 0.08em;
+      text-shadow: 0 1px 0 #f3e8c6;
+    }
+
+    .version {
+      color: #695f49;
+      font-size: 0.72rem;
+      white-space: nowrap;
+    }
+
+    .sound-button {
+      min-width: 44px;
+      min-height: 36px;
+      border: 2px solid #6a6049;
+      border-radius: 5px;
+      background: #2d281e;
+      color: #ff756d;
+      font: 700 0.78rem/1 "Courier New", monospace;
+      cursor: pointer;
+      box-shadow: 0 3px 0 #6f654e, inset 0 0 8px #120000;
+      -webkit-tap-highlight-color: transparent;
+      touch-action: manipulation;
+    }
+
+    .screen {
+      position: relative;
+      margin: 19px 22px 12px;
+      overflow: hidden;
+      border: 14px solid #2e2a22;
+      border-radius: 42px / 30px;
+      background: #070000;
+      box-shadow:
+        inset 0 0 24px #000,
+        0 0 0 3px #756c55,
+        0 6px 14px rgba(43, 32, 22, 0.65);
+      isolation: isolate;
+    }
+
+    .screen::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      z-index: 3;
+      pointer-events: none;
+      border-radius: 27px / 19px;
+      box-shadow:
+        inset 0 0 38px 14px rgba(0, 0, 0, 0.8),
+        inset 0 0 4px 1px rgba(255, 112, 102, 0.3);
+      background:
+        radial-gradient(ellipse at center, transparent 58%, rgba(0, 0, 0, 0.42) 100%);
+    }
+
+    canvas {
+      display: block;
+      width: 100%;
+      height: auto;
+      aspect-ratio: 16 / 9;
+      image-rendering: pixelated;
+      background: var(--glass);
+      touch-action: none;
+      filter: contrast(1.08) brightness(0.96);
+      animation: phosphor-flicker 7s infinite steps(1);
+    }
+
+    .scanlines {
+      position: absolute;
+      inset: 0;
+      z-index: 2;
+      pointer-events: none;
+      opacity: 0.26;
+      background: repeating-linear-gradient(
+        to bottom,
+        transparent 0,
+        transparent 2px,
+        rgba(0, 0, 0, 0.72) 3px,
+        rgba(255, 45, 35, 0.045) 4px
+      );
+      mix-blend-mode: normal;
+    }
+
+    .scanlines::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(90deg, rgba(255, 50, 42, 0.025), transparent 28%, rgba(255, 50, 42, 0.018));
+      animation: phosphor-roll 8s linear infinite;
+    }
+
+    @keyframes phosphor-flicker {
+      0%, 18%, 20%, 52%, 54%, 100% { opacity: 1; }
+      19%, 53% { opacity: 0.965; }
+    }
+
+    @keyframes phosphor-roll {
+      from { transform: translateY(-100%); }
+      to { transform: translateY(100%); }
+    }
+
+    .overlay {
+      position: absolute;
+      inset: 0;
+      z-index: 4;
+      display: grid;
+      place-items: center;
+      padding: 24px;
+      background: rgba(10, 0, 0, 0.72);
+      backdrop-filter: blur(1px);
+    }
+
+    .overlay[hidden] {
+      display: none;
+    }
+
+    .panel {
+      width: min(520px, 92%);
+      padding: 22px;
+      border: 2px solid var(--phosphor);
+      border-radius: 3px;
+      background: rgba(16, 0, 0, 0.94);
+      color: var(--phosphor-hot);
+      box-shadow:
+        0 0 8px rgba(255, 55, 47, 0.8),
+        inset 0 0 24px rgba(110, 0, 0, 0.4);
+      text-align: center;
+      text-shadow: 0 0 7px rgba(255, 55, 47, 0.76);
+    }
+
+    .panel-kicker {
+      margin: 0 0 7px;
+      color: var(--phosphor);
+      font-weight: 900;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+    }
+
+    .panel h2 {
+      margin: 0 0 12px;
+      font-size: clamp(1.7rem, 5vw, 3rem);
+      line-height: 0.95;
+      letter-spacing: -0.06em;
+      text-transform: uppercase;
+    }
+
+    .panel p {
+      margin: 0 auto 16px;
+      max-width: 43ch;
+      font: 700 0.86rem/1.45 Arial, sans-serif;
+    }
+
+    .course-lights {
+      display: grid;
+      grid-template-columns: repeat(8, 1fr);
+      gap: 5px;
+      margin: 15px auto;
+      max-width: 310px;
+    }
+
+    .course-lights span {
+      display: grid;
+      place-items: center;
+      min-height: 26px;
+      border: 2px solid #650b08;
+      border-radius: 2px;
+      background: #180000;
+      color: #8f211e;
+      font-weight: 900;
+      font-size: 0.72rem;
+    }
+
+    .course-lights .unlocked {
+      color: #ff8a84;
+      border-color: #8a211c;
+      background: #220000;
+    }
+
+    .course-lights .locked {
+      opacity: 0.45;
+    }
+
+    .course-lights .active {
+      background: var(--phosphor);
+      color: #170000;
+      box-shadow: 0 0 8px rgba(255, 55, 47, 0.9);
+    }
+
+    .primary-button {
+      border: 2px solid var(--phosphor);
+      border-radius: 3px;
+      padding: 11px 24px;
+      background: #210000;
+      color: var(--phosphor-hot);
+      font: 900 0.95rem/1 "Courier New", monospace;
+      letter-spacing: 0.08em;
+      cursor: pointer;
+      box-shadow: 0 0 10px rgba(255, 55, 47, 0.62);
+      transform: translateY(-2px);
+      -webkit-tap-highlight-color: transparent;
+      touch-action: manipulation;
+    }
+
+    .primary-button:active {
+      box-shadow: 0 0 3px rgba(255, 55, 47, 0.8);
+      transform: translateY(1px);
+    }
+
+    .controls {
+      display: grid;
+      grid-template-columns: 1.3fr 1fr;
+      gap: 14px;
+      padding: 13px 16px 15px;
+      background: transparent;
+      border-top: 1px solid rgba(91, 80, 59, 0.5);
+    }
+
+    .instructions {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      align-items: center;
+      gap: 8px;
+      color: #4d4433;
+      font-size: 0.72rem;
+      line-height: 1.25;
+    }
+
+    .instructions strong {
+      display: block;
+      color: #7b1712;
+      font-size: 0.76rem;
+    }
+
+    .touch-controls {
+      display: grid;
+      grid-template-columns: repeat(5, 1fr);
+      gap: 7px;
+    }
+
+    .touch-options {
+      display: none;
+      gap: 8px;
+      margin-bottom: 8px;
+    }
+
+    .touch-option-btn {
+      flex: 1;
+      min-height: 38px;
+      border: 2px solid #665c46;
+      border-radius: 6px;
+      background: #1f1b14;
+      color: #f7b3ad;
+      font: 900 0.66rem/1 "Courier New", monospace;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+      cursor: pointer;
+      box-shadow: inset 0 -3px 0 rgba(0, 0, 0, 0.34);
+      -webkit-tap-highlight-color: transparent;
+      touch-action: manipulation;
+    }
+
+    .touch-option-btn.active {
+      background: #5b0907;
+      color: #ffcec9;
+      border-color: #9f2b25;
+      filter: brightness(1.08);
+    }
+
+    .touch-controls button {
+      min-height: 45px;
+      border: 2px solid #665c46;
+      border-radius: 5px;
+      background: #2c271d;
+      color: #ff837b;
+      font: 900 0.72rem/1 "Courier New", monospace;
+      cursor: pointer;
+      box-shadow: inset 0 -4px 0 rgba(0, 0, 0, 0.3);
+      touch-action: none;
+      user-select: none;
+      -webkit-user-select: none;
+      -webkit-tap-highlight-color: transparent;
+    }
+
+    .touch-controls button[data-key="nitro"] {
+      background: #5b0907;
+      color: #ffb0aa;
+    }
+
+    .touch-controls button.active {
+      transform: translateY(2px);
+      box-shadow: inset 0 2px 0 rgba(0, 0, 0, 0.4);
+      filter: brightness(1.35);
+    }
+
+    .footnote {
+      margin: 0;
+      padding: 0 16px 14px;
+      background: transparent;
+      color: #665d49;
+      font: 0.68rem/1.4 Arial, sans-serif;
+      text-align: center;
+    }
+
+    @media (max-width: 760px) {
+      body {
+        padding:
+          max(8px, env(safe-area-inset-top))
+          max(8px, env(safe-area-inset-right))
+          max(8px, env(safe-area-inset-bottom))
+          max(8px, env(safe-area-inset-left));
+      }
+
+      .game-shell {
+        border-radius: 10px;
+      }
+
+      .screen {
+        margin: 10px;
+        border-width: 8px;
+        border-radius: 25px / 18px;
+      }
+
+      .controls {
+        grid-template-columns: 1fr;
+        gap: 10px;
+        padding: 10px 10px 12px;
+        background: linear-gradient(180deg, rgba(199, 185, 148, 0.16), rgba(0, 0, 0, 0.15));
+      }
+
+      .instructions {
+        display: none;
+      }
+
+      .touch-options {
+        display: flex;
+      }
+
+      .touch-controls {
+        grid-template-columns: repeat(4, minmax(0, 1fr));
+        grid-template-areas:
+          "leanLeft brake throttle leanRight"
+          "nitro nitro throttle throttle";
+        gap: 9px;
+      }
+
+      .touch-controls.left-handed {
+        grid-template-areas:
+          "leanLeft throttle brake leanRight"
+          "throttle throttle nitro nitro";
+      }
+
+      .touch-controls button[data-key="leanLeft"] { grid-area: leanLeft; }
+      .touch-controls button[data-key="brake"] { grid-area: brake; }
+      .touch-controls button[data-key="throttle"] { grid-area: throttle; }
+      .touch-controls button[data-key="leanRight"] { grid-area: leanRight; }
+      .touch-controls button[data-key="nitro"] { grid-area: nitro; }
+
+      .touch-controls button {
+        min-height: 60px;
+        font-size: 0.8rem;
+      }
+
+      .touch-controls button[data-key="throttle"] {
+        min-height: 130px;
+        font-size: 1rem;
+      }
+
+      .touch-controls button[data-key="nitro"] {
+        min-height: 62px;
+      }
+
+      .masthead {
+        padding: 10px 12px;
+      }
+    }
+
+    @media (max-width: 430px) and (orientation: portrait) {
+      body {
+        padding:
+          max(6px, env(safe-area-inset-top))
+          max(6px, env(safe-area-inset-right))
+          max(10px, env(safe-area-inset-bottom))
+          max(6px, env(safe-area-inset-left));
+      }
+
+      .game-shell {
+        border-radius: 8px;
+        border-width: 2px;
+      }
+
+      .masthead {
+        gap: 8px;
+        padding: 8px 10px;
+      }
+
+      .brand {
+        gap: 8px;
+      }
+
+      h1 {
+        font-size: clamp(1rem, 6.1vw, 1.35rem);
+      }
+
+      .version {
+        font-size: 0.64rem;
+      }
+
+      .sound-button {
+        min-width: 42px;
+        min-height: 34px;
+        font-size: 0.69rem;
+      }
+
+      .screen {
+        margin: 8px;
+        border-width: 7px;
+      }
+
+      .controls {
+        gap: 8px;
+        padding:
+          8px
+          8px
+          max(10px, env(safe-area-inset-bottom))
+          8px;
+      }
+
+      .touch-options {
+        gap: 6px;
+      }
+
+      .touch-option-btn {
+        min-height: 42px;
+        font-size: 0.68rem;
+      }
+
+      .touch-controls {
+        gap: 10px;
+      }
+
+      .touch-controls button {
+        min-height: 66px;
+        font-size: 0.86rem;
+      }
+
+      .touch-controls button[data-key="throttle"] {
+        min-height: 148px;
+        font-size: 1.05rem;
+      }
+
+      .touch-controls button[data-key="nitro"] {
+        min-height: 72px;
+      }
+
+      .footnote {
+        font-size: 0.6rem;
+        line-height: 1.35;
+        padding:
+          0
+          10px
+          max(8px, env(safe-area-inset-bottom));
+      }
+    }
+  </style>
+</head>
+<body>
+  <main class="game-shell" aria-label="Red Clay Rally game">
+    <header class="masthead">
+      <div class="brand">
+        <h1>RED CLAY RALLY</h1>
+        <span class="version">RPR-89 · BUILD 0.2</span>
+      </div>
+      <button class="sound-button" id="soundButton" type="button" aria-pressed="false">SOUND: OFF</button>
+    </header>
+
+    <section class="screen">
+      <canvas id="game" width="960" height="540" aria-label="Motorcycle obstacle course"></canvas>
+      <div class="scanlines" aria-hidden="true"></div>
+
+      <div class="overlay" id="overlay">
+        <div class="panel">
+          <p class="panel-kicker" id="panelKicker">Course 1</p>
+          <h2 id="panelTitle">The Cut</h2>
+          <p id="panelCopy">
+            Beat the clock across red-clay jumps, mud, gaps, and one mean loop.
+            Normal speed will not clear everything. Save nitro for the trouble.
+          </p>
+          <div class="course-lights" aria-label="Eight planned courses">
+            <span class="active">1</span><span>2</span><span>3</span><span>4</span>
+            <span>5</span><span>6</span><span>7</span><span>8</span>
+          </div>
+          <button class="primary-button" id="actionButton" type="button">START ENGINE</button>
+        </div>
+      </div>
+    </section>
+
+    <section class="controls" aria-label="Game controls">
+      <div class="instructions">
+        <span><strong>W / ↑</strong>Throttle</span>
+        <span><strong>S / ↓</strong>Brake</span>
+        <span><strong>A / D</strong>Lean in air</span>
+        <span><strong>SHIFT / X</strong>Nitro</span>
+        <span><strong>P</strong>Pause</span>
+        <span><strong>R</strong>Restart</span>
+      </div>
+
+      <div>
+        <div class="touch-options" aria-label="Mobile control options">
+          <button type="button" class="touch-option-btn" id="layoutToggleButton" aria-pressed="false">Layout: Right</button>
+          <button type="button" class="touch-option-btn" id="nitroToggleButton" aria-pressed="false">Nitro: Hold</button>
+        </div>
+
+      <div class="touch-controls" id="touchControlsPanel">
+        <button type="button" data-key="leanLeft">LEAN −</button>
+        <button type="button" data-key="brake">BRAKE</button>
+        <button type="button" data-key="throttle">GO</button>
+        <button type="button" data-key="leanRight">LEAN +</button>
+        <button type="button" data-key="nitro">NITRO</button>
+      </div>
+      </div>
+    </section>
+    <p class="footnote">
+      STONE SYSTEMS RPR-89 · EXPERIMENTAL RED-PHOSPHOR DISPLAY · Original browser game by Eric Stone
+    </p>
+  </main>
+
+  <script>
+    (() => {
+      "use strict";
+
+      const canvas = document.getElementById("game");
+      const ctx = canvas.getContext("2d");
+      const overlay = document.getElementById("overlay");
+      const panelKicker = document.getElementById("panelKicker");
+      const panelTitle = document.getElementById("panelTitle");
+      const panelCopy = document.getElementById("panelCopy");
+      const actionButton = document.getElementById("actionButton");
+      const soundButton = document.getElementById("soundButton");
+      const touchControlsPanel = document.getElementById("touchControlsPanel");
+      const layoutToggleButton = document.getElementById("layoutToggleButton");
+      const nitroToggleButton = document.getElementById("nitroToggleButton");
+      const touchControlButtons = document.querySelectorAll(".touch-controls button");
+      const supportsPointerEvents = "PointerEvent" in window;
+      const courseLightElements = Array.from(document.querySelectorAll(".course-lights span"));
+
+      const WIDTH = canvas.width;
+      const HEIGHT = canvas.height;
+      const BIKE_GROUND_OFFSET = 22;
+      const RESPAWN_PENALTY_SECONDS = 6;
+      const CHECKPOINT_INTERVAL = 1200;
+
+      const COLORS = {
+        ink: "#080000",
+        paper: "#ff514a",
+        cream: "#ff8078",
+        clay: "#470000",
+        clayDark: "#1b0000",
+        clayLight: "#db1d18",
+        gold: "#ff4a40",
+        pine: "#3b0000",
+        pineDark: "#210000",
+        skyTop: "#020000",
+        skyBottom: "#180000",
+        mud: "#120000",
+        white: "#ffaaa4"
+      };
+
+      const BASE_TRACK = [
+        { x: -320, y: 420 },
+        { x: 0, y: 420 },
+        { x: 300, y: 414 },
+        { x: 520, y: 350 },
+        { x: 720, y: 420 },
+        { x: 1030, y: 420 },
+        { x: 1180, y: 395 },
+        { x: 1390, y: 318, gapAfter: true },
+        { x: 1680, y: 410 },
+        { x: 1950, y: 384 },
+        { x: 2210, y: 420 },
+        { x: 2780, y: 420 },
+        { x: 3050, y: 416 },
+        { x: 3235, y: 325, gapAfter: true },
+        { x: 3560, y: 410 },
+        { x: 3910, y: 430 },
+        { x: 4130, y: 398 },
+        { x: 4345, y: 292, gapAfter: true },
+        { x: 4735, y: 414 },
+        { x: 4980, y: 394 },
+        { x: 5250, y: 335 },
+        { x: 5480, y: 424 },
+        { x: 5790, y: 410 },
+        { x: 6250, y: 410 }
+      ];
+
+      const coursePlans = [
+        {
+          kicker: "Course 1",
+          name: "The Cut",
+          intro: "Beat the clock across red-clay jumps, mud, gaps, and one mean loop. Normal speed will not clear everything. Save nitro for the trouble.",
+          timeLimit: 74,
+          worldEnd: 5940,
+          mudZones: [
+            { start: 770, end: 1040 },
+            { start: 3620, end: 3920 }
+          ],
+          pickups: [
+            { x: 900, amount: 28 },
+            { x: 1880, amount: 35 },
+            { x: 2910, amount: 32 },
+            { x: 4060, amount: 38 },
+            { x: 5110, amount: 30 }
+          ],
+          loop: {
+            triggerX: 2388,
+            cx: 2410,
+            cy: 293,
+            radius: 105,
+            trackRadius: 127,
+            exitX: 2615,
+            baseY: 420
+          }
+        },
+        {
+          kicker: "Course 2",
+          name: "Ridge Run",
+          intro: "The same mountain, less forgiveness. Mud is deeper, nitro pickups are lighter, and the clock is tighter.",
+          timeLimit: 66,
+          worldEnd: 5940,
+          mudZones: [
+            { start: 660, end: 1120 },
+            { start: 2470, end: 2860 },
+            { start: 3560, end: 4040 },
+            { start: 4800, end: 5120 }
+          ],
+          pickups: [
+            { x: 860, amount: 24 },
+            { x: 1830, amount: 28 },
+            { x: 2880, amount: 24 },
+            { x: 3990, amount: 30 },
+            { x: 5060, amount: 24 }
+          ],
+          loop: {
+            triggerX: 2402,
+            cx: 2424,
+            cy: 295,
+            radius: 103,
+            trackRadius: 126,
+            exitX: 2625,
+            baseY: 420
+          }
+        },
+        {
+          kicker: "Course 3",
+          name: "Night Shift",
+          intro: "Final build track. Nitro is scarce, drag zones are mean, and the timer does not wait. Ride clean or restart.",
+          timeLimit: 60,
+          worldEnd: 5940,
+          mudZones: [
+            { start: 620, end: 1140 },
+            { start: 1650, end: 2020 },
+            { start: 2460, end: 2920 },
+            { start: 3510, end: 4140 },
+            { start: 4740, end: 5220 }
+          ],
+          pickups: [
+            { x: 840, amount: 20 },
+            { x: 1790, amount: 22 },
+            { x: 2810, amount: 20 },
+            { x: 3920, amount: 24 },
+            { x: 4990, amount: 18 }
+          ],
+          loop: {
+            triggerX: 2410,
+            cx: 2431,
+            cy: 297,
+            radius: 102,
+            trackRadius: 125,
+            exitX: 2633,
+            baseY: 420
+          }
+        }
+      ];
+
+      let track = [];
+      let mudZones = [];
+      let pickups = [];
+      let loop = null;
+      let worldEnd = 5940;
+      let timeLimit = 74;
+      let currentCourseIndex = 0;
+      let unlockedCourseCount = 1;
+
+      const input = {
+        throttle: false,
+        brake: false,
+        leanLeft: false,
+        leanRight: false,
+        nitro: false
+      };
+
+      const player = {
+        x: 90,
+        y: 398,
+        vx: 0,
+        vy: 0,
+        angle: 0,
+        angularVelocity: 0,
+        suspension: 0,
+        onGround: true,
+        looping: false,
+        loopProgress: 0,
+        crashed: false
+      };
+
+      let gameMode = "menu";
+      let timer = timeLimit;
+      let nitro = 100;
+      let cameraX = 0;
+      let distanceBest = 0;
+      let lastTime = performance.now();
+      let dust = [];
+      let flashes = [];
+      let audio = null;
+      let soundOn = false;
+      let checkpointXs = [];
+      let nextCheckpointIndex = 0;
+      let activeCheckpointX = 90;
+      let respawnTimerId = null;
+      let tractionPenalty = 0;
+      let lastGroundAngle = 0;
+      let rideFeedback = "";
+      let rideFeedbackTimer = 0;
+      let wasInMud = false;
+      let raceElapsedTime = 0;
+      let currentRunFrames = [];
+      let ghostSampleAccumulator = 0;
+      const ghostBestByCourse = {};
+      let leftHandedLayout = false;
+      let nitroToggleEnabled = false;
+      let nitroLatched = false;
+      let pendingPauseConfirmUntil = 0;
+      let pendingRestartConfirmUntil = 0;
+
+      const isLikelyTouchDevice =
+        window.matchMedia("(pointer: coarse)").matches ||
+        "ontouchstart" in window;
+
+      function cloneTrackData(source) {
+        return source.map((point) => ({ ...point }));
+      }
+
+      function cloneZones(source) {
+        return source.map((zone) => ({ ...zone }));
+      }
+
+      function clonePickups(source) {
+        return source.map((pickup) => ({ ...pickup, taken: false }));
+      }
+
+      function getActiveCourse() {
+        return coursePlans[currentCourseIndex] || coursePlans[0];
+      }
+
+      function updateCourseLights() {
+        courseLightElements.forEach((lightElement, index) => {
+          lightElement.classList.remove("active", "unlocked", "locked");
+          if (index < unlockedCourseCount) {
+            lightElement.classList.add("unlocked");
+          } else {
+            lightElement.classList.add("locked");
+          }
+
+          if (index === currentCourseIndex) {
+            lightElement.classList.add("active");
+          }
+        });
+      }
+
+      function applyCourseSettings(index) {
+        currentCourseIndex = Math.max(0, Math.min(index, coursePlans.length - 1));
+        const course = getActiveCourse();
+
+        track = cloneTrackData(BASE_TRACK);
+        mudZones = cloneZones(course.mudZones);
+        pickups = clonePickups(course.pickups);
+        loop = { ...course.loop };
+        worldEnd = course.worldEnd;
+        timeLimit = course.timeLimit;
+        updateCourseLights();
+      }
+
+      function showCourseIntro() {
+        const course = getActiveCourse();
+        gameMode = "menu";
+        showOverlay(course.kicker, course.name, course.intro, "START ENGINE");
+      }
+
+      function buildCourseCheckpoints() {
+        checkpointXs = [];
+        for (let x = 900; x < worldEnd - 260; x += CHECKPOINT_INTERVAL) {
+          checkpointXs.push(x);
+        }
+      }
+
+      function resetCheckpointState() {
+        buildCourseCheckpoints();
+        nextCheckpointIndex = 0;
+        activeCheckpointX = 90;
+      }
+
+      function updateCheckpointProgress() {
+        if (nextCheckpointIndex >= checkpointXs.length) {
+          return;
+        }
+
+        const nextCheckpointX = checkpointXs[nextCheckpointIndex];
+        if (player.x >= nextCheckpointX) {
+          activeCheckpointX = nextCheckpointX;
+          nextCheckpointIndex += 1;
+          flashes.push({ x: activeCheckpointX, y: (terrainHeightAt(activeCheckpointX) || 420) - 42, life: 1 });
+          blip(700, 0.08, 0.035);
+        }
+      }
+
+      function respawnAtCheckpoint() {
+        const respawnX = Math.max(90, Math.min(activeCheckpointX + 18, worldEnd - 120));
+        const ground = terrainHeightAt(respawnX) || 420;
+
+        player.x = respawnX;
+        player.y = ground - BIKE_GROUND_OFFSET;
+        player.vx = 2.1;
+        player.vy = 0;
+        player.angle = terrainAngleAt(respawnX);
+        player.angularVelocity = 0;
+        player.suspension = 0.14;
+        player.onGround = true;
+        player.looping = false;
+        player.loopProgress = 0;
+        player.crashed = false;
+        gameMode = "playing";
+        tractionPenalty = 0.18;
+        lastGroundAngle = player.angle;
+        wasInMud = false;
+        setRideFeedback("RESPAWN", 0.7);
+        cameraX = Math.max(0, player.x - 225);
+        flashes.push({ x: player.x, y: player.y, life: 1 });
+        blip(260, 0.1, 0.04);
+      }
+
+      function setRideFeedback(message, seconds = 1.2) {
+        rideFeedback = message;
+        rideFeedbackTimer = Math.max(rideFeedbackTimer, seconds);
+      }
+
+      function syncTouchControlModeUI() {
+        if (touchControlsPanel) {
+          touchControlsPanel.classList.toggle("left-handed", leftHandedLayout);
+        }
+
+        if (layoutToggleButton) {
+          layoutToggleButton.textContent = leftHandedLayout ? "Layout: Left" : "Layout: Right";
+          layoutToggleButton.classList.toggle("active", leftHandedLayout);
+          layoutToggleButton.setAttribute("aria-pressed", String(leftHandedLayout));
+        }
+
+        if (nitroToggleButton) {
+          nitroToggleButton.textContent = nitroToggleEnabled ? "Nitro: Toggle" : "Nitro: Hold";
+          nitroToggleButton.classList.toggle("active", nitroToggleEnabled);
+          nitroToggleButton.setAttribute("aria-pressed", String(nitroToggleEnabled));
+        }
+
+        touchControlButtons.forEach((button) => {
+          if (button.dataset.key === "nitro") {
+            button.classList.toggle("active", nitroToggleEnabled && nitroLatched);
+          }
+        });
+      }
+
+      function clearAllInputs(clearNitroLatch = false) {
+        Object.keys(input).forEach((key) => {
+          input[key] = false;
+        });
+
+        touchControlButtons.forEach((button) => {
+          button.classList.remove("active");
+        });
+
+        if (clearNitroLatch) {
+          nitroLatched = false;
+        }
+
+        input.nitro = nitroToggleEnabled && nitroLatched;
+        syncTouchControlModeUI();
+      }
+
+      function updateRideFeedback(dt) {
+        if (rideFeedbackTimer <= 0) {
+          return;
+        }
+
+        rideFeedbackTimer = Math.max(0, rideFeedbackTimer - dt);
+        if (rideFeedbackTimer === 0) {
+          rideFeedback = "";
+        }
+      }
+
+      function createAudio() {
+        if (audio) return;
+        const AudioContext = window.AudioContext || window.webkitAudioContext;
+        if (!AudioContext) return;
+        const context = new AudioContext();
+        const oscillator = context.createOscillator();
+        const gain = context.createGain();
+        oscillator.type = "sawtooth";
+        oscillator.frequency.value = 70;
+        gain.gain.value = 0;
+        oscillator.connect(gain).connect(context.destination);
+        oscillator.start();
+        audio = { context, oscillator, gain };
+      }
+
+      function setSound(enabled) {
+        soundOn = enabled;
+        soundButton.textContent = `SOUND: ${enabled ? "ON" : "OFF"}`;
+        soundButton.setAttribute("aria-pressed", String(enabled));
+        if (enabled) {
+          createAudio();
+          if (audio && audio.context.state === "suspended") audio.context.resume();
+        }
+      }
+
+      function updateAudio() {
+        if (!audio) return;
+        const active = soundOn && gameMode === "playing" && !player.crashed;
+        const now = audio.context.currentTime;
+        audio.oscillator.frequency.setTargetAtTime(65 + player.vx * 19 + (input.nitro ? 35 : 0), now, 0.04);
+        audio.gain.gain.setTargetAtTime(active ? 0.025 + player.vx * 0.0016 : 0, now, 0.05);
+      }
+
+      function blip(frequency, duration = 0.08, volume = 0.045) {
+        if (!soundOn || !audio) return;
+        const oscillator = audio.context.createOscillator();
+        const gain = audio.context.createGain();
+        oscillator.type = "square";
+        oscillator.frequency.value = frequency;
+        gain.gain.value = volume;
+        oscillator.connect(gain).connect(audio.context.destination);
+        const now = audio.context.currentTime;
+        gain.gain.exponentialRampToValueAtTime(0.001, now + duration);
+        oscillator.start(now);
+        oscillator.stop(now + duration);
+      }
+
+      function terrainSegmentAt(x) {
+        for (let i = 0; i < track.length - 1; i += 1) {
+          const a = track[i];
+          const b = track[i + 1];
+          if (x >= a.x && x <= b.x) {
+            return { a, b, gap: Boolean(a.gapAfter) };
+          }
+        }
+        return null;
+      }
+
+      function terrainHeightAt(x) {
+        const segment = terrainSegmentAt(x);
+        if (!segment || segment.gap) return null;
+        const t = (x - segment.a.x) / (segment.b.x - segment.a.x);
+        return segment.a.y + (segment.b.y - segment.a.y) * t;
+      }
+
+      function terrainAngleAt(x) {
+        const segment = terrainSegmentAt(x);
+        if (!segment || segment.gap) return player.angle;
+        return Math.atan2(segment.b.y - segment.a.y, segment.b.x - segment.a.x);
+      }
+
+      function isMud(x) {
+        return mudZones.some((zone) => x >= zone.start && x <= zone.end);
+      }
+
+      function normalizeAngle(angle) {
+        while (angle > Math.PI) angle -= Math.PI * 2;
+        while (angle < -Math.PI) angle += Math.PI * 2;
+        return angle;
+      }
+
+      function lerpAngle(from, to, amount) {
+        return from + normalizeAngle(to - from) * amount;
+      }
+
+      function resetGame() {
+        if (respawnTimerId) {
+          window.clearTimeout(respawnTimerId);
+          respawnTimerId = null;
+        }
+
+        player.x = 90;
+        player.y = (terrainHeightAt(player.x) || 420) - BIKE_GROUND_OFFSET;
+        player.vx = 0;
+        player.vy = 0;
+        player.angle = 0;
+        player.angularVelocity = 0;
+        player.suspension = 0;
+        player.onGround = true;
+        player.looping = false;
+        player.loopProgress = 0;
+        player.crashed = false;
+        timer = timeLimit;
+        nitro = 100;
+        cameraX = 0;
+        dust = [];
+        flashes = [];
+        tractionPenalty = 0;
+        lastGroundAngle = 0;
+        rideFeedback = "";
+        rideFeedbackTimer = 0;
+        wasInMud = false;
+        raceElapsedTime = 0;
+        currentRunFrames = [];
+        ghostSampleAccumulator = 0;
+        nitroLatched = false;
+        resetCheckpointState();
+        pickups.forEach((pickup) => { pickup.taken = false; });
+        hideOverlay();
+        gameMode = "playing";
+        createAudio();
+        if (soundOn && audio && audio.context.state === "suspended") audio.context.resume();
+      }
+
+      function startGame() {
+        resetGame();
+        blip(180, 0.06);
+        setTimeout(() => blip(240, 0.08), 70);
+      }
+
+      function pauseGame() {
+        if (gameMode === "playing") {
+          gameMode = "paused";
+          showOverlay("Pit Stop", "Paused", "The clock is stopped. Catch your breath, then get back into the red dirt.", "RESUME");
+        } else if (gameMode === "paused") {
+          gameMode = "playing";
+          hideOverlay();
+        }
+      }
+
+      function showOverlay(kicker, title, copy, buttonText) {
+        panelKicker.textContent = kicker;
+        panelTitle.textContent = title;
+        panelCopy.textContent = copy;
+        actionButton.textContent = buttonText;
+        overlay.hidden = false;
+      }
+
+      function hideOverlay() {
+        overlay.hidden = true;
+      }
+
+      function crash(reason) {
+        if (player.crashed || gameMode !== "playing") return;
+        player.crashed = true;
+        gameMode = "respawning";
+        player.vy = -5;
+        player.angularVelocity = 0.22;
+        blip(74, 0.28, 0.09);
+
+        if (respawnTimerId) {
+          window.clearTimeout(respawnTimerId);
+        }
+
+        respawnTimerId = window.setTimeout(() => {
+          respawnTimerId = null;
+          if (gameMode !== "respawning") {
+            return;
+          }
+
+          timer = Math.max(0, timer - RESPAWN_PENALTY_SECONDS);
+          if (timer <= 0.1) {
+            gameMode = "crashed";
+            showOverlay(
+              "Wipeout",
+              "Out Of Time",
+              `${reason} No time left for a respawn penalty. Distance: ${Math.floor((player.x / worldEnd) * 100)}%.`,
+              "TRY AGAIN"
+            );
+            return;
+          }
+
+          respawnAtCheckpoint();
+        }, 680);
+      }
+
+      function winGame() {
+        if (gameMode !== "playing") return;
+        gameMode = "won";
+        player.vx *= 0.6;
+        blip(320, 0.12);
+        setTimeout(() => blip(440, 0.15), 130);
+
+        const runDuration = raceElapsedTime;
+        const currentGhostBest = ghostBestByCourse[currentCourseIndex];
+        if (!currentGhostBest || runDuration < currentGhostBest.bestTime) {
+          ghostBestByCourse[currentCourseIndex] = {
+            bestTime: runDuration,
+            frames: currentRunFrames.map((frame) => ({ ...frame }))
+          };
+          setRideFeedback("NEW BEST GHOST", 1.4);
+        }
+
+        const course = getActiveCourse();
+        const nextCourse = coursePlans[currentCourseIndex + 1];
+        if (nextCourse) {
+          unlockedCourseCount = Math.max(unlockedCourseCount, currentCourseIndex + 2);
+          updateCourseLights();
+          showOverlay(
+            `${course.kicker} Cleared`,
+            course.name,
+            `You made it with ${timer.toFixed(1)} seconds left. ${nextCourse.kicker} (${nextCourse.name}) is now unlocked.`,
+            "NEXT COURSE"
+          );
+          return;
+        }
+
+        showOverlay(
+          "Champion",
+          course.name,
+          `You cleared every current build with ${timer.toFixed(1)} seconds left. More tracks are coming soon.`,
+          "RIDE AGAIN"
+        );
+      }
+
+      function spawnDust(amount = 1, color = COLORS.clayLight) {
+        for (let i = 0; i < amount; i += 1) {
+          dust.push({
+            x: player.x - 22,
+            y: player.y + 14,
+            vx: -1.2 - Math.random() * 2.2,
+            vy: -0.4 - Math.random() * 1.8,
+            life: 1,
+            size: 2 + Math.random() * 5,
+            color
+          });
+        }
+      }
+
+      function updateParticles(scale) {
+        dust.forEach((particle) => {
+          particle.x += particle.vx * scale;
+          particle.y += particle.vy * scale;
+          particle.vy += 0.06 * scale;
+          particle.life -= 0.025 * scale;
+        });
+        dust = dust.filter((particle) => particle.life > 0);
+        flashes.forEach((flash) => { flash.life -= 0.04 * scale; });
+        flashes = flashes.filter((flash) => flash.life > 0);
+      }
+
+      function tryStartLoop() {
+        if (
+          !player.looping &&
+          player.onGround &&
+          player.x >= loop.triggerX &&
+          player.x <= loop.triggerX + 45
+        ) {
+          if (input.nitro && player.vx >= 8.2 && nitro > 8) {
+            player.looping = true;
+            player.onGround = false;
+            player.loopProgress = 0;
+            player.x = loop.cx;
+            player.y = loop.cy + loop.radius;
+            player.angle = 0;
+            blip(260, 0.08);
+          } else {
+            crash("The loop needs speed. Hold SHIFT or X and hit it with nitro.");
+          }
+        }
+      }
+
+      function updateLoop(scale) {
+        if (!player.looping) return false;
+
+        if (input.nitro && nitro > 0) {
+          player.vx = Math.min(12.8, player.vx + 0.045 * scale);
+          nitro = Math.max(0, nitro - 0.72 * scale);
+          spawnDust(1, COLORS.gold);
+        } else {
+          player.vx = Math.max(0, player.vx - 0.045 * scale);
+        }
+
+        player.loopProgress += (player.vx / loop.radius) * scale;
+        const p = Math.min(player.loopProgress, Math.PI * 2);
+        player.x = loop.cx + Math.sin(p) * loop.radius;
+        player.y = loop.cy + Math.cos(p) * loop.radius;
+        player.angle = -p;
+
+        if (player.vx < 4.7 && p > 0.75 && p < 5.6) {
+          player.looping = false;
+          crash("You lost momentum upside down. Nitro is not optional here.");
+          return true;
+        }
+
+        if (player.loopProgress >= Math.PI * 2) {
+          player.looping = false;
+          player.onGround = true;
+          player.x = loop.exitX;
+          player.y = loop.baseY - BIKE_GROUND_OFFSET;
+          player.angle = 0;
+          player.vy = 0;
+          flashes.push({ x: player.x, y: player.y, life: 1 });
+          blip(520, 0.09);
+        }
+        return true;
+      }
+
+      function updatePickups() {
+        pickups.forEach((pickup) => {
+          if (pickup.taken) return;
+          const ground = terrainHeightAt(pickup.x) || 420;
+          const closeX = Math.abs(player.x - pickup.x) < 34;
+          const closeY = Math.abs(player.y - (ground - 58)) < 62;
+          if (closeX && closeY) {
+            pickup.taken = true;
+            nitro = Math.min(100, nitro + pickup.amount);
+            flashes.push({ x: pickup.x, y: ground - 58, life: 1 });
+            blip(620, 0.1);
+          }
+        });
+      }
+
+      function updateGame(dt) {
+        const scale = dt * 60;
+        updateParticles(scale);
+        updateRideFeedback(dt);
+
+        tractionPenalty = Math.max(0, tractionPenalty - 0.017 * scale);
+        player.suspension = Math.max(0, player.suspension - 0.024 * scale);
+
+        if (gameMode === "respawning" || gameMode === "crashed") {
+          player.vy += 0.48 * scale;
+          player.y += player.vy * scale;
+          player.x += player.vx * 0.45 * scale;
+          player.angle += player.angularVelocity * scale;
+          updateCamera(scale);
+          updateAudio();
+          return;
+        }
+
+        if (gameMode !== "playing") {
+          updateAudio();
+          return;
+        }
+
+        raceElapsedTime += dt;
+        ghostSampleAccumulator += dt;
+        if (ghostSampleAccumulator >= 1 / 30) {
+          currentRunFrames.push({
+            t: raceElapsedTime,
+            x: player.x,
+            y: player.y,
+            angle: player.angle,
+            suspension: player.suspension
+          });
+          ghostSampleAccumulator = 0;
+        }
+
+        timer = Math.max(0, timer - dt);
+        if (timer <= 0) {
+          crash("The clock won.");
+          return;
+        }
+
+        if (updateLoop(scale)) {
+          updateCamera(scale);
+          updatePickups();
+          updateAudio();
+          return;
+        }
+
+        const nitroActive = input.nitro && nitro > 0;
+        const muddy = player.onGround && isMud(player.x);
+        const courseAngle = terrainAngleAt(player.x);
+        const slopeForce = Math.sin(courseAngle) * 0.08 * scale;
+        const baseGrip = muddy ? 0.72 : 1;
+        const grip = Math.max(0.35, baseGrip - tractionPenalty * 0.45);
+        const normalMax = muddy ? 4.2 : 8.25;
+        const maxSpeed = nitroActive ? 13.1 : normalMax + grip * 0.35;
+
+        if (muddy && !wasInMud) {
+          setRideFeedback("MUD DRAG", 0.55);
+        }
+        wasInMud = muddy;
+
+        if (input.throttle) {
+          player.vx += (muddy ? 0.052 : 0.116) * grip * scale;
+        } else {
+          player.vx -= (player.onGround ? 0.026 : 0.006) * scale;
+        }
+
+        player.vx -= slopeForce;
+
+        if (input.brake) {
+          player.vx -= (0.15 + (1 - grip) * 0.05) * scale;
+        }
+
+        if (nitroActive) {
+          player.vx += (0.125 + grip * 0.02) * scale;
+          nitro = Math.max(0, nitro - 0.52 * scale);
+          if (Math.random() < 0.55) spawnDust(1, COLORS.gold);
+        }
+
+        if (muddy) {
+          player.vx *= Math.pow(0.976, scale);
+          if (player.vx > 1.5 && Math.random() < 0.4) spawnDust(2, COLORS.mud);
+        }
+
+        player.vx = Math.max(-1.7, Math.min(maxSpeed, player.vx));
+
+        if (player.onGround) {
+          const ground = terrainHeightAt(player.x);
+          const angle = terrainAngleAt(player.x);
+          const lean = (input.leanRight ? 0.11 : 0) - (input.leanLeft ? 0.11 : 0);
+
+          if (ground === null) {
+            player.onGround = false;
+            player.vy = Math.max(-11.5, Math.min(7, Math.tan(player.angle) * player.vx));
+          } else {
+            player.y = ground - BIKE_GROUND_OFFSET;
+            const angleDelta = Math.abs(normalizeAngle(angle - lastGroundAngle));
+            player.suspension = Math.min(1, player.suspension + angleDelta * 0.85);
+            lastGroundAngle = angle;
+
+            player.angle = lerpAngle(player.angle, angle + lean, (0.17 + grip * 0.06) * scale);
+            player.vy = 0;
+            if (player.vx > 2 && Math.random() < 0.34) spawnDust(muddy ? 2 : 1, muddy ? COLORS.mud : COLORS.clayLight);
+          }
+
+          player.x += player.vx * scale;
+
+          if (terrainHeightAt(player.x) === null) {
+            player.onGround = false;
+            player.vy = Math.max(-11.5, Math.min(7, Math.tan(angle) * player.vx));
+          }
+        } else {
+          if (input.leanLeft) player.angularVelocity -= 0.008 * scale;
+          if (input.leanRight) player.angularVelocity += 0.008 * scale;
+          if (input.throttle) player.angularVelocity -= 0.0023 * scale;
+          if (input.brake) player.angularVelocity += 0.0034 * scale;
+          player.angularVelocity *= Math.pow(0.978, scale);
+          player.angle += player.angularVelocity * scale;
+
+          if (input.throttle) player.vx += 0.018 * scale;
+          player.vy += 0.43 * scale;
+          player.x += player.vx * scale;
+          player.y += player.vy * scale;
+
+          const ground = terrainHeightAt(player.x);
+          if (ground !== null && player.y + BIKE_GROUND_OFFSET >= ground && player.vy > -1) {
+            const landingAngle = terrainAngleAt(player.x);
+            const angleError = Math.abs(normalizeAngle(player.angle - landingAngle));
+            const impactSpeed = Math.max(0, player.vy);
+            if (angleError > 1.12 || player.vy > 15.5) {
+              crash(angleError > 1.12 ? "You landed sideways." : "That landing was too hard.");
+            } else {
+              player.onGround = true;
+              player.y = ground - BIKE_GROUND_OFFSET;
+              player.vy = 0;
+              player.angularVelocity = 0;
+              player.angle = landingAngle;
+              const landingSeverity = Math.min(1, (impactSpeed / 13.5) + angleError * 0.42);
+              player.suspension = Math.max(player.suspension, 0.28 + landingSeverity * 0.7);
+              tractionPenalty = Math.max(tractionPenalty, landingSeverity * 0.72);
+
+              if (landingSeverity > 0.72) {
+                setRideFeedback("HARD LANDING", 0.9);
+              } else if (landingSeverity < 0.28) {
+                setRideFeedback("CLEAN LANDING", 0.65);
+              }
+
+              spawnDust(7, isMud(player.x) ? COLORS.mud : COLORS.clayLight);
+              blip(115, 0.04, 0.025);
+            }
+          }
+        }
+
+        if (player.y > HEIGHT + 120) crash("You found the bottom of the ravine.");
+
+        tryStartLoop();
+        updatePickups();
+        updateCheckpointProgress();
+        distanceBest = Math.max(distanceBest, player.x);
+
+        if (player.x >= worldEnd) winGame();
+        updateCamera(scale);
+        updateAudio();
+      }
+
+      function updateCamera(scale) {
+        const target = player.looping ? loop.cx - 315 : Math.max(0, player.x - 225);
+        cameraX += (target - cameraX) * Math.min(1, 0.085 * scale);
+      }
+
+      function drawBackground() {
+        const gradient = ctx.createLinearGradient(0, 0, 0, HEIGHT);
+        gradient.addColorStop(0, COLORS.skyTop);
+        gradient.addColorStop(0.68, COLORS.skyBottom);
+        gradient.addColorStop(1, "#310000");
+        ctx.fillStyle = gradient;
+        ctx.fillRect(0, 0, WIDTH, HEIGHT);
+
+        ctx.save();
+        ctx.strokeStyle = COLORS.clayLight;
+        ctx.lineWidth = 3;
+        ctx.shadowColor = COLORS.paper;
+        ctx.shadowBlur = 12;
+        ctx.beginPath();
+        ctx.arc(790, 92, 49, 0, Math.PI * 2);
+        ctx.stroke();
+        ctx.restore();
+
+        drawMountainLayer(0.08, 286, "#250000", 55, 0.008);
+        drawMountainLayer(0.16, 344, "#390000", 72, 0.011);
+        drawPines();
+
+        ctx.fillStyle = "rgba(255, 58, 50, 0.24)";
+        for (let i = 0; i < 7; i += 1) {
+          const x = ((i * 193 - cameraX * 0.04) % (WIDTH + 240)) - 100;
+          ctx.fillRect(x, 135 + (i % 3) * 25, 70, 2);
+        }
+      }
+
+      function drawMountainLayer(parallax, baseY, color, height, frequency) {
+        ctx.fillStyle = color;
+        ctx.beginPath();
+        ctx.moveTo(0, HEIGHT);
+        for (let x = 0; x <= WIDTH + 12; x += 12) {
+          const worldX = x + cameraX * parallax;
+          const y = baseY
+            - Math.sin(worldX * frequency) * height * 0.45
+            - Math.sin(worldX * frequency * 0.43 + 1.8) * height * 0.65;
+          ctx.lineTo(x, y);
+        }
+        ctx.lineTo(WIDTH, HEIGHT);
+        ctx.closePath();
+        ctx.fill();
+      }
+
+      function drawPines() {
+        ctx.fillStyle = COLORS.pineDark;
+        for (let i = 0; i < 24; i += 1) {
+          const worldX = i * 290 + 70;
+          const x = worldX - cameraX * 0.35;
+          if (x < -80 || x > WIDTH + 80) continue;
+          const height = 34 + (i % 5) * 9;
+          const base = 385 + (i % 3) * 7;
+          ctx.fillRect(x - 3, base - height * 0.45, 6, height * 0.45);
+          for (let tier = 0; tier < 3; tier += 1) {
+            const tierY = base - height + tier * height * 0.24;
+            const half = 12 + tier * 8;
+            ctx.beginPath();
+            ctx.moveTo(x, tierY);
+            ctx.lineTo(x - half, tierY + height * 0.42);
+            ctx.lineTo(x + half, tierY + height * 0.42);
+            ctx.closePath();
+            ctx.fill();
+          }
+        }
+      }
+
+      function drawTerrain() {
+        for (let i = 0; i < track.length - 1; i += 1) {
+          const a = track[i];
+          const b = track[i + 1];
+          if (a.gapAfter) continue;
+          const ax = a.x - cameraX;
+          const bx = b.x - cameraX;
+          if (bx < -50 || ax > WIDTH + 50) continue;
+
+          ctx.fillStyle = COLORS.clay;
+          ctx.beginPath();
+          ctx.moveTo(ax, a.y);
+          ctx.lineTo(bx, b.y);
+          ctx.lineTo(bx, HEIGHT + 30);
+          ctx.lineTo(ax, HEIGHT + 30);
+          ctx.closePath();
+          ctx.fill();
+
+          ctx.strokeStyle = COLORS.cream;
+          ctx.lineWidth = 4;
+          ctx.shadowColor = COLORS.paper;
+          ctx.shadowBlur = 7;
+          ctx.beginPath();
+          ctx.moveTo(ax, a.y);
+          ctx.lineTo(bx, b.y);
+          ctx.stroke();
+          ctx.shadowBlur = 0;
+
+          ctx.strokeStyle = COLORS.clayDark;
+          ctx.lineWidth = 6;
+          ctx.beginPath();
+          ctx.moveTo(ax, a.y + 9);
+          ctx.lineTo(bx, b.y + 9);
+          ctx.stroke();
+        }
+
+        ctx.save();
+        ctx.globalAlpha = 0.22;
+        ctx.strokeStyle = "#760c09";
+        ctx.lineWidth = 2;
+        for (let x = Math.floor(cameraX / 55) * 55; x < cameraX + WIDTH + 55; x += 55) {
+          const y = terrainHeightAt(x);
+          if (y === null) continue;
+          ctx.beginPath();
+          ctx.moveTo(x - cameraX - 14, y + 34);
+          ctx.lineTo(x - cameraX + 18, y + 46);
+          ctx.stroke();
+        }
+        ctx.restore();
+      }
+
+      function drawMud() {
+        mudZones.forEach((zone) => {
+          const start = Math.max(zone.start, cameraX - 20);
+          const end = Math.min(zone.end, cameraX + WIDTH + 20);
+          if (end < start) return;
+          ctx.fillStyle = COLORS.mud;
+          ctx.strokeStyle = "#6e0807";
+          ctx.lineWidth = 2;
+          ctx.beginPath();
+          let started = false;
+          for (let x = start; x <= end; x += 12) {
+            const y = terrainHeightAt(x);
+            if (y === null) continue;
+            const sx = x - cameraX;
+            if (!started) {
+              ctx.moveTo(sx, y - 2);
+              started = true;
+            } else {
+              ctx.lineTo(sx, y - 2 + Math.sin(x * 0.12) * 3);
+            }
+          }
+          for (let x = end; x >= start; x -= 12) {
+            const y = terrainHeightAt(x);
+            if (y !== null) ctx.lineTo(x - cameraX, y + 11);
+          }
+          ctx.closePath();
+          ctx.fill();
+          ctx.stroke();
+        });
+      }
+
+      function drawLoop() {
+        const x = loop.cx - cameraX;
+        if (x < -220 || x > WIDTH + 220) return;
+        ctx.save();
+        ctx.strokeStyle = COLORS.clayDark;
+        ctx.lineWidth = 28;
+        ctx.beginPath();
+        ctx.arc(x, loop.cy, loop.trackRadius, 0, Math.PI * 2);
+        ctx.stroke();
+        ctx.strokeStyle = COLORS.clay;
+        ctx.lineWidth = 19;
+        ctx.beginPath();
+        ctx.arc(x, loop.cy, loop.trackRadius, 0, Math.PI * 2);
+        ctx.stroke();
+        ctx.strokeStyle = COLORS.cream;
+        ctx.lineWidth = 3;
+        ctx.shadowColor = COLORS.paper;
+        ctx.shadowBlur = 8;
+        ctx.setLineDash([10, 9]);
+        ctx.beginPath();
+        ctx.arc(x, loop.cy, loop.trackRadius - 1, 0, Math.PI * 2);
+        ctx.stroke();
+        ctx.restore();
+
+        drawSign(loop.triggerX - 85, 365, "NITRO LOOP");
+      }
+
+      function drawSign(worldX, y, label) {
+        const x = worldX - cameraX;
+        if (x < -120 || x > WIDTH + 120) return;
+        ctx.fillStyle = "#210000";
+        ctx.fillRect(x - 3, y, 6, 57);
+        ctx.fillStyle = COLORS.gold;
+        ctx.strokeStyle = "#ff514a";
+        ctx.lineWidth = 3;
+        ctx.fillRect(x - 48, y - 26, 96, 28);
+        ctx.strokeRect(x - 48, y - 26, 96, 28);
+        ctx.fillStyle = COLORS.ink;
+        ctx.font = "900 11px Courier New";
+        ctx.textAlign = "center";
+        ctx.fillText(label, x, y - 8);
+      }
+
+      function drawPickups() {
+        pickups.forEach((pickup) => {
+          if (pickup.taken) return;
+          const x = pickup.x - cameraX;
+          if (x < -40 || x > WIDTH + 40) return;
+          const ground = terrainHeightAt(pickup.x) || 420;
+          const y = ground - 59 + Math.sin(performance.now() * 0.006 + pickup.x) * 4;
+          ctx.save();
+          ctx.translate(x, y);
+          ctx.fillStyle = COLORS.gold;
+          ctx.strokeStyle = COLORS.ink;
+          ctx.lineWidth = 3;
+          ctx.fillRect(-12, -17, 24, 34);
+          ctx.strokeRect(-12, -17, 24, 34);
+          ctx.fillStyle = COLORS.clay;
+          ctx.fillRect(-8, -12, 16, 24);
+          ctx.fillStyle = COLORS.white;
+          ctx.font = "900 15px Courier New";
+          ctx.textAlign = "center";
+          ctx.fillText("N", 0, 6);
+          ctx.restore();
+        });
+      }
+
+      function drawCheckpoints() {
+        checkpointXs.forEach((checkpointX, index) => {
+          const x = checkpointX - cameraX;
+          if (x < -80 || x > WIDTH + 80) return;
+
+          const isReached = checkpointX <= activeCheckpointX;
+          const ground = terrainHeightAt(checkpointX) || 420;
+
+          ctx.fillStyle = "#2a0000";
+          ctx.fillRect(x - 2, ground - 78, 4, 78);
+
+          ctx.fillStyle = isReached ? COLORS.gold : COLORS.clay;
+          ctx.strokeStyle = COLORS.paper;
+          ctx.lineWidth = 2;
+          ctx.beginPath();
+          ctx.moveTo(x + 2, ground - 76);
+          ctx.lineTo(x + 30, ground - 66);
+          ctx.lineTo(x + 2, ground - 56);
+          ctx.closePath();
+          ctx.fill();
+          ctx.stroke();
+
+          ctx.fillStyle = COLORS.ink;
+          ctx.font = "900 10px Courier New";
+          ctx.textAlign = "center";
+          ctx.fillText(String(index + 1), x + 14, ground - 63);
+        });
+      }
+
+      function drawFinish() {
+        const x = worldEnd - cameraX;
+        if (x < -80 || x > WIDTH + 100) return;
+        ctx.fillStyle = "#2a0000";
+        ctx.fillRect(x - 5, 280, 10, 132);
+        for (let row = 0; row < 5; row += 1) {
+          for (let col = 0; col < 4; col += 1) {
+            ctx.fillStyle = (row + col) % 2 ? COLORS.ink : COLORS.white;
+            ctx.fillRect(x + col * 14, 282 + row * 14, 14, 14);
+          }
+        }
+        ctx.fillStyle = COLORS.ink;
+        ctx.font = "900 13px Courier New";
+        ctx.textAlign = "center";
+        ctx.fillText("FINISH", x + 28, 370);
+      }
+
+      function drawDust() {
+        dust.forEach((particle) => {
+          ctx.globalAlpha = Math.max(0, particle.life);
+          ctx.fillStyle = particle.color;
+          ctx.beginPath();
+          ctx.arc(particle.x - cameraX, particle.y, particle.size * particle.life, 0, Math.PI * 2);
+          ctx.fill();
+        });
+        ctx.globalAlpha = 1;
+
+        flashes.forEach((flash) => {
+          ctx.globalAlpha = flash.life;
+          ctx.strokeStyle = COLORS.gold;
+          ctx.lineWidth = 4;
+          ctx.beginPath();
+          ctx.arc(flash.x - cameraX, flash.y, 35 * (1 - flash.life) + 8, 0, Math.PI * 2);
+          ctx.stroke();
+        });
+        ctx.globalAlpha = 1;
+      }
+
+      function getGhostPoseAtTime(frames, elapsedTime) {
+        if (!frames || !frames.length) {
+          return null;
+        }
+
+        if (elapsedTime <= frames[0].t) {
+          return frames[0];
+        }
+
+        const last = frames[frames.length - 1];
+        if (elapsedTime >= last.t) {
+          return last;
+        }
+
+        for (let i = 0; i < frames.length - 1; i += 1) {
+          const a = frames[i];
+          const b = frames[i + 1];
+          if (elapsedTime >= a.t && elapsedTime <= b.t) {
+            const span = b.t - a.t || 0.0001;
+            const t = (elapsedTime - a.t) / span;
+            return {
+              x: a.x + (b.x - a.x) * t,
+              y: a.y + (b.y - a.y) * t,
+              angle: a.angle + normalizeAngle(b.angle - a.angle) * t,
+              suspension: a.suspension + (b.suspension - a.suspension) * t
+            };
+          }
+        }
+
+        return last;
+      }
+
+      function drawGhostBike() {
+        const ghost = ghostBestByCourse[currentCourseIndex];
+        if (!ghost || !ghost.frames || ghost.frames.length < 2) {
+          return;
+        }
+
+        const pose = getGhostPoseAtTime(ghost.frames, raceElapsedTime);
+        if (!pose) {
+          return;
+        }
+
+        const x = pose.x - cameraX;
+        const y = pose.y + pose.suspension * 7;
+
+        if (x < -80 || x > WIDTH + 80 || y < -80 || y > HEIGHT + 80) {
+          return;
+        }
+
+        ctx.save();
+        ctx.translate(x, y);
+        ctx.rotate(pose.angle);
+        ctx.globalAlpha = 0.38;
+        ctx.strokeStyle = "#ffd9d6";
+        ctx.fillStyle = "#ff6f68";
+        ctx.lineWidth = 3;
+
+        [-23, 25].forEach((wheelX) => {
+          ctx.beginPath();
+          ctx.arc(wheelX, 11, 11, 0, Math.PI * 2);
+          ctx.stroke();
+        });
+
+        ctx.beginPath();
+        ctx.moveTo(-23, 10);
+        ctx.lineTo(-7, -7);
+        ctx.lineTo(13, 7);
+        ctx.lineTo(21, -8);
+        ctx.lineTo(25, 10);
+        ctx.stroke();
+
+        ctx.beginPath();
+        ctx.arc(10, -42, 7, 0, Math.PI * 2);
+        ctx.fill();
+
+        ctx.restore();
+      }
+
+      function drawBike() {
+        const x = player.x - cameraX;
+        const y = player.y + player.suspension * 7;
+        ctx.save();
+        ctx.translate(x, y);
+        ctx.rotate(player.angle);
+        ctx.shadowColor = COLORS.paper;
+        ctx.shadowBlur = 6;
+
+        const wheelSpin = player.x * 0.11;
+        [-23, 25].forEach((wheelX) => {
+          ctx.save();
+          ctx.translate(wheelX, 11);
+          ctx.rotate(wheelSpin);
+          ctx.fillStyle = "#070000";
+          ctx.strokeStyle = COLORS.paper;
+          ctx.lineWidth = 2;
+          ctx.beginPath();
+          ctx.arc(0, 0, 13, 0, Math.PI * 2);
+          ctx.fill();
+          ctx.stroke();
+          ctx.strokeStyle = "#c82420";
+          ctx.lineWidth = 1.5;
+          ctx.beginPath();
+          ctx.moveTo(-9, 0);
+          ctx.lineTo(9, 0);
+          ctx.moveTo(0, -9);
+          ctx.lineTo(0, 9);
+          ctx.stroke();
+          ctx.restore();
+        });
+
+        // Frame: rear wheel is left, front wheel and fork are right.
+        ctx.strokeStyle = COLORS.gold;
+        ctx.lineWidth = 5;
+        ctx.lineCap = "round";
+        ctx.beginPath();
+        ctx.moveTo(-23, 10);
+        ctx.lineTo(-7, -7);
+        ctx.lineTo(13, 7);
+        ctx.lineTo(21, -8);
+        ctx.lineTo(25, 10);
+        ctx.moveTo(-7, -7);
+        ctx.lineTo(21, -8);
+        ctx.stroke();
+
+        // Front handlebar and fender make the direction unmistakable.
+        ctx.strokeStyle = COLORS.cream;
+        ctx.lineWidth = 3;
+        ctx.beginPath();
+        ctx.moveTo(20, -9);
+        ctx.lineTo(24, -18);
+        ctx.lineTo(31, -18);
+        ctx.moveTo(14, -1);
+        ctx.quadraticCurveTo(25, -5, 34, 3);
+        ctx.stroke();
+
+        // Tank and seat.
+        ctx.fillStyle = COLORS.clay;
+        ctx.strokeStyle = COLORS.paper;
+        ctx.lineWidth = 2;
+        ctx.beginPath();
+        ctx.moveTo(-12, -9);
+        ctx.lineTo(7, -14);
+        ctx.lineTo(18, -7);
+        ctx.lineTo(-4, -3);
+        ctx.closePath();
+        ctx.fill();
+        ctx.stroke();
+
+        // Rider's back leans toward the right/front of the motorcycle.
+        ctx.fillStyle = COLORS.clayLight;
+        ctx.strokeStyle = COLORS.paper;
+        ctx.lineWidth = 2;
+        ctx.beginPath();
+        ctx.moveTo(-6, -14);
+        ctx.lineTo(3, -35);
+        ctx.lineTo(15, -30);
+        ctx.lineTo(11, -14);
+        ctx.closePath();
+        ctx.fill();
+        ctx.stroke();
+
+        // Right-reaching arm and bent leg.
+        ctx.strokeStyle = COLORS.cream;
+        ctx.lineWidth = 4;
+        ctx.beginPath();
+        ctx.moveTo(10, -29);
+        ctx.lineTo(20, -22);
+        ctx.lineTo(27, -17);
+        ctx.moveTo(-3, -14);
+        ctx.lineTo(8, -3);
+        ctx.lineTo(17, -2);
+        ctx.stroke();
+
+        // Helmet with a bright visor pointing right.
+        ctx.fillStyle = COLORS.cream;
+        ctx.strokeStyle = COLORS.paper;
+        ctx.lineWidth = 2;
+        ctx.beginPath();
+        ctx.arc(10, -42, 9, 0, Math.PI * 2);
+        ctx.fill();
+        ctx.stroke();
+        ctx.fillStyle = COLORS.clay;
+        ctx.fillRect(3, -50, 13, 6);
+        ctx.fillStyle = COLORS.white;
+        ctx.beginPath();
+        ctx.moveTo(16, -46);
+        ctx.lineTo(27, -42);
+        ctx.lineTo(16, -38);
+        ctx.closePath();
+        ctx.fill();
+
+        // Nitro always fires from the rear, opposite the direction of travel.
+        if (input.nitro && nitro > 0 && gameMode === "playing") {
+          ctx.fillStyle = Math.random() > 0.5 ? COLORS.gold : COLORS.white;
+          ctx.beginPath();
+          ctx.moveTo(-17, -3);
+          ctx.lineTo(-35 - Math.random() * 16, -7);
+          ctx.lineTo(-20, 3);
+          ctx.closePath();
+          ctx.fill();
+        }
+        ctx.restore();
+      }
+
+      function isCompactHudMode() {
+        return window.innerWidth <= 430 && window.innerHeight >= window.innerWidth;
+      }
+
+      function drawHUD() {
+        const compactHud = isCompactHudMode();
+        const leftPanelX = 14;
+        const leftPanelY = 14;
+        const leftPanelWidth = compactHud ? 224 : 276;
+        const leftPanelHeight = compactHud ? 62 : 75;
+        const progressPanelWidth = compactHud ? 196 : 236;
+        const progressPanelHeight = compactHud ? 42 : 48;
+        const progressPanelX = WIDTH - progressPanelWidth - 14;
+        const progressPanelY = 14;
+
+        ctx.save();
+        ctx.shadowColor = COLORS.paper;
+        ctx.shadowBlur = 5;
+        ctx.fillStyle = "rgba(10, 0, 0, 0.9)";
+        ctx.fillRect(leftPanelX, leftPanelY, leftPanelWidth, leftPanelHeight);
+        ctx.strokeStyle = COLORS.paper;
+        ctx.lineWidth = 2;
+        ctx.strokeRect(leftPanelX, leftPanelY, leftPanelWidth, leftPanelHeight);
+
+        ctx.font = compactHud ? "900 12px Courier New" : "900 15px Courier New";
+        ctx.fillStyle = COLORS.white;
+        ctx.textAlign = "left";
+        ctx.fillText(`TIME ${timer.toFixed(1).padStart(4, "0")}`, leftPanelX + 12, compactHud ? 33 : 38);
+        ctx.fillText(`SPD ${Math.max(0, Math.round(player.vx * 7)).toString().padStart(2, "0")}`, compactHud ? leftPanelX + 123 : leftPanelX + 151, compactHud ? 33 : 38);
+
+        ctx.fillStyle = "#260000";
+        ctx.fillRect(leftPanelX + 12, compactHud ? 42 : 51, compactHud ? 198 : 242, compactHud ? 14 : 18);
+        ctx.fillStyle = nitro > 28 ? COLORS.gold : COLORS.clay;
+        ctx.fillRect(leftPanelX + 15, compactHud ? 45 : 54, (compactHud ? 192 : 236) * (nitro / 100), compactHud ? 8 : 12);
+        ctx.fillStyle = COLORS.white;
+        ctx.font = compactHud ? "900 10px Courier New" : "900 11px Courier New";
+        if (!compactHud) {
+          ctx.fillText("NITRO", leftPanelX + 17, 83);
+        }
+
+        const progress = Math.max(0, Math.min(1, player.x / worldEnd));
+        ctx.fillStyle = "rgba(10, 0, 0, 0.9)";
+        ctx.fillRect(progressPanelX, progressPanelY, progressPanelWidth, progressPanelHeight);
+        ctx.strokeStyle = COLORS.paper;
+        ctx.strokeRect(progressPanelX, progressPanelY, progressPanelWidth, progressPanelHeight);
+        ctx.fillStyle = "#260000";
+        ctx.fillRect(progressPanelX + 16, compactHud ? 26 : 29, compactHud ? 164 : 204, compactHud ? 9 : 11);
+        ctx.fillStyle = COLORS.clayLight;
+        ctx.fillRect(progressPanelX + 16, compactHud ? 26 : 29, (compactHud ? 164 : 204) * progress, compactHud ? 9 : 11);
+        ctx.fillStyle = COLORS.white;
+        ctx.font = compactHud ? "900 10px Courier New" : "900 11px Courier New";
+        ctx.textAlign = "right";
+        ctx.fillText(`${Math.floor(progress * 100)}%`, progressPanelX + progressPanelWidth - 14, compactHud ? 42 : 55);
+        ctx.textAlign = "left";
+        ctx.fillText(`CP ${Math.min(nextCheckpointIndex, checkpointXs.length)}/${checkpointXs.length}`, progressPanelX + 16, compactHud ? 42 : 55);
+
+        const courseGhost = ghostBestByCourse[currentCourseIndex];
+        if (courseGhost) {
+          ctx.fillStyle = COLORS.white;
+          ctx.font = compactHud ? "900 9px Courier New" : "900 10px Courier New";
+          ctx.textAlign = "left";
+          ctx.fillText(`GHOST ${courseGhost.bestTime.toFixed(1)}s`, leftPanelX + 8, compactHud ? 89 : 98);
+        }
+
+        if (isMud(player.x) && player.onGround && gameMode === "playing") {
+          ctx.fillStyle = COLORS.mud;
+          ctx.strokeStyle = COLORS.paper;
+          ctx.lineWidth = 2;
+          ctx.fillRect(WIDTH / 2 - (compactHud ? 54 : 66), compactHud ? 20 : 22, compactHud ? 108 : 132, compactHud ? 24 : 30);
+          ctx.strokeRect(WIDTH / 2 - (compactHud ? 54 : 66), compactHud ? 20 : 22, compactHud ? 108 : 132, compactHud ? 24 : 30);
+          ctx.fillStyle = COLORS.white;
+          ctx.textAlign = "center";
+          ctx.font = compactHud ? "900 11px Courier New" : "900 14px Courier New";
+          ctx.fillText("MUD DRAG", WIDTH / 2, compactHud ? 36 : 42);
+        }
+
+        if (rideFeedbackTimer > 0 && gameMode === "playing") {
+          ctx.fillStyle = "rgba(10, 0, 0, 0.86)";
+          ctx.strokeStyle = COLORS.paper;
+          ctx.lineWidth = 2;
+          ctx.fillRect(WIDTH / 2 - (compactHud ? 82 : 95), compactHud ? 52 : 56, compactHud ? 164 : 190, compactHud ? 22 : 26);
+          ctx.strokeRect(WIDTH / 2 - (compactHud ? 82 : 95), compactHud ? 52 : 56, compactHud ? 164 : 190, compactHud ? 22 : 26);
+          ctx.fillStyle = COLORS.white;
+          ctx.textAlign = "center";
+          ctx.font = compactHud ? "900 10px Courier New" : "900 12px Courier New";
+          ctx.fillText(rideFeedback, WIDTH / 2, compactHud ? 67 : 74);
+        }
+        ctx.shadowBlur = 0;
+        ctx.restore();
+      }
+
+      function drawVignette() {
+        const gradient = ctx.createRadialGradient(WIDTH / 2, HEIGHT / 2, 190, WIDTH / 2, HEIGHT / 2, 610);
+        gradient.addColorStop(0, "rgba(0,0,0,0)");
+        gradient.addColorStop(1, "rgba(18,0,0,0.5)");
+        ctx.fillStyle = gradient;
+        ctx.fillRect(0, 0, WIDTH, HEIGHT);
+
+        ctx.globalAlpha = 0.045;
+        ctx.fillStyle = "#ff2e28";
+        for (let i = 0; i < 90; i += 1) {
+          const x = (i * 83 + Math.floor(cameraX)) % WIDTH;
+          const y = (i * 47) % HEIGHT;
+          ctx.fillRect(x, y, 2, 2);
+        }
+        ctx.globalAlpha = 1;
+      }
+
+      function render() {
+        drawBackground();
+        drawTerrain();
+        drawMud();
+        drawLoop();
+        drawCheckpoints();
+        drawPickups();
+        drawFinish();
+        drawDust();
+        drawGhostBike();
+        drawBike();
+        drawHUD();
+        drawVignette();
+      }
+
+      function frame(now) {
+        const dt = Math.min(0.034, Math.max(0, (now - lastTime) / 1000));
+        lastTime = now;
+        updateGame(dt);
+        render();
+        requestAnimationFrame(frame);
+      }
+
+      function setKey(code, pressed) {
+        if (code === "ArrowUp" || code === "KeyW") input.throttle = pressed;
+        if (code === "ArrowDown" || code === "KeyS") input.brake = pressed;
+        if (code === "ArrowLeft" || code === "KeyA") input.leanLeft = pressed;
+        if (code === "ArrowRight" || code === "KeyD") input.leanRight = pressed;
+        if (code === "ShiftLeft" || code === "ShiftRight" || code === "KeyX") input.nitro = pressed;
+      }
+
+      window.addEventListener("keydown", (event) => {
+        const controlled = [
+          "ArrowUp", "ArrowDown", "ArrowLeft", "ArrowRight",
+          "KeyW", "KeyA", "KeyS", "KeyD", "ShiftLeft", "ShiftRight", "KeyX"
+        ];
+        const now = Date.now();
+        if (controlled.includes(event.code)) event.preventDefault();
+        setKey(event.code, true);
+
+        if (event.code === "KeyR" && !event.repeat) {
+          if (isLikelyTouchDevice) {
+            if (now <= pendingRestartConfirmUntil) {
+              pendingRestartConfirmUntil = 0;
+              resetGame();
+            } else {
+              pendingRestartConfirmUntil = now + 700;
+              setRideFeedback("PRESS R AGAIN", 0.7);
+            }
+          } else {
+            resetGame();
+          }
+        }
+
+        if (event.code === "KeyP" && !event.repeat) {
+          if (isLikelyTouchDevice) {
+            if (now <= pendingPauseConfirmUntil) {
+              pendingPauseConfirmUntil = 0;
+              pauseGame();
+            } else {
+              pendingPauseConfirmUntil = now + 700;
+              setRideFeedback("PRESS P AGAIN", 0.7);
+            }
+          } else {
+            pauseGame();
+          }
+        }
+
+        if ((event.code === "Enter" || event.code === "Space") && gameMode === "menu") startGame();
+      });
+
+      window.addEventListener("keyup", (event) => {
+        setKey(event.code, false);
+      });
+
+      window.addEventListener("blur", () => {
+        clearAllInputs(true);
+        if (gameMode === "playing") pauseGame();
+      });
+
+      document.addEventListener("visibilitychange", () => {
+        if (document.visibilityState !== "visible") {
+          clearAllInputs(true);
+          if (gameMode === "playing") pauseGame();
+        }
+      });
+
+      [canvas, actionButton, soundButton, ...touchControlButtons].forEach((element) => {
+        element.addEventListener("contextmenu", (event) => event.preventDefault());
+      });
+
+      touchControlButtons.forEach((button) => {
+        const key = button.dataset.key;
+        const press = (event) => {
+          event.preventDefault();
+
+          if (key === "nitro" && nitroToggleEnabled) {
+            nitroLatched = !nitroLatched;
+            input.nitro = nitroLatched;
+            syncTouchControlModeUI();
+            return;
+          }
+
+          input[key] = true;
+          button.classList.add("active");
+          if (event.pointerId !== undefined && button.setPointerCapture) {
+            button.setPointerCapture(event.pointerId);
+          }
+        };
+        const release = (event) => {
+          event.preventDefault();
+
+          if (key === "nitro" && nitroToggleEnabled) {
+            input.nitro = nitroLatched;
+            return;
+          }
+
+          input[key] = false;
+          button.classList.remove("active");
+        };
+
+        if (supportsPointerEvents) {
+          button.addEventListener("pointerdown", press);
+          button.addEventListener("pointerup", release);
+          button.addEventListener("pointercancel", release);
+          button.addEventListener("pointerleave", release);
+          button.addEventListener("pointerout", release);
+        } else {
+          button.addEventListener("touchstart", press, { passive: false });
+          button.addEventListener("touchend", release, { passive: false });
+          button.addEventListener("touchcancel", release, { passive: false });
+          button.addEventListener("mousedown", press);
+          button.addEventListener("mouseup", release);
+          button.addEventListener("mouseleave", release);
+        }
+      });
+
+      if (layoutToggleButton) {
+        layoutToggleButton.addEventListener("click", () => {
+          leftHandedLayout = !leftHandedLayout;
+          syncTouchControlModeUI();
+        });
+      }
+
+      if (nitroToggleButton) {
+        nitroToggleButton.addEventListener("click", () => {
+          nitroToggleEnabled = !nitroToggleEnabled;
+          if (!nitroToggleEnabled) {
+            nitroLatched = false;
+            input.nitro = false;
+          }
+          syncTouchControlModeUI();
+        });
+      }
+
+      actionButton.addEventListener("click", () => {
+        if (gameMode === "paused") {
+          gameMode = "playing";
+          hideOverlay();
+        } else if (gameMode === "won" && currentCourseIndex < unlockedCourseCount - 1) {
+          applyCourseSettings(currentCourseIndex + 1);
+          showCourseIntro();
+          startGame();
+        } else {
+          startGame();
+        }
+      });
+
+      soundButton.addEventListener("click", () => setSound(!soundOn));
+
+      syncTouchControlModeUI();
+      applyCourseSettings(0);
+      showCourseIntro();
+      render();
+      requestAnimationFrame(frame);
+    })();
+  </script>
+</body>
+</html>

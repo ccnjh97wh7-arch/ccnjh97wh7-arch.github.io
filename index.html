@@ -489,6 +489,87 @@
 
         const returnVisitKey = 'eric-site-last-visit-v1';
 
+        function getMonthYearLabel(dateValue) {
+            const date = dateValue instanceof Date ? dateValue : parseIsoDateOrNull(dateValue);
+            if (!date) {
+                return '';
+            }
+
+            const month = date.toLocaleString('en-US', { month: 'short', timeZone: 'UTC' });
+            const year = date.getUTCFullYear();
+            return month + ' ' + year;
+        }
+
+        function normalizeUpdateItem(item) {
+            const releaseDate = parseIsoDateOrNull(item.releasedAt);
+            if (!item || !item.title || !item.href || !releaseDate) {
+                return null;
+            }
+
+            return {
+                href: item.href,
+                title: item.title,
+                description: item.description || '',
+                releasedAt: releaseDate.toISOString(),
+                date: item.date || getMonthYearLabel(releaseDate)
+            };
+        }
+
+        function mergeUpdates(primary, secondary) {
+            const seen = new Set();
+            const merged = [];
+
+            [...primary, ...secondary].forEach((item) => {
+                const normalized = normalizeUpdateItem(item);
+                if (!normalized) {
+                    return;
+                }
+
+                const dedupeKey = normalized.href + '|' + normalized.title;
+                if (seen.has(dedupeKey)) {
+                    return;
+                }
+
+                seen.add(dedupeKey);
+                merged.push(normalized);
+            });
+
+            return merged.sort((a, b) => {
+                const aDate = parseIsoDateOrNull(a.releasedAt);
+                const bDate = parseIsoDateOrNull(b.releasedAt);
+                if (!aDate || !bDate) {
+                    return 0;
+                }
+                return bDate.getTime() - aDate.getTime();
+            });
+        }
+
+        async function fetchGameUpdatesForHomepage() {
+            try {
+                const response = await fetch('javascript-games.html', { cache: 'no-store' });
+                if (!response.ok) {
+                    return [];
+                }
+
+                const markup = await response.text();
+                const parser = new DOMParser();
+                const documentFragment = parser.parseFromString(markup, 'text/html');
+
+                return Array.from(documentFragment.querySelectorAll('[data-home-update="true"]'))
+                    .map((element) => ({
+                        href: element.dataset.updateHref || 'javascript-games.html',
+                        title: element.dataset.updateTitle || '',
+                        description: element.dataset.updateDescription || '',
+                        releasedAt: element.dataset.releasedAt || '',
+                        date: getMonthYearLabel(element.dataset.releasedAt)
+                    }))
+                    .map(normalizeUpdateItem)
+                    .filter(Boolean);
+            } catch (error) {
+                return [];
+            }
+        }
+
         function parseIsoDateOrNull(value) {
             if (typeof value !== 'string' || !value.trim()) {
                 return null;
@@ -524,12 +605,12 @@
             }
         }
 
-        function getUpdatesReleasedAfter(timestampMs) {
+        function getUpdatesReleasedAfter(updates, timestampMs) {
             if (!Number.isFinite(timestampMs)) {
                 return [];
             }
 
-            return latestUpdates
+            return updates
                 .map((item) => {
                     const releaseDate = parseIsoDateOrNull(item.releasedAt);
                     return { item, releaseDate };
@@ -661,13 +742,13 @@
             note.textContent = pick.note;
         }
 
-        function renderLatestUpdates(lastVisitTimestamp) {
+        function renderLatestUpdates(updates, lastVisitTimestamp) {
             const updatesGrid = document.getElementById('latest-updates-grid');
             if (!updatesGrid) {
                 return;
             }
 
-            const groupedUpdates = latestUpdates.reduce((groups, item) => {
+            const groupedUpdates = updates.reduce((groups, item) => {
                 if (!groups[item.date]) {
                     groups[item.date] = [];
                 }
@@ -706,7 +787,7 @@
                 .join('');
         }
 
-        function renderWhatsNewSinceLastVisit(lastVisitTimestamp) {
+        function renderWhatsNewSinceLastVisit(updates, lastVisitTimestamp) {
             const strip = document.getElementById('whats-new-strip');
             const status = document.getElementById('whats-new-status');
             const list = document.getElementById('whats-new-list');
@@ -720,7 +801,7 @@
                 return;
             }
 
-            const newItems = getUpdatesReleasedAfter(lastVisitTimestamp);
+            const newItems = getUpdatesReleasedAfter(updates, lastVisitTimestamp);
             if (!newItems.length) {
                 strip.hidden = true;
                 return;
@@ -736,13 +817,20 @@
             strip.hidden = false;
         }
 
-        const lastVisitTimestamp = getLastVisitTimestamp();
-        renderProjectOfWeek();
-        renderMonthlyHeroCta();
-        renderRandomDiveLink();
-        renderLatestUpdates(lastVisitTimestamp);
-        renderWhatsNewSinceLastVisit(lastVisitTimestamp);
-        setLastVisitTimestamp(Date.now());
+        async function initializeHomepageHighlights() {
+            const lastVisitTimestamp = getLastVisitTimestamp();
+            const autoGameUpdates = await fetchGameUpdatesForHomepage();
+            const allUpdates = mergeUpdates(latestUpdates, autoGameUpdates);
+
+            renderProjectOfWeek();
+            renderMonthlyHeroCta();
+            renderRandomDiveLink();
+            renderLatestUpdates(allUpdates, lastVisitTimestamp);
+            renderWhatsNewSinceLastVisit(allUpdates, lastVisitTimestamp);
+            setLastVisitTimestamp(Date.now());
+        }
+
+        initializeHomepageHighlights();
 
         const arcticLocations = {
             utqiagvik: {
