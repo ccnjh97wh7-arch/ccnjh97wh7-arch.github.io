@@ -14,6 +14,12 @@
     <meta name="twitter:description" content="Watch Life of Jaffar and explore stories, music, photos, games, and more.">
     <meta name="twitter:image" content="https://ccnjh97wh7-arch.github.io/pulp-time-mark.png">
     <title>Eric Stone</title>
+    <link rel="preconnect" href="https://youtube.com" crossorigin>
+    <link rel="preconnect" href="https://abefroman1978.substack.com" crossorigin>
+    <link rel="preconnect" href="https://api.open-meteo.com" crossorigin>
+    <link rel="preconnect" href="https://images-api.nasa.gov" crossorigin>
+    <link rel="dns-prefetch" href="https://youtube.com">
+    <link rel="dns-prefetch" href="https://api.open-meteo.com">
     <link rel="stylesheet" href="style.css">
 </head>
 
@@ -46,6 +52,7 @@
             <aside class="header-support" aria-label="Support my work">
                 <p class="header-support-title">Support my work</p>
                 <a href="https://venmo.com/Eric-Stone-262" target="_blank" rel="noopener noreferrer" class="donate-btn" data-track="donate-venmo">💳 Donate via Venmo</a>
+                <p class="header-support-note">Helps fund new animations, music uploads, and site experiments.</p>
             </aside>
         </div>
     </header>
@@ -68,8 +75,59 @@
                     ▶ Watch Life of Jaffar
                 </a>
                 <a href="photos.html" class="secondary-cta-btn">Browse photos</a>
-                <a href="music.html" class="secondary-cta-btn">Open music</a>
+                <a id="hero-monthly-cta" href="music.html" class="secondary-cta-btn" data-track="hero-monthly-default">This month: Open music</a>
+                <a id="random-dive-link" href="javascript-games.html" class="secondary-cta-btn random-dive-btn" data-track="random-dive-default">🎲 Random dive</a>
             </div>
+        </section>
+
+        <section id="whats-new-strip" class="archive-panel whats-new-strip" aria-labelledby="whats-new-title" hidden>
+            <div class="section-title-wrap">
+                <p class="section-kicker">Since Your Last Visit</p>
+                <h2 id="whats-new-title">New additions you may have missed.</h2>
+            </div>
+            <p id="whats-new-status" class="whats-new-status">Checking for new updates...</p>
+            <ul id="whats-new-list" class="whats-new-list"></ul>
+        </section>
+
+        <section class="quick-start-shell archive-panel" aria-labelledby="quick-start-title">
+            <div class="section-title-wrap">
+                <p class="section-kicker">Start Here</p>
+                <h2 id="quick-start-title">Choose your first move.</h2>
+            </div>
+            <div class="quick-start-grid">
+                <a href="#featured-jaffar-card" class="quick-start-card quick-start-watch" data-track="quick-start-watch">
+                    <span class="quick-start-icon" aria-hidden="true">▶</span>
+                    <span class="quick-start-label">I want to watch</span>
+                    <span class="quick-start-meta">Jump to Life of Jaffar</span>
+                </a>
+                <a href="#featured-writing-card" class="quick-start-card quick-start-read" data-track="quick-start-read">
+                    <span class="quick-start-icon" aria-hidden="true">✍️</span>
+                    <span class="quick-start-label">I want to read</span>
+                    <span class="quick-start-meta">Jump to Substack stories</span>
+                </a>
+                <a href="#featured-games-card" class="quick-start-card quick-start-play" data-track="quick-start-play">
+                    <span class="quick-start-icon" aria-hidden="true">🎮</span>
+                    <span class="quick-start-label">I want to play</span>
+                    <span class="quick-start-meta">Jump to JavaScript games</span>
+                </a>
+            </div>
+        </section>
+
+        <section class="archive-panel project-week-shell" aria-labelledby="project-week-title">
+            <div class="section-title-wrap">
+                <p class="section-kicker">Project of the Week</p>
+                <h2 id="project-week-title">One thing worth diving into right now.</h2>
+            </div>
+            <a id="project-week-card" class="project-week-card" href="javascript-games.html" data-track="project-week-default">
+                <img id="project-week-image" src="images/scenic-road.jpg" alt="Project of the week preview" class="project-week-image" loading="lazy" decoding="async" width="960" height="540">
+                <div class="project-week-copy">
+                    <span class="project-week-badge">This Week</span>
+                    <p id="project-week-note" class="project-week-note">A rotating pick from the archive.</p>
+                    <h3 id="project-week-card-title">Featured Project</h3>
+                    <p id="project-week-card-description" class="project-week-description">Loading this week’s highlight...</p>
+                    <p class="project-week-cta">Open this week’s pick →</p>
+                </div>
+            </a>
         </section>
 
         <section class="explore-prompt-section archive-panel" aria-labelledby="start-here-title">
@@ -141,21 +199,49 @@
             <p class="weirdness-link">
                 <a href="weirdness.html">More live weirdness →</a>
             </p>
+
+            <div class="alaska-extra-grid">
+                <article class="alaska-extra-card nasa-fresh-card" aria-labelledby="nasa-fresh-title">
+                    <p class="alaska-extra-kicker">Space Feed</p>
+                    <h3 id="nasa-fresh-title">NASA Newest Images</h3>
+                    <p id="nasa-fresh-status" class="alaska-extra-detail">Loading latest NASA library image...</p>
+                    <a id="nasa-fresh-link" class="alaska-extra-link" href="https://images.nasa.gov/" target="_blank" rel="noopener noreferrer">
+                        Open latest NASA image →
+                    </a>
+                    <a class="alaska-extra-muted-link" href="https://images.nasa.gov/" target="_blank" rel="noopener noreferrer">
+                        Browse NASA Image Library
+                    </a>
+                </article>
+
+                <article class="alaska-extra-card piedmont-sky-card" aria-labelledby="piedmont-sky-title">
+                    <p class="alaska-extra-kicker">Home Sky</p>
+                    <h3 id="piedmont-sky-title">Piedmont, SC Sun + Moon</h3>
+                    <p id="piedmont-sunrise" class="alaska-extra-detail">Sunrise: --</p>
+                    <p id="piedmont-sunset" class="alaska-extra-detail">Sunset: --</p>
+                    <p id="piedmont-moon-phase" class="alaska-extra-detail">Moon phase: --</p>
+                    <p id="piedmont-updated" class="alaska-extra-updated">Last update: waiting for first refresh...</p>
+                </article>
+            </div>
         </section>
 
         <section class="archive-panel">
-            <h2>Latest Updates</h2>
-            <p>Newest additions across games, photos, stories, and music.</p>
+            <div class="latest-updates-header-row">
+                <div>
+                    <h2>Latest Updates</h2>
+                    <p>Newest additions across games, photos, stories, and music.</p>
+                </div>
+                <a href="updates.html" class="updates-archive-link" data-track="updates-archive-link">View all updates archive →</a>
+            </div>
 
             <div id="latest-updates-grid" class="latest-updates-grid"></div>
         </section>
 
-        <section class="archive-panel">
+        <section class="archive-panel" id="featured-work">
             <h2>Featured Work</h2>
             <p>Start with the projects people visit most.</p>
 
             <div class="featured-grid">
-                <a href="https://youtube.com/playlist?list=PLbaYlPY2lbIItsGmHkmv5vWe0Lj4_GJqr&si=2LMokRVzgl2abDVl" target="_blank" class="nav-card featured-project-card" data-track="featured-jaffar">
+                <a href="https://youtube.com/playlist?list=PLbaYlPY2lbIItsGmHkmv5vWe0Lj4_GJqr&si=2LMokRVzgl2abDVl" target="_blank" class="nav-card featured-project-card quick-jump-target" id="featured-jaffar-card" data-track="featured-jaffar">
                     <span class="nav-card-badge featured">FEATURED</span>
                     <img src="images/water-tower-sunset.jpg" alt="Life of Jaffar preview" class="nav-card-thumb" loading="lazy" decoding="async" width="640" height="360">
                     <span class="nav-card-icon">🎬</span>
@@ -163,14 +249,14 @@
                     <p class="nav-card-description">Animation, characters, and strange little worlds.</p>
                 </a>
 
-                <a href="javascript-games.html" class="nav-card featured-project-card" data-track="featured-games">
+                <a href="javascript-games.html" class="nav-card featured-project-card quick-jump-target" id="featured-games-card" data-track="featured-games">
                     <img src="images/old-bridge.jpg" alt="JavaScript games preview" class="nav-card-thumb" loading="lazy" decoding="async" width="640" height="360">
                     <span class="nav-card-icon">🎮</span>
                     <div class="nav-card-title">JavaScript Games</div>
                     <p class="nav-card-description">Simple browser games inspired by earlier coding projects.</p>
                 </a>
 
-                <a href="https://abefroman1978.substack.com/" target="_blank" rel="noopener noreferrer" class="nav-card featured-project-card" data-track="featured-substack">
+                <a href="https://abefroman1978.substack.com/" target="_blank" rel="noopener noreferrer" class="nav-card featured-project-card quick-jump-target" id="featured-writing-card" data-track="featured-substack">
                     <img src="images/porch-dusk.jpg" alt="Writing preview" class="nav-card-thumb" loading="lazy" decoding="async" width="640" height="360">
                     <span class="nav-card-icon">✍️</span>
                     <div class="nav-card-title">My Substack Stories</div>
@@ -193,6 +279,7 @@
                     <button class="filter-btn" data-filter="code">Code</button>
                     <button class="filter-btn" data-filter="personal">Personal</button>
                 </div>
+                <p id="filter-feedback" class="filter-feedback" role="status" aria-live="polite">Showing all projects.</p>
             </div>
 
             <nav id="nav-container">
@@ -248,41 +335,46 @@
                     <p class="nav-card-description">A place for people to share stories and moments from the late 1990s.</p>
                 </a>
             </nav>
+
+            <div id="no-results-state" class="no-results-state" hidden>
+                <p class="no-results-title">No matches yet.</p>
+                <p class="no-results-copy">Try a broader word, or tap <strong>All</strong> to reset the filter.</p>
+            </div>
         </section>
 
         <section class="archive-panel">
             <h2>By The Numbers</h2>
             <div class="stats-grid">
-                <div class="stat-item">
+                <a href="photos.html" class="stat-item" data-track="stats-photos">
                     <div class="stat-icon">📸</div>
                     <div class="stat-number">75+</div>
                     <div class="stat-label">Photos</div>
-                </div>
-                <div class="stat-item">
+                </a>
+                <a href="music.html" class="stat-item" data-track="stats-music">
                     <div class="stat-icon">🎵</div>
                     <div class="stat-number">28</div>
                     <div class="stat-label">Music Tracks</div>
-                </div>
-                <div class="stat-item">
+                </a>
+                <a href="https://abefroman1978.substack.com/" target="_blank" rel="noopener noreferrer" class="stat-item" data-track="stats-stories-essays">
                     <div class="stat-icon">✍️</div>
                     <div class="stat-number">50+</div>
                     <div class="stat-label">Stories & Essays</div>
-                </div>
-                <div class="stat-item">
+                </a>
+                <a href="javascript-games.html" class="stat-item" data-track="stats-games">
                     <div class="stat-icon">🎮</div>
                     <div class="stat-number">5</div>
                     <div class="stat-label">JS Games</div>
-                </div>
-                <div class="stat-item">
+                </a>
+                <a href="https://youtube.com/playlist?list=PLbaYlPY2lbIItsGmHkmv5vWe0Lj4_GJqr&si=2LMokRVzgl2abDVl" target="_blank" rel="noopener noreferrer" class="stat-item" data-track="stats-animations">
                     <div class="stat-icon">🎬</div>
                     <div class="stat-number">12</div>
                     <div class="stat-label">Animations</div>
-                </div>
-                <div class="stat-item">
+                </a>
+                <a href="more-images.html" class="stat-item" data-track="stats-images-art">
                     <div class="stat-icon">🖼️</div>
                     <div class="stat-number">40+</div>
                     <div class="stat-label">Images & Art</div>
-                </div>
+                </a>
             </div>
         </section>
 
@@ -337,46 +429,303 @@
                 href: 'javascript-games.html',
                 date: 'Jul 2026',
                 title: 'New Mini Games Added',
-                description: 'Dice Duel and Quick Math are now live in the JavaScript Games page.'
+                description: 'Dice Duel and Quick Math are now live in the JavaScript Games page.',
+                releasedAt: '2026-07-20T18:00:00Z'
             },
             {
                 href: 'more-images.html',
                 date: 'Jul 2026',
                 title: 'More Images Carousel',
-                description: 'A fresh reel-style image archive with swipe, arrows, and lightbox view.'
+                description: 'A fresh reel-style image archive with swipe, arrows, and lightbox view.',
+                releasedAt: '2026-07-17T18:00:00Z'
             },
             {
                 href: 'rocky.html',
                 date: 'Jul 2026',
                 title: 'Late 1990s Stories',
-                description: 'People can share stories, vibes, and moments from the late 1990s.'
+                description: 'People can share stories, vibes, and moments from the late 1990s.',
+                releasedAt: '2026-07-14T18:00:00Z'
             },
             {
                 href: 'music.html',
                 date: 'Jul 2026',
                 title: 'Music Library Refresh',
-                description: 'Playlist browsing and playback controls are streamlined for easier listening.'
+                description: 'Playlist browsing and playback controls are streamlined for easier listening.',
+                releasedAt: '2026-07-10T18:00:00Z'
             }
         ];
 
-        function renderLatestUpdates() {
+        const monthlyHeroCtaPool = [
+            { href: 'music.html', label: 'This month: Open music', track: 'hero-monthly-music', external: false },
+            { href: 'javascript-games.html', label: 'This month: Play games', track: 'hero-monthly-games', external: false },
+            { href: 'rocky.html', label: 'This month: Read 90s stories', track: 'hero-monthly-stories', external: false },
+            { href: 'weirdness.html', label: 'This month: Live weirdness', track: 'hero-monthly-weirdness', external: false }
+        ];
+
+        const randomDivePool = [
+            { href: 'photos.html', label: '🎲 Random dive: Photos', track: 'random-dive-photos', external: false },
+            { href: 'more-images.html', label: '🎲 Random dive: More Images', track: 'random-dive-more-images', external: false },
+            { href: 'music.html', label: '🎲 Random dive: Music', track: 'random-dive-music', external: false },
+            { href: 'javascript-games.html', label: '🎲 Random dive: Games', track: 'random-dive-games', external: false },
+            { href: 'https://abefroman1978.substack.com/', label: '🎲 Random dive: Substack', track: 'random-dive-substack', external: true }
+        ];
+
+        const returnVisitKey = 'eric-site-last-visit-v1';
+
+        function parseIsoDateOrNull(value) {
+            if (typeof value !== 'string' || !value.trim()) {
+                return null;
+            }
+
+            const parsed = new Date(value);
+            if (Number.isNaN(parsed.getTime())) {
+                return null;
+            }
+
+            return parsed;
+        }
+
+        function getLastVisitTimestamp() {
+            try {
+                const raw = localStorage.getItem(returnVisitKey);
+                if (!raw) {
+                    return null;
+                }
+
+                const value = Number(raw);
+                return Number.isFinite(value) ? value : null;
+            } catch (error) {
+                return null;
+            }
+        }
+
+        function setLastVisitTimestamp(timestampMs) {
+            try {
+                localStorage.setItem(returnVisitKey, String(timestampMs));
+            } catch (error) {
+                // Ignore storage write failures.
+            }
+        }
+
+        function getUpdatesReleasedAfter(timestampMs) {
+            if (!Number.isFinite(timestampMs)) {
+                return [];
+            }
+
+            return latestUpdates
+                .map((item) => {
+                    const releaseDate = parseIsoDateOrNull(item.releasedAt);
+                    return { item, releaseDate };
+                })
+                .filter((entry) => entry.releaseDate && entry.releaseDate.getTime() > timestampMs)
+                .sort((a, b) => b.releaseDate.getTime() - a.releaseDate.getTime())
+                .map((entry) => entry.item);
+        }
+
+        function renderMonthlyHeroCta() {
+            const monthlyCta = document.getElementById('hero-monthly-cta');
+            if (!monthlyCta || !monthlyHeroCtaPool.length) {
+                return;
+            }
+
+            const monthIndex = new Date().getUTCMonth() % monthlyHeroCtaPool.length;
+            const pick = monthlyHeroCtaPool[monthIndex];
+            monthlyCta.href = pick.href;
+            monthlyCta.textContent = pick.label;
+            monthlyCta.dataset.track = pick.track;
+
+            if (pick.external) {
+                monthlyCta.target = '_blank';
+                monthlyCta.rel = 'noopener noreferrer';
+            } else {
+                monthlyCta.removeAttribute('target');
+                monthlyCta.removeAttribute('rel');
+            }
+        }
+
+        function renderRandomDiveLink() {
+            const randomLink = document.getElementById('random-dive-link');
+            if (!randomLink || !randomDivePool.length) {
+                return;
+            }
+
+            const randomIndex = Math.floor(Math.random() * randomDivePool.length);
+            const pick = randomDivePool[randomIndex];
+
+            randomLink.href = pick.href;
+            randomLink.textContent = pick.label;
+            randomLink.dataset.track = pick.track;
+
+            if (pick.external) {
+                randomLink.target = '_blank';
+                randomLink.rel = 'noopener noreferrer';
+            } else {
+                randomLink.removeAttribute('target');
+                randomLink.removeAttribute('rel');
+            }
+        }
+
+        const projectOfWeekPool = [
+            {
+                href: 'https://youtube.com/playlist?list=PLbaYlPY2lbIItsGmHkmv5vWe0Lj4_GJqr&si=2LMokRVzgl2abDVl',
+                title: 'Life of Jaffar',
+                description: 'Animation, characters, and strange little worlds.',
+                image: 'images/water-tower-sunset.jpg',
+                note: 'I am pushing this one this week because it captures the tone of the whole site in one shot.',
+                external: true,
+                track: 'project-week-jaffar'
+            },
+            {
+                href: 'javascript-games.html',
+                title: 'JavaScript Games',
+                description: 'Small browser experiments you can jump into in seconds.',
+                image: 'images/old-bridge.jpg',
+                note: 'This week is for play. Fast clicks, weird little loops, and no setup needed.',
+                external: false,
+                track: 'project-week-games'
+            },
+            {
+                href: 'https://abefroman1978.substack.com/',
+                title: 'My Substack Stories',
+                description: 'Essays, memories, movie thoughts, and writing fragments.',
+                image: 'images/porch-dusk.jpg',
+                note: 'If you want the voice behind the archive, start with the writing this week.',
+                external: true,
+                track: 'project-week-substack'
+            },
+            {
+                href: 'more-images.html',
+                title: 'More Images Carousel',
+                description: 'Clippings, snapshots, odd artifacts, and visual fragments.',
+                image: 'images/mountain-view.jpg',
+                note: 'This pick is the pure mood board pass: quick visuals and strange details.',
+                external: false,
+                track: 'project-week-more-images'
+            }
+        ];
+
+        function getProjectWeekIndex() {
+            const now = new Date();
+            const startOfYearUtc = Date.UTC(now.getUTCFullYear(), 0, 1);
+            const todayUtc = Date.UTC(now.getUTCFullYear(), now.getUTCMonth(), now.getUTCDate());
+            const dayOfYear = Math.floor((todayUtc - startOfYearUtc) / 86400000) + 1;
+            const weekIndex = Math.floor((dayOfYear - 1) / 7);
+            return weekIndex % projectOfWeekPool.length;
+        }
+
+        function renderProjectOfWeek() {
+            const card = document.getElementById('project-week-card');
+            const image = document.getElementById('project-week-image');
+            const title = document.getElementById('project-week-card-title');
+            const description = document.getElementById('project-week-card-description');
+            const note = document.getElementById('project-week-note');
+
+            if (!card || !image || !title || !description || !note || !projectOfWeekPool.length) {
+                return;
+            }
+
+            const pick = projectOfWeekPool[getProjectWeekIndex()];
+
+            card.href = pick.href;
+            card.dataset.track = pick.track;
+
+            if (pick.external) {
+                card.target = '_blank';
+                card.rel = 'noopener noreferrer';
+            } else {
+                card.removeAttribute('target');
+                card.removeAttribute('rel');
+            }
+
+            image.src = pick.image;
+            image.alt = pick.title + ' preview';
+            title.textContent = pick.title;
+            description.textContent = pick.description;
+            note.textContent = pick.note;
+        }
+
+        function renderLatestUpdates(lastVisitTimestamp) {
             const updatesGrid = document.getElementById('latest-updates-grid');
             if (!updatesGrid) {
                 return;
             }
 
-            updatesGrid.innerHTML = latestUpdates
-                .map((item) =>
-                    '<a href="' + item.href + '" class="latest-update-card">' +
-                        '<span class="latest-update-date">' + item.date + '</span>' +
-                        '<h3>' + item.title + '</h3>' +
-                        '<p>' + item.description + '</p>' +
-                    '</a>'
-                )
+            const groupedUpdates = latestUpdates.reduce((groups, item) => {
+                if (!groups[item.date]) {
+                    groups[item.date] = [];
+                }
+
+                groups[item.date].push(item);
+                return groups;
+            }, {});
+
+            updatesGrid.innerHTML = Object.keys(groupedUpdates)
+                .map((groupDate) => {
+                    const cardsMarkup = groupedUpdates[groupDate]
+                        .map((item) => {
+                            const releaseDate = parseIsoDateOrNull(item.releasedAt);
+                            const isNewSinceVisit = Number.isFinite(lastVisitTimestamp) && releaseDate && releaseDate.getTime() > lastVisitTimestamp;
+                            const newBadgeMarkup = isNewSinceVisit
+                                ? '<span class="latest-update-dot" aria-label="New since your last visit">New</span>'
+                                : '';
+
+                            return (
+                                '<a href="' + item.href + '" class="latest-update-card">' +
+                                    newBadgeMarkup +
+                                '<h3>' + item.title + '</h3>' +
+                                '<p>' + item.description + '</p>' +
+                                '</a>'
+                            );
+                        })
+                        .join('');
+
+                    return (
+                        '<section class="latest-update-group" aria-label="Updates from ' + groupDate + '">' +
+                            '<h3 class="latest-update-group-title">' + groupDate + '</h3>' +
+                            '<div class="latest-update-group-grid">' + cardsMarkup + '</div>' +
+                        '</section>'
+                    );
+                })
                 .join('');
         }
 
-        renderLatestUpdates();
+        function renderWhatsNewSinceLastVisit(lastVisitTimestamp) {
+            const strip = document.getElementById('whats-new-strip');
+            const status = document.getElementById('whats-new-status');
+            const list = document.getElementById('whats-new-list');
+
+            if (!strip || !status || !list) {
+                return;
+            }
+
+            if (!Number.isFinite(lastVisitTimestamp)) {
+                strip.hidden = true;
+                return;
+            }
+
+            const newItems = getUpdatesReleasedAfter(lastVisitTimestamp);
+            if (!newItems.length) {
+                strip.hidden = true;
+                return;
+            }
+
+            status.textContent = 'Since your last visit, ' + newItems.length + ' update' + (newItems.length === 1 ? ' is' : 's are') + ' new.';
+            list.innerHTML = newItems
+                .slice(0, 3)
+                .map((item) =>
+                    '<li><a href="' + item.href + '">' + item.title + '</a></li>'
+                )
+                .join('');
+            strip.hidden = false;
+        }
+
+        const lastVisitTimestamp = getLastVisitTimestamp();
+        renderProjectOfWeek();
+        renderMonthlyHeroCta();
+        renderRandomDiveLink();
+        renderLatestUpdates(lastVisitTimestamp);
+        renderWhatsNewSinceLastVisit(lastVisitTimestamp);
+        setLastVisitTimestamp(Date.now());
 
         const arcticLocations = {
             utqiagvik: {
@@ -431,6 +780,25 @@
             sunset: null,
             daylightDurationSeconds: null,
             isDay: null
+        };
+
+        const nasaFreshElements = {
+            status: document.getElementById('nasa-fresh-status'),
+            link: document.getElementById('nasa-fresh-link')
+        };
+
+        const piedmontElements = {
+            sunrise: document.getElementById('piedmont-sunrise'),
+            sunset: document.getElementById('piedmont-sunset'),
+            moonPhase: document.getElementById('piedmont-moon-phase'),
+            updated: document.getElementById('piedmont-updated')
+        };
+
+        const piedmontConfig = {
+            placeName: 'Piedmont, South Carolina',
+            latitude: 34.7029,
+            longitude: -82.4646,
+            timezone: 'America/New_York'
         };
 
         const weatherCodeLabels = {
@@ -525,6 +893,80 @@
 
         function getWeatherLabel(code) {
             return weatherCodeLabels[code] || 'Unknown conditions';
+        }
+
+        function getDatePartsInTimezone(date, timezone) {
+            const parts = new Intl.DateTimeFormat('en-US', {
+                timeZone: timezone,
+                year: 'numeric',
+                month: '2-digit',
+                day: '2-digit'
+            }).formatToParts(date);
+
+            const values = {};
+            parts.forEach((part) => {
+                if (part.type === 'year' || part.type === 'month' || part.type === 'day') {
+                    values[part.type] = Number(part.value);
+                }
+            });
+
+            if (!values.year || !values.month || !values.day) {
+                return null;
+            }
+
+            return values;
+        }
+
+        function getMoonPhaseFractionForTimezone(date, timezone) {
+            const dateParts = getDatePartsInTimezone(date, timezone);
+            if (!dateParts) {
+                return null;
+            }
+
+            const observationDateUtcNoon = Date.UTC(dateParts.year, dateParts.month - 1, dateParts.day, 12, 0, 0);
+            const knownNewMoon = Date.UTC(2000, 0, 6, 18, 14, 0);
+            const synodicMonthDays = 29.530588853;
+            const daysSinceKnownNewMoon = (observationDateUtcNoon - knownNewMoon) / 86400000;
+            const cyclePosition = ((daysSinceKnownNewMoon % synodicMonthDays) + synodicMonthDays) % synodicMonthDays;
+            return cyclePosition / synodicMonthDays;
+        }
+
+        function getMoonPhaseLabel(phaseFraction) {
+            if (!Number.isFinite(phaseFraction)) {
+                return 'Unknown phase';
+            }
+
+            if (phaseFraction < 0.03 || phaseFraction >= 0.97) {
+                return 'New Moon';
+            }
+            if (phaseFraction < 0.22) {
+                return 'Waxing Crescent';
+            }
+            if (phaseFraction < 0.28) {
+                return 'First Quarter';
+            }
+            if (phaseFraction < 0.47) {
+                return 'Waxing Gibbous';
+            }
+            if (phaseFraction < 0.53) {
+                return 'Full Moon';
+            }
+            if (phaseFraction < 0.72) {
+                return 'Waning Gibbous';
+            }
+            if (phaseFraction < 0.78) {
+                return 'Last Quarter';
+            }
+            return 'Waning Crescent';
+        }
+
+        function getMoonIlluminationPercent(phaseFraction) {
+            if (!Number.isFinite(phaseFraction)) {
+                return null;
+            }
+
+            const illumination = (1 - Math.cos(2 * Math.PI * phaseFraction)) / 2;
+            return Math.round(illumination * 100);
         }
 
         function setDaylightProgress(percent, label) {
@@ -731,6 +1173,125 @@
             }
         }
 
+        async function updateNasaFreshFeed() {
+            if (!nasaFreshElements.status || !nasaFreshElements.link) {
+                return;
+            }
+
+            const currentYear = new Date().getUTCFullYear();
+            const endpoint =
+                'https://images-api.nasa.gov/search?media_type=image&q=mars&year_start=' + (currentYear - 1);
+
+            try {
+                const response = await fetch(endpoint, { cache: 'no-store' });
+                if (!response.ok) {
+                    throw new Error('NASA library request failed: ' + response.status);
+                }
+
+                const payload = await response.json();
+                const items = (payload.collection && Array.isArray(payload.collection.items))
+                    ? payload.collection.items
+                    : [];
+
+                const usableItems = items
+                    .map((item) => {
+                        const data = Array.isArray(item.data) ? item.data[0] : null;
+                        if (!data || typeof data.title !== 'string') {
+                            return null;
+                        }
+
+                        const createdAt = parseDateOrNull(data.date_created);
+                        const nasaId = typeof data.nasa_id === 'string' ? data.nasa_id : '';
+                        return {
+                            title: data.title.trim(),
+                            createdAt,
+                            nasaId
+                        };
+                    })
+                    .filter((item) => item && item.createdAt instanceof Date);
+
+                if (!usableItems.length) {
+                    throw new Error('No NASA items returned');
+                }
+
+                usableItems.sort((a, b) => b.createdAt.getTime() - a.createdAt.getTime());
+                const newest = usableItems[0];
+                const detailUrl = newest.nasaId
+                    ? 'https://images.nasa.gov/details-' + encodeURIComponent(newest.nasaId)
+                    : 'https://images.nasa.gov/';
+
+                nasaFreshElements.status.textContent = 'Latest match: ' + newest.title;
+                nasaFreshElements.link.href = detailUrl;
+            } catch (error) {
+                nasaFreshElements.status.textContent = 'NASA live feed is temporarily unavailable.';
+                nasaFreshElements.link.href = 'https://images.nasa.gov/';
+            }
+        }
+
+        async function updatePiedmontSunAndMoon() {
+            if (!piedmontElements.sunrise || !piedmontElements.sunset || !piedmontElements.moonPhase || !piedmontElements.updated) {
+                return;
+            }
+
+            const endpoint =
+                'https://api.open-meteo.com/v1/forecast?latitude=' + piedmontConfig.latitude +
+                '&longitude=' + piedmontConfig.longitude +
+                '&daily=sunrise,sunset' +
+                '&forecast_days=1' +
+                '&timeformat=unixtime' +
+                '&timezone=' + encodeURIComponent(piedmontConfig.timezone);
+
+            try {
+                const response = await fetch(endpoint, { cache: 'no-store' });
+                if (!response.ok) {
+                    throw new Error('Piedmont forecast request failed: ' + response.status);
+                }
+
+                const payload = await response.json();
+                const daily = payload.daily || {};
+                const sunrise = Array.isArray(daily.sunrise) ? parseDateOrNull(daily.sunrise[0]) : null;
+                const sunset = Array.isArray(daily.sunset) ? parseDateOrNull(daily.sunset[0]) : null;
+
+                if (sunrise) {
+                    const sunriseText = new Intl.DateTimeFormat('en-US', {
+                        timeZone: piedmontConfig.timezone,
+                        hour: 'numeric',
+                        minute: '2-digit',
+                        hour12: true
+                    }).format(sunrise);
+                    piedmontElements.sunrise.textContent = 'Sunrise: ' + sunriseText;
+                } else {
+                    piedmontElements.sunrise.textContent = 'Sunrise: unavailable';
+                }
+
+                if (sunset) {
+                    const sunsetText = new Intl.DateTimeFormat('en-US', {
+                        timeZone: piedmontConfig.timezone,
+                        hour: 'numeric',
+                        minute: '2-digit',
+                        hour12: true
+                    }).format(sunset);
+                    piedmontElements.sunset.textContent = 'Sunset: ' + sunsetText;
+                } else {
+                    piedmontElements.sunset.textContent = 'Sunset: unavailable';
+                }
+
+                const phaseFraction = getMoonPhaseFractionForTimezone(new Date(), piedmontConfig.timezone);
+                const phaseLabel = getMoonPhaseLabel(phaseFraction);
+                const illumination = getMoonIlluminationPercent(phaseFraction);
+                piedmontElements.moonPhase.textContent = Number.isFinite(illumination)
+                    ? 'Moon phase: ' + phaseLabel + ' (' + illumination + '% illuminated)'
+                    : 'Moon phase: ' + phaseLabel;
+
+                piedmontElements.updated.textContent = 'Last update: ' + formatDateInTimezone(new Date(), piedmontConfig.timezone);
+            } catch (error) {
+                piedmontElements.sunrise.textContent = 'Sunrise: unavailable';
+                piedmontElements.sunset.textContent = 'Sunset: unavailable';
+                piedmontElements.moonPhase.textContent = 'Moon phase: unavailable';
+                piedmontElements.updated.textContent = 'Last update: request failed, retrying...';
+            }
+        }
+
         if (alaskaElements.statusBadge) {
             populateLocationPicker();
 
@@ -757,6 +1318,16 @@
             updateAlaskaLiveTracker();
             window.setInterval(updateAlaskaClock, 1000);
             window.setInterval(updateAlaskaLiveTracker, 10 * 60 * 1000);
+        }
+
+        if (nasaFreshElements.status && nasaFreshElements.link) {
+            updateNasaFreshFeed();
+            window.setInterval(updateNasaFreshFeed, 30 * 60 * 1000);
+        }
+
+        if (piedmontElements.sunrise && piedmontElements.sunset && piedmontElements.moonPhase && piedmontElements.updated) {
+            updatePiedmontSunAndMoon();
+            window.setInterval(updatePiedmontSunAndMoon, 60 * 60 * 1000);
         }
 
         async function updatePulpNowPlaying() {
@@ -830,11 +1401,23 @@
         const searchInput = document.getElementById('search-input');
         const filterButtons = document.querySelectorAll('.filter-btn');
         const navCards = document.querySelectorAll('#nav-container .nav-card');
+        const filterFeedback = document.getElementById('filter-feedback');
+        const noResultsState = document.getElementById('no-results-state');
+        const totalCardCount = navCards.length;
         let activeFilter = 'all';
+
+        function getFilterLabel(filterValue) {
+            if (filterValue === 'all') {
+                return 'all categories';
+            }
+
+            return filterValue;
+        }
 
         // Filter cards based on search term and category
         function filterCards() {
-            const searchTerm = searchInput.value.toLowerCase();
+            const searchTerm = searchInput ? searchInput.value.trim().toLowerCase() : '';
+            let visibleCount = 0;
             
             navCards.forEach(card => {
                 const category = card.dataset.category;
@@ -856,16 +1439,36 @@
                     card.style.display = 'flex';
                     card.style.opacity = '1';
                     card.style.pointerEvents = 'auto';
+                    visibleCount += 1;
                 } else {
                     card.style.display = 'none';
                     card.style.opacity = '0';
                     card.style.pointerEvents = 'none';
                 }
             });
+
+            if (noResultsState) {
+                noResultsState.hidden = visibleCount !== 0;
+            }
+
+            if (filterFeedback) {
+                const categoryLabel = getFilterLabel(activeFilter);
+                if (!searchTerm && activeFilter === 'all') {
+                    filterFeedback.textContent = 'Showing all ' + totalCardCount + ' projects.';
+                } else if (!searchTerm) {
+                    filterFeedback.textContent = 'Showing ' + visibleCount + ' of ' + totalCardCount + ' projects in ' + categoryLabel + '.';
+                } else if (visibleCount === 0) {
+                    filterFeedback.textContent = 'No projects match "' + searchTerm + '" in ' + categoryLabel + '.';
+                } else {
+                    filterFeedback.textContent = 'Showing ' + visibleCount + ' of ' + totalCardCount + ' projects for "' + searchTerm + '" in ' + categoryLabel + '.';
+                }
+            }
         }
 
         // Search input event listener
-        searchInput.addEventListener('input', filterCards);
+        if (searchInput) {
+            searchInput.addEventListener('input', filterCards);
+        }
 
         // Filter button event listeners
         filterButtons.forEach(button => {
@@ -882,6 +1485,8 @@
                 filterCards();
             });
         });
+
+        filterCards();
     </script>
 </body>
 </html>
