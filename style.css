@@ -199,6 +199,8 @@ header h1,
     height: 100%;
     display: block;
     object-fit: cover;
+    border: none;
+    box-shadow: none;
     transform-origin: center center;
     filter: saturate(1.8) brightness(1.32) contrast(1.18) drop-shadow(0 0 10px rgba(255, 34, 34, 0.34));
     will-change: transform, opacity, filter;
@@ -3361,6 +3363,12 @@ footer {
         border: 1px solid rgba(57, 255, 20, 0.45);
         box-shadow: 0 0 18px rgba(57, 255, 20, 0.16);
         filter: none;
+    }
+
+    .retro-globe-image {
+        border: none !important;
+        box-shadow: none !important;
+        filter: saturate(1.8) brightness(1.32) contrast(1.18) drop-shadow(0 0 10px rgba(255, 34, 34, 0.34));
     }
 
     .pulp-time-logo,
