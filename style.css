@@ -623,6 +623,7 @@ header h1 {
     }
 }
 
+
 @keyframes retro-globe-ring-spin {
     0% {
         transform: rotate(-18deg) scaleX(1);
@@ -2450,7 +2451,7 @@ nav p {
 
     .retro-globe-image {
         animation: moon-crt-cycle-mobile 8.8s linear infinite;
-        filter: saturate(1.65) brightness(1.22) contrast(1.14) drop-shadow(0 0 8px rgba(255, 34, 34, 0.3));
+        filter: saturate(1.65) brightness(1.22) contrast(1.14);
     }
 
     .header-copy {
@@ -3439,6 +3440,13 @@ footer {
             inset 16px 14px 24px rgba(255, 222, 222, 0.08),
             0 0 22px rgba(255, 34, 34, 0.42),
             0 0 36px rgba(255, 0, 0, 0.2);
+    }
+
+    .retro-globe-image {
+        border: none !important;
+        box-shadow: none !important;
+        filter: saturate(1.7) brightness(1.2) contrast(1.12);
+        animation: moon-crt-cycle-mobile 8.8s linear infinite;
     }
 
     .retro-globe::before {
