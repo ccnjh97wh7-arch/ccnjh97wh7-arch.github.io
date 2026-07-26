@@ -16,6 +16,11 @@ body {
         var(--warm-paper);
     color: var(--near-black);
     font-family: "Georgia", "Times New Roman", serif;
+    img.retro-globe-image {
+        border: none !important;
+        box-shadow: none !important;
+    }
+
     line-height: 1.68;
     text-rendering: optimizeLegibility;
     -webkit-font-smoothing: antialiased;
@@ -2450,6 +2455,8 @@ nav p {
     }
 
     .retro-globe-image {
+        border: none !important;
+        box-shadow: none !important;
         animation: moon-crt-cycle-mobile 8.8s linear infinite;
         filter: saturate(1.65) brightness(1.22) contrast(1.14);
     }
