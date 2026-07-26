@@ -245,6 +245,7 @@ header h1 {
 
 .header-callout,
 .header-support {
+    position: relative;
     min-width: 0;
     width: clamp(210px, 22vw, 250px);
     text-align: right;
@@ -257,7 +258,45 @@ header h1 {
 }
 
 .header-screenplay {
+    border-color: rgba(92, 206, 255, 0.72);
+    box-shadow:
+        0 0 0 1px rgba(92, 206, 255, 0.22),
+        0 0 14px rgba(92, 206, 255, 0.34),
+        0 0 34px rgba(45, 170, 255, 0.14),
+        inset 0 0 18px rgba(92, 206, 255, 0.1);
+}
+
+.header-screenplay {
     order: -1;
+    overflow: hidden;
+}
+
+.header-screenplay::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background:
+        repeating-linear-gradient(
+            180deg,
+            rgba(143, 242, 255, 0.11) 0 1px,
+            rgba(143, 242, 255, 0.02) 1px 3px,
+            rgba(0, 0, 0, 0) 3px 5px
+        ),
+        linear-gradient(135deg, rgba(143, 242, 255, 0.08), rgba(5, 20, 42, 0));
+    opacity: 0.75;
+    pointer-events: none;
+    mix-blend-mode: screen;
+}
+
+.header-screenplay::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    border-radius: 10px;
+    box-shadow:
+        inset 0 0 0 1px rgba(180, 248, 255, 0.18),
+        inset 0 0 22px rgba(92, 206, 255, 0.08);
+    pointer-events: none;
 }
 
 .header-support-title {
@@ -285,6 +324,58 @@ header h1 {
 
 .header-support-note a:hover {
     color: var(--white);
+}
+
+.header-screenplay .header-support-title,
+.header-screenplay .header-support-note,
+.header-screenplay .header-support-note a {
+    color: rgba(188, 247, 255, 0.98);
+    text-shadow: 0 0 6px rgba(92, 206, 255, 0.4);
+}
+
+.header-screenplay .header-support-note a:hover {
+    color: #ffffff;
+}
+
+.header-screenplay .donate-btn {
+    background: linear-gradient(135deg, #18b9ff, #0a4b86 72%, #07233f);
+    color: #e8fbff;
+    border-color: rgba(161, 242, 255, 0.98);
+    box-shadow:
+        0 0 0 1px rgba(161, 242, 255, 0.2),
+        0 0 16px rgba(92, 206, 255, 0.34),
+        0 0 28px rgba(45, 170, 255, 0.18),
+        0 5px 14px rgba(10, 75, 134, 0.36);
+    text-shadow: 0 0 8px rgba(224, 250, 255, 0.42);
+    animation: blue-engine-pulse 2.6s ease-in-out infinite;
+}
+
+.header-screenplay .donate-btn:hover {
+    background: linear-gradient(135deg, #23c2ff, #106bb1 72%, #09365d);
+    border-color: #effdff;
+    box-shadow:
+        0 0 0 1px rgba(239, 253, 255, 0.26),
+        0 0 22px rgba(120, 225, 255, 0.42),
+        0 0 34px rgba(45, 170, 255, 0.24),
+        0 7px 18px rgba(10, 75, 134, 0.44);
+}
+
+@keyframes blue-engine-pulse {
+    0%,
+    100% {
+        box-shadow:
+            0 0 0 1px rgba(161, 242, 255, 0.2),
+            0 0 16px rgba(92, 206, 255, 0.32),
+            0 0 28px rgba(45, 170, 255, 0.16),
+            0 5px 14px rgba(10, 75, 134, 0.34);
+    }
+    50% {
+        box-shadow:
+            0 0 0 1px rgba(161, 242, 255, 0.28),
+            0 0 24px rgba(92, 206, 255, 0.48),
+            0 0 40px rgba(45, 170, 255, 0.26),
+            0 5px 18px rgba(10, 75, 134, 0.4);
+    }
 }
 
 @keyframes retro-globe-spin {
