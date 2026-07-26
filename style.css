@@ -200,6 +200,8 @@ header h1,
     display: block;
     object-fit: cover;
     transform-origin: center center;
+    filter: saturate(1.8) brightness(1.32) contrast(1.18) drop-shadow(0 0 10px rgba(255, 34, 34, 0.34));
+    will-change: transform, opacity, filter;
     animation: moon-crt-cycle 8.8s linear infinite;
 }
 
@@ -536,47 +538,47 @@ header h1 {
     0% {
         transform: rotate(0deg) scale(1);
         opacity: 1;
-        filter: blur(0px) saturate(1.08) contrast(1.08);
+        filter: blur(0px) saturate(1.8) brightness(1.32) contrast(1.18) drop-shadow(0 0 10px rgba(255, 34, 34, 0.34));
     }
     30% {
         transform: rotate(108deg) scale(1.01);
         opacity: 1;
-        filter: blur(0px) saturate(1.08) contrast(1.08);
+        filter: blur(0px) saturate(1.84) brightness(1.35) contrast(1.2) drop-shadow(0 0 12px rgba(255, 34, 34, 0.38));
     }
     52% {
         transform: rotate(282deg) scale(1.03);
         opacity: 1;
-        filter: blur(0px) saturate(1.1) contrast(1.1);
+        filter: blur(0px) saturate(1.9) brightness(1.38) contrast(1.2) drop-shadow(0 0 13px rgba(255, 34, 34, 0.42));
     }
     67% {
         transform: rotate(404deg) scale(1.04);
         opacity: 0.78;
-        filter: blur(1.5px) saturate(1.18) contrast(1.08);
+        filter: blur(1.5px) saturate(2) brightness(1.45) contrast(1.12) drop-shadow(0 0 14px rgba(255, 34, 34, 0.48));
     }
     74% {
         transform: rotate(470deg) scale(0.72);
         opacity: 0.24;
-        filter: blur(6px) saturate(1.22) contrast(1.02);
+        filter: blur(6px) saturate(2.1) brightness(1.5) contrast(1.04) drop-shadow(0 0 16px rgba(255, 34, 34, 0.5));
     }
     80% {
         transform: rotate(500deg) scale(0.28);
         opacity: 0;
-        filter: blur(12px) saturate(1.25) contrast(1);
+        filter: blur(12px) saturate(2.15) brightness(1.55) contrast(1) drop-shadow(0 0 18px rgba(255, 34, 34, 0.54));
     }
     86% {
         transform: rotate(560deg) scale(0.42);
         opacity: 0.25;
-        filter: blur(5px) saturate(1.2) contrast(1.02);
+        filter: blur(5px) saturate(2.05) brightness(1.48) contrast(1.04) drop-shadow(0 0 16px rgba(255, 34, 34, 0.5));
     }
     92% {
         transform: rotate(640deg) scale(0.82);
         opacity: 0.92;
-        filter: blur(1px) saturate(1.14) contrast(1.06);
+        filter: blur(1px) saturate(1.92) brightness(1.38) contrast(1.14) drop-shadow(0 0 13px rgba(255, 34, 34, 0.42));
     }
     100% {
         transform: rotate(720deg) scale(1);
         opacity: 1;
-        filter: blur(0px) saturate(1.08) contrast(1.08);
+        filter: blur(0px) saturate(1.8) brightness(1.32) contrast(1.18) drop-shadow(0 0 10px rgba(255, 34, 34, 0.34));
     }
 }
 
