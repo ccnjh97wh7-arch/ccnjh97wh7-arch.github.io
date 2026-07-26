@@ -351,12 +351,12 @@ header h1 {
         0 0 28px rgba(45, 170, 255, 0.18),
         0 5px 14px rgba(10, 75, 134, 0.36);
     text-shadow: 0 0 8px rgba(224, 250, 255, 0.42);
-    animation: blue-engine-pulse 2.6s ease-in-out infinite;
+    animation: blue-engine-pulse 2.75s ease-in-out infinite;
 }
 
 .header-screenplay .donate-btn,
 .header-screenplay {
-    animation-delay: -1.35s;
+    animation-delay: -1.95s;
 }
 
 .header-screenplay .donate-btn:hover {
@@ -433,8 +433,8 @@ header h1 {
         0 0 28px rgba(255, 18, 18, 0.18),
         0 5px 14px rgba(90, 6, 6, 0.36);
     text-shadow: 0 0 8px rgba(255, 235, 235, 0.4);
-    animation: support-engine-pulse 2.4s ease-in-out infinite;
-    animation-delay: -1.2s;
+    animation: support-engine-pulse 3s ease-in-out infinite;
+    animation-delay: -0.55s;
 }
 
 .header-support .donate-btn:hover {
