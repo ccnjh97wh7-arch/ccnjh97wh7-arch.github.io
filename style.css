@@ -268,6 +268,18 @@ header h1,
     animation: moon-shard-d 8.8s linear infinite;
 }
 
+.moon-shard-e {
+    clip-path: polygon(0 28%, 48% 0, 100% 14%, 86% 100%, 24% 90%);
+    transform: translate(-50%, -50%) rotate(260deg) scale(0.2);
+    animation: moon-shard-e 8.8s linear infinite;
+}
+
+.moon-shard-f {
+    clip-path: polygon(14% 0, 100% 26%, 88% 86%, 36% 100%, 0 50%);
+    transform: translate(-50%, -50%) rotate(330deg) scale(0.2);
+    animation: moon-shard-f 8.8s linear infinite;
+}
+
 .header-copy {
     grid-area: copy;
     flex: 1;
@@ -653,19 +665,19 @@ header h1 {
     }
     68% {
         opacity: 0.9;
-        transform: translate(-58%, -58%) rotate(-10deg) scale(0.52);
+        transform: translate(-68%, -66%) rotate(-10deg) scale(0.58);
     }
     74% {
-        opacity: 0.7;
-        transform: translate(-86%, -74%) rotate(-8deg) scale(0.74);
+        opacity: 0.84;
+        transform: translate(-112%, -92%) rotate(-8deg) scale(0.92);
     }
     80% {
-        opacity: 0.18;
-        transform: translate(-112%, -92%) rotate(2deg) scale(0.98);
+        opacity: 0.08;
+        transform: translate(-156%, -126%) rotate(10deg) scale(1.18);
     }
     88% {
-        opacity: 0.78;
-        transform: translate(-56%, -56%) rotate(-12deg) scale(0.46);
+        opacity: 0.86;
+        transform: translate(-56%, -56%) rotate(-12deg) scale(0.5);
     }
     100% {
         opacity: 0;
@@ -680,20 +692,20 @@ header h1 {
         transform: translate(-50%, -50%) rotate(35deg) scale(0.18);
     }
     68% {
-        opacity: 0.82;
-        transform: translate(-44%, -60%) rotate(48deg) scale(0.5);
+        opacity: 0.9;
+        transform: translate(-28%, -74%) rotate(48deg) scale(0.58);
     }
     74% {
-        opacity: 0.66;
-        transform: translate(-26%, -86%) rotate(58deg) scale(0.76);
+        opacity: 0.82;
+        transform: translate(10%, -126%) rotate(58deg) scale(0.92);
     }
     80% {
-        opacity: 0.18;
-        transform: translate(4%, -110%) rotate(70deg) scale(0.98);
+        opacity: 0.06;
+        transform: translate(34%, -168%) rotate(70deg) scale(1.16);
     }
     88% {
-        opacity: 0.72;
-        transform: translate(-46%, -58%) rotate(40deg) scale(0.46);
+        opacity: 0.84;
+        transform: translate(-46%, -58%) rotate(40deg) scale(0.52);
     }
     100% {
         opacity: 0;
@@ -708,20 +720,20 @@ header h1 {
         transform: translate(-50%, -50%) rotate(115deg) scale(0.18);
     }
     68% {
-        opacity: 0.88;
-        transform: translate(-60%, -44%) rotate(132deg) scale(0.52);
+        opacity: 0.94;
+        transform: translate(-74%, -20%) rotate(132deg) scale(0.6);
     }
     74% {
-        opacity: 0.62;
-        transform: translate(-88%, -24%) rotate(146deg) scale(0.76);
+        opacity: 0.8;
+        transform: translate(-128%, 14%) rotate(146deg) scale(0.92);
     }
     80% {
-        opacity: 0.16;
-        transform: translate(-110%, 8%) rotate(160deg) scale(0.98);
+        opacity: 0.05;
+        transform: translate(-170%, 42%) rotate(160deg) scale(1.16);
     }
     88% {
-        opacity: 0.76;
-        transform: translate(-58%, -46%) rotate(124deg) scale(0.46);
+        opacity: 0.86;
+        transform: translate(-58%, -46%) rotate(124deg) scale(0.5);
     }
     100% {
         opacity: 0;
@@ -736,24 +748,80 @@ header h1 {
         transform: translate(-50%, -50%) rotate(195deg) scale(0.18);
     }
     68% {
-        opacity: 0.84;
-        transform: translate(-40%, -40%) rotate(210deg) scale(0.5);
+        opacity: 0.92;
+        transform: translate(-18%, -28%) rotate(210deg) scale(0.58);
     }
     74% {
-        opacity: 0.6;
-        transform: translate(-20%, -18%) rotate(226deg) scale(0.74);
+        opacity: 0.78;
+        transform: translate(14%, 12%) rotate(226deg) scale(0.92);
     }
     80% {
-        opacity: 0.14;
-        transform: translate(8%, 6%) rotate(242deg) scale(0.98);
+        opacity: 0.04;
+        transform: translate(54%, 42%) rotate(242deg) scale(1.14);
     }
     88% {
-        opacity: 0.7;
-        transform: translate(-44%, -42%) rotate(204deg) scale(0.44);
+        opacity: 0.82;
+        transform: translate(-44%, -42%) rotate(204deg) scale(0.5);
     }
     100% {
         opacity: 0;
         transform: translate(-50%, -50%) rotate(195deg) scale(0.18);
+    }
+}
+
+@keyframes moon-shard-e {
+    0%,
+    60% {
+        opacity: 0;
+        transform: translate(-50%, -50%) rotate(260deg) scale(0.18);
+    }
+    68% {
+        opacity: 0.86;
+        transform: translate(-30%, -26%) rotate(278deg) scale(0.58);
+    }
+    74% {
+        opacity: 0.78;
+        transform: translate(2%, 18%) rotate(292deg) scale(0.9);
+    }
+    80% {
+        opacity: 0.04;
+        transform: translate(42%, 60%) rotate(308deg) scale(1.16);
+    }
+    88% {
+        opacity: 0.8;
+        transform: translate(-42%, -36%) rotate(270deg) scale(0.48);
+    }
+    100% {
+        opacity: 0;
+        transform: translate(-50%, -50%) rotate(260deg) scale(0.18);
+    }
+}
+
+@keyframes moon-shard-f {
+    0%,
+    60% {
+        opacity: 0;
+        transform: translate(-50%, -50%) rotate(330deg) scale(0.18);
+    }
+    68% {
+        opacity: 0.9;
+        transform: translate(-14%, -12%) rotate(348deg) scale(0.58);
+    }
+    74% {
+        opacity: 0.82;
+        transform: translate(28%, 24%) rotate(364deg) scale(0.92);
+    }
+    80% {
+        opacity: 0.05;
+        transform: translate(70%, 64%) rotate(378deg) scale(1.18);
+    }
+    88% {
+        opacity: 0.84;
+        transform: translate(-38%, -34%) rotate(336deg) scale(0.5);
+    }
+    100% {
+        opacity: 0;
+        transform: translate(-50%, -50%) rotate(330deg) scale(0.18);
     }
 }
 
