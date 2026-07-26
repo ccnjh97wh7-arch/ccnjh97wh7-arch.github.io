@@ -3351,12 +3351,12 @@ footer {
     }
 
     .header-support {
-        border-color: rgba(255, 74, 74, 0.7);
+        border-color: rgba(255, 74, 74, 0.72);
         background: rgba(18, 8, 8, 0.88);
         box-shadow:
-            0 0 0 1px rgba(255, 74, 74, 0.18),
-            0 0 14px rgba(255, 74, 74, 0.3),
-            0 0 28px rgba(255, 18, 18, 0.14),
+            0 0 0 1px rgba(255, 74, 74, 0.22),
+            0 0 16px rgba(255, 74, 74, 0.34),
+            0 0 34px rgba(255, 18, 18, 0.14),
             inset 0 0 18px rgba(255, 74, 74, 0.1);
     }
 
