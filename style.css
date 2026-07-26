@@ -111,6 +111,7 @@ header::after {
 .header-main,
 header h1,
 .header-tagline,
+.header-callouts,
 .header-support {
     position: relative;
     z-index: 1;
@@ -120,7 +121,7 @@ header h1,
     max-width: 1100px;
     margin: 0 auto;
     display: grid;
-    grid-template-columns: 116px minmax(0, 1fr) auto;
+    grid-template-columns: 116px minmax(0, 1fr) minmax(430px, 520px);
     grid-template-areas: "globe copy support";
     align-items: center;
     gap: 16px 24px;
@@ -232,12 +233,20 @@ header h1 {
     max-width: 600px;
 }
 
-.header-support {
+.header-callouts {
     grid-area: support;
+    display: flex;
+    flex-direction: row;
+    gap: 10px;
+    justify-content: center;
+    justify-self: center;
+    align-items: stretch;
+}
+
+.header-callout,
+.header-support {
     min-width: 0;
-    max-width: 260px;
-    width: fit-content;
-    justify-self: end;
+    width: clamp(210px, 22vw, 250px);
     text-align: right;
     background: rgba(255, 255, 255, 0.08);
     border: 1px solid rgba(196, 30, 58, 0.45);
@@ -245,6 +254,10 @@ header h1 {
     padding: 12px 14px;
     margin-top: 4px;
     box-sizing: border-box;
+}
+
+.header-screenplay {
+    order: -1;
 }
 
 .header-support-title {
@@ -263,6 +276,15 @@ header h1 {
     font-family: Arial, sans-serif;
     font-size: 0.75rem;
     line-height: 1.45;
+}
+
+.header-support-note a {
+    color: rgba(242, 235, 221, 0.95);
+    font-weight: 700;
+}
+
+.header-support-note a:hover {
+    color: var(--white);
 }
 
 @keyframes retro-globe-spin {
@@ -1843,8 +1865,17 @@ nav p {
         letter-spacing: 0.5px;
     }
 
+    .header-callout,
     .header-support {
         min-width: 0;
+    }
+
+    .header-callouts {
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+        justify-self: center;
+        gap: 8px;
     }
 
     .header-support-note {
@@ -2115,11 +2146,20 @@ nav p {
         letter-spacing: 0px;
     }
 
+    .header-callouts {
+        justify-content: center;
+        justify-self: center;
+    }
+
+    .header-screenplay {
+        order: 0;
+    }
+
+    .header-callout,
     .header-support {
         min-width: 0;
-        width: 100%;
+        width: calc(50% - 4px);
         max-width: none;
-        justify-self: stretch;
         text-align: left;
         margin-top: 0;
         padding: 12px;
