@@ -370,13 +370,13 @@ header h1 {
 }
 
 .header-support {
-    border-color: rgba(255, 74, 74, 0.78);
+    border-color: rgba(255, 34, 34, 0.84);
     box-shadow:
-        0 0 0 1px rgba(255, 74, 74, 0.2),
-        0 0 14px rgba(255, 74, 74, 0.34),
-        0 0 34px rgba(255, 18, 18, 0.14),
+        0 0 0 1px rgba(255, 210, 210, 0.22),
+        0 0 16px rgba(255, 74, 74, 0.38),
+        0 0 36px rgba(255, 0, 0, 0.16),
         inset 0 0 18px rgba(255, 74, 74, 0.1);
-    filter: saturate(1.14) contrast(1.04);
+    filter: saturate(1.2) contrast(1.06);
     overflow: hidden;
     animation: support-engine-flicker 6.2s steps(1, end) infinite;
     animation-delay: -3.1s;
@@ -389,12 +389,12 @@ header h1 {
     background:
         repeating-linear-gradient(
             180deg,
-            rgba(255, 193, 193, 0.11) 0 1px,
-            rgba(255, 193, 193, 0.02) 1px 3px,
+            rgba(255, 214, 214, 0.13) 0 1px,
+            rgba(255, 214, 214, 0.03) 1px 3px,
             rgba(0, 0, 0, 0) 3px 5px
         ),
-        linear-gradient(135deg, rgba(255, 193, 193, 0.08), rgba(42, 4, 4, 0));
-    opacity: 0.78;
+        linear-gradient(135deg, rgba(255, 214, 214, 0.1), rgba(42, 4, 4, 0));
+    opacity: 0.86;
     pointer-events: none;
     mix-blend-mode: screen;
 }
@@ -405,18 +405,18 @@ header h1 {
     inset: 0;
     border-radius: 10px;
     box-shadow:
-        inset 0 0 0 1px rgba(255, 220, 220, 0.16),
+        inset 0 0 0 1px rgba(255, 235, 235, 0.18),
         inset 0 0 22px rgba(255, 74, 74, 0.08),
-        inset -1px 0 0 rgba(255, 0, 0, 0.22),
-        inset 1px 0 0 rgba(255, 255, 255, 0.08);
+        inset -1px 0 0 rgba(255, 0, 0, 0.26),
+        inset 1px 0 0 rgba(255, 255, 255, 0.1);
     pointer-events: none;
 }
 
 .header-support .header-support-title,
 .header-support .header-support-note,
 .header-support .header-support-note a {
-    color: rgba(255, 208, 208, 0.98);
-    text-shadow: 0 0 6px rgba(255, 74, 74, 0.42);
+    color: rgba(255, 225, 225, 0.99);
+    text-shadow: 0 0 6px rgba(255, 74, 74, 0.5);
 }
 
 .header-support .header-support-note a:hover {
@@ -424,26 +424,26 @@ header h1 {
 }
 
 .header-support .donate-btn {
-    background: linear-gradient(135deg, #ff2a2a, #8e0505 72%, #3b0202);
+    background: linear-gradient(135deg, #ff3a3a, #7d0303 72%, #2f0101);
     color: #fff0f0;
-    border-color: rgba(255, 154, 154, 0.98);
+    border-color: rgba(255, 210, 210, 0.99);
     box-shadow:
-        0 0 0 1px rgba(255, 154, 154, 0.18),
-        0 0 16px rgba(255, 74, 74, 0.34),
-        0 0 28px rgba(255, 18, 18, 0.18),
+        0 0 0 1px rgba(255, 210, 210, 0.22),
+        0 0 18px rgba(255, 74, 74, 0.38),
+        0 0 30px rgba(255, 0, 0, 0.2),
         0 5px 14px rgba(90, 6, 6, 0.36);
-    text-shadow: 0 0 8px rgba(255, 235, 235, 0.4);
+    text-shadow: 0 0 8px rgba(255, 240, 240, 0.46);
     animation: support-engine-pulse 3s ease-in-out infinite;
     animation-delay: -0.55s;
 }
 
 .header-support .donate-btn:hover {
-    background: linear-gradient(135deg, #ff4040, #b70808 72%, #530202);
-    border-color: #fff7f7;
+    background: linear-gradient(135deg, #ff4d4d, #a40505 72%, #4b0202);
+    border-color: #ffffff;
     box-shadow:
-        0 0 0 1px rgba(255, 247, 247, 0.24),
-        0 0 22px rgba(255, 112, 112, 0.42),
-        0 0 34px rgba(255, 18, 18, 0.24),
+        0 0 0 1px rgba(255, 247, 247, 0.26),
+        0 0 24px rgba(255, 112, 112, 0.46),
+        0 0 36px rgba(255, 0, 0, 0.26),
         0 7px 18px rgba(90, 6, 6, 0.44);
 }
 
@@ -3351,12 +3351,12 @@ footer {
     }
 
     .header-support {
-        border-color: rgba(255, 74, 74, 0.72);
+        border-color: rgba(255, 34, 34, 0.84);
         background: rgba(18, 8, 8, 0.88);
         box-shadow:
-            0 0 0 1px rgba(255, 74, 74, 0.22),
-            0 0 16px rgba(255, 74, 74, 0.34),
-            0 0 34px rgba(255, 18, 18, 0.14),
+            0 0 0 1px rgba(255, 210, 210, 0.22),
+            0 0 16px rgba(255, 74, 74, 0.38),
+            0 0 36px rgba(255, 0, 0, 0.16),
             inset 0 0 18px rgba(255, 74, 74, 0.1);
     }
 
