@@ -237,7 +237,7 @@ header h1 {
     grid-area: support;
     display: flex;
     flex-direction: row;
-    gap: 10px;
+    gap: 6px;
     justify-content: center;
     justify-self: center;
     align-items: stretch;
@@ -247,7 +247,7 @@ header h1 {
 .header-support {
     position: relative;
     min-width: 0;
-    width: clamp(210px, 22vw, 250px);
+    width: clamp(206px, 21vw, 246px);
     text-align: right;
     background: rgba(255, 255, 255, 0.08);
     border: 1px solid rgba(196, 30, 58, 0.45);
@@ -354,6 +354,11 @@ header h1 {
     animation: blue-engine-pulse 2.6s ease-in-out infinite;
 }
 
+.header-screenplay .donate-btn,
+.header-screenplay {
+    animation-delay: -1.35s;
+}
+
 .header-screenplay .donate-btn:hover {
     background: linear-gradient(135deg, #23c2ff, #106bb1 72%, #09365d);
     border-color: #effdff;
@@ -374,6 +379,7 @@ header h1 {
     filter: saturate(1.14) contrast(1.04);
     overflow: hidden;
     animation: support-engine-flicker 6.2s steps(1, end) infinite;
+    animation-delay: -3.1s;
 }
 
 .header-support::before {
@@ -428,6 +434,7 @@ header h1 {
         0 5px 14px rgba(90, 6, 6, 0.36);
     text-shadow: 0 0 8px rgba(255, 235, 235, 0.4);
     animation: support-engine-pulse 2.4s ease-in-out infinite;
+    animation-delay: -1.2s;
 }
 
 .header-support .donate-btn:hover {
