@@ -1,9 +1,9 @@
 :root {
-    --patriotic-red: #C41E3A;
-    --patriotic-blue: #003DA5;
-    --newport-green: #2D5016;
+    --patriotic-red: #A3241E;
+    --patriotic-blue: #5B1612;
+    --newport-green: #D36A2E;
     --near-black: #111111;
-    --warm-paper: #F2EBDD;
+    --warm-paper: #F5E7D8;
     --white: #FFFFFF;
     --text-muted: #4f4d48;
     --shadow-soft: 0 16px 42px rgba(17, 17, 17, 0.10);
@@ -12,7 +12,7 @@ body {
     margin: 0;
     background:
         radial-gradient(circle at top left, rgba(196, 30, 58, 0.10), transparent 28%),
-        radial-gradient(circle at top right, rgba(0, 61, 165, 0.10), transparent 24%),
+        radial-gradient(circle at top right, rgba(120, 24, 18, 0.10), transparent 24%),
         var(--warm-paper);
     color: var(--near-black);
     font-family: "Georgia", "Times New Roman", serif;
@@ -396,7 +396,7 @@ main {
     width: 3px;
     height: calc(100% - 36px);
     border-radius: 999px;
-    background: linear-gradient(180deg, rgba(0, 61, 165, 0.14), rgba(196, 30, 58, 0.04));
+    background: linear-gradient(180deg, rgba(120, 24, 18, 0.14), rgba(196, 30, 58, 0.04));
     pointer-events: none;
 }
 
@@ -423,7 +423,7 @@ main {
 }
 
 .whats-new-strip::before {
-    background: linear-gradient(180deg, rgba(196, 30, 58, 0.2), rgba(0, 61, 165, 0.08));
+    background: linear-gradient(180deg, rgba(196, 30, 58, 0.2), rgba(120, 24, 18, 0.08));
 }
 
 .whats-new-status {
@@ -449,7 +449,7 @@ main {
 .whats-new-list a {
     color: var(--patriotic-blue);
     text-decoration: none;
-    border-bottom: 1px dashed rgba(0, 61, 165, 0.45);
+    border-bottom: 1px dashed rgba(120, 24, 18, 0.45);
 }
 
 .whats-new-list a:hover {
@@ -460,9 +460,9 @@ main {
 .secondary-cta-btn {
     display: inline-block;
     padding: 10px 16px;
-    border: 1px solid rgba(0, 61, 165, 0.3);
+    border: 1px solid rgba(120, 24, 18, 0.3);
     border-radius: 999px;
-    background: rgba(0, 61, 165, 0.06);
+    background: rgba(120, 24, 18, 0.06);
     color: var(--patriotic-blue);
     text-decoration: none;
     font-family: Arial, sans-serif;
@@ -473,7 +473,7 @@ main {
 
 .secondary-cta-btn:hover {
     transform: translateY(-2px);
-    background: rgba(0, 61, 165, 0.12);
+    background: rgba(120, 24, 18, 0.12);
     border-color: var(--patriotic-blue);
 }
 
@@ -497,11 +497,11 @@ main {
     flex-direction: column;
     gap: 4px;
     padding: 14px 14px 13px;
-    border: 1px solid rgba(0, 61, 165, 0.22);
+    border: 1px solid rgba(120, 24, 18, 0.22);
     border-radius: 12px;
     text-decoration: none;
     color: var(--near-black);
-    background: linear-gradient(135deg, rgba(255, 255, 255, 0.97), rgba(0, 61, 165, 0.05));
+    background: linear-gradient(135deg, rgba(255, 255, 255, 0.97), rgba(120, 24, 18, 0.05));
     transition: transform 0.25s ease, border-color 0.25s ease, box-shadow 0.25s ease;
 }
 
@@ -538,7 +538,7 @@ main {
 }
 
 .quick-start-play {
-    background: linear-gradient(135deg, rgba(255, 255, 255, 0.98), rgba(0, 61, 165, 0.1));
+    background: linear-gradient(135deg, rgba(255, 255, 255, 0.98), rgba(120, 24, 18, 0.1));
 }
 
 .quick-jump-target {
@@ -578,7 +578,7 @@ main {
     height: 100%;
     min-height: 220px;
     object-fit: cover;
-    border-right: 1px solid rgba(0, 61, 165, 0.18);
+    border-right: 1px solid rgba(120, 24, 18, 0.18);
 }
 
 .project-week-copy {
@@ -643,7 +643,7 @@ main {
 .pillar-card {
     display: block;
     padding: 18px;
-    border: 1px solid rgba(0, 61, 165, 0.18);
+    border: 1px solid rgba(120, 24, 18, 0.18);
     border-radius: 12px;
     background: linear-gradient(135deg, rgba(255, 255, 255, 0.95), rgba(196, 30, 58, 0.06));
     text-decoration: none;
@@ -665,7 +665,7 @@ main {
     height: 44px;
     margin-bottom: 10px;
     border-radius: 50%;
-    background: rgba(0, 61, 165, 0.08);
+    background: rgba(120, 24, 18, 0.08);
     font-size: 1.2rem;
 }
 
@@ -682,7 +682,7 @@ main {
 }
 
 .gallery-intro-shell {
-    background: linear-gradient(135deg, rgba(255, 255, 255, 0.98), rgba(0, 61, 165, 0.06));
+    background: linear-gradient(135deg, rgba(255, 255, 255, 0.98), rgba(120, 24, 18, 0.06));
 }
 
 .gallery-highlights {
@@ -743,7 +743,7 @@ section p {
     gap: 12px;
     flex-direction: row;
     justify-content: flex-start;
-    border: 1px solid rgba(0, 61, 165, 0.3);
+    border: 1px solid rgba(120, 24, 18, 0.3);
     border-radius: 10px;
     background: linear-gradient(135deg, rgba(255, 255, 255, 0.95), rgba(196, 30, 58, 0.06));
 }
@@ -752,14 +752,15 @@ section p {
     width: clamp(120px, 22vw, 180px);
     height: auto;
     display: block;
+    border-radius: 50%;
     transform-origin: center;
     animation: pulp-time-spin-cycle 8.5s infinite;
-    filter: drop-shadow(0 8px 18px rgba(196, 30, 58, 0.18));
+    filter: none;
 }
 
 .pulp-time-logo.compact {
     width: clamp(68px, 10vw, 86px);
-    filter: drop-shadow(0 5px 10px rgba(196, 30, 58, 0.16));
+    filter: none;
 }
 
 .pulp-time-tagline {
@@ -816,11 +817,11 @@ section p {
     flex-direction: column;
     gap: 6px;
     padding: 12px;
-    border: 1px solid rgba(0, 61, 165, 0.22);
+    border: 1px solid rgba(120, 24, 18, 0.22);
     border-radius: 10px;
     text-decoration: none;
     color: inherit;
-    background: linear-gradient(140deg, rgba(255, 255, 255, 0.94), rgba(0, 61, 165, 0.04));
+    background: linear-gradient(140deg, rgba(255, 255, 255, 0.94), rgba(120, 24, 18, 0.04));
     transition: transform 0.2s ease, border-color 0.2s ease, background-color 0.2s ease;
 }
 
@@ -920,9 +921,9 @@ section p {
     align-items: center;
     align-self: flex-start;
     padding: 8px 12px;
-    border: 1px solid rgba(0, 61, 165, 0.28);
+    border: 1px solid rgba(120, 24, 18, 0.28);
     border-radius: 999px;
-    background: rgba(0, 61, 165, 0.07);
+    background: rgba(120, 24, 18, 0.07);
     color: var(--patriotic-blue);
     text-decoration: none;
     font-family: Arial, sans-serif;
@@ -953,7 +954,7 @@ section p {
     bottom: 8px;
     width: 2px;
     border-radius: 999px;
-    background: linear-gradient(180deg, rgba(196, 30, 58, 0.4), rgba(0, 61, 165, 0.15));
+    background: linear-gradient(180deg, rgba(196, 30, 58, 0.4), rgba(120, 24, 18, 0.15));
 }
 
 .latest-update-group-title {
@@ -981,7 +982,7 @@ section p {
 }
 
 .alaska-live-section::before {
-    background: linear-gradient(180deg, rgba(45, 80, 22, 0.2), rgba(0, 61, 165, 0.06));
+    background: linear-gradient(180deg, rgba(45, 80, 22, 0.2), rgba(120, 24, 18, 0.06));
 }
 
 .alaska-live-intro {
@@ -1008,12 +1009,12 @@ section p {
 
 .alaska-location-picker select {
     appearance: none;
-    border: 1px solid rgba(0, 61, 165, 0.35);
+    border: 1px solid rgba(120, 24, 18, 0.35);
     border-radius: 8px;
     padding: 9px 11px;
     font-family: Arial, sans-serif;
     font-size: 0.92rem;
-    background: linear-gradient(135deg, rgba(255, 255, 255, 0.98), rgba(0, 61, 165, 0.07));
+    background: linear-gradient(135deg, rgba(255, 255, 255, 0.98), rgba(120, 24, 18, 0.07));
     color: var(--near-black);
 }
 
@@ -1045,8 +1046,8 @@ section p {
 }
 
 .alaska-live-card-primary {
-    border-color: rgba(0, 61, 165, 0.3);
-    background: linear-gradient(135deg, rgba(0, 61, 165, 0.08), rgba(45, 80, 22, 0.11));
+    border-color: rgba(120, 24, 18, 0.3);
+    background: linear-gradient(135deg, rgba(120, 24, 18, 0.08), rgba(45, 80, 22, 0.11));
 }
 
 .alaska-status-badge {
@@ -1093,7 +1094,7 @@ section p {
     width: 100%;
     height: 12px;
     border-radius: 999px;
-    border: 1px solid rgba(0, 61, 165, 0.3);
+    border: 1px solid rgba(120, 24, 18, 0.3);
     background: linear-gradient(90deg, rgba(9, 20, 51, 0.55), rgba(251, 214, 106, 0.35));
     overflow: hidden;
 }
@@ -1149,10 +1150,10 @@ section p {
 }
 
 .alaska-extra-card {
-    border: 1px solid rgba(0, 61, 165, 0.24);
+    border: 1px solid rgba(120, 24, 18, 0.24);
     border-radius: 10px;
     padding: 12px 13px;
-    background: linear-gradient(135deg, rgba(255, 255, 255, 0.97), rgba(0, 61, 165, 0.06));
+    background: linear-gradient(135deg, rgba(255, 255, 255, 0.97), rgba(120, 24, 18, 0.06));
 }
 
 .alaska-extra-kicker {
@@ -1248,10 +1249,10 @@ section p {
     display: block;
     text-decoration: none;
     color: var(--near-black);
-    border: 1px solid rgba(0, 61, 165, 0.22);
+    border: 1px solid rgba(120, 24, 18, 0.22);
     border-radius: 12px;
     padding: 14px;
-    background: linear-gradient(135deg, rgba(0, 61, 165, 0.05), rgba(45, 80, 22, 0.08));
+    background: linear-gradient(135deg, rgba(120, 24, 18, 0.05), rgba(45, 80, 22, 0.08));
     transition: transform 0.25s ease, border-color 0.25s ease, box-shadow 0.25s ease;
 }
 
@@ -1294,8 +1295,8 @@ section p {
     color: var(--near-black);
     padding: 14px;
     border-radius: 10px;
-    border: 2px solid rgba(0, 61, 165, 0.35);
-    background: linear-gradient(135deg, rgba(0, 61, 165, 0.07), rgba(196, 30, 58, 0.07));
+    border: 2px solid rgba(120, 24, 18, 0.35);
+    background: linear-gradient(135deg, rgba(120, 24, 18, 0.07), rgba(196, 30, 58, 0.07));
     transition: transform 0.25s ease, box-shadow 0.25s ease, border-color 0.25s ease;
 }
 
@@ -1344,7 +1345,7 @@ section p {
     align-items: center;
     justify-content: center;
     padding: 20px 16px;
-    background: linear-gradient(135deg, rgba(196, 30, 58, 0.08), rgba(0, 61, 165, 0.08));
+    background: linear-gradient(135deg, rgba(196, 30, 58, 0.08), rgba(120, 24, 18, 0.08));
     border: 2px solid var(--patriotic-blue);
     border-radius: 10px;
     text-align: center;
@@ -1421,7 +1422,7 @@ section p {
 
 .photo-card {
     background: rgba(255, 255, 255, 0.9);
-    border: 1px solid rgba(0, 61, 165, 0.16);
+    border: 1px solid rgba(120, 24, 18, 0.16);
     border-radius: 12px;
     overflow: hidden;
     box-shadow: 0 2px 12px rgba(0, 0, 0, 0.08);
@@ -1463,7 +1464,7 @@ section p {
     align-self: flex-start;
     padding: 3px 8px;
     border-radius: 999px;
-    background: rgba(0, 61, 165, 0.08);
+    background: rgba(120, 24, 18, 0.08);
     color: var(--patriotic-blue);
     font-family: Arial, sans-serif;
     font-size: 0.72rem;
@@ -1574,9 +1575,9 @@ section p {
 }
 
 .filter-btn:hover {
-    background-color: rgba(0, 61, 165, 0.1);
+    background-color: rgba(120, 24, 18, 0.1);
     transform: translateY(-2px);
-    box-shadow: 0 2px 8px rgba(0, 61, 165, 0.15);
+    box-shadow: 0 2px 8px rgba(120, 24, 18, 0.15);
 }
 
 .filter-btn.active {
@@ -1646,8 +1647,8 @@ nav p {
 .nav-card {
     display: flex;
     flex-direction: column;
-    background: linear-gradient(135deg, rgba(196, 30, 58, 0.035), rgba(0, 61, 165, 0.045));
-    border: 2px solid rgba(0, 61, 165, 0.18);
+    background: linear-gradient(135deg, rgba(196, 30, 58, 0.035), rgba(120, 24, 18, 0.045));
+    border: 2px solid rgba(120, 24, 18, 0.18);
     border-radius: 14px;
     padding: 28px 24px;
     transition: all 0.3s ease;
@@ -1677,7 +1678,7 @@ nav p {
     transform: translateY(-8px) scale(1.03);
     border-color: var(--patriotic-red);
     box-shadow: 0 16px 34px rgba(196, 30, 58, 0.16), 0 0 0 1px rgba(196, 30, 58, 0.15), inset 0 0 0 1px rgba(255, 255, 255, 0.35);
-    background: linear-gradient(135deg, rgba(196, 30, 58, 0.08), rgba(0, 61, 165, 0.07));
+    background: linear-gradient(135deg, rgba(196, 30, 58, 0.08), rgba(120, 24, 18, 0.07));
 }
 
 .nav-card-icon {
@@ -1693,7 +1694,7 @@ nav p {
     object-position: center;
     border-radius: 8px;
     margin-bottom: 12px;
-    border: 1px solid rgba(0, 61, 165, 0.18);
+    border: 1px solid rgba(120, 24, 18, 0.18);
     transition: transform 0.35s ease, filter 0.35s ease;
 }
 
@@ -1762,7 +1763,7 @@ nav p {
 .nav-card-badge.featured {
     background: var(--patriotic-blue);
     color: #FFFFFF;
-    box-shadow: 0 4px 12px rgba(0, 61, 165, 0.35);
+    box-shadow: 0 4px 12px rgba(120, 24, 18, 0.35);
 }
 
 /* Badge hover animation */
@@ -1776,7 +1777,7 @@ nav p {
 }
 
 .nav-card:hover .nav-card-badge.featured {
-    box-shadow: 0 6px 16px rgba(0, 61, 165, 0.45);
+    box-shadow: 0 6px 16px rgba(120, 24, 18, 0.45);
 }
 
 .featured-grid {
@@ -1788,7 +1789,7 @@ nav p {
 
 .featured-project-card {
     border-color: var(--patriotic-red);
-    background: linear-gradient(135deg, rgba(196, 30, 58, 0.09), rgba(0, 61, 165, 0.08));
+    background: linear-gradient(135deg, rgba(196, 30, 58, 0.09), rgba(120, 24, 18, 0.08));
 }
 
 .featured-project-card .nav-card-title {
@@ -1908,7 +1909,7 @@ nav p {
     .project-week-image {
         min-height: 180px;
         border-right: 0;
-        border-bottom: 1px solid rgba(0, 61, 165, 0.18);
+        border-bottom: 1px solid rgba(120, 24, 18, 0.18);
     }
 
     .project-week-copy {
@@ -2535,7 +2536,7 @@ footer {
 .donate-btn {
     display: inline-block;
     padding: 12px 20px;
-    background: linear-gradient(135deg, var(--patriotic-red), #a01730);
+    background: linear-gradient(135deg, var(--patriotic-red), #7a1713);
     color: white;
     text-decoration: none;
     border: 2px solid var(--patriotic-red);
@@ -2547,7 +2548,7 @@ footer {
 }
 
 .donate-btn:hover {
-    background: linear-gradient(135deg, #a01730, var(--patriotic-red));
+    background: linear-gradient(135deg, #7a1713, var(--patriotic-red));
     transform: translateY(-2px);
     box-shadow: 0 6px 16px rgba(196, 30, 58, 0.45);
     border-color: white;
@@ -2556,7 +2557,7 @@ footer {
 .hero-cta-btn {
     display: inline-block;
     padding: 12px 20px;
-    background: linear-gradient(135deg, var(--patriotic-blue), #0a56d8);
+    background: linear-gradient(135deg, var(--patriotic-blue), #6f1a14);
     color: white;
     text-decoration: none;
     border: 2px solid var(--patriotic-blue);
@@ -2565,22 +2566,22 @@ footer {
     font-size: 0.98rem;
     letter-spacing: 0.2px;
     transition: all 0.25s ease;
-    box-shadow: 0 4px 12px rgba(0, 61, 165, 0.3);
+    box-shadow: 0 4px 12px rgba(120, 24, 18, 0.3);
 }
 
 .hero-cta-btn:hover {
-    background: linear-gradient(135deg, #0a56d8, var(--patriotic-blue));
+    background: linear-gradient(135deg, #6f1a14, var(--patriotic-blue));
     transform: translateY(-2px);
-    box-shadow: 0 7px 18px rgba(0, 61, 165, 0.4);
+    box-shadow: 0 7px 18px rgba(120, 24, 18, 0.4);
     border-color: white;
 }
 
 .page-intro-shell {
     margin: 0 0 20px;
     padding: 16px 18px;
-    border: 2px solid rgba(0, 61, 165, 0.25);
+    border: 2px solid rgba(120, 24, 18, 0.25);
     border-radius: 10px;
-    background: linear-gradient(135deg, rgba(0, 61, 165, 0.06), rgba(196, 30, 58, 0.05));
+    background: linear-gradient(135deg, rgba(120, 24, 18, 0.06), rgba(196, 30, 58, 0.05));
 }
 
 .page-intro-shell h2 {
@@ -2703,3 +2704,502 @@ footer {
         margin: 6px 0;
     }
 }
+
+    /* ------------------------------
+       Green Phosphor CRT Theme Layer
+       ------------------------------ */
+
+    :root {
+        --crt-bg: #050805;
+        --crt-text: #7CFF7C;
+        --crt-highlight: #39FF14;
+        --crt-dim: #76C881;
+        --crt-text-soft: #AEE9AE;
+        --patriotic-red: #F4FFF0;
+        --patriotic-blue: #F4FFF0;
+        --crt-panel: rgba(8, 18, 10, 0.72);
+        --crt-panel-strong: rgba(8, 18, 10, 0.88);
+        --crt-border: rgba(57, 255, 20, 0.42);
+        --crt-border-strong: rgba(57, 255, 20, 0.7);
+        --crt-shadow: rgba(57, 255, 20, 0.18);
+    }
+
+    body {
+        background: var(--crt-bg);
+        color: var(--crt-text);
+        text-shadow:
+            0 0 1px rgba(124, 255, 124, 0.42),
+            0 0 3px rgba(57, 255, 20, 0.14);
+        animation: crt-flicker 11s infinite steps(30, end);
+    }
+
+    body > * {
+        position: relative;
+        z-index: 3;
+    }
+
+    body::before,
+    body::after {
+        content: "";
+        position: fixed;
+        inset: 0;
+        pointer-events: none;
+    }
+
+    /* Scanlines overlay */
+    body::before {
+        z-index: 1;
+        background:
+            repeating-linear-gradient(
+                to bottom,
+                rgba(5, 8, 5, 0) 0px,
+                rgba(5, 8, 5, 0) 2px,
+                rgba(8, 20, 8, 0.18) 3px,
+                rgba(8, 20, 8, 0.18) 4px
+            );
+        opacity: 0.22;
+    }
+
+    /* Vignette + subtle screen glow */
+    body::after {
+        z-index: 2;
+        background:
+            radial-gradient(circle at center, rgba(5, 8, 5, 0) 45%, rgba(2, 4, 2, 0.58) 100%),
+            radial-gradient(circle at 50% 35%, rgba(57, 255, 20, 0.07), rgba(57, 255, 20, 0) 60%);
+    }
+
+    a {
+        color: var(--crt-highlight);
+        text-decoration-color: rgba(57, 255, 20, 0.35);
+        transition: color 0.22s ease, text-shadow 0.22s ease, border-color 0.22s ease, background-color 0.22s ease;
+    }
+
+    a:hover,
+    a:focus-visible {
+        color: #B7FFB0;
+        text-shadow:
+            0 0 2px rgba(183, 255, 176, 0.72),
+            0 0 8px rgba(57, 255, 20, 0.35);
+    }
+
+    p,
+    li,
+    small,
+    .header-tagline,
+    .footer-bottom p {
+        color: var(--crt-text-soft);
+    }
+
+    .nav-card-description,
+    .project-week-description,
+    .friend-link-description,
+    .latest-update-card p,
+    .alaska-extra-detail,
+    .pulp-now-playing,
+    .header-support-note {
+        color: var(--crt-dim);
+    }
+
+    h1,
+    h2,
+    h3,
+    h4,
+    h5,
+    h6,
+    label,
+    button,
+    input,
+    select,
+    textarea,
+    .global-nav a,
+    .section-kicker,
+    .nav-card-title,
+    .quick-start-label,
+    .stat-label,
+    .friend-link-tag,
+    .pulp-time-tagline {
+        font-family: "Courier New", "Lucida Console", Monaco, monospace;
+        letter-spacing: 0.02em;
+    }
+
+    h1,
+    h2,
+    h3,
+    .global-nav a,
+    .nav-card-title {
+        color: var(--crt-text);
+        text-shadow:
+            0 0 2px rgba(124, 255, 124, 0.7),
+            0 0 10px rgba(57, 255, 20, 0.24);
+    }
+
+    header,
+    .global-nav,
+    footer,
+    .archive-panel,
+    .page-intro-shell,
+    .nav-card,
+    .quick-start-card,
+    .project-week-card,
+    .stat-item,
+    .friend-link-card,
+    .live-weirdness-card,
+    .latest-update-card,
+    .weirdness-page-intro,
+    .pulp-time-feature,
+    .dash-wrap,
+    .dash-intro,
+    .dash-arena,
+    .game-card,
+    section,
+    article,
+    form {
+        background: var(--crt-panel);
+        border-color: var(--crt-border);
+        box-shadow:
+            inset 0 0 0 1px rgba(57, 255, 20, 0.08),
+            0 0 16px var(--crt-shadow);
+    }
+
+    header,
+    footer,
+    .global-nav {
+        background: var(--crt-panel-strong);
+    }
+
+    section,
+    article,
+    form,
+    .archive-panel,
+    .nav-card,
+    .quick-start-card,
+    .project-week-card,
+    .stat-item,
+    .friend-link-card,
+    .live-weirdness-card,
+    .latest-update-card,
+    .pulp-time-feature,
+    .game-card {
+        border: 1px solid var(--crt-border);
+    }
+
+    button,
+    input,
+    select,
+    textarea,
+    .hero-cta-btn,
+    .secondary-cta-btn,
+    .donate-btn,
+    .filter-btn,
+    .game-btn,
+    .dash-btn {
+        background: rgba(8, 18, 10, 0.9);
+        color: var(--crt-text);
+        border: 1px solid var(--crt-border-strong);
+        box-shadow:
+            inset 0 0 0 1px rgba(57, 255, 20, 0.08),
+            0 0 12px rgba(57, 255, 20, 0.15);
+    }
+
+    button:hover,
+    button:focus-visible,
+    input:hover,
+    input:focus-visible,
+    select:hover,
+    select:focus-visible,
+    textarea:hover,
+    textarea:focus-visible,
+    .hero-cta-btn:hover,
+    .secondary-cta-btn:hover,
+    .donate-btn:hover,
+    .filter-btn:hover,
+    .game-btn:hover,
+    .dash-btn:hover {
+        color: #D7FFD1;
+        border-color: rgba(183, 255, 176, 0.9);
+        box-shadow:
+            inset 0 0 0 1px rgba(183, 255, 176, 0.16),
+            0 0 14px rgba(57, 255, 20, 0.28);
+    }
+
+    .filter-btn.active {
+        background: rgba(57, 255, 20, 0.2);
+        color: #E8FFE4;
+        border-color: rgba(183, 255, 176, 0.95);
+        box-shadow:
+            inset 0 0 0 1px rgba(183, 255, 176, 0.2),
+            0 0 16px rgba(57, 255, 20, 0.34);
+    }
+
+    .photo-card,
+    .filter-section,
+    .no-results-state,
+    .latest-update-group,
+    .friend-spotlight {
+        background: rgba(8, 18, 10, 0.84);
+        border-color: var(--crt-border);
+    }
+
+    .alaska-live-card,
+    .alaska-location-picker,
+    .alaska-extra-card,
+    .nasa-fresh-card,
+    .piedmont-sky-card,
+    .weirdness-page-intro,
+    .live-weirdness-card {
+        background: rgba(8, 18, 10, 0.88);
+        border-color: var(--crt-border);
+    }
+
+    .alaska-live-value,
+    .alaska-extra-card h3,
+    .weirdness-link a,
+    .alaska-extra-link,
+    .alaska-extra-muted-link {
+        color: var(--crt-text);
+    }
+
+    .alaska-place-meta,
+    .alaska-updated,
+    .alaska-extra-updated,
+    .alaska-progress-label,
+    .alaska-extra-kicker,
+    .weirdness-page-kicker,
+    .live-weirdness-label {
+        color: var(--crt-dim);
+    }
+
+    .alaska-daylight-meter {
+        background: rgba(8, 18, 10, 0.92);
+        border-color: var(--crt-border-strong);
+    }
+
+    .search-input {
+        background: rgba(8, 18, 10, 0.95);
+        color: #D7FFD1;
+        border-color: var(--crt-border-strong);
+    }
+
+    .search-input::placeholder {
+        color: rgba(124, 255, 124, 0.52);
+    }
+
+    img,
+    video,
+    canvas,
+    iframe {
+        border: 1px solid rgba(57, 255, 20, 0.45);
+        box-shadow: 0 0 18px rgba(57, 255, 20, 0.16);
+        filter: none;
+    }
+
+    .pulp-time-logo,
+    .pulp-time-logo.compact {
+        border: none;
+        box-shadow: none;
+        filter: none;
+    }
+
+    .global-nav {
+        border-bottom: 1px solid var(--crt-border-strong);
+    }
+
+    .global-nav a[aria-current="page"],
+    .global-nav a:hover {
+        background: rgba(57, 255, 20, 0.12);
+        border-color: var(--crt-border-strong);
+        color: #C8FFC1;
+    }
+
+    .nav-card:hover,
+    .photo-card:hover,
+    .quick-start-card:hover,
+    .project-week-card:hover,
+    .latest-update-card:hover,
+    .friend-link-card:hover,
+    .live-weirdness-card:hover,
+    .stat-item:hover,
+    .pulp-time-feature.compact:hover,
+    .social-links a:hover,
+    .track-button:hover {
+        border-color: rgba(183, 255, 176, 0.95);
+        box-shadow:
+            inset 0 0 0 1px rgba(183, 255, 176, 0.2),
+            0 0 16px rgba(183, 255, 176, 0.34) !important;
+    }
+
+    .nav-card:hover .nav-card-title,
+    .nav-card:hover .nav-card-description,
+    .friend-link-card:hover .friend-link-title,
+    .friend-link-card:hover .friend-link-description,
+    .latest-update-card:hover h3,
+    .latest-update-card:hover p {
+        color: #E9FFE6;
+        text-shadow:
+            0 0 2px rgba(183, 255, 176, 0.45),
+            0 0 8px rgba(183, 255, 176, 0.22);
+    }
+
+    .archive-hero #welcome-title {
+        color: #061206;
+        text-shadow: none;
+    }
+
+    .archive-panel::before {
+        display: none;
+    }
+
+    .header-globe {
+        filter: drop-shadow(0 0 8px rgba(57, 255, 20, 0.35));
+    }
+
+    .retro-globe {
+        border-color: rgba(183, 255, 176, 0.88);
+        background: radial-gradient(circle at 40% 35%, rgba(211, 255, 214, 0.14), rgba(0, 0, 0, 0.3));
+        box-shadow:
+            inset -14px -18px 30px rgba(0, 0, 0, 0.35),
+            inset 16px 14px 24px rgba(211, 255, 214, 0.08),
+            0 0 20px rgba(57, 255, 20, 0.3),
+            0 0 34px rgba(57, 255, 20, 0.15);
+    }
+
+    .retro-globe::before {
+        background:
+            repeating-linear-gradient(
+                180deg,
+                rgba(219, 255, 220, 0.16) 0 1px,
+                rgba(35, 73, 41, 0.1) 1px 2px,
+                rgba(2, 13, 5, 0) 2px 4px
+            ),
+            linear-gradient(90deg, rgba(0, 0, 0, 0.18) 0%, rgba(57, 255, 20, 0.07) 22%, rgba(219, 255, 220, 0.1) 48%, rgba(0, 0, 0, 0.22) 100%);
+    }
+
+    .header-support {
+        border-color: rgba(57, 255, 20, 0.55);
+        background: rgba(8, 18, 10, 0.88);
+    }
+
+    .project-week-badge {
+        background: rgba(57, 255, 20, 0.28);
+        color: #FFFFFF;
+    }
+
+    .project-week-cta {
+        color: #B9FFB2;
+    }
+
+    .pillar-card {
+        border-color: rgba(57, 255, 20, 0.34);
+        background: linear-gradient(135deg, rgba(212, 255, 214, 0.9), rgba(182, 240, 186, 0.86));
+    }
+
+    .pillar-card:hover {
+        border-color: rgba(183, 255, 176, 0.95);
+        box-shadow: 0 10px 24px rgba(183, 255, 176, 0.22);
+    }
+
+    .pillar-card-icon {
+        background: rgba(57, 255, 20, 0.16);
+    }
+
+    .pillar-card h3 {
+        color: #103314;
+    }
+
+    .pillar-card p {
+        color: #061206;
+    }
+
+    .nav-card-badge.featured {
+        background: rgba(57, 255, 20, 0.78);
+        color: #062306;
+        box-shadow: 0 4px 12px rgba(57, 255, 20, 0.35);
+    }
+
+    .nav-card-badge.new {
+        background: rgba(57, 255, 20, 0.78);
+        color: #062306;
+        box-shadow: 0 4px 12px rgba(57, 255, 20, 0.35);
+    }
+
+    .nav-card:hover .nav-card-badge.featured {
+        box-shadow: 0 6px 16px rgba(57, 255, 20, 0.45);
+    }
+
+    .nav-card:hover .nav-card-badge.new {
+        box-shadow: 0 6px 16px rgba(57, 255, 20, 0.45);
+    }
+
+    footer .social-links a {
+        color: var(--crt-highlight);
+        border-color: rgba(57, 255, 20, 0.5);
+        background: rgba(57, 255, 20, 0.1);
+    }
+
+    footer .social-links a:hover,
+    footer .social-links a:focus-visible {
+        color: #D7FFD1;
+        border-color: rgba(183, 255, 176, 0.95);
+        background: rgba(57, 255, 20, 0.22);
+    }
+
+    .pulp-time-feature.compact {
+        background: rgba(10, 26, 12, 0.92);
+        border-color: rgba(57, 255, 20, 0.6);
+        box-shadow:
+            inset 0 0 0 1px rgba(57, 255, 20, 0.12),
+            0 0 14px rgba(57, 255, 20, 0.2);
+    }
+
+    @keyframes crt-flicker {
+        0% { opacity: 1; }
+        4% { opacity: 0.985; }
+        7% { opacity: 0.992; }
+        12% { opacity: 0.988; }
+        50% { opacity: 1; }
+        76% { opacity: 0.994; }
+        88% { opacity: 0.989; }
+        100% { opacity: 1; }
+    }
+
+    @keyframes phosphor-pulse {
+        0%, 100% {
+            text-shadow:
+                0 0 2px rgba(124, 255, 124, 0.7),
+                0 0 8px rgba(57, 255, 20, 0.2);
+        }
+        50% {
+            text-shadow:
+                0 0 3px rgba(183, 255, 176, 0.84),
+                0 0 12px rgba(57, 255, 20, 0.34);
+        }
+    }
+
+    h1,
+    h2,
+    .global-nav a[aria-current="page"] {
+        animation: phosphor-pulse 7s ease-in-out infinite;
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+        body,
+        h1,
+        h2,
+        .global-nav a[aria-current="page"] {
+            animation: none !important;
+        }
+
+        a,
+        button,
+        input,
+        select,
+        textarea,
+        .hero-cta-btn,
+        .secondary-cta-btn,
+        .donate-btn,
+        .filter-btn,
+        .game-btn,
+        .dash-btn {
+            transition: none !important;
+        }
+    }
