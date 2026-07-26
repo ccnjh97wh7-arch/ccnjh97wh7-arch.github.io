@@ -7,7 +7,7 @@
     --white: #FFFFFF;
     --text-muted: #4f4d48;
     --shadow-soft: 0 16px 42px rgba(17, 17, 17, 0.10);
-}
+    img:not(.retro-globe-image),
 body {
     margin: 0;
     background:
