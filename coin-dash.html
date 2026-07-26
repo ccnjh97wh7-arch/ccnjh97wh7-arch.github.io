@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta name="description" content="Play a 15-second Coin Dash. Catch falling coins to earn story credits.">
-  <title>Coin Dash | Late 1990s Stories</title>
+  <title>Coin Dash | The Changing Channel</title>
   <link rel="stylesheet" href="style.css">
   <style>
     :root {
@@ -195,6 +195,164 @@
       0%, 100% { box-shadow: 0 0 14px rgba(255, 183, 45, 0.45); filter: brightness(1); }
       50% { box-shadow: 0 0 22px rgba(255, 205, 99, 0.7); filter: brightness(1.08); }
     }
+
+    :root {
+      --dash-bg: #000;
+      --dash-panel: rgba(0, 0, 0, 0.78);
+      --dash-accent: #49ff93;
+      --dash-coin: #3b79f0;
+      --dash-coin-edge: #14377f;
+      --dash-good: #78ffb1;
+    }
+
+    body {
+      background:
+        radial-gradient(1100px 460px at 50% -8%, rgba(45, 220, 105, 0.16), transparent 66%),
+        radial-gradient(700px 300px at 12% -8%, rgba(20, 118, 188, 0.13), transparent 63%),
+        radial-gradient(700px 300px at 88% -8%, rgba(38, 130, 65, 0.18), transparent 63%),
+        #000;
+      color: #caffdb;
+      position: relative;
+      overflow-x: hidden;
+    }
+
+    body::before,
+    body::after {
+      content: "";
+      position: fixed;
+      inset: 0;
+      pointer-events: none;
+    }
+
+    body::before {
+      background:
+        repeating-linear-gradient(180deg, rgba(140, 255, 186, 0.08) 0 1px, rgba(0, 0, 0, 0) 1px 3px),
+        linear-gradient(90deg, rgba(36, 255, 137, 0.03), rgba(99, 188, 255, 0.03));
+      opacity: 0.36;
+      z-index: 0;
+    }
+
+    body::after {
+      background:
+        radial-gradient(circle at 50% 45%, rgba(30, 212, 90, 0.14), transparent 58%),
+        radial-gradient(circle at 50% 50%, rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.82) 80%);
+      z-index: 0;
+    }
+
+    .dash-wrap {
+      position: relative;
+      z-index: 1;
+    }
+
+    .dash-intro,
+    .dash-impact,
+    .dash-challenge-card,
+    .dash-chip {
+      background: rgba(0, 0, 0, 0.78);
+      border-color: rgba(90, 255, 151, 0.5);
+      color: #c8ffd9;
+      box-shadow: 0 0 0 1px rgba(46, 178, 96, 0.24), 0 10px 24px rgba(0, 0, 0, 0.5);
+    }
+
+    .dash-intro {
+      border-left-color: var(--dash-accent);
+    }
+
+    .dash-intro h1,
+    .dash-intro p,
+    .dash-note,
+    .dash-challenge-title,
+    .dash-impact strong {
+      color: #98ffc1;
+      text-shadow: 0 0 10px rgba(73, 255, 146, 0.3);
+    }
+
+    .dash-arena {
+      border-color: rgba(96, 255, 156, 0.52);
+      background:
+        radial-gradient(560px 250px at 50% 42%, rgba(15, 79, 43, 0.36), rgba(0, 0, 0, 0.97)),
+        repeating-linear-gradient(180deg, rgba(132, 255, 181, 0.07) 0 1px, rgba(0, 0, 0, 0) 1px 3px);
+      box-shadow: inset 0 0 20px rgba(35, 154, 82, 0.22), 0 10px 24px rgba(0, 0, 0, 0.45);
+    }
+
+    .dash-player {
+      background: linear-gradient(180deg, #b0ffcf 0%, #2fd17c 65%, #13844b 100%);
+      border-color: rgba(153, 255, 199, 0.72);
+      box-shadow: 0 0 16px rgba(66, 255, 145, 0.5);
+    }
+
+    .dash-coin {
+      border-color: rgba(126, 179, 255, 0.9);
+      background: radial-gradient(circle at 34% 34%, #e7f4ff, #3c7bf2 58%, #153b86 100%);
+      box-shadow: 0 0 16px rgba(70, 136, 255, 0.9), 0 0 24px rgba(61, 114, 242, 0.42);
+      animation-duration: 0.72s;
+    }
+
+    .dash-coin:nth-of-type(odd) {
+      border-color: rgba(255, 151, 151, 0.9);
+      background: radial-gradient(circle at 34% 34%, #ffe6e6, #f14e4e 58%, #8f1d1d 100%);
+      box-shadow: 0 0 16px rgba(255, 86, 86, 0.9), 0 0 24px rgba(204, 56, 56, 0.45);
+      animation-duration: 0.72s;
+    }
+
+    .dash-btn,
+    .dash-btn.primary {
+      border: 1px solid #ffffff;
+      background: linear-gradient(180deg, rgba(33, 140, 76, 0.96), rgba(16, 84, 46, 0.96));
+      color: #ecfff4;
+      box-shadow:
+        0 0 0 1px rgba(255, 255, 255, 0.42),
+        0 0 18px rgba(255, 255, 255, 0.68),
+        0 0 34px rgba(120, 255, 176, 0.35),
+        inset 0 0 8px rgba(255, 255, 255, 0.2),
+        inset 0 0 0 1px rgba(185, 255, 213, 0.32);
+      transform: translateY(0) scale(1);
+      animation: arcade-button-pulse 1.35s ease-in-out infinite;
+      transition: transform 0.12s ease, box-shadow 0.12s ease, filter 0.12s ease;
+    }
+
+    .dash-btn:hover,
+    .dash-btn.primary:hover {
+      background: linear-gradient(180deg, rgba(44, 165, 92, 0.98), rgba(20, 103, 57, 0.98));
+      box-shadow:
+        0 0 0 1px rgba(255, 255, 255, 0.72),
+        0 0 24px rgba(255, 255, 255, 0.74),
+        0 0 42px rgba(128, 255, 183, 0.48),
+        inset 0 0 9px rgba(255, 255, 255, 0.24),
+        inset 0 0 0 1px rgba(205, 255, 226, 0.38);
+      transform: translateY(-1px) scale(1.03);
+      filter: saturate(1.08);
+      animation-play-state: paused;
+    }
+
+    .dash-btn:disabled {
+      opacity: 0.42;
+      animation: none;
+    }
+
+    @keyframes arcade-button-pulse {
+      0%,
+      100% {
+        box-shadow:
+          0 0 0 1px rgba(255, 255, 255, 0.42),
+          0 0 16px rgba(255, 255, 255, 0.62),
+          0 0 30px rgba(110, 255, 170, 0.34),
+          inset 0 0 8px rgba(255, 255, 255, 0.2),
+          inset 0 0 0 1px rgba(185, 255, 213, 0.32);
+      }
+      50% {
+        box-shadow:
+          0 0 0 1px rgba(255, 255, 255, 0.58),
+          0 0 24px rgba(255, 255, 255, 0.76),
+          0 0 40px rgba(127, 255, 185, 0.5),
+          inset 0 0 9px rgba(255, 255, 255, 0.24),
+          inset 0 0 0 1px rgba(214, 255, 231, 0.44);
+      }
+    }
+
+    .dash-note.good {
+      color: #aeffcc;
+    }
   </style>
 </head>
 <body>
@@ -205,7 +363,7 @@
     <a href="more-images.html">More Images</a>
     <a href="music.html">Music</a>
     <a href="javascript-games.html">Games</a>
-    <a href="rocky.html">90s Stories</a>
+    <a href="changing-channel.html">The Changing Channel</a>
   </div>
 
   <main id="main-content" class="dash-wrap">
@@ -292,6 +450,9 @@
     let endAt = 0;
     let coins = [];
     let lastRunEndedAt = 0;
+    let keyboardDirection = 0;
+    let keyboardSpeed = 0;
+    let lastFrameAt = 0;
 
     function readCredits() {
       try {
@@ -454,22 +615,59 @@
       coins.push({ node, x, y: -28, speed, size });
     }
 
-    function step() {
+    function updatePlayerWithKeyboard(dt, arenaWidth) {
       if (!running) {
         return;
+      }
+
+      const playerWidth = player.offsetWidth;
+      const maxX = Math.max(0, arenaWidth - playerWidth);
+      const acceleration = 2500;
+      const maxSpeed = 760;
+      const friction = 0.82;
+
+      if (keyboardDirection !== 0) {
+        keyboardSpeed += keyboardDirection * acceleration * dt;
+      } else {
+        keyboardSpeed *= friction;
+        if (Math.abs(keyboardSpeed) < 6) {
+          keyboardSpeed = 0;
+        }
+      }
+
+      keyboardSpeed = Math.max(-maxSpeed, Math.min(maxSpeed, keyboardSpeed));
+      if (keyboardSpeed === 0) {
+        return;
+      }
+
+      playerX = Math.max(0, Math.min(maxX, playerX + keyboardSpeed * dt));
+      player.style.left = playerX + "px";
+      player.style.transform = "none";
+    }
+
+    function step(timestamp) {
+      if (!running) {
+        return;
+      }
+
+      if (!lastFrameAt) {
+        lastFrameAt = timestamp;
       }
 
       const rect = arena.getBoundingClientRect();
       const playerTop = rect.height - 16 - player.offsetHeight;
       const playerWidth = player.offsetWidth;
-      const dt = 1 / 60;
+      const dt = Math.max(0.008, Math.min(0.05, (timestamp - lastFrameAt) / 1000));
+      lastFrameAt = timestamp;
+      updatePlayerWithKeyboard(dt, rect.width);
+      const catchPadding = 10;
 
       coins = coins.filter((coin) => {
         coin.y += coin.speed * dt;
         coin.node.style.top = coin.y + "px";
 
         const caughtHorizontally = coin.x + coin.size >= playerX && coin.x <= playerX + playerWidth;
-        const caughtVertically = coin.y + coin.size >= playerTop && coin.y <= playerTop + player.offsetHeight + 6;
+        const caughtVertically = coin.y + coin.size >= playerTop - catchPadding && coin.y <= playerTop + player.offsetHeight + catchPadding;
 
         if (caughtHorizontally && caughtVertically) {
           score += 1;
@@ -496,6 +694,8 @@
       spawnId = null;
       uiId = null;
       cancelAnimationFrame(animationId);
+      lastFrameAt = 0;
+      keyboardSpeed = 0;
       lastRunEndedAt = Date.now();
 
       coins.forEach((coin) => coin.node.remove());
@@ -586,6 +786,8 @@
       score = 0;
       earnedStoryCredits = 0;
       earnedVoteCredits = 0;
+      keyboardSpeed = 0;
+      lastFrameAt = 0;
       noteEl.textContent = "Catch as many coins as you can.";
       noteEl.classList.remove("good");
       storyCreditsEl.textContent = "Story credits earned: 0";
@@ -596,7 +798,7 @@
       updateCooldownLabel();
 
       spawnCoin();
-      spawnId = window.setInterval(spawnCoin, 260);
+      spawnId = window.setInterval(spawnCoin, 230);
       uiId = window.setInterval(() => {
         const remain = Math.max(0, endAt - Date.now());
         timeEl.textContent = "Time: " + (remain / 1000).toFixed(1) + "s";
@@ -610,14 +812,41 @@
     }
 
     arena.addEventListener("mousemove", (event) => setPlayerFromClientX(event.clientX));
+    arena.addEventListener("pointermove", (event) => setPlayerFromClientX(event.clientX));
+    arena.addEventListener("pointerdown", (event) => {
+      setPlayerFromClientX(event.clientX);
+      if (arena.setPointerCapture && event.pointerId !== undefined) {
+        arena.setPointerCapture(event.pointerId);
+      }
+    });
     arena.addEventListener("touchmove", (event) => {
       if (!event.touches[0]) return;
       setPlayerFromClientX(event.touches[0].clientX);
     }, { passive: true });
 
+    window.addEventListener("keydown", (event) => {
+      const key = event.key.toLowerCase();
+      if (key === "arrowleft" || key === "a") {
+        keyboardDirection = -1;
+        event.preventDefault();
+      } else if (key === "arrowright" || key === "d") {
+        keyboardDirection = 1;
+        event.preventDefault();
+      }
+    });
+
+    window.addEventListener("keyup", (event) => {
+      const key = event.key.toLowerCase();
+      if ((key === "arrowleft" || key === "a") && keyboardDirection < 0) {
+        keyboardDirection = 0;
+      } else if ((key === "arrowright" || key === "d") && keyboardDirection > 0) {
+        keyboardDirection = 0;
+      }
+    });
+
     startBtn.addEventListener("click", startRound);
     goStoryBtn.addEventListener("click", () => {
-      window.location.href = "rocky.html#stories-section";
+      window.location.href = "changing-channel.html#stories-section";
     });
 
     refreshBank();

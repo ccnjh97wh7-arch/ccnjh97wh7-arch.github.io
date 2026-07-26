@@ -3,17 +3,17 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="Late 1990s stories: a shared page for memories, scenes, and moments from the era.">
+  <meta name="description" content="The Changing Channel: a shared page for memories, scenes, and moments from the era.">
   <meta property="og:type" content="website">
-  <meta property="og:title" content="Late 1990s Stories | Eric Stone">
+  <meta property="og:title" content="The Changing Channel | Eric Stone">
   <meta property="og:description" content="Share your late 1990s memories and play Coin Dash with falling coins.">
-  <meta property="og:url" content="https://ccnjh97wh7-arch.github.io/rocky.html">
+  <meta property="og:url" content="https://ccnjh97wh7-arch.github.io/changing-channel.html">
   <meta property="og:image" content="https://ccnjh97wh7-arch.github.io/images/17882340400264763.jpg">
   <meta name="twitter:card" content="summary_large_image">
-  <meta name="twitter:title" content="Late 1990s Stories | Eric Stone">
+  <meta name="twitter:title" content="The Changing Channel | Eric Stone">
   <meta name="twitter:description" content="Share your late 1990s memories and play Coin Dash with falling coins.">
   <meta name="twitter:image" content="https://ccnjh97wh7-arch.github.io/images/17882340400264763.jpg">
-  <title>Late 1990s Stories</title>
+  <title>The Changing Channel</title>
 
   <style>
     :root {
@@ -1759,6 +1759,257 @@
       border-right: 6px solid transparent;
       border-top: 6px solid var(--gold);
     }
+
+    /* CRT phosphor restyle layer: visual-only overrides, no gameplay changes. */
+    :root {
+      --gold: #74ff9a;
+      --paper: #c9ffd9;
+      --orange: #2ecb6f;
+      --black: #020403;
+      --coin-deep: #0f2016;
+      --coin-mid: #3cff87;
+      --coin-bright: #9bffbe;
+      --coin-shadow: rgba(0, 0, 0, 0.75);
+    }
+
+    body {
+      background:
+        radial-gradient(1200px 580px at 50% -10%, rgba(48, 225, 106, 0.16), transparent 66%),
+        radial-gradient(780px 420px at 8% 4%, rgba(18, 112, 52, 0.2), transparent 64%),
+        radial-gradient(840px 430px at 92% 2%, rgba(13, 88, 124, 0.14), transparent 70%),
+        #000;
+      color: var(--paper);
+      text-shadow: 0 0 8px rgba(52, 255, 128, 0.2);
+    }
+
+    body::before {
+      opacity: 0.36;
+      background:
+        repeating-linear-gradient(180deg, rgba(130, 255, 177, 0.08) 0 1px, rgba(0, 0, 0, 0) 1px 3px),
+        linear-gradient(90deg, rgba(38, 255, 133, 0.03), rgba(112, 224, 255, 0.03));
+      animation: none;
+      z-index: 0;
+    }
+
+    body::after {
+      opacity: 0.65;
+      background:
+        radial-gradient(circle at 50% 46%, rgba(35, 220, 94, 0.12), transparent 56%),
+        radial-gradient(circle at 50% 50%, rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.8) 76%);
+      filter: none;
+      z-index: 0;
+    }
+
+    main {
+      position: relative;
+      z-index: 1;
+    }
+
+    a {
+      color: #87ffbe;
+    }
+
+    a:focus-visible,
+    button:focus-visible,
+    input:focus-visible,
+    textarea:focus-visible {
+      outline-color: #8fffff;
+    }
+
+    .rocky-nav a,
+    .coin-bank-panel,
+    .coin-dash-row,
+    .coin-dash-modal,
+    .form-box,
+    .memory,
+    .share-section,
+    .sort-controls,
+    .memory-preview-tooltip {
+      background: rgba(0, 0, 0, 0.78);
+      border-color: rgba(102, 255, 156, 0.55);
+      box-shadow: 0 0 0 1px rgba(45, 191, 98, 0.3), 0 8px 24px rgba(0, 0, 0, 0.55);
+      color: #cbffda;
+      backdrop-filter: none;
+    }
+
+    .memory::before,
+    .form-box::before,
+    .memory::after {
+      display: none;
+    }
+
+    .coin-progress-track {
+      background: rgba(0, 0, 0, 0.75);
+      border-color: rgba(104, 255, 163, 0.42);
+    }
+
+    .coin-progress-fill {
+      background: linear-gradient(90deg, #1f6fff 0%, #31d975 52%, #7cffaa 100%);
+      box-shadow: 0 0 10px rgba(66, 255, 145, 0.4);
+    }
+
+    h1,
+    h2,
+    h3,
+    .coin-bank-title,
+    .coin-balance,
+    .coin-rank,
+    .dash-chip,
+    .dash-note,
+    .coin-dash-results-title,
+    .coin-dash-results-line,
+    .coin-dash-footer {
+      color: #95ffc0;
+      text-shadow: 0 0 10px rgba(85, 255, 151, 0.35);
+      -webkit-text-fill-color: unset;
+      background: none;
+    }
+
+    .intro-cta,
+    .coin-powerup-button,
+    .sort-controls button,
+    .dash-btn {
+      background: linear-gradient(180deg, rgba(14, 37, 21, 0.95), rgba(6, 18, 11, 0.95));
+      border-color: rgba(95, 255, 155, 0.65);
+      color: #8cffbb;
+      box-shadow: 0 0 12px rgba(56, 255, 133, 0.2);
+    }
+
+    .coin-powerup-button.purple-gem,
+    .coin-powerup-status.purple,
+    .coin-powerup-status.purple.is-active,
+    .gem-balance {
+      color: #f2bbff;
+      border-color: rgba(220, 110, 255, 0.85);
+      background: linear-gradient(180deg, rgba(54, 10, 78, 0.82), rgba(28, 4, 45, 0.88));
+      text-shadow: 0 0 12px rgba(216, 108, 255, 0.72);
+      box-shadow: 0 0 18px rgba(173, 74, 255, 0.35);
+    }
+
+    .coin-dash-arena {
+      border-color: rgba(103, 255, 162, 0.5);
+      background:
+        radial-gradient(560px 250px at 50% 44%, rgba(19, 80, 45, 0.32), rgba(0, 0, 0, 0.97)),
+        repeating-linear-gradient(180deg, rgba(128, 255, 173, 0.07) 0 1px, rgba(0, 0, 0, 0) 1px 3px);
+    }
+
+    .coin-dash-cursor {
+      border-color: rgba(146, 255, 193, 0.92);
+      box-shadow: 0 0 16px rgba(67, 255, 145, 0.65);
+    }
+
+    .coin-dash-coin,
+    .coin-token,
+    .coin-shower-token {
+      color: rgba(95, 161, 255, 0.86);
+      text-shadow: 0 0 10px rgba(83, 154, 255, 0.78), 0 0 24px rgba(39, 89, 194, 0.4);
+      border-color: rgba(126, 176, 255, 0.86);
+      background: radial-gradient(circle at 32% 32%, #def0ff, #3b79f0 58%, #153985 100%);
+      box-shadow: 0 0 14px rgba(73, 133, 255, 0.7);
+    }
+
+    .coin-dash-coin:nth-of-type(odd),
+    .coin-token:nth-of-type(odd),
+    .coin-shower-token:nth-of-type(odd) {
+      color: rgba(255, 116, 116, 0.88);
+      text-shadow: 0 0 10px rgba(255, 94, 94, 0.8), 0 0 24px rgba(176, 31, 31, 0.45);
+      border-color: rgba(255, 143, 143, 0.88);
+      background: radial-gradient(circle at 34% 34%, #ffe0e0, #ef4747 58%, #8a1d1d 100%);
+      box-shadow: 0 0 14px rgba(255, 83, 83, 0.68);
+    }
+
+    .coin-dash-coin.is-gem {
+      border-color: rgba(233, 154, 255, 0.98);
+      background: radial-gradient(circle at 38% 34%, #ffebff, #d966ff 58%, #6c1f96 100%);
+      box-shadow: 0 0 18px rgba(214, 93, 255, 0.95), 0 0 30px rgba(142, 49, 211, 0.75);
+    }
+
+    .coin-toast,
+    .coin-toast.is-spend,
+    .royal-proclamation {
+      border-color: rgba(118, 255, 173, 0.8);
+      background: linear-gradient(180deg, rgba(18, 40, 25, 0.96), rgba(5, 12, 8, 0.96));
+      color: #a8ffc9;
+      text-shadow: 0 0 10px rgba(80, 255, 151, 0.45);
+    }
+
+    .music-track-name {
+      color: #9efff0;
+    }
+
+    button,
+    input[type="submit"],
+    .coin-powerup-button,
+    .share-button,
+    .reaction-option,
+    .coin-dash-trigger,
+    .coin-dash-close,
+    .sort-controls button,
+    #submit-button {
+      border: 1px solid #ffffff !important;
+      background: linear-gradient(180deg, rgba(33, 140, 76, 0.96), rgba(16, 84, 46, 0.96)) !important;
+      color: #ecfff4 !important;
+      box-shadow:
+        0 0 0 1px rgba(255, 255, 255, 0.42),
+        0 0 18px rgba(255, 255, 255, 0.68),
+        0 0 34px rgba(120, 255, 176, 0.35),
+        inset 0 0 8px rgba(255, 255, 255, 0.2),
+        inset 0 0 0 1px rgba(185, 255, 213, 0.32) !important;
+      text-shadow: none !important;
+      transform: translateY(0) scale(1);
+      animation: arcade-button-pulse 1.35s ease-in-out infinite;
+      transition: transform 0.12s ease, box-shadow 0.12s ease, filter 0.12s ease;
+    }
+
+    button:hover,
+    input[type="submit"]:hover,
+    .coin-powerup-button:hover,
+    .share-button:hover,
+    .reaction-option:hover,
+    .coin-dash-trigger:hover,
+    .coin-dash-close:hover,
+    .sort-controls button:hover,
+    #submit-button:hover {
+      background: linear-gradient(180deg, rgba(44, 165, 92, 0.98), rgba(20, 103, 57, 0.98)) !important;
+      box-shadow:
+        0 0 0 1px rgba(255, 255, 255, 0.72),
+        0 0 24px rgba(255, 255, 255, 0.74),
+        0 0 42px rgba(128, 255, 183, 0.48),
+        inset 0 0 9px rgba(255, 255, 255, 0.24),
+        inset 0 0 0 1px rgba(205, 255, 226, 0.38) !important;
+      transform: translateY(-1px) scale(1.03);
+      filter: saturate(1.08);
+      animation-play-state: paused;
+    }
+
+    button:disabled,
+    input[type="submit"]:disabled,
+    .coin-powerup-button:disabled,
+    .coin-dash-trigger:disabled {
+      opacity: 0.55;
+      filter: grayscale(0.08);
+      animation: none;
+    }
+
+    @keyframes arcade-button-pulse {
+      0%,
+      100% {
+        box-shadow:
+          0 0 0 1px rgba(255, 255, 255, 0.42),
+          0 0 16px rgba(255, 255, 255, 0.62),
+          0 0 30px rgba(110, 255, 170, 0.34),
+          inset 0 0 8px rgba(255, 255, 255, 0.2),
+          inset 0 0 0 1px rgba(185, 255, 213, 0.32);
+      }
+      50% {
+        box-shadow:
+          0 0 0 1px rgba(255, 255, 255, 0.58),
+          0 0 24px rgba(255, 255, 255, 0.76),
+          0 0 40px rgba(127, 255, 185, 0.5),
+          inset 0 0 9px rgba(255, 255, 255, 0.24),
+          inset 0 0 0 1px rgba(214, 255, 231, 0.44);
+      }
+    }
   </style>
 </head>
 
@@ -1771,13 +2022,13 @@
     <a href="more-images.html">More Images</a>
     <a href="music.html">Music</a>
     <a href="javascript-games.html">Games</a>
-    <a href="rocky.html">90s Stories</a>
+    <a href="changing-channel.html">The Changing Channel</a>
   </div>
   <main id="main-content">
     <a class="back-link" href="index.html">← Back to the main page</a>
 
     <div class="page-title-row">
-      <h1>Late 1990s Stories</h1>
+      <h1>The Changing Channel</h1>
       <div class="music-suggestion">
         <p class="music-suggestion-text">🎵 music for reflection</p>
         <p class="music-track-name" id="music-track-name"></p>
@@ -1816,15 +2067,12 @@
       </div>
     </section>
 
-    <p class="intro">
-      This page is for anyone who remembers the late 1990s.
-      Share a story, a nickname, or one scene that still feels vivid.
-    </p>
+    <p class="intro">Welcome.</p>
 
     <a class="intro-cta" href="coin-dash.html">Play 15s Coin Dash First</a>
 
     <section class="form-box">
-      <h2>Share a late-90s story</h2>
+      <h2>Welcome</h2>
 
       <p class="notice" style="margin-top:0;">
         Story credits: <strong id="story-credit-balance">0</strong>. You earn credits in the Coin Dash game.
@@ -1844,7 +2092,7 @@
         </label>
         <input id="nickname" name="nickname" type="text" maxlength="80">
 
-        <label for="story">Your story from the late 1990s</label>
+        <label for="story">Welcome</label>
         <textarea id="story" name="story" required maxlength="2500"></textarea>
 
         <div class="reaction-group" role="radiogroup" aria-label="Choose a vibe">
@@ -1865,7 +2113,7 @@
     </section>
 
     <section class="share-section" id="share-section">
-      <h3>Invite people to share late-90s stories</h3>
+      <h3>Invite people to The Changing Channel</h3>
       <p>Spread the page and bring in more stories from the era.</p>
       <div class="share-buttons">
         <button class="share-button facebook" id="share-facebook" type="button" aria-label="Share on Facebook">📘 Facebook</button>
@@ -2606,7 +2854,7 @@
         const coinY = parseFloat(coin.style.top || "0") + 12;
         const dx = coinX - x;
         const dy = coinY - y;
-        if (dx * dx + dy * dy <= 900) {
+        if (dx * dx + dy * dy <= 1225) {
           coin.remove();
           const kind = coin.dataset.kind || "coin";
           if (kind === "gem") {
@@ -2717,6 +2965,8 @@
         }
       });
       document.addEventListener("keydown", handleCoinDashEscape);
+      coinDashArenaEl?.addEventListener("pointermove", onCoinDashPointerMove);
+      coinDashArenaEl?.addEventListener("pointerdown", onCoinDashPointerMove);
       coinDashArenaEl?.addEventListener("mousemove", onCoinDashPointerMove);
       coinDashArenaEl?.addEventListener("touchmove", onCoinDashPointerMove, { passive: true });
 
@@ -3995,7 +4245,7 @@
       
       voteSummaryHTML += `
         <div>
-          <strong>Favorite late-90s vibes mentioned:</strong>
+          <strong>Welcome:</strong>
           <span class="vote-pill">Blockbuster Nights ${blockbusterVotes}</span>
           <span class="vote-pill">CD Burn Mix ${cdBurnVotes}</span>
           <span class="vote-pill">Dial-up Era ${dialupVotes}</span>
@@ -4260,7 +4510,7 @@
         });
 
         form.reset();
-        status.textContent = "Thanks. Your late-90s story has been shared.";
+        status.textContent = "Welcome.";
         rewardCoins("submit_memory");
         loadApprovedMemories();
         renderStoryCredits();
@@ -4303,8 +4553,8 @@
 
     // Social sharing functionality
     const pageUrl = window.location.href;
-    const pageTitle = "Late 1990s Stories";
-    const pageDescription = "Share late 1990s stories and play a 15-second Coin Dash to earn story credits.";
+    const pageTitle = "The Changing Channel";
+    const pageDescription = "Share memories on The Changing Channel and play a 15-second Coin Dash to earn story credits.";
 
     document.getElementById("share-facebook").addEventListener("click", () => {
       const facebookUrl = `https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(pageUrl)}&quote=${encodeURIComponent(pageDescription)}`;
@@ -4361,7 +4611,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Late 1990s Stories - Keepsake Collection</title>
+  <title>The Changing Channel - Keepsake Collection</title>
   <style>
     body {
       font-family: Georgia, "Times New Roman", serif;
@@ -4450,7 +4700,7 @@
 </head>
 <body>
   <div class="header">
-    <h1>Late 1990s Stories</h1>
+    <h1>The Changing Channel</h1>
     <p>A shared collection from the era</p>
   </div>
   <div class="date">Created on ${dateStr}</div>
@@ -4480,7 +4730,7 @@
 
       html += `
   <div class="footer">
-    <p>This is a digital keepsake of stories shared from the late 1990s.</p>
+    <p>Welcome.</p>
     <p>Thanks to everyone who contributed.</p>
   </div>
 </body>
