@@ -582,6 +582,45 @@ header h1 {
     }
 }
 
+@keyframes moon-crt-cycle-mobile {
+    0% {
+        transform: rotate(0deg) scale(1);
+        opacity: 1;
+    }
+    30% {
+        transform: rotate(108deg) scale(1.01);
+        opacity: 1;
+    }
+    52% {
+        transform: rotate(282deg) scale(1.03);
+        opacity: 1;
+    }
+    67% {
+        transform: rotate(404deg) scale(1.04);
+        opacity: 0.82;
+    }
+    74% {
+        transform: rotate(470deg) scale(0.7);
+        opacity: 0.28;
+    }
+    80% {
+        transform: rotate(500deg) scale(0.24);
+        opacity: 0;
+    }
+    86% {
+        transform: rotate(560deg) scale(0.44);
+        opacity: 0.3;
+    }
+    92% {
+        transform: rotate(640deg) scale(0.84);
+        opacity: 0.94;
+    }
+    100% {
+        transform: rotate(720deg) scale(1);
+        opacity: 1;
+    }
+}
+
 @keyframes retro-globe-ring-spin {
     0% {
         transform: rotate(-18deg) scaleX(1);
@@ -2405,6 +2444,11 @@ nav p {
     .retro-globe {
         width: 72px;
         height: 72px;
+    }
+
+    .retro-globe-image {
+        animation: moon-crt-cycle-mobile 8.8s linear infinite;
+        filter: saturate(1.65) brightness(1.22) contrast(1.14) drop-shadow(0 0 8px rgba(255, 34, 34, 0.3));
     }
 
     .header-copy {
