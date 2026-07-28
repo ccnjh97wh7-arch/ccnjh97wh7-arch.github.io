@@ -682,6 +682,90 @@
       margin-bottom: 34px;
     }
 
+    .view-mode-controls {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: 8px;
+      margin: -12px 0 16px;
+    }
+
+    .view-mode-label {
+      margin: 0;
+      font: 700 0.74rem "Trebuchet MS", Verdana, sans-serif;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: #c9ffd9;
+    }
+
+    .view-mode-button {
+      margin-top: 0;
+      min-height: 38px;
+      padding: 7px 12px;
+      font-size: 0.76rem;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+    }
+
+    .view-mode-button.is-active {
+      border-color: #ffffff !important;
+      box-shadow:
+        0 0 0 1px rgba(255, 255, 255, 0.6),
+        0 0 22px rgba(180, 255, 218, 0.45),
+        inset 0 0 8px rgba(255, 255, 255, 0.2) !important;
+      filter: brightness(1.1);
+    }
+
+    .view-mode-status {
+      margin: 0;
+      font-size: 0.82rem;
+      color: #d7ffe5;
+      opacity: 0.9;
+    }
+
+    .how-it-works {
+      margin: -10px 0 24px;
+      padding: 16px;
+      border-radius: 12px;
+      border: 1px solid rgba(255, 220, 124, 0.52);
+      background: linear-gradient(160deg, rgba(255, 241, 188, 0.16), rgba(176, 115, 20, 0.22));
+      box-shadow: 0 8px 18px rgba(0, 0, 0, 0.3);
+    }
+
+    .how-it-works-title {
+      margin: 0 0 10px;
+      font: 700 0.86rem "Trebuchet MS", Verdana, sans-serif;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: #FFE8B2;
+    }
+
+    .how-it-works-list {
+      margin: 0;
+      padding: 0;
+      list-style: none;
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(170px, 1fr));
+      gap: 10px;
+    }
+
+    .how-it-works-list li {
+      padding: 10px 12px;
+      border-radius: 10px;
+      border: 1px solid rgba(255, 221, 144, 0.35);
+      background: rgba(34, 19, 6, 0.4);
+      color: #FFF2D3;
+      font-size: 0.9rem;
+      line-height: 1.4;
+    }
+
+    .how-step-number {
+      display: inline-block;
+      margin-right: 6px;
+      color: #FFD97E;
+      font-weight: 700;
+    }
+
     .intro-cta {
       display: inline-block;
       margin: -12px 0 26px;
@@ -777,6 +861,45 @@
       resize: vertical;
     }
 
+    .field-meta {
+      display: flex;
+      justify-content: flex-end;
+      margin-top: 6px;
+    }
+
+    .char-counter {
+      margin: 0;
+      font-size: 0.82rem;
+      color: #6a5b46;
+    }
+
+    .char-counter.is-near-limit {
+      color: #7A170A;
+      font-weight: 700;
+    }
+
+    .field-feedback {
+      margin: 6px 0 0;
+      min-height: 1.2em;
+      font-size: 0.84rem;
+      color: #7A170A;
+    }
+
+    .field-feedback:empty {
+      display: none;
+    }
+
+    .input-invalid {
+      border-color: #A3241E !important;
+      box-shadow: 0 0 0 2px rgba(163, 36, 30, 0.18);
+    }
+
+    .reaction-group.is-invalid {
+      outline: 2px solid rgba(163, 36, 30, 0.5);
+      outline-offset: 2px;
+      border-radius: 12px;
+    }
+
     .optional,
     .notice {
       color: #666;
@@ -812,6 +935,57 @@
     .status {
       margin-top: 16px;
       font-weight: bold;
+      min-height: 1.3em;
+      padding: 6px 10px;
+      border-radius: 8px;
+      border: 1px solid transparent;
+      background: rgba(255, 255, 255, 0.22);
+      color: #2a1500;
+    }
+
+    .status.is-info {
+      border-color: rgba(60, 112, 196, 0.35);
+      background: rgba(205, 228, 255, 0.55);
+      color: #153761;
+    }
+
+    .status.is-success {
+      border-color: rgba(53, 142, 88, 0.4);
+      background: rgba(201, 248, 220, 0.55);
+      color: #1c5d33;
+    }
+
+    .status.is-warning {
+      border-color: rgba(166, 116, 21, 0.45);
+      background: rgba(255, 234, 188, 0.62);
+      color: #6a3f07;
+    }
+
+    .status.is-error {
+      border-color: rgba(163, 36, 30, 0.48);
+      background: rgba(255, 214, 212, 0.62);
+      color: #6d1a16;
+    }
+
+    .vote-credit-status {
+      padding: 6px 10px;
+      border-radius: 8px;
+      border: 1px solid rgba(120, 165, 255, 0.35);
+      background: rgba(207, 227, 255, 0.45);
+      color: #153761;
+      font-size: 0.86rem;
+    }
+
+    .vote-credit-status.is-success {
+      border-color: rgba(53, 142, 88, 0.4);
+      background: rgba(201, 248, 220, 0.55);
+      color: #1c5d33;
+    }
+
+    .vote-credit-status.is-warning {
+      border-color: rgba(166, 116, 21, 0.45);
+      background: rgba(255, 234, 188, 0.62);
+      color: #6a3f07;
     }
 
     .memory-name {
@@ -1710,6 +1884,58 @@
       box-shadow: 0 2px 6px rgba(196, 30, 58, 0.3);
     }
 
+    .story-discovery-controls {
+      display: grid;
+      grid-template-columns: minmax(220px, 1.4fr) minmax(160px, 1fr) auto;
+      gap: 8px;
+      align-items: end;
+      margin-bottom: 12px;
+    }
+
+    .discovery-field {
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+      min-width: 0;
+    }
+
+    .discovery-field label {
+      margin: 0;
+      color: #c9ffd9;
+      font-size: 0.78rem;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+      font-family: "Trebuchet MS", Verdana, sans-serif;
+    }
+
+    .discovery-field input,
+    .discovery-field select {
+      margin: 0;
+      min-height: 40px;
+      border-radius: 10px;
+      border: 1px solid rgba(112, 255, 173, 0.45);
+      background: rgba(8, 14, 10, 0.85);
+      color: #d7ffe5;
+      padding: 8px 10px;
+      font-size: 0.9rem;
+    }
+
+    .story-filter-clear {
+      margin-top: 0;
+      min-height: 40px;
+      padding: 8px 14px;
+      border-radius: 999px;
+      font-size: 0.82rem;
+      align-self: end;
+    }
+
+    .story-filter-status {
+      margin: 0 0 12px;
+      font-size: 0.86rem;
+      color: #d7ffe5;
+      opacity: 0.9;
+    }
+
     .top-memory-item {
       position: relative;
       cursor: pointer;
@@ -1933,6 +2159,70 @@
       text-shadow: 0 0 10px rgba(80, 255, 151, 0.45);
     }
 
+    body.is-calm-mode {
+      text-shadow: none;
+    }
+
+    body.is-calm-mode::before {
+      opacity: 0.14;
+      background:
+        repeating-linear-gradient(180deg, rgba(130, 255, 177, 0.04) 0 1px, rgba(0, 0, 0, 0) 1px 4px),
+        linear-gradient(90deg, rgba(38, 255, 133, 0.02), rgba(112, 224, 255, 0.02));
+    }
+
+    body.is-calm-mode::after {
+      opacity: 0.4;
+      background:
+        radial-gradient(circle at 50% 46%, rgba(35, 220, 94, 0.08), transparent 56%),
+        radial-gradient(circle at 50% 50%, rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.72) 76%);
+    }
+
+    body.is-calm-mode .coin-drift-layer,
+    body.is-calm-mode .glitter-particle,
+    body.is-calm-mode .glitter-ring,
+    body.is-calm-mode .jackpot-flash,
+    body.is-calm-mode .royal-proclamation,
+    body.is-calm-mode .coin-shower-token {
+      display: none !important;
+    }
+
+    body.is-calm-mode .memory::after,
+    body.is-calm-mode .royal-decree-divider::after {
+      display: none;
+    }
+
+    body.is-calm-mode button,
+    body.is-calm-mode input[type="submit"],
+    body.is-calm-mode .coin-powerup-button,
+    body.is-calm-mode .share-button,
+    body.is-calm-mode .reaction-option,
+    body.is-calm-mode .coin-dash-trigger,
+    body.is-calm-mode .coin-dash-close,
+    body.is-calm-mode .sort-controls button,
+    body.is-calm-mode #submit-button {
+      animation: none !important;
+      box-shadow:
+        0 0 0 1px rgba(255, 255, 255, 0.34),
+        0 0 12px rgba(130, 255, 190, 0.2),
+        inset 0 0 6px rgba(255, 255, 255, 0.15) !important;
+    }
+
+    body.is-calm-mode button:hover,
+    body.is-calm-mode input[type="submit"]:hover,
+    body.is-calm-mode .coin-powerup-button:hover,
+    body.is-calm-mode .share-button:hover,
+    body.is-calm-mode .reaction-option:hover,
+    body.is-calm-mode .coin-dash-trigger:hover,
+    body.is-calm-mode .coin-dash-close:hover,
+    body.is-calm-mode .sort-controls button:hover,
+    body.is-calm-mode #submit-button:hover,
+    body.is-calm-mode .music-suggestion:hover,
+    body.is-calm-mode .memory:hover::after,
+    body.is-calm-mode .top-memory-item:hover .memory-preview-tooltip {
+      transform: none !important;
+      animation-play-state: running;
+    }
+
     .music-track-name {
       color: #9efff0;
     }
@@ -2010,6 +2300,121 @@
           inset 0 0 0 1px rgba(214, 255, 231, 0.44);
       }
     }
+
+    @media (max-width: 760px) {
+      .view-mode-controls,
+      .reaction-group,
+      .story-discovery-controls,
+      .sort-controls,
+      .share-buttons,
+      .export-buttons,
+      .audio-consent-actions,
+      .player-controls {
+        gap: 12px;
+      }
+
+      .reaction-option,
+      .view-mode-button,
+      #story-search-input,
+      #story-vibe-filter,
+      #story-filter-clear,
+      .sort-controls button,
+      .share-button,
+      .export-button,
+      .audio-consent-actions button,
+      .player-controls button,
+      .intro-cta,
+      .coin-powerup-button,
+      .coin-dash-trigger,
+      .coin-dash-close,
+      .memory-feedback button {
+        min-height: 44px;
+        padding-top: 10px;
+        padding-bottom: 10px;
+      }
+
+      .story-discovery-controls {
+        grid-template-columns: 1fr;
+      }
+
+      .share-button,
+      .export-button {
+        flex: 1 1 calc(50% - 12px);
+      }
+
+      .reaction-option {
+        flex: 1 1 calc(50% - 12px);
+      }
+
+      .sort-controls {
+        align-items: stretch;
+      }
+
+      .sort-controls button,
+      .sort-controls label,
+      #story-filter-clear {
+        width: 100%;
+      }
+
+      .sort-controls label {
+        display: flex !important;
+        align-items: center;
+        justify-content: space-between;
+        gap: 10px !important;
+      }
+
+      #vote-weight-select {
+        min-height: 44px;
+      }
+
+      .coin-bank-meta {
+        gap: 8px;
+      }
+
+      .coin-bank-meta span {
+        width: 100%;
+      }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      *,
+      *::before,
+      *::after {
+        animation: none !important;
+        transition-duration: 0.01ms !important;
+        transition-delay: 0ms !important;
+        scroll-behavior: auto !important;
+      }
+
+      body::before,
+      body::after,
+      .coin-drift-layer,
+      .glitter-particle,
+      .glitter-ring,
+      .jackpot-flash,
+      .royal-proclamation,
+      .coin-shower-token,
+      #eagle-canvas {
+        display: none !important;
+      }
+
+      .memory:hover::after,
+      .top-memory-item:hover .memory-preview-tooltip,
+      .music-suggestion:hover,
+      .share-button:hover,
+      .export-button:hover,
+      button:hover {
+        transform: none !important;
+      }
+
+      .coin-dash-arena {
+        cursor: auto;
+      }
+
+      .coin-dash-cursor {
+        display: none;
+      }
+    }
   </style>
 </head>
 
@@ -2067,12 +2472,28 @@
       </div>
     </section>
 
-    <p class="intro">Welcome.</p>
+    <p class="intro">Share a late-90s memory: a place, a moment, or a detail you still remember.</p>
+
+    <section class="view-mode-controls" aria-label="Visual mode">
+      <p class="view-mode-label">Visual mode</p>
+      <button id="visual-mode-standard" class="view-mode-button is-active" type="button" aria-pressed="true">Standard</button>
+      <button id="visual-mode-calm" class="view-mode-button" type="button" aria-pressed="false">Calm</button>
+      <p id="visual-mode-status" class="view-mode-status" aria-live="polite">Standard mode active.</p>
+    </section>
+
+    <section class="how-it-works" aria-label="How it works">
+      <p class="how-it-works-title">How it works</p>
+      <ol class="how-it-works-list">
+        <li><span class="how-step-number">1.</span>Play a quick Coin Dash round to earn story credits.</li>
+        <li><span class="how-step-number">2.</span>Post your memory and choose the vibe that fits it best.</li>
+        <li><span class="how-step-number">3.</span>Read community stories and vote with your credits.</li>
+      </ol>
+    </section>
 
     <a class="intro-cta" href="coin-dash.html">Play 15s Coin Dash First</a>
 
     <section class="form-box">
-      <h2>Welcome</h2>
+      <h2>Share your story</h2>
 
       <p class="notice" style="margin-top:0;">
         Story credits: <strong id="story-credit-balance">0</strong>. You earn credits in the Coin Dash game.
@@ -2086,14 +2507,20 @@
           Your name <span class="optional">(optional)</span>
         </label>
         <input id="name" name="name" type="text" maxlength="80">
+        <p id="name-feedback" class="field-feedback" aria-live="polite"></p>
 
         <label for="nickname">
           Your nickname <span class="optional">(optional)</span>
         </label>
         <input id="nickname" name="nickname" type="text" maxlength="80">
+        <p id="nickname-feedback" class="field-feedback" aria-live="polite"></p>
 
-        <label for="story">Welcome</label>
+        <label for="story">Your story</label>
         <textarea id="story" name="story" required maxlength="2500"></textarea>
+        <div class="field-meta">
+          <p id="story-count" class="char-counter" aria-live="polite">0 / 2500 characters</p>
+        </div>
+        <p id="story-feedback" class="field-feedback" aria-live="polite"></p>
 
         <div class="reaction-group" role="radiogroup" aria-label="Choose a vibe">
           <button class="reaction-option" type="button" data-reaction="Blockbuster Nights">Blockbuster Nights</button>
@@ -2101,13 +2528,14 @@
           <button class="reaction-option" type="button" data-reaction="Dial-up Era">Dial-up Era</button>
           <input type="hidden" id="reaction-value" name="reaction" value="">
         </div>
+        <p id="reaction-feedback" class="field-feedback" aria-live="polite"></p>
 
-        <button id="submit-button" type="submit">Share story</button>
+        <button id="submit-button" type="submit">Post story</button>
 
         <p id="form-status" class="status" aria-live="polite"></p>
 
         <p class="notice">
-          Stories will appear publicly after they are submitted.
+          Stories appear publicly right after you submit.
         </p>
       </form>
     </section>
@@ -2125,6 +2553,23 @@
 
     <section id="stories-section">
       <h2>Stories already shared</h2>
+      <div class="story-discovery-controls" aria-label="Search and filter stories">
+        <div class="discovery-field">
+          <label for="story-search-input">Search stories</label>
+          <input id="story-search-input" type="search" placeholder="Search by name, vibe, or keyword" autocomplete="off">
+        </div>
+        <div class="discovery-field">
+          <label for="story-vibe-filter">Filter by vibe</label>
+          <select id="story-vibe-filter">
+            <option value="all">All vibes</option>
+            <option value="Blockbuster Nights">Blockbuster Nights</option>
+            <option value="CD Burn Mix">CD Burn Mix</option>
+            <option value="Dial-up Era">Dial-up Era</option>
+          </select>
+        </div>
+        <button id="story-filter-clear" class="story-filter-clear" type="button">Clear filters</button>
+      </div>
+      <p id="story-filter-status" class="story-filter-status" aria-live="polite">Showing all stories.</p>
       <div class="sort-controls" id="sort-controls">
         <button class="sort-button is-active" data-sort="popular">Most Popular</button>
         <button class="sort-button" data-sort="newest">Newest First</button>
@@ -2137,7 +2582,7 @@
             <option value="3">3x (cost 3)</option>
           </select>
         </label>
-        <span id="vote-credit-status" style="font-size:0.86rem;color:#2b1a06;opacity:0.8;">Use vote credits to cast stronger votes.</span>
+        <span id="vote-credit-status" class="vote-credit-status">Use vote credits to cast stronger votes.</span>
       </div>
       <div id="vote-summary" class="vote-summary" aria-live="polite"></div>
       <div id="curator-board" class="vote-summary" aria-live="polite"></div>
@@ -2208,6 +2653,15 @@
     const form = document.querySelector("#memory-form");
     const submitButton = document.querySelector("#submit-button");
     const status = document.querySelector("#form-status");
+    const nameInput = document.querySelector("#name");
+    const nicknameInput = document.querySelector("#nickname");
+    const storyInput = document.querySelector("#story");
+    const storyCountEl = document.querySelector("#story-count");
+    const nameFeedbackEl = document.querySelector("#name-feedback");
+    const nicknameFeedbackEl = document.querySelector("#nickname-feedback");
+    const storyFeedbackEl = document.querySelector("#story-feedback");
+    const reactionFeedbackEl = document.querySelector("#reaction-feedback");
+    const reactionGroupEl = document.querySelector(".reaction-group");
     const memories = document.querySelector("#memories");
     const voteSummary = document.querySelector("#vote-summary");
     const reactionButtons = Array.from(document.querySelectorAll(".reaction-option"));
@@ -2231,6 +2685,13 @@
     const voteCreditBankEl = document.querySelector("#vote-credit-bank");
     const voteWeightSelectEl = document.querySelector("#vote-weight-select");
     const voteCreditStatusEl = document.querySelector("#vote-credit-status");
+    const storySearchInputEl = document.querySelector("#story-search-input");
+    const storyVibeFilterEl = document.querySelector("#story-vibe-filter");
+    const storyFilterClearEl = document.querySelector("#story-filter-clear");
+    const storyFilterStatusEl = document.querySelector("#story-filter-status");
+    const visualModeStandardButtonEl = document.querySelector("#visual-mode-standard");
+    const visualModeCalmButtonEl = document.querySelector("#visual-mode-calm");
+    const visualModeStatusEl = document.querySelector("#visual-mode-status");
     const weeklyPromptHeadlineEl = document.querySelector("#weekly-prompt-headline");
     const curatorBoardEl = document.querySelector("#curator-board");
     const coinDashStatusEl = document.querySelector("#coin-dash-status");
@@ -2269,6 +2730,14 @@
     const CURATOR_LEADERBOARD_COLLECTION = "curator_leaderboard";
     const VOTE_DAILY_SPEND_KEY = "late90s-vote-daily-spend";
     const VOTE_DAILY_SPEND_CAP = 24;
+    const ACTION_COOLDOWNS_KEY = "changing-channel-action-cooldowns";
+    const STORY_SUBMIT_COOLDOWN_MS = 45000;
+    const STORY_VOTE_COOLDOWN_MS = 2500;
+    const VISUAL_MODE_KEY = "changing-channel-visual-mode";
+    const STORY_MIN_LENGTH = 20;
+    const STORY_MAX_LENGTH = Number(storyInput?.getAttribute("maxlength") || 2500);
+    const STORY_MAX_LINKS = 1;
+    const STORY_MAX_UPPERCASE_RATIO = 0.72;
 
     let globalCuratorRows = [];
     let globalCuratorSource = "local";
@@ -2282,6 +2751,7 @@
     const COIN_DASH_ENABLED = false;
     const DEFAULT_COIN_DASH_MODE = "arcade";
     const COIN_DASH_AUTO_START = false;
+    let currentVisualMode = "standard";
     const COIN_DASH_MODE_CONFIG = {
       arcade: {
         label: "Arcade Fair",
@@ -2426,6 +2896,63 @@
       const weekStamp = getWeekStamp();
       const seed = Number(weekStamp.slice(-2));
       return WEEKLY_PROMPTS[seed % WEEKLY_PROMPTS.length];
+    }
+
+    function readVisualMode() {
+      try {
+        const stored = localStorage.getItem(VISUAL_MODE_KEY);
+        if (stored === "calm" || stored === "standard") {
+          return stored;
+        }
+      } catch (error) {
+        console.warn("Could not read visual mode:", error);
+      }
+      return "standard";
+    }
+
+    function saveVisualMode(mode) {
+      try {
+        localStorage.setItem(VISUAL_MODE_KEY, mode);
+      } catch (error) {
+        console.warn("Could not save visual mode:", error);
+      }
+    }
+
+    function clearDynastyEffects() {
+      document.querySelectorAll(
+        ".coin-drift-layer, .glitter-particle, .glitter-ring, .jackpot-flash, .royal-proclamation, .coin-shower-token"
+      ).forEach((node) => node.remove());
+    }
+
+    function renderVisualModeControls() {
+      const isCalm = currentVisualMode === "calm";
+      visualModeStandardButtonEl?.classList.toggle("is-active", !isCalm);
+      visualModeCalmButtonEl?.classList.toggle("is-active", isCalm);
+      visualModeStandardButtonEl?.setAttribute("aria-pressed", String(!isCalm));
+      visualModeCalmButtonEl?.setAttribute("aria-pressed", String(isCalm));
+      if (visualModeStatusEl) {
+        visualModeStatusEl.textContent = isCalm
+          ? "Calm mode active. Effects reduced."
+          : "Standard mode active.";
+      }
+    }
+
+    function applyVisualMode(mode, options = {}) {
+      const persist = options.persist !== false;
+      currentVisualMode = mode === "calm" ? "calm" : "standard";
+      const isCalm = currentVisualMode === "calm";
+      document.body.classList.toggle("is-calm-mode", isCalm);
+      renderVisualModeControls();
+
+      if (persist) {
+        saveVisualMode(currentVisualMode);
+      }
+
+      if (isCalm) {
+        clearDynastyEffects();
+      } else if (!document.querySelector(".coin-drift-layer")) {
+        enableCoinDynastyAmbience();
+      }
     }
 
     function renderWeeklyPrompt() {
@@ -3158,7 +3685,7 @@
       }
       const daily = readDailyVoteSpend();
       const remaining = Math.max(0, VOTE_DAILY_SPEND_CAP - daily.spent);
-      setVoteCreditStatus(`Use vote credits to cast stronger votes. Daily vote power left: ${remaining}/${VOTE_DAILY_SPEND_CAP}.`);
+      setVoteCreditStatus(`Use vote credits to cast stronger votes. Daily vote power remaining: ${remaining}/${VOTE_DAILY_SPEND_CAP}.`);
     }
 
     function getSelectedVoteWeight() {
@@ -3173,8 +3700,34 @@
       if (!voteCreditStatusEl) {
         return;
       }
+      const tone = typeof isWarning === "boolean"
+        ? (isWarning ? "warning" : "info")
+        : isWarning;
       voteCreditStatusEl.textContent = message;
-      voteCreditStatusEl.style.color = isWarning ? "#7A170A" : "#2b1a06";
+      voteCreditStatusEl.classList.remove("is-warning", "is-success");
+      if (tone === "warning") {
+        voteCreditStatusEl.classList.add("is-warning");
+      } else if (tone === "success") {
+        voteCreditStatusEl.classList.add("is-success");
+      }
+    }
+
+    function setFormStatus(message, tone = "info") {
+      if (!status) {
+        return;
+      }
+
+      status.textContent = message || "";
+      status.classList.remove("is-info", "is-success", "is-warning", "is-error");
+
+      if (!message) {
+        return;
+      }
+
+      const normalizedTone = ["info", "success", "warning", "error"].includes(tone)
+        ? tone
+        : "info";
+      status.classList.add(`is-${normalizedTone}`);
     }
 
     function getDayStamp() {
@@ -3205,6 +3758,49 @@
       } catch (error) {
         console.warn("Could not save daily vote spend:", error);
       }
+    }
+
+    function readActionCooldowns() {
+      try {
+        const parsed = JSON.parse(localStorage.getItem(ACTION_COOLDOWNS_KEY) || "{}");
+        return parsed && typeof parsed === "object" ? parsed : {};
+      } catch (error) {
+        console.warn("Could not read action cooldowns:", error);
+        return {};
+      }
+    }
+
+    function writeActionCooldowns(cooldowns) {
+      try {
+        localStorage.setItem(ACTION_COOLDOWNS_KEY, JSON.stringify(cooldowns));
+      } catch (error) {
+        console.warn("Could not save action cooldowns:", error);
+      }
+    }
+
+    function getActionCooldownRemainingMs(actionKey) {
+      const cooldowns = readActionCooldowns();
+      const expiresAt = Number(cooldowns[actionKey] || 0);
+      if (!expiresAt) {
+        return 0;
+      }
+      const remaining = expiresAt - Date.now();
+      if (remaining <= 0) {
+        delete cooldowns[actionKey];
+        writeActionCooldowns(cooldowns);
+        return 0;
+      }
+      return remaining;
+    }
+
+    function startActionCooldown(actionKey, durationMs) {
+      const cooldowns = readActionCooldowns();
+      cooldowns[actionKey] = Date.now() + Math.max(0, Number(durationMs || 0));
+      writeActionCooldowns(cooldowns);
+    }
+
+    function formatCooldownSeconds(remainingMs) {
+      return Math.max(1, Math.ceil(remainingMs / 1000));
     }
 
     function canSpendVoteCredits(cost) {
@@ -3762,11 +4358,152 @@
       });
     }
 
+    function setFieldFeedback(inputEl, feedbackEl, message) {
+      if (!feedbackEl) {
+        return;
+      }
+      feedbackEl.textContent = message || "";
+      if (inputEl) {
+        inputEl.classList.toggle("input-invalid", Boolean(message));
+      }
+    }
+
+    function validateNameLikeField(value, label) {
+      if (!value) {
+        return "";
+      }
+      if (value.length < 2) {
+        return `${label} must be at least 2 characters.`;
+      }
+      if (value.length > 80) {
+        return `${label} must be 80 characters or fewer.`;
+      }
+      return "";
+    }
+
+    function updateStoryCounter() {
+      if (!storyInput || !storyCountEl) {
+        return;
+      }
+      const length = storyInput.value.length;
+      const remaining = Math.max(0, STORY_MAX_LENGTH - length);
+      storyCountEl.textContent = `${length} / ${STORY_MAX_LENGTH} characters`;
+      storyCountEl.classList.toggle("is-near-limit", remaining <= 120);
+    }
+
+    function validateStoryQuality(story) {
+      if (!story) {
+        return "";
+      }
+
+      const links = story.match(/https?:\/\/|www\./gi) || [];
+      if (links.length > STORY_MAX_LINKS) {
+        return "Please limit links in a story so it stays readable for everyone.";
+      }
+
+      if (/(.)\1{7,}/.test(story)) {
+        return "Please avoid long repeated character runs and add more detail.";
+      }
+
+      if (/(\b\w+\b)(?:\s+\1){4,}/i.test(story)) {
+        return "Please avoid repeated words and describe your memory in more detail.";
+      }
+
+      const words = (story.match(/[A-Za-z0-9']+/g) || []).map((word) => word.toLowerCase());
+      if (words.length >= 8) {
+        const uniqueWords = new Set(words);
+        if (uniqueWords.size < Math.max(3, Math.floor(words.length * 0.35))) {
+          return "Please add more specific detail so your story is easier to understand.";
+        }
+      }
+
+      const letters = story.match(/[A-Za-z]/g) || [];
+      if (letters.length >= 30) {
+        const uppercaseLetters = story.match(/[A-Z]/g) || [];
+        const uppercaseRatio = uppercaseLetters.length / letters.length;
+        if (uppercaseRatio > STORY_MAX_UPPERCASE_RATIO) {
+          return "Please use normal sentence casing so your story is easier to read.";
+        }
+      }
+
+      return "";
+    }
+
+    function validateStoryForm(options = {}) {
+      const requireVibe = Boolean(options.requireVibe);
+      const enforceStoryPresence = Boolean(options.enforceStoryPresence);
+      const values = {
+        name: nameInput?.value.trim() || "",
+        nickname: nicknameInput?.value.trim() || "",
+        story: storyInput?.value.trim() || "",
+        reaction: reactionValueInput?.value || ""
+      };
+
+      const nameError = validateNameLikeField(values.name, "Name");
+      const nicknameError = validateNameLikeField(values.nickname, "Nickname");
+
+      let storyError = "";
+      if (!values.story) {
+        if (enforceStoryPresence) {
+          storyError = "Please write your story before posting.";
+        }
+      } else if (values.story.length < STORY_MIN_LENGTH) {
+        storyError = `Please add a bit more detail (${STORY_MIN_LENGTH}+ characters).`;
+      } else {
+        storyError = validateStoryQuality(values.story);
+      }
+
+      const reactionError = !values.reaction && requireVibe
+        ? "Choose one vibe before posting your story."
+        : "";
+
+      setFieldFeedback(nameInput, nameFeedbackEl, nameError);
+      setFieldFeedback(nicknameInput, nicknameFeedbackEl, nicknameError);
+      setFieldFeedback(storyInput, storyFeedbackEl, storyError);
+      if (reactionFeedbackEl) {
+        reactionFeedbackEl.textContent = reactionError;
+      }
+      reactionGroupEl?.classList.toggle("is-invalid", Boolean(reactionError));
+      updateStoryCounter();
+
+      return {
+        values,
+        isValid: !nameError && !nicknameError && !storyError && !reactionError
+      };
+    }
+
     reactionButtons.forEach((button) => {
-      button.addEventListener("click", () => setReactionSelection(button.dataset.reaction));
+      button.addEventListener("click", () => {
+        setReactionSelection(button.dataset.reaction);
+        validateStoryForm({ requireVibe: true, enforceStoryPresence: false });
+      });
     });
 
-    form.addEventListener("reset", () => setReactionSelection(""));
+    nameInput?.addEventListener("input", () => {
+      validateStoryForm({ requireVibe: false, enforceStoryPresence: false });
+    });
+
+    nicknameInput?.addEventListener("input", () => {
+      validateStoryForm({ requireVibe: false, enforceStoryPresence: false });
+    });
+
+    storyInput?.addEventListener("input", () => {
+      validateStoryForm({ requireVibe: false, enforceStoryPresence: false });
+    });
+
+    storyInput?.addEventListener("blur", () => {
+      validateStoryForm({ requireVibe: false, enforceStoryPresence: true });
+    });
+
+    form.addEventListener("reset", () => {
+      setReactionSelection("");
+      window.requestAnimationFrame(() => {
+        setFormStatus("");
+        validateStoryForm({ requireVibe: false, enforceStoryPresence: false });
+      });
+    });
+
+    validateStoryForm({ requireVibe: false, enforceStoryPresence: false });
 
     function getFallbackMemories() {
       try {
@@ -3925,6 +4662,10 @@
     }
 
     function shootGlitterFromElement(element, isDownvote = false, intensity = 1) {
+      if (currentVisualMode === "calm") {
+        return;
+      }
+
       if (!element) {
         return;
       }
@@ -3995,6 +4736,10 @@
     }
 
     function enableCoinDynastyAmbience() {
+      if (currentVisualMode === "calm" || document.querySelector(".coin-drift-layer")) {
+        return;
+      }
+
       const layer = document.createElement("div");
       layer.className = "coin-drift-layer";
       layer.setAttribute("aria-hidden", "true");
@@ -4025,6 +4770,10 @@
     }
 
     function triggerJackpotFlash() {
+      if (currentVisualMode === "calm") {
+        return;
+      }
+
       if (Math.random() > 0.14) {
         return;
       }
@@ -4037,6 +4786,10 @@
     }
 
     function triggerCoinShower() {
+      if (currentVisualMode === "calm") {
+        return;
+      }
+
       const tokenTotal = 42;
       for (let i = 0; i < tokenTotal; i += 1) {
         const token = document.createElement("span");
@@ -4054,6 +4807,10 @@
     }
 
     function triggerProclamation() {
+      if (currentVisualMode === "calm") {
+        return;
+      }
+
       const phrases = [
         "Royal Treasury Blessing Activated",
         "Imperial Vote Decree Confirmed",
@@ -4068,6 +4825,10 @@
     }
 
     function triggerDynastyQuake() {
+      if (currentVisualMode === "calm") {
+        return;
+      }
+
       const mainElement = document.querySelector("main");
       if (!mainElement) {
         return;
@@ -4093,7 +4854,7 @@
       rewardCoins("random_event");
     }
 
-    enableCoinDynastyAmbience();
+    applyVisualMode(readVisualMode(), { persist: false });
     renderCoinBank();
     renderVoteCredits();
     renderCuratorBoard();
@@ -4106,6 +4867,8 @@
     applyDailyCoinBonus();
     megaGlitterButtonEl?.addEventListener("click", activateMegaGlitter);
     purpleMultiplierButtonEl?.addEventListener("click", activatePurpleGemMultiplier);
+    visualModeStandardButtonEl?.addEventListener("click", () => applyVisualMode("standard"));
+    visualModeCalmButtonEl?.addEventListener("click", () => applyVisualMode("calm"));
 
     function applyFeedbackChange(entries, memoryKey, desiredReaction, amount = 1) {
       return entries.map((entry) => {
@@ -4123,6 +4886,58 @@
 
     let memoryEntries = [];
     let currentSortMode = "popular";
+    let currentStorySearch = "";
+    let currentVibeFilter = "all";
+
+    function filterMemoriesForDisplay(entries) {
+      const query = currentStorySearch.trim().toLowerCase();
+      return entries.filter((memory) => {
+        const reaction = memory.reaction || "";
+        const matchesVibe = currentVibeFilter === "all" || reaction === currentVibeFilter;
+        if (!matchesVibe) {
+          return false;
+        }
+
+        if (!query) {
+          return true;
+        }
+
+        const haystack = [
+          memory.story || "",
+          memory.nickname || "",
+          memory.name || "",
+          reaction
+        ].join(" ").toLowerCase();
+
+        return haystack.includes(query);
+      });
+    }
+
+    function renderStoryFilterStatus(filteredCount, totalCount) {
+      if (!storyFilterStatusEl) {
+        return;
+      }
+
+      const hasSearch = currentStorySearch.trim().length > 0;
+      const hasVibe = currentVibeFilter !== "all";
+
+      if (!hasSearch && !hasVibe) {
+        storyFilterStatusEl.textContent = "Showing all stories.";
+      } else {
+        const filterPieces = [];
+        if (hasSearch) {
+          filterPieces.push(`search: \"${currentStorySearch.trim()}\"`);
+        }
+        if (hasVibe) {
+          filterPieces.push(`vibe: ${currentVibeFilter}`);
+        }
+        storyFilterStatusEl.textContent = `Showing ${filteredCount} of ${totalCount} stories (${filterPieces.join(" | ")}).`;
+      }
+
+      if (storyFilterClearEl) {
+        storyFilterClearEl.disabled = !hasSearch && !hasVibe;
+      }
+    }
 
     async function handleMemoryFeedback(memory, desiredReaction, amount = 1) {
       const memoryKey = memory.id || createMemoryKey(memory);
@@ -4186,7 +5001,9 @@
     }
 
     function renderMemoryList(entries) {
-      const sortedEntries = sortMemoriesForDisplay(entries, currentSortMode);
+      const filteredEntries = filterMemoriesForDisplay(entries);
+      const sortedEntries = sortMemoriesForDisplay(filteredEntries, currentSortMode);
+      renderStoryFilterStatus(sortedEntries.length, entries.length);
       const blockbusterVotes = sortedEntries.filter((memory) => memory.reaction === "Blockbuster Nights").length;
       const cdBurnVotes = sortedEntries.filter((memory) => memory.reaction === "CD Burn Mix").length;
       const dialupVotes = sortedEntries.filter((memory) => memory.reaction === "Dial-up Era").length;
@@ -4211,7 +5028,8 @@
 
       let voteSummaryHTML = `
         <div style="margin-bottom: 16px;">
-          <strong>${sortedEntries.length} ${sortedEntries.length === 1 ? "memory" : "memories"} shared</strong>
+          <strong>${sortedEntries.length} ${sortedEntries.length === 1 ? "memory" : "memories"} shown</strong>
+          ${entries.length !== sortedEntries.length ? `<span style="opacity:0.8;"> (from ${entries.length} total)</span>` : ""}
         </div>
         <div style="margin-bottom: 16px; padding: 10px 12px; border-radius: 8px; background: rgba(255,255,255,0.72); border: 1px solid rgba(183,122,21,0.35);">
           <strong>Weekly prompt:</strong> ${currentPrompt}<br>
@@ -4258,8 +5076,8 @@
       if (!sortedEntries.length) {
         memories.innerHTML = `
           <article class="memory">
-            <div class="memory-name">No memories have been posted yet.</div>
-            <p>Check back soon.</p>
+            <div class="memory-name">No stories match this search yet.</div>
+            <p>Try a different keyword or vibe filter.</p>
           </article>
         `;
         return;
@@ -4327,15 +5145,22 @@
           downButton.disabled = true;
           upButton.disabled = true;
           try {
+            const voteCooldownRemaining = getActionCooldownRemainingMs("vote");
+            if (voteCooldownRemaining > 0) {
+              setVoteCreditStatus(`Please wait ${formatCooldownSeconds(voteCooldownRemaining)}s before casting another vote.`, true);
+              return;
+            }
+
             const voteWeight = getSelectedVoteWeight();
             if (!canSpendVoteCredits(voteWeight)) {
-              setVoteCreditStatus(`Daily vote power cap reached (${VOTE_DAILY_SPEND_CAP}). Come back tomorrow.`, true);
+              setVoteCreditStatus(`You reached today\'s vote power cap (${VOTE_DAILY_SPEND_CAP}). Please come back tomorrow.`, true);
               return;
             }
             if (!consumeVoteCredits(voteWeight)) {
-              setVoteCreditStatus(`Need ${voteWeight} vote credits for a ${voteWeight}x vote.`, true);
+              setVoteCreditStatus(`You need ${voteWeight} vote credits for a ${voteWeight}x vote.`, true);
               return;
             }
+            startActionCooldown("vote", STORY_VOTE_COOLDOWN_MS);
             recordVoteSpend(voteWeight);
 
             const wasRecorded = await handleMemoryFeedback(memory, "up", voteWeight);
@@ -4343,7 +5168,7 @@
               recordCuratorContribution(voteWeight, "up");
               renderVoteCredits();
               renderCuratorBoard();
-              setVoteCreditStatus(`Cast a ${voteWeight}x upvote. Keep dashing for more voting power.`);
+              setVoteCreditStatus(`You cast a ${voteWeight}x upvote. Keep dashing for more voting power.`, "success");
               rewardCoins("vote_memory", memoryKey);
               const megaActive = consumeMegaGlitterCharge();
               shootGlitterFromElement(upButton, false, megaActive ? 2.05 : 1);
@@ -4372,15 +5197,22 @@
           downButton.disabled = true;
           upButton.disabled = true;
           try {
+            const voteCooldownRemaining = getActionCooldownRemainingMs("vote");
+            if (voteCooldownRemaining > 0) {
+              setVoteCreditStatus(`Please wait ${formatCooldownSeconds(voteCooldownRemaining)}s before casting another vote.`, true);
+              return;
+            }
+
             const voteWeight = getSelectedVoteWeight();
             if (!canSpendVoteCredits(voteWeight)) {
-              setVoteCreditStatus(`Daily vote power cap reached (${VOTE_DAILY_SPEND_CAP}). Come back tomorrow.`, true);
+              setVoteCreditStatus(`You reached today\'s vote power cap (${VOTE_DAILY_SPEND_CAP}). Please come back tomorrow.`, true);
               return;
             }
             if (!consumeVoteCredits(voteWeight)) {
-              setVoteCreditStatus(`Need ${voteWeight} vote credits for a ${voteWeight}x vote.`, true);
+              setVoteCreditStatus(`You need ${voteWeight} vote credits for a ${voteWeight}x vote.`, true);
               return;
             }
+            startActionCooldown("vote", STORY_VOTE_COOLDOWN_MS);
             recordVoteSpend(voteWeight);
 
             const wasRecorded = await handleMemoryFeedback(memory, "down", voteWeight);
@@ -4388,7 +5220,7 @@
               recordCuratorContribution(voteWeight, "down");
               renderVoteCredits();
               renderCuratorBoard();
-              setVoteCreditStatus(`Cast a ${voteWeight}x downvote. Keep dashing for more voting power.`);
+              setVoteCreditStatus(`You cast a ${voteWeight}x downvote. Keep dashing for more voting power.`, "success");
               rewardCoins("vote_memory", memoryKey);
               const megaActive = consumeMegaGlitterCharge();
               shootGlitterFromElement(downButton, true, megaActive ? 2.05 : 1);
@@ -4477,27 +5309,55 @@
       });
     });
 
+    storySearchInputEl?.addEventListener("input", () => {
+      currentStorySearch = storySearchInputEl.value || "";
+      renderMemoryList(memoryEntries);
+    });
+
+    storyVibeFilterEl?.addEventListener("change", () => {
+      currentVibeFilter = storyVibeFilterEl.value || "all";
+      renderMemoryList(memoryEntries);
+    });
+
+    storyFilterClearEl?.addEventListener("click", () => {
+      currentStorySearch = "";
+      currentVibeFilter = "all";
+      if (storySearchInputEl) {
+        storySearchInputEl.value = "";
+      }
+      if (storyVibeFilterEl) {
+        storyVibeFilterEl.value = "all";
+      }
+      renderMemoryList(memoryEntries);
+    });
+
     form.addEventListener("submit", async (event) => {
       event.preventDefault();
 
-      const name = document.querySelector("#name").value.trim();
-      const nickname = document.querySelector("#nickname").value.trim();
-      const story = document.querySelector("#story").value.trim();
-      const reaction = reactionValueInput.value;
+      const validation = validateStoryForm({ requireVibe: true, enforceStoryPresence: true });
+      if (!validation.isValid) {
+        setFormStatus("Please fix the highlighted fields before posting.", "warning");
+        return;
+      }
 
-      if (!story) {
-        status.textContent = "Please write a memory before sending it.";
+      const { name, nickname, story, reaction } = validation.values;
+
+      const submitCooldownRemaining = getActionCooldownRemainingMs("submit-story");
+      if (submitCooldownRemaining > 0) {
+        setFormStatus(`Please wait ${formatCooldownSeconds(submitCooldownRemaining)}s before posting another story.`, "warning");
         return;
       }
 
       if (!consumeStoryCredit()) {
-        status.textContent = "You need at least 1 story credit. Play Coin Dash for 15 seconds first.";
+        setFormStatus("You need at least 1 story credit. Please play Coin Dash for 15 seconds first.", "warning");
         renderStoryCredits();
         return;
       }
 
+      startActionCooldown("submit-story", STORY_SUBMIT_COOLDOWN_MS);
+
       submitButton.disabled = true;
-      status.textContent = "Sharing your story...";
+      setFormStatus("Posting your story...", "info");
 
       try {
         await addDoc(collection(db, "approved_memories"), {
@@ -4510,7 +5370,7 @@
         });
 
         form.reset();
-        status.textContent = "Welcome.";
+        setFormStatus("Story posted. Thank you for sharing.", "success");
         rewardCoins("submit_memory");
         loadApprovedMemories();
         renderStoryCredits();
@@ -4533,11 +5393,15 @@
         form.reset();
 
         if (error && error.code === "permission-denied") {
-          status.textContent =
-            "Saved locally for now because Firestore rules are blocking writes. Your story is visible here.";
+          setFormStatus(
+            "We saved your story locally because Firestore rules are blocking writes. Your story is visible here.",
+            "warning"
+          );
         } else {
-          status.textContent =
-            "Saved locally for now. Please try again in a moment if you want to sync it later.";
+          setFormStatus(
+            "We saved your story locally for now. Please try again in a moment if you want to sync it later.",
+            "warning"
+          );
         }
 
         rewardCoins("submit_memory");
