@@ -359,6 +359,26 @@
       box-shadow: 0 0 14px rgba(170, 118, 247, 0.52);
     }
 
+    .coin-powerup-button.money-rain {
+      border-color: rgba(164, 255, 204, 0.85);
+      background: linear-gradient(180deg, #D8FFE8 0%, #7DFFC5 52%, #2BCB87 100%);
+      color: #033C25;
+      box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.82), 0 5px 14px rgba(32, 157, 103, 0.45);
+    }
+
+    .coin-powerup-status.money-rain {
+      border-color: rgba(147, 255, 198, 0.56);
+      background: rgba(13, 94, 59, 0.45);
+      color: #CBFFE3;
+    }
+
+    .coin-powerup-status.money-rain.is-active {
+      background: linear-gradient(180deg, rgba(206, 255, 226, 0.82), rgba(58, 214, 140, 0.82));
+      color: #083C26;
+      border-color: rgba(194, 255, 220, 0.9);
+      box-shadow: 0 0 14px rgba(111, 255, 179, 0.52);
+    }
+
     .coin-dash-row {
       margin-top: 10px;
       padding: 10px;
@@ -1699,6 +1719,29 @@
       transform: translate3d(0, 0, 0) rotate(0deg);
     }
 
+    .money-rain-bill {
+      position: fixed;
+      top: -14vh;
+      left: 50vw;
+      width: 56px;
+      height: 24px;
+      border-radius: 5px;
+      border: 1px solid rgba(205, 255, 229, 0.85);
+      background:
+        linear-gradient(180deg, rgba(220, 255, 236, 0.96), rgba(104, 255, 182, 0.96) 58%, rgba(41, 192, 124, 0.96)),
+        repeating-linear-gradient(90deg, rgba(20, 132, 80, 0.18) 0 3px, rgba(0, 0, 0, 0) 3px 6px);
+      color: #04432A;
+      font: 700 0.86rem/24px "Trebuchet MS", Verdana, sans-serif;
+      text-align: center;
+      letter-spacing: 0.04em;
+      box-shadow: 0 0 12px rgba(126, 255, 188, 0.66), 0 0 20px rgba(69, 210, 142, 0.35);
+      pointer-events: none;
+      user-select: none;
+      z-index: 10018;
+      transform: translate3d(0, 0, 0) rotate(0turn);
+      animation: money-rain-fall var(--fall, 3800ms) linear forwards;
+    }
+
     @keyframes glitter-burst {
       0% {
         opacity: 0;
@@ -1809,6 +1852,24 @@
       100% {
         opacity: 0;
         transform: translate3d(calc(var(--drift, 0px) + var(--sway, 20px)), 115vh, 0) rotate(var(--spin, 1turn));
+      }
+    }
+
+    @keyframes money-rain-fall {
+      0% {
+        opacity: 0;
+        transform: translate3d(var(--drift, 0px), -14vh, 0) rotate(0turn);
+      }
+      8% {
+        opacity: 1;
+      }
+      52% {
+        opacity: 0.96;
+        transform: translate3d(calc(var(--drift, 0px) + var(--sway, 34px)), 52vh, 0) rotate(calc(var(--spin, 1turn) * 0.58));
+      }
+      100% {
+        opacity: 0;
+        transform: translate3d(calc(var(--drift, 0px) + var(--sway, 52px)), 118vh, 0) rotate(var(--spin, 1turn));
       }
     }
 
@@ -2182,7 +2243,8 @@
     body.is-calm-mode .glitter-ring,
     body.is-calm-mode .jackpot-flash,
     body.is-calm-mode .royal-proclamation,
-    body.is-calm-mode .coin-shower-token {
+    body.is-calm-mode .coin-shower-token,
+    body.is-calm-mode .money-rain-bill {
       display: none !important;
     }
 
@@ -2394,6 +2456,7 @@
       .jackpot-flash,
       .royal-proclamation,
       .coin-shower-token,
+      .money-rain-bill,
       #eagle-canvas {
         display: none !important;
       }
@@ -2469,6 +2532,10 @@
       <div class="coin-powerups">
         <button class="coin-powerup-button purple-gem" id="purple-multiplier-button" type="button">Activate Purple Gem Multiplier (5 gems)</button>
         <span class="coin-powerup-status purple" id="purple-multiplier-status">Multiplier offline</span>
+      </div>
+      <div class="coin-powerups">
+        <button class="coin-powerup-button money-rain" id="make-it-rain-button" type="button">MAKE IT RAIN</button>
+        <span class="coin-powerup-status money-rain" id="make-it-rain-status">Rain machine idle</span>
       </div>
     </section>
 
@@ -2681,6 +2748,8 @@
     const purpleGemBalanceEl = document.querySelector("#purple-gem-balance");
     const purpleMultiplierButtonEl = document.querySelector("#purple-multiplier-button");
     const purpleMultiplierStatusEl = document.querySelector("#purple-multiplier-status");
+    const makeItRainButtonEl = document.querySelector("#make-it-rain-button");
+    const makeItRainStatusEl = document.querySelector("#make-it-rain-status");
     const storyCreditBalanceEl = document.querySelector("#story-credit-balance");
     const voteCreditBankEl = document.querySelector("#vote-credit-bank");
     const voteWeightSelectEl = document.querySelector("#vote-weight-select");
@@ -2920,8 +2989,16 @@
 
     function clearDynastyEffects() {
       document.querySelectorAll(
-        ".coin-drift-layer, .glitter-particle, .glitter-ring, .jackpot-flash, .royal-proclamation, .coin-shower-token"
+        ".coin-drift-layer, .glitter-particle, .glitter-ring, .jackpot-flash, .royal-proclamation, .coin-shower-token, .money-rain-bill"
       ).forEach((node) => node.remove());
+    }
+
+    function setMakeItRainStatus(message, active = false) {
+      if (!makeItRainStatusEl) {
+        return;
+      }
+      makeItRainStatusEl.textContent = message;
+      makeItRainStatusEl.classList.toggle("is-active", Boolean(active));
     }
 
     function renderVisualModeControls() {
@@ -2950,8 +3027,14 @@
 
       if (isCalm) {
         clearDynastyEffects();
+        if (makeItRainButtonEl) {
+          makeItRainButtonEl.disabled = false;
+          makeItRainButtonEl.dataset.raining = "false";
+        }
+        setMakeItRainStatus("Switch to Standard mode to enable rain", false);
       } else if (!document.querySelector(".coin-drift-layer")) {
         enableCoinDynastyAmbience();
+        setMakeItRainStatus("Rain machine idle", false);
       }
     }
 
@@ -4806,6 +4889,59 @@
       }
     }
 
+    function spawnMoneyRainBill() {
+      const bill = document.createElement("span");
+      bill.className = "money-rain-bill";
+      bill.textContent = Math.random() > 0.4 ? "$$" : "$";
+      bill.style.left = `${Math.random() * 100}vw`;
+      bill.style.setProperty("--drift", `${Math.floor((Math.random() - 0.5) * 90)}px`);
+      bill.style.setProperty("--sway", `${Math.floor((Math.random() - 0.5) * 190)}px`);
+      bill.style.setProperty("--spin", `${(Math.random() > 0.5 ? 1 : -1) * (0.75 + Math.random() * 1.8)}turn`);
+      bill.style.setProperty("--fall", `${2600 + Math.random() * 4300}ms`);
+      bill.style.opacity = String(0.8 + Math.random() * 0.2);
+      document.body.append(bill);
+
+      const lifespan = 7600;
+      window.setTimeout(() => bill.remove(), lifespan);
+    }
+
+    function triggerMoneyRain() {
+      if (!makeItRainButtonEl) {
+        return;
+      }
+
+      if (currentVisualMode === "calm") {
+        setMakeItRainStatus("Switch to Standard mode to enable rain", false);
+        return;
+      }
+
+      if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
+        setMakeItRainStatus("Motion reduction is on, rain disabled", false);
+        return;
+      }
+
+      if (makeItRainButtonEl.dataset.raining === "true") {
+        return;
+      }
+
+      makeItRainButtonEl.dataset.raining = "true";
+      makeItRainButtonEl.disabled = true;
+      setMakeItRainStatus("Phosphor bills dropping now", true);
+
+      const billCount = 120;
+      const burstWindowMs = 2500;
+      for (let i = 0; i < billCount; i += 1) {
+        const delay = Math.floor(Math.random() * burstWindowMs);
+        window.setTimeout(spawnMoneyRainBill, delay);
+      }
+
+      window.setTimeout(() => {
+        makeItRainButtonEl.disabled = false;
+        makeItRainButtonEl.dataset.raining = "false";
+        setMakeItRainStatus("Rain machine idle", false);
+      }, burstWindowMs + 2600);
+    }
+
     function triggerProclamation() {
       if (currentVisualMode === "calm") {
         return;
@@ -4855,6 +4991,7 @@
     }
 
     applyVisualMode(readVisualMode(), { persist: false });
+    setMakeItRainStatus(currentVisualMode === "calm" ? "Switch to Standard mode to enable rain" : "Rain machine idle", false);
     renderCoinBank();
     renderVoteCredits();
     renderCuratorBoard();
@@ -4867,6 +5004,7 @@
     applyDailyCoinBonus();
     megaGlitterButtonEl?.addEventListener("click", activateMegaGlitter);
     purpleMultiplierButtonEl?.addEventListener("click", activatePurpleGemMultiplier);
+    makeItRainButtonEl?.addEventListener("click", triggerMoneyRain);
     visualModeStandardButtonEl?.addEventListener("click", () => applyVisualMode("standard"));
     visualModeCalmButtonEl?.addEventListener("click", () => applyVisualMode("calm"));
 
