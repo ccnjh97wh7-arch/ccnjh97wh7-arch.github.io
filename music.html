@@ -297,7 +297,15 @@
       flex-wrap: wrap;
     }
 
+    .share-actions {
+      display: flex;
+      gap: 0.75rem;
+      margin-top: 0.75rem;
+      flex-wrap: wrap;
+    }
+
     .player-controls button,
+    .share-actions button,
     .track-button {
       border: 2px solid var(--ink);
       color: var(--ink);
@@ -314,15 +322,34 @@
       border-color: var(--patriotic-blue);
     }
 
+    .share-actions button {
+      padding: 0.55rem 0.9rem;
+      border-radius: 999px;
+      background: rgba(0, 61, 165, 0.08);
+      color: var(--patriotic-blue);
+      border-color: rgba(0, 61, 165, 0.35);
+    }
+
     .player-controls button:hover:not(:disabled),
-    .player-controls button:focus-visible {
+    .player-controls button:focus-visible,
+    .share-actions button:hover,
+    .share-actions button:focus-visible {
       background: var(--patriotic-red);
       color: #fff;
+      border-color: var(--patriotic-red);
     }
 
     .player-controls button:disabled {
       cursor: not-allowed;
       opacity: 0.45;
+    }
+
+    .share-status {
+      margin: 0.55rem 0 0;
+      min-height: 1.2em;
+      color: #2f2f2f;
+      font-family: Arial, Helvetica, sans-serif;
+      font-size: 0.82rem;
     }
 
     .playlist {
@@ -343,6 +370,36 @@
 
     .playlist-summary strong {
       color: var(--patriotic-blue);
+    }
+
+    .counter-scope-note {
+      margin: 0.35rem 0 0;
+      font-family: Arial, Helvetica, sans-serif;
+      font-size: 0.78rem;
+      color: #4a4a4a;
+    }
+
+    .counter-reset-wrap {
+      margin-top: 0.65rem;
+    }
+
+    .counter-reset-button {
+      padding: 0.45rem 0.75rem;
+      border: 1px solid rgba(0, 0, 0, 0.35);
+      border-radius: 999px;
+      background: rgba(0, 0, 0, 0.03);
+      color: var(--near-black);
+      font: 700 0.76rem Arial, Helvetica, sans-serif;
+      letter-spacing: 0.03em;
+      text-transform: uppercase;
+      cursor: pointer;
+    }
+
+    .counter-reset-button:hover,
+    .counter-reset-button:focus-visible {
+      background: rgba(196, 30, 58, 0.12);
+      border-color: var(--patriotic-red);
+      color: var(--patriotic-red);
     }
 
     .playlist li {
@@ -592,9 +649,19 @@
         <button id="next-track" type="button">Next &#9654;</button>
       </div>
 
+      <div class="share-actions" aria-label="Share controls">
+        <button id="share-track" type="button">Share This Song</button>
+        <button id="share-playlist" type="button">Share Playlist</button>
+      </div>
+      <p class="share-status" id="share-status" aria-live="polite"></p>
+
       <a class="file-link" id="file-link" href="music/the_bullshit.mp3">Open current MP3 file</a>
 
-      <p class="playlist-summary" id="total-play-count" aria-live="polite">Total listens/views: 0 | Unique tracks listened: 0</p>
+      <p class="playlist-summary" id="total-play-count" aria-live="polite">Your listens on this browser: 0 | Unique tracks listened: 0</p>
+      <p class="counter-scope-note" id="counter-scope-note">Local counter only. It does not include other visitors.</p>
+      <div class="counter-reset-wrap">
+        <button class="counter-reset-button" id="reset-play-counts" type="button">Reset My Local Counter</button>
+      </div>
 
       <ol class="playlist" id="playlist" aria-label="Song playlist"></ol>
     </section>
@@ -617,8 +684,13 @@
     const fileLink = document.querySelector("#file-link");
     const previousButton = document.querySelector("#previous-track");
     const nextButton = document.querySelector("#next-track");
+    const shareTrackButton = document.querySelector("#share-track");
+    const sharePlaylistButton = document.querySelector("#share-playlist");
+    const shareStatus = document.querySelector("#share-status");
     const playlist = document.querySelector("#playlist");
     const totalPlayCount = document.querySelector("#total-play-count");
+    const counterScopeNote = document.querySelector("#counter-scope-note");
+    const resetPlayCountsButton = document.querySelector("#reset-play-counts");
     const PLAY_COUNT_KEY = "eric-stone-music-play-counts";
     const trackArtPool = [
       "images/quiet-evening.jpg",
@@ -636,11 +708,48 @@
     let trackButtons = [];
     let currentTrackIndex = 0;
     let currentTrackPlayCounted = false;
+    let transientPlayCounts = {};
+
+    function getStorageMode() {
+      try {
+        const probeKey = "__music_storage_probe__";
+        localStorage.setItem(probeKey, "1");
+        localStorage.removeItem(probeKey);
+        return "persistent";
+      } catch (error) {
+        return "transient";
+      }
+    }
+
+    const storageMode = getStorageMode();
+
+    function updateCounterScopeMessage() {
+      if (!counterScopeNote) {
+        return;
+      }
+
+      if (storageMode === "persistent") {
+        counterScopeNote.textContent = "Local counter only. It does not include other visitors.";
+      } else {
+        counterScopeNote.textContent = "Local browser storage is unavailable. Counter is temporary for this tab/session and may reset.";
+      }
+    }
 
     function readPlayCounts() {
+      if (storageMode !== "persistent") {
+        return transientPlayCounts;
+      }
+
       try {
         const parsed = JSON.parse(localStorage.getItem(PLAY_COUNT_KEY) || "{}");
-        return parsed && typeof parsed === "object" ? parsed : {};
+        if (!parsed || typeof parsed !== "object") {
+          return {};
+        }
+
+        // Keep only non-negative numeric counters for predictable display.
+        return Object.fromEntries(
+          Object.entries(parsed).filter(([, value]) => typeof value === "number" && Number.isFinite(value) && value >= 0)
+        );
       } catch (error) {
         console.warn("Could not read play counts:", error);
         return {};
@@ -648,10 +757,28 @@
     }
 
     function writePlayCounts(counts) {
+      if (storageMode !== "persistent") {
+        transientPlayCounts = counts;
+        return;
+      }
+
       try {
         localStorage.setItem(PLAY_COUNT_KEY, JSON.stringify(counts));
       } catch (error) {
         console.warn("Could not save play counts:", error);
+      }
+    }
+
+    function clearPlayCounts() {
+      if (storageMode !== "persistent") {
+        transientPlayCounts = {};
+        return;
+      }
+
+      try {
+        localStorage.removeItem(PLAY_COUNT_KEY);
+      } catch (error) {
+        console.warn("Could not clear play counts:", error);
       }
     }
 
@@ -698,7 +825,7 @@
 
       if (totalPlayCount) {
         totalPlayCount.innerHTML =
-          "Total listens/views: <strong>" + totalListens + "</strong>" +
+          "Your listens on this browser: <strong>" + totalListens + "</strong>" +
           " | Unique tracks listened: <strong>" + uniqueTracksListened + "</strong>";
       }
     }
@@ -728,6 +855,78 @@
 
     function getTrackArtSrc(index) {
       return trackArtPool[index % trackArtPool.length];
+    }
+
+    function setShareStatus(message) {
+      if (shareStatus) {
+        shareStatus.textContent = message;
+      }
+    }
+
+    function buildPlaylistShareUrl() {
+      const url = new URL(window.location.href);
+      url.searchParams.delete("track");
+      url.hash = "";
+      return url.toString();
+    }
+
+    function buildTrackShareUrl(trackSrc) {
+      const url = new URL(window.location.href);
+      url.searchParams.set("track", trackSrc);
+      url.hash = "";
+      return url.toString();
+    }
+
+    function syncUrlToCurrentTrack(trackSrc) {
+      const url = new URL(window.location.href);
+      if (trackSrc) {
+        url.searchParams.set("track", trackSrc);
+      } else {
+        url.searchParams.delete("track");
+      }
+      url.hash = "";
+      window.history.replaceState({}, "", url.toString());
+    }
+
+    async function shareUrl(url, successMessage) {
+      if (navigator.share) {
+        try {
+          await navigator.share({
+            title: "Music Library",
+            text: "Listen to this from the Eric Stone archive.",
+            url
+          });
+          setShareStatus(successMessage);
+          return;
+        } catch (error) {
+          if (error && error.name === "AbortError") {
+            return;
+          }
+        }
+      }
+
+      if (navigator.clipboard && window.isSecureContext) {
+        try {
+          await navigator.clipboard.writeText(url);
+          setShareStatus(successMessage);
+          return;
+        } catch (error) {
+          console.warn("Could not copy share URL:", error);
+        }
+      }
+
+      window.prompt("Copy this link:", url);
+      setShareStatus("Share link ready. Copy it from the dialog.");
+    }
+
+    function getRequestedTrackIndex() {
+      const requestedTrackSrc = new URLSearchParams(window.location.search).get("track");
+      if (!requestedTrackSrc) {
+        return 0;
+      }
+
+      const requestedIndex = trackButtons.findIndex((button) => button.dataset.src === requestedTrackSrc);
+      return requestedIndex >= 0 ? requestedIndex : 0;
     }
 
     async function loadPlaylist() {
@@ -764,7 +963,7 @@
 
       trackButtons = Array.from(document.querySelectorAll(".track-button"));
       if (trackButtons.length > 0) {
-        loadTrack(0, false);
+        loadTrack(getRequestedTrackIndex(), false);
       }
 
       trackButtons.forEach((button, index) => {
@@ -792,6 +991,7 @@
       nowPlayingTitle.textContent = track.dataset.title;
       nowPlayingNote.textContent = track.dataset.note;
       fileLink.href = track.dataset.src;
+      syncUrlToCurrentTrack(track.dataset.src);
 
       trackButtons.forEach((button, buttonIndex) => {
         const isCurrent = buttonIndex === currentTrackIndex;
@@ -810,6 +1010,28 @@
       loadTrack(nextIndex, true);
     }
 
+    shareTrackButton.addEventListener("click", async () => {
+      const currentTrack = trackButtons[currentTrackIndex];
+      if (!currentTrack) {
+        await shareUrl(buildPlaylistShareUrl(), "Playlist link copied.");
+        return;
+      }
+
+      const trackUrl = buildTrackShareUrl(currentTrack.dataset.src);
+      await shareUrl(trackUrl, "Song link copied.");
+    });
+
+    sharePlaylistButton.addEventListener("click", async () => {
+      await shareUrl(buildPlaylistShareUrl(), "Playlist link copied.");
+    });
+
+    resetPlayCountsButton.addEventListener("click", () => {
+      clearPlayCounts();
+      currentTrackPlayCounted = false;
+      renderTrackMeta();
+      setShareStatus("Your local listen counter was reset.");
+    });
+
     previousButton.addEventListener("click", () => changeTrack(-1));
     nextButton.addEventListener("click", () => changeTrack(1));
 
@@ -821,6 +1043,7 @@
 
     audioPlayer.addEventListener("play", recordTrackPlay);
 
+    updateCounterScopeMessage();
     loadPlaylist();
   </script>
 </body>

@@ -1,0 +1,57 @@
+[
+  {
+    "id": "mlb-1989-ud-1-griffey",
+    "player": "Ken Griffey Jr.",
+    "sport": "Baseball",
+    "team": "Seattle Mariners",
+    "year": 1989,
+    "manufacturer": "Upper Deck",
+    "cardNumber": "1",
+    "condition": "Near Mint",
+    "gradeCompany": "Raw",
+    "gradeValue": "Ungraded",
+    "estimatedValue": "$120",
+    "saleStatus": "Available",
+    "frontImage": "images/eric-in-the-woods.jpg",
+    "backImage": "images/scenic-road.jpg",
+    "dateAdded": "2026-07-27",
+    "notes": "Strong corners and clean surface. Candidate for grading.",
+    "ebayListingUrl": "https://www.ebay.com/"
+  },
+  {
+    "id": "mlb-1982-topps-21-ripken",
+    "player": "Cal Ripken Jr.",
+    "sport": "Baseball",
+    "team": "Baltimore Orioles",
+    "year": 1982,
+    "manufacturer": "Topps",
+    "cardNumber": "21",
+    "condition": "Very Good",
+    "gradeCompany": "Raw",
+    "gradeValue": "Ungraded",
+    "estimatedValue": "$65",
+    "saleStatus": "Pending",
+    "frontImage": "images/old-bridge.jpg",
+    "backImage": "images/water-tower-sunset.jpg"
+    ,"dateAdded": "2026-07-27",
+    "notes": "Light edge wear on back. Good color and centering for age."
+  },
+  {
+    "id": "mlb-1990-score-697-bo",
+    "player": "Bo Jackson",
+    "sport": "Baseball",
+    "team": "Kansas City Royals",
+    "year": 1990,
+    "manufacturer": "Score",
+    "cardNumber": "697",
+    "condition": "Excellent",
+    "gradeCompany": "Raw",
+    "gradeValue": "Ungraded",
+    "estimatedValue": "$38",
+    "saleStatus": "Sold",
+    "frontImage": "images/mountain-view.jpg",
+    "backImage": "images/porch-dusk.jpg",
+    "dateAdded": "2026-07-27",
+    "notes": "Included as a completed sale reference point for price history."
+  }
+]

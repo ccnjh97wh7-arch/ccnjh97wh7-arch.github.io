@@ -1,0 +1,597 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Cards and collectibles archive with availability and eBay listing links.">
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="Cards & Collectibles | Eric Stone">
+  <meta property="og:description" content="Browse cards by player, year, and sale status.">
+  <meta property="og:url" content="https://ccnjh97wh7-arch.github.io/cards.html">
+  <meta property="og:image" content="https://ccnjh97wh7-arch.github.io/images/old-bridge.jpg">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Cards & Collectibles | Eric Stone">
+  <meta name="twitter:description" content="Browse cards by player, year, and sale status.">
+  <meta name="twitter:image" content="https://ccnjh97wh7-arch.github.io/images/old-bridge.jpg">
+  <title>Cards & Collectibles | Eric Stone</title>
+  <link rel="stylesheet" href="style.css">
+  <style>
+    .cards-intro-shell {
+      border-left-color: var(--newport-green);
+      background: linear-gradient(135deg, rgba(8, 18, 10, 0.9), rgba(10, 26, 12, 0.78));
+    }
+
+    .cards-filter-grid {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 12px;
+    }
+
+    .cards-filter-field {
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+    }
+
+    .cards-filter-field label {
+      font-size: 0.8rem;
+      text-transform: uppercase;
+      letter-spacing: 0.07em;
+      font-weight: 700;
+      color: var(--crt-dim);
+      font-family: Arial, sans-serif;
+    }
+
+    .cards-filter-field select {
+      width: 100%;
+      padding: 10px 12px;
+      border-radius: 8px;
+      font-size: 0.94rem;
+    }
+
+    .cards-filter-summary {
+      margin: 12px 0 0;
+      font-family: Arial, sans-serif;
+      font-size: 0.9rem;
+      color: var(--crt-text-soft);
+    }
+
+    .cards-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 14px;
+      margin-top: 12px;
+    }
+
+    .card-item {
+      display: flex;
+      flex-direction: column;
+      border: 1px solid var(--crt-border);
+      border-radius: 12px;
+      background: rgba(8, 18, 10, 0.86);
+      overflow: hidden;
+    }
+
+    .card-media {
+      position: relative;
+      margin: 0;
+      background: rgba(6, 13, 8, 0.9);
+    }
+
+    .card-media img {
+      width: 100%;
+      height: 230px;
+      display: block;
+      object-fit: cover;
+    }
+
+    .card-media-label {
+      position: absolute;
+      left: 10px;
+      top: 10px;
+      padding: 4px 8px;
+      border-radius: 999px;
+      border: 1px solid var(--crt-border-strong);
+      background: rgba(5, 10, 6, 0.84);
+      color: var(--crt-text);
+      font-size: 0.72rem;
+      font-family: Arial, sans-serif;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+    }
+
+    .card-media-switch {
+      display: flex;
+      gap: 8px;
+      padding: 10px;
+      border-top: 1px solid rgba(57, 255, 20, 0.22);
+      background: rgba(5, 12, 6, 0.75);
+    }
+
+    .card-media-switch button {
+      flex: 1;
+      padding: 8px 10px;
+      border-radius: 999px;
+      font-size: 0.8rem;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      font-weight: 700;
+    }
+
+    .card-media-switch button.is-active {
+      background: rgba(57, 255, 20, 0.2);
+      border-color: rgba(183, 255, 176, 0.95);
+      color: #e8ffe4;
+    }
+
+    .card-body {
+      display: grid;
+      gap: 8px;
+      padding: 12px;
+    }
+
+    .card-title {
+      margin: 0;
+      font-size: 1.1rem;
+      line-height: 1.3;
+      color: var(--crt-text);
+    }
+
+    .card-meta {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      color: var(--crt-text-soft);
+      font-size: 0.88rem;
+      line-height: 1.5;
+    }
+
+    .card-notes {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      color: var(--crt-dim);
+      font-size: 0.84rem;
+      line-height: 1.45;
+      border-top: 1px dashed rgba(57, 255, 20, 0.22);
+      padding-top: 8px;
+    }
+
+    .card-status {
+      display: inline-flex;
+      align-self: flex-start;
+      padding: 4px 8px;
+      border-radius: 999px;
+      border: 1px solid var(--crt-border-strong);
+      font-size: 0.72rem;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      font-family: Arial, sans-serif;
+      font-weight: 700;
+      color: var(--crt-text);
+      background: rgba(5, 12, 6, 0.8);
+    }
+
+    .card-status.is-sold {
+      color: #d7ffd1;
+      background: rgba(85, 27, 27, 0.6);
+      border-color: rgba(255, 148, 148, 0.6);
+    }
+
+    .card-status.is-pending {
+      color: #fff6d7;
+      background: rgba(97, 75, 12, 0.58);
+      border-color: rgba(255, 230, 148, 0.6);
+    }
+
+    .card-status.is-available {
+      color: #e8ffe4;
+      background: rgba(20, 78, 24, 0.56);
+      border-color: rgba(183, 255, 176, 0.8);
+    }
+
+    .card-actions {
+      display: flex;
+      margin-top: 4px;
+    }
+
+    .card-link {
+      display: inline-flex;
+      justify-content: center;
+      align-items: center;
+      width: 100%;
+      min-height: 40px;
+      text-align: center;
+      font-family: Arial, sans-serif;
+      font-size: 0.84rem;
+      font-weight: 700;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+      text-decoration: none;
+      border-radius: 8px;
+      border: 1px solid var(--crt-border-strong);
+      background: rgba(8, 18, 10, 0.88);
+      color: var(--crt-text);
+    }
+
+    .card-link.is-disabled {
+      opacity: 0.6;
+      pointer-events: none;
+    }
+
+    .cards-empty {
+      margin-top: 12px;
+      padding: 12px;
+      border: 1px dashed var(--crt-border);
+      border-radius: 10px;
+      background: rgba(8, 18, 10, 0.78);
+      color: var(--crt-text-soft);
+      font-family: Arial, sans-serif;
+      font-size: 0.9rem;
+    }
+
+    @media (max-width: 768px) {
+      .cards-filter-grid {
+        grid-template-columns: 1fr 1fr;
+      }
+
+      .cards-filter-field.cards-filter-field--availability {
+        grid-column: 1 / -1;
+      }
+    }
+
+    @media (max-width: 480px) {
+      .cards-filter-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .cards-filter-field.cards-filter-field--availability {
+        grid-column: auto;
+      }
+
+      .card-media img {
+        height: 210px;
+      }
+    }
+  </style>
+</head>
+<body id="top">
+  <a class="skip-link" href="#main-content">Skip to main content</a>
+  <div class="global-nav" role="navigation" aria-label="Primary">
+    <a href="index.html">Home</a>
+    <a href="photos.html">Photos</a>
+    <a href="more-images.html">More Images</a>
+    <a href="music.html">Music</a>
+    <a href="javascript-games.html">Games</a>
+    <a href="changing-channel.html">The Changing Channel</a>
+    <a href="cards.html" aria-current="page">Cards & Collectibles</a>
+  </div>
+
+  <header>
+    <h1>CARDS & COLLECTIBLES</h1>
+    <p>Player cards, condition notes, and listings routed through eBay.</p>
+  </header>
+
+  <main id="main-content">
+    <section class="page-intro-shell cards-intro-shell" aria-labelledby="cards-page-title">
+      <div class="section-title-wrap">
+        <p class="section-kicker">Collection catalog</p>
+        <h2 id="cards-page-title">Browse by player, year, and availability.</h2>
+      </div>
+      <p>Each card includes front and back images, card details, estimated value, and a direct eBay link when listed.</p>
+      <div class="gallery-highlights">
+        <a href="index.html" class="secondary-cta-btn">Back to home</a>
+        <a href="photos.html" class="secondary-cta-btn">Back to photos</a>
+      </div>
+    </section>
+
+    <section class="filter-section" aria-labelledby="cards-filter-title">
+      <div class="section-title-wrap">
+        <p class="section-kicker">Filters</p>
+        <h2 id="cards-filter-title">Narrow the collection</h2>
+      </div>
+      <div class="cards-filter-grid">
+        <div class="cards-filter-field">
+          <label for="player-filter">Player</label>
+          <select id="player-filter" name="player-filter">
+            <option value="all">All players</option>
+          </select>
+        </div>
+        <div class="cards-filter-field">
+          <label for="year-filter">Year</label>
+          <select id="year-filter" name="year-filter">
+            <option value="all">All years</option>
+          </select>
+        </div>
+        <div class="cards-filter-field cards-filter-field--availability">
+          <label for="availability-filter">Availability</label>
+          <select id="availability-filter" name="availability-filter">
+            <option value="all">All statuses</option>
+            <option value="available">Available</option>
+            <option value="pending">Pending</option>
+            <option value="sold">Sold</option>
+          </select>
+        </div>
+      </div>
+      <p id="cards-filter-summary" class="cards-filter-summary" role="status" aria-live="polite">Loading cards...</p>
+    </section>
+
+    <section aria-labelledby="cards-gallery-title">
+      <div class="section-title-wrap">
+        <p class="section-kicker">Gallery</p>
+        <h2 id="cards-gallery-title">Cards</h2>
+      </div>
+      <div id="cards-gallery" class="cards-grid" aria-live="polite"></div>
+      <div id="cards-empty" class="cards-empty" hidden>No cards match these filters right now.</div>
+    </section>
+  </main>
+
+  <script>
+    const cardsDataUrl = 'cards.json';
+
+    const playerFilter = document.getElementById('player-filter');
+    const yearFilter = document.getElementById('year-filter');
+    const availabilityFilter = document.getElementById('availability-filter');
+    const cardsGallery = document.getElementById('cards-gallery');
+    const cardsFilterSummary = document.getElementById('cards-filter-summary');
+    const cardsEmpty = document.getElementById('cards-empty');
+
+    let allCards = [];
+
+    function normalizeSaleStatus(value) {
+      const raw = String(value || '').trim().toLowerCase();
+      if (raw === 'sold') {
+        return 'sold';
+      }
+      if (raw === 'pending') {
+        return 'pending';
+      }
+      return 'available';
+    }
+
+    function statusLabel(status) {
+      if (status === 'sold') {
+        return 'Sold';
+      }
+      if (status === 'pending') {
+        return 'Pending';
+      }
+      return 'Available';
+    }
+
+    function normalizeCard(card, index) {
+      const player = card.player || card.name || 'Unknown player';
+      const year = String(card.year || card.cardYear || 'Unknown');
+      const sport = card.sport || 'Unknown sport';
+      const team = card.team || 'Unknown team';
+      const manufacturer = card.manufacturer || card.brand || 'Unknown manufacturer';
+      const cardNumber = card.cardNumber || card.card_number || card.number || 'N/A';
+      const condition = card.condition || 'Unknown';
+      const gradeCompany = card.gradeCompany || card.grader || '';
+      const gradeValue = card.gradeValue || card.grade || '';
+      const estimatedValue = card.estimatedValue || card.value || 'Not set';
+      const saleStatus = normalizeSaleStatus(card.saleStatus || card.status || card.availability);
+      const frontImage = card.frontImage || card.imageFront || card.image || '';
+      const backImage = card.backImage || card.imageBack || frontImage;
+      const dateAdded = card.dateAdded || card.addedOn || '';
+      const notes = card.notes || '';
+      const ebayListingUrl = card.ebayListingUrl || card.ebayUrl || card.listingUrl || '';
+
+      return {
+        id: card.id || `card-${index + 1}`,
+        player,
+        year,
+        sport,
+        team,
+        manufacturer,
+        cardNumber,
+        condition,
+        gradeCompany,
+        gradeValue,
+        estimatedValue,
+        saleStatus,
+        frontImage,
+        backImage,
+        dateAdded,
+        notes,
+        ebayListingUrl
+      };
+    }
+
+    function setFilterOptions(cards) {
+      const players = Array.from(new Set(cards.map((card) => card.player))).sort((a, b) => a.localeCompare(b));
+      const years = Array.from(new Set(cards.map((card) => card.year))).sort((a, b) => Number(b) - Number(a));
+
+      for (const player of players) {
+        const option = document.createElement('option');
+        option.value = player;
+        option.textContent = player;
+        playerFilter.appendChild(option);
+      }
+
+      for (const year of years) {
+        const option = document.createElement('option');
+        option.value = year;
+        option.textContent = year;
+        yearFilter.appendChild(option);
+      }
+    }
+
+    function applyFilters(cards) {
+      const selectedPlayer = playerFilter.value;
+      const selectedYear = yearFilter.value;
+      const selectedAvailability = availabilityFilter.value;
+
+      return cards.filter((card) => {
+        const matchesPlayer = selectedPlayer === 'all' || card.player === selectedPlayer;
+        const matchesYear = selectedYear === 'all' || card.year === selectedYear;
+        const matchesAvailability = selectedAvailability === 'all' || card.saleStatus === selectedAvailability;
+        return matchesPlayer && matchesYear && matchesAvailability;
+      });
+    }
+
+    function createMediaSwitchButton(label, isActive, onClick) {
+      const button = document.createElement('button');
+      button.type = 'button';
+      button.textContent = label;
+      if (isActive) {
+        button.classList.add('is-active');
+      }
+      button.addEventListener('click', onClick);
+      return button;
+    }
+
+    function createCardElement(card) {
+      const article = document.createElement('article');
+      article.className = 'card-item';
+
+      const figure = document.createElement('figure');
+      figure.className = 'card-media';
+
+      const mediaLabel = document.createElement('span');
+      mediaLabel.className = 'card-media-label';
+      mediaLabel.textContent = 'Front';
+
+      const image = document.createElement('img');
+      image.src = card.frontImage;
+      image.alt = `${card.player} ${card.year} ${card.manufacturer} card front`;
+      image.loading = 'lazy';
+
+      figure.appendChild(mediaLabel);
+      figure.appendChild(image);
+
+      const switchWrap = document.createElement('div');
+      switchWrap.className = 'card-media-switch';
+
+      const frontButton = createMediaSwitchButton('Front', true, () => {
+        image.src = card.frontImage;
+        image.alt = `${card.player} ${card.year} ${card.manufacturer} card front`;
+        mediaLabel.textContent = 'Front';
+        frontButton.classList.add('is-active');
+        backButton.classList.remove('is-active');
+      });
+
+      const backButton = createMediaSwitchButton('Back', false, () => {
+        image.src = card.backImage;
+        image.alt = `${card.player} ${card.year} ${card.manufacturer} card back`;
+        mediaLabel.textContent = 'Back';
+        backButton.classList.add('is-active');
+        frontButton.classList.remove('is-active');
+      });
+
+      switchWrap.appendChild(frontButton);
+      switchWrap.appendChild(backButton);
+
+      const body = document.createElement('div');
+      body.className = 'card-body';
+
+      const title = document.createElement('h3');
+      title.className = 'card-title';
+      title.textContent = card.player;
+
+      const statusPill = document.createElement('span');
+      statusPill.className = `card-status is-${card.saleStatus}`;
+      statusPill.textContent = statusLabel(card.saleStatus);
+
+      const meta = document.createElement('p');
+      meta.className = 'card-meta';
+      const gradeLabel = card.gradeValue
+        ? `${card.gradeCompany || 'Grade'} ${card.gradeValue}`.trim()
+        : 'Ungraded';
+      const dateAddedLabel = card.dateAdded ? card.dateAdded : 'Not set';
+      meta.innerHTML =
+        `Sport: ${card.sport}<br>` +
+        `Team: ${card.team}<br>` +
+        `Year: ${card.year}<br>` +
+        `Manufacturer: ${card.manufacturer}<br>` +
+        `Card #: ${card.cardNumber}<br>` +
+        `Condition: ${card.condition}<br>` +
+        `Grade: ${gradeLabel}<br>` +
+        `Estimated value: ${card.estimatedValue}<br>` +
+        `Date added: ${dateAddedLabel}`;
+
+      const notes = document.createElement('p');
+      notes.className = 'card-notes';
+      notes.textContent = card.notes ? `Notes: ${card.notes}` : 'Notes: none yet.';
+
+      const actions = document.createElement('div');
+      actions.className = 'card-actions';
+
+      const ebayLink = document.createElement('a');
+      ebayLink.className = 'card-link';
+
+      if (card.ebayListingUrl) {
+        ebayLink.href = card.ebayListingUrl;
+        ebayLink.target = '_blank';
+        ebayLink.rel = 'noopener noreferrer';
+        ebayLink.textContent = 'View on eBay';
+      } else {
+        ebayLink.href = '#';
+        ebayLink.classList.add('is-disabled');
+        ebayLink.setAttribute('aria-disabled', 'true');
+        ebayLink.textContent = 'Not listed on eBay';
+      }
+
+      actions.appendChild(ebayLink);
+
+      body.appendChild(title);
+      body.appendChild(statusPill);
+      body.appendChild(meta);
+      body.appendChild(notes);
+      body.appendChild(actions);
+
+      article.appendChild(figure);
+      article.appendChild(switchWrap);
+      article.appendChild(body);
+      return article;
+    }
+
+    function renderCards() {
+      const filteredCards = applyFilters(allCards);
+      cardsGallery.innerHTML = '';
+
+      if (!filteredCards.length) {
+        cardsEmpty.hidden = false;
+      } else {
+        cardsEmpty.hidden = true;
+        const fragment = document.createDocumentFragment();
+        filteredCards.forEach((card) => {
+          fragment.appendChild(createCardElement(card));
+        });
+        cardsGallery.appendChild(fragment);
+      }
+
+      cardsFilterSummary.textContent = `Showing ${filteredCards.length} of ${allCards.length} cards.`;
+    }
+
+    async function loadCards() {
+      try {
+        const response = await fetch(cardsDataUrl);
+        if (!response.ok) {
+          throw new Error(`cards.json request failed with ${response.status}`);
+        }
+
+        const rawData = await response.json();
+        if (!Array.isArray(rawData)) {
+          throw new Error('cards.json must contain an array of card objects.');
+        }
+
+        allCards = rawData.map((card, index) => normalizeCard(card, index));
+
+        setFilterOptions(allCards);
+        renderCards();
+      } catch (error) {
+        console.error(error);
+        cardsFilterSummary.textContent = 'Unable to load cards data right now.';
+        cardsEmpty.hidden = false;
+        cardsEmpty.textContent = 'Cards data could not be loaded. Check cards.json and refresh the page.';
+      }
+    }
+
+    playerFilter.addEventListener('change', renderCards);
+    yearFilter.addEventListener('change', renderCards);
+    availabilityFilter.addEventListener('change', renderCards);
+
+    loadCards();
+  </script>
+</body>
+</html>

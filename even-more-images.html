@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Scanned photos from the past.">
+  <title>Even More Images | Eric Stone</title>
+  <link rel="stylesheet" href="style.css">
+  <style>
+    .scanned-gallery-shell {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 18px 0 28px;
+    }
+
+    .scanned-gallery-copy {
+      margin: 0 0 16px;
+      color: #d9e8dd;
+    }
+
+    .scanned-gallery-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 14px;
+      margin: 0;
+      padding: 0;
+      list-style: none;
+    }
+
+    .scanned-card {
+      margin: 0;
+      border: 1px solid rgba(131, 198, 142, 0.4);
+      border-radius: 14px;
+      background: rgba(5, 20, 8, 0.45);
+      overflow: hidden;
+    }
+
+    .scanned-card img {
+      display: block;
+      width: 100%;
+      height: 260px;
+      object-fit: cover;
+      background: #08100a;
+    }
+
+    .scanned-card figcaption {
+      padding: 10px 12px 12px;
+      color: #f2f7f3;
+      font-size: 0.92rem;
+    }
+  </style>
+</head>
+<body id="top">
+  <a class="skip-link" href="#main-content">Skip to main content</a>
+  <div class="global-nav" role="navigation" aria-label="Primary">
+    <a href="index.html">Home</a>
+    <a href="photos.html">Photos</a>
+    <a href="more-images.html">More Images</a>
+    <a href="music.html">Music</a>
+    <a href="javascript-games.html">Games</a>
+    <a href="changing-channel.html">The Changing Channel</a>
+  </div>
+
+  <header>
+    <h1>SCANNED PHOTOS FROM THE PAST</h1>
+    <p>Even more images from the archive.</p>
+  </header>
+
+  <main id="main-content">
+    <section class="page-intro-shell scanned-gallery-shell" aria-label="Scanned photo gallery">
+      <div class="section-title-wrap">
+        <p class="section-kicker">Archive extension</p>
+        <h2>Even More Images</h2>
+      </div>
+      <p class="scanned-gallery-copy">A small set of scanned photos and saved moments from earlier years.</p>
+
+      <ul class="scanned-gallery-grid">
+        <li>
+          <figure class="scanned-card">
+            <img src="even more images/jimmy.png" alt="Scanned photo titled Jimmy" loading="lazy" decoding="async">
+            <figcaption>Jimmy</figcaption>
+          </figure>
+        </li>
+        <li>
+          <figure class="scanned-card">
+            <img src="even more images/three pics-2.jpg" alt="Scanned photo collage with three pictures" loading="lazy" decoding="async">
+            <figcaption>Three Pics II</figcaption>
+          </figure>
+        </li>
+        <li>
+          <figure class="scanned-card">
+            <img src="even more images/three pics-3.jpg" alt="Second scanned photo collage with three pictures" loading="lazy" decoding="async">
+            <figcaption>Three Pics III</figcaption>
+          </figure>
+        </li>
+        <li>
+          <figure class="scanned-card">
+            <img src="even more images/white-camaro.png" alt="Scanned image of a white Camaro" loading="lazy" decoding="async">
+            <figcaption>White Camaro</figcaption>
+          </figure>
+        </li>
+      </ul>
+    </section>
+  </main>
+</body>
+</html>
