@@ -352,6 +352,252 @@
       font-size: 0.82rem;
     }
 
+    .rap-booth {
+      margin-top: 1.25rem;
+      padding: 1rem;
+      border: 1px solid rgba(0, 61, 165, 0.25);
+      border-radius: 10px;
+      background: linear-gradient(180deg, rgba(255, 248, 232, 0.96), rgba(242, 235, 221, 0.92));
+    }
+
+    .rap-booth h3 {
+      margin: 0;
+      color: var(--patriotic-blue);
+      font-size: 1.2rem;
+    }
+
+    .rap-booth-note {
+      margin: 0.45rem 0 0;
+      color: #403628;
+      font-family: Arial, Helvetica, sans-serif;
+      font-size: 0.9rem;
+    }
+
+    .rapper-name-row {
+      display: grid;
+      gap: 0.35rem;
+      margin-top: 0.95rem;
+      max-width: 360px;
+    }
+
+    .rapper-name-row label {
+      color: var(--patriotic-blue);
+      font-family: Arial, Helvetica, sans-serif;
+      font-size: 0.78rem;
+      font-weight: 800;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+    }
+
+    .rapper-name-row input {
+      width: 100%;
+      min-height: 42px;
+      padding: 0.55rem 0.7rem;
+      border: 1px solid rgba(0, 61, 165, 0.38);
+      border-radius: 8px;
+      background: #fff;
+      color: var(--near-black);
+      font: 700 0.9rem Arial, Helvetica, sans-serif;
+    }
+
+    .alias-actions {
+      display: flex;
+      gap: 0.55rem;
+      align-items: center;
+      flex-wrap: wrap;
+    }
+
+    .alias-roll-button {
+      min-height: 38px;
+      padding: 0.48rem 0.78rem;
+      border: 1px solid rgba(0, 61, 165, 0.35);
+      border-radius: 999px;
+      background: rgba(0, 61, 165, 0.09);
+      color: var(--patriotic-blue);
+      font: 800 0.74rem Arial, Helvetica, sans-serif;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+      cursor: pointer;
+      transition: background 0.2s ease, border-color 0.2s ease, color 0.2s ease;
+    }
+
+    .alias-roll-button:hover,
+    .alias-roll-button:focus-visible {
+      background: rgba(196, 30, 58, 0.12);
+      border-color: var(--patriotic-red);
+      color: var(--patriotic-red);
+    }
+
+    .instrumental-picks-wrap {
+      margin-top: 1rem;
+    }
+
+    .instrumental-picks-label {
+      margin: 0 0 0.55rem;
+      color: var(--patriotic-blue);
+      font-family: Arial, Helvetica, sans-serif;
+      font-size: 0.78rem;
+      font-weight: 800;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+    }
+
+    .instrumental-picks {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.55rem;
+    }
+
+    .instrumental-manager {
+      margin-top: 0.7rem;
+    }
+
+    .instrumental-manager button {
+      min-height: 40px;
+      padding: 0.52rem 0.86rem;
+      border: 1px solid rgba(0, 0, 0, 0.34);
+      border-radius: 999px;
+      background: rgba(0, 0, 0, 0.04);
+      color: var(--near-black);
+      font: 700 0.78rem Arial, Helvetica, sans-serif;
+      letter-spacing: 0.03em;
+      text-transform: uppercase;
+      cursor: pointer;
+      transition: background 0.2s ease, color 0.2s ease, border-color 0.2s ease;
+    }
+
+    .instrumental-manager button:hover,
+    .instrumental-manager button:focus-visible {
+      border-color: var(--patriotic-red);
+      background: rgba(196, 30, 58, 0.12);
+      color: var(--patriotic-red);
+    }
+
+    .instrumental-pick,
+    .download-recording {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 42px;
+      padding: 0.6rem 0.9rem;
+      border: 1px solid rgba(0, 61, 165, 0.3);
+      border-radius: 999px;
+      background: rgba(0, 61, 165, 0.08);
+      color: var(--patriotic-blue);
+      font: 800 0.82rem Arial, Helvetica, sans-serif;
+      letter-spacing: 0.03em;
+      text-decoration: none;
+      cursor: pointer;
+      transition: transform 0.2s ease, background 0.2s ease, border-color 0.2s ease, color 0.2s ease;
+    }
+
+    .instrumental-pick:hover,
+    .instrumental-pick:focus-visible,
+    .download-recording:hover,
+    .download-recording:focus-visible {
+      transform: translateY(-1px);
+      background: rgba(196, 30, 58, 0.1);
+      border-color: var(--patriotic-red);
+      color: var(--patriotic-red);
+    }
+
+    .instrumental-pick[aria-pressed="true"] {
+      background: var(--patriotic-blue);
+      border-color: var(--patriotic-blue);
+      color: #fff;
+    }
+
+    .recording-controls {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.7rem;
+      margin-top: 1rem;
+    }
+
+    .recording-controls button,
+    .recording-controls .download-recording {
+      border: 2px solid var(--ink);
+    }
+
+    .recording-controls button {
+      min-height: 44px;
+      padding: 0.7rem 1rem;
+      border-radius: 999px;
+      font: 800 0.86rem Arial, Helvetica, sans-serif;
+      cursor: pointer;
+    }
+
+    .record-button {
+      background: var(--patriotic-red);
+      border-color: var(--patriotic-red);
+      color: #fff;
+    }
+
+    .record-button.is-recording {
+      animation: pulse-red 1s ease-in-out infinite;
+    }
+
+    .stop-button {
+      background: var(--near-black);
+      border-color: var(--near-black);
+      color: var(--warm-paper);
+    }
+
+    .preview-button {
+      background: var(--patriotic-blue);
+      border-color: var(--patriotic-blue);
+      color: #fff;
+    }
+
+    .recording-controls button:disabled,
+    .recording-controls .download-recording[aria-disabled="true"] {
+      opacity: 0.45;
+      cursor: not-allowed;
+      pointer-events: none;
+      transform: none;
+    }
+
+    .recording-status {
+      margin: 0.75rem 0 0;
+      min-height: 1.2em;
+      color: #2f2f2f;
+      font-family: Arial, Helvetica, sans-serif;
+      font-size: 0.86rem;
+    }
+
+    .recording-preview {
+      margin-top: 0.9rem;
+    }
+
+    .recording-preview[hidden] {
+      display: none;
+    }
+
+    .instrumental-track-badge {
+      display: inline-flex;
+      align-items: center;
+      padding: 0.18rem 0.42rem;
+      border-radius: 999px;
+      background: rgba(0, 61, 165, 0.14);
+      color: var(--patriotic-blue);
+      font-weight: 800;
+    }
+
+    .instrumental-track-badge[hidden] {
+      display: none;
+    }
+
+    @keyframes pulse-red {
+      0%,
+      100% {
+        box-shadow: 0 0 0 0 rgba(196, 30, 58, 0.4);
+      }
+
+      50% {
+        box-shadow: 0 0 0 9px rgba(196, 30, 58, 0);
+      }
+    }
+
     .playlist {
       margin: 2.25rem 0 0;
       padding: 0;
@@ -655,6 +901,38 @@
       </div>
       <p class="share-status" id="share-status" aria-live="polite"></p>
 
+      <section class="rap-booth" aria-labelledby="rap-booth-title">
+        <p class="eyebrow">Step On The Track</p>
+        <h3 id="rap-booth-title">Record a verse while the beat plays</h3>
+        <p class="rap-booth-note">Best results come with headphones so the mic mostly hears your voice and not the page audio leaking from speakers.</p>
+
+        <div class="rapper-name-row">
+          <label for="rapper-name">Rapper Name (for your take file)</label>
+          <input id="rapper-name" type="text" maxlength="40" placeholder="ex: jaffar-bars">
+          <div class="alias-actions">
+            <button class="alias-roll-button" id="roll-rapper-alias" type="button">Roll New Alias</button>
+          </div>
+        </div>
+
+        <div class="instrumental-picks-wrap">
+          <p class="instrumental-picks-label">Likely instrumentals in this archive</p>
+          <div class="instrumental-picks" id="instrumental-picks"></div>
+          <div class="instrumental-manager">
+            <button id="toggle-current-instrumental" type="button">Add current track to instrumental picks</button>
+          </div>
+        </div>
+
+        <div class="recording-controls" aria-label="Recording controls">
+          <button class="record-button" id="record-track" type="button">Step On The Track</button>
+          <button class="stop-button" id="stop-recording" type="button" disabled>Stop Recording</button>
+          <button class="preview-button" id="play-recording" type="button" disabled>Play Back Take</button>
+          <a class="download-recording" id="download-recording" href="#" download="" hidden aria-disabled="true">Download Take</a>
+        </div>
+
+        <p class="recording-status" id="recording-status" aria-live="polite">Choose a beat, then hit Step On The Track.</p>
+        <audio class="recording-preview" id="recording-preview" controls hidden></audio>
+      </section>
+
       <a class="file-link" id="file-link" href="music/the_bullshit.mp3">Open current MP3 file</a>
 
       <p class="playlist-summary" id="total-play-count" aria-live="polite">Your listens on this browser: 0 | Unique tracks listened: 0</p>
@@ -691,7 +969,29 @@
     const totalPlayCount = document.querySelector("#total-play-count");
     const counterScopeNote = document.querySelector("#counter-scope-note");
     const resetPlayCountsButton = document.querySelector("#reset-play-counts");
+    const instrumentalPicks = document.querySelector("#instrumental-picks");
+    const recordTrackButton = document.querySelector("#record-track");
+    const stopRecordingButton = document.querySelector("#stop-recording");
+    const playRecordingButton = document.querySelector("#play-recording");
+    const downloadRecordingLink = document.querySelector("#download-recording");
+    const recordingStatus = document.querySelector("#recording-status");
+    const recordingPreview = document.querySelector("#recording-preview");
+    const rapperNameInput = document.querySelector("#rapper-name");
+    const rollRapperAliasButton = document.querySelector("#roll-rapper-alias");
+    const toggleCurrentInstrumentalButton = document.querySelector("#toggle-current-instrumental");
     const PLAY_COUNT_KEY = "eric-stone-music-play-counts";
+    const INSTRUMENTAL_PICKS_KEY = "eric-stone-instrumental-picks";
+    const DEFAULT_INSTRUMENTAL_TRACKS = [
+      "music/lil-static.mp3",
+      "music/sound-track.mp3",
+      "music/tv-broadcast.mp3",
+      "music/japanese-boom-bap.mp3",
+      "music/straight-banger.mp3",
+      "music/saloon-future.mp3",
+      "music/miracle-solve-x.mp3",
+      "music/rocky-theme-music.mp3",
+      "music/shippity.mp3"
+    ];
     const trackArtPool = [
       "images/quiet-evening.jpg",
       "images/downtown-greenville.jpg",
@@ -709,6 +1009,463 @@
     let currentTrackIndex = 0;
     let currentTrackPlayCounted = false;
     let transientPlayCounts = {};
+    let audioContext = null;
+    let audioGraphReady = false;
+    let recordingDestination = null;
+    let microphoneStream = null;
+    let mediaRecorder = null;
+    let recordingChunks = [];
+    let recordedTakeUrl = "";
+    let recordedTakeMimeType = "";
+    let countInActive = false;
+    let countInToken = 0;
+    let instrumentalTrackSources = new Set(DEFAULT_INSTRUMENTAL_TRACKS);
+    const RAPPER_ALIAS_FIRST = [
+      "MC",
+      "Lil",
+      "DJ",
+      "Captain",
+      "Young",
+      "Professor",
+      "Big",
+      "Slick",
+      "Turbo",
+      "Cosmic",
+      "Major",
+      "Neon"
+    ];
+    const RAPPER_ALIAS_SECOND = [
+      "Snack",
+      "Noodles",
+      "Thunder",
+      "Mustache",
+      "Penguin",
+      "Waffles",
+      "BoomBap",
+      "Potato",
+      "Echo",
+      "Biscuits",
+      "Comet",
+      "Gremlin"
+    ];
+
+    function readInstrumentalTrackSources() {
+      try {
+        const parsed = JSON.parse(localStorage.getItem(INSTRUMENTAL_PICKS_KEY) || "[]");
+        if (!Array.isArray(parsed)) {
+          return new Set(DEFAULT_INSTRUMENTAL_TRACKS);
+        }
+
+        const validSources = parsed.filter((value) => typeof value === "string" && value.startsWith("music/"));
+        if (validSources.length === 0) {
+          return new Set(DEFAULT_INSTRUMENTAL_TRACKS);
+        }
+
+        return new Set(validSources);
+      } catch (error) {
+        console.warn("Could not read instrumental picks:", error);
+        return new Set(DEFAULT_INSTRUMENTAL_TRACKS);
+      }
+    }
+
+    function writeInstrumentalTrackSources() {
+      try {
+        localStorage.setItem(INSTRUMENTAL_PICKS_KEY, JSON.stringify(Array.from(instrumentalTrackSources)));
+      } catch (error) {
+        console.warn("Could not save instrumental picks:", error);
+      }
+    }
+
+    function generateRapperAlias() {
+      const first = RAPPER_ALIAS_FIRST[Math.floor(Math.random() * RAPPER_ALIAS_FIRST.length)];
+      const second = RAPPER_ALIAS_SECOND[Math.floor(Math.random() * RAPPER_ALIAS_SECOND.length)];
+      const suffix = Math.floor(Math.random() * 90) + 10;
+      return first + " " + second + " " + suffix;
+    }
+
+    function assignFreshRapperAlias() {
+      if (!rapperNameInput) {
+        return;
+      }
+
+      rapperNameInput.value = generateRapperAlias();
+
+      if (recordedTakeUrl && downloadRecordingLink) {
+        downloadRecordingLink.download = buildTakeFilename(getCurrentTrack());
+      }
+    }
+
+    function isLikelyInstrumental(trackSrc) {
+      return instrumentalTrackSources.has(trackSrc);
+    }
+
+    function setRecordingStatus(message) {
+      if (recordingStatus) {
+        recordingStatus.textContent = message;
+      }
+    }
+
+    function isRecordingActive() {
+      return Boolean(mediaRecorder && mediaRecorder.state === "recording");
+    }
+
+    function getCurrentTrack() {
+      return playlistTracks[currentTrackIndex] || null;
+    }
+
+    function getSupportedRecordingMimeType() {
+      if (typeof MediaRecorder === "undefined" || typeof MediaRecorder.isTypeSupported !== "function") {
+        return "";
+      }
+
+      const candidates = [
+        "audio/webm;codecs=opus",
+        "audio/webm",
+        "audio/mp4"
+      ];
+
+      return candidates.find((candidate) => MediaRecorder.isTypeSupported(candidate)) || "";
+    }
+
+    function updateRecordingControls() {
+      const hasTake = Boolean(recordedTakeUrl);
+      const recording = isRecordingActive();
+      const disableStart = recording || countInActive || typeof MediaRecorder === "undefined";
+
+      if (recordTrackButton) {
+        recordTrackButton.disabled = disableStart;
+        recordTrackButton.classList.toggle("is-recording", recording);
+      }
+
+      if (stopRecordingButton) {
+        stopRecordingButton.disabled = !recording && !countInActive;
+        stopRecordingButton.textContent = countInActive ? "Cancel Count-In" : "Stop Recording";
+      }
+
+      if (playRecordingButton) {
+        playRecordingButton.disabled = recording || countInActive || !hasTake;
+      }
+
+      if (downloadRecordingLink) {
+        downloadRecordingLink.hidden = !hasTake;
+        downloadRecordingLink.setAttribute("aria-disabled", hasTake ? "false" : "true");
+      }
+    }
+
+    function sanitizeSlug(value) {
+      return String(value || "")
+        .toLowerCase()
+        .replace(/[^a-z0-9]+/g, "-")
+        .replace(/^-+|-+$/g, "");
+    }
+
+    function getTakeExtensionFromMimeType(mimeType) {
+      if (typeof mimeType !== "string") {
+        return "webm";
+      }
+
+      if (mimeType.includes("mp4")) {
+        return "m4a";
+      }
+
+      if (mimeType.includes("ogg")) {
+        return "ogg";
+      }
+
+      return "webm";
+    }
+
+    function clearRecordedTake() {
+      if (recordedTakeUrl) {
+        URL.revokeObjectURL(recordedTakeUrl);
+        recordedTakeUrl = "";
+      }
+
+      recordedTakeMimeType = "";
+
+      if (recordingPreview) {
+        recordingPreview.pause();
+        recordingPreview.removeAttribute("src");
+        recordingPreview.load();
+        recordingPreview.hidden = true;
+      }
+
+      if (downloadRecordingLink) {
+        downloadRecordingLink.removeAttribute("href");
+        downloadRecordingLink.removeAttribute("download");
+      }
+
+      updateRecordingControls();
+    }
+
+    function buildTakeFilename(track) {
+      const baseName = sanitizeSlug(track?.title || "track") || "track";
+      const rapperName = sanitizeSlug(rapperNameInput?.value || "");
+      const extension = getTakeExtensionFromMimeType(recordedTakeMimeType);
+      const prefix = rapperName ? rapperName + "-" : "";
+      return prefix + baseName + "-take." + extension;
+    }
+
+    async function runCountIn(seconds, token) {
+      for (let remaining = seconds; remaining > 0; remaining -= 1) {
+        if (token !== countInToken) {
+          return false;
+        }
+
+        setRecordingStatus("Recording starts in " + remaining + "...");
+        await new Promise((resolve) => setTimeout(resolve, 1000));
+      }
+
+      return token === countInToken;
+    }
+
+    async function ensureRecordingGraph() {
+      if (typeof MediaRecorder === "undefined") {
+        throw new Error("This browser does not support in-browser recording.");
+      }
+
+      const AudioContextCtor = window.AudioContext || window.webkitAudioContext;
+      if (!AudioContextCtor) {
+        throw new Error("This browser does not support Web Audio mixing.");
+      }
+
+      if (!audioContext) {
+        audioContext = new AudioContextCtor();
+      }
+
+      if (!recordingDestination) {
+        recordingDestination = audioContext.createMediaStreamDestination();
+      }
+
+      if (!audioGraphReady) {
+        const trackSource = audioContext.createMediaElementSource(audioPlayer);
+        const trackMonitor = audioContext.createGain();
+        const trackRecordSend = audioContext.createGain();
+
+        trackMonitor.gain.value = 1;
+        trackRecordSend.gain.value = 1;
+        trackSource.connect(trackMonitor);
+        trackMonitor.connect(audioContext.destination);
+        trackSource.connect(trackRecordSend);
+        trackRecordSend.connect(recordingDestination);
+        audioGraphReady = true;
+      }
+
+      if (!microphoneStream) {
+        microphoneStream = await navigator.mediaDevices.getUserMedia({
+          audio: {
+            echoCancellation: true,
+            noiseSuppression: true,
+            autoGainControl: true
+          }
+        });
+
+        const micSource = audioContext.createMediaStreamSource(microphoneStream);
+        const micRecordSend = audioContext.createGain();
+
+        micRecordSend.gain.value = 1;
+        micSource.connect(micRecordSend);
+        micRecordSend.connect(recordingDestination);
+      }
+
+      if (audioContext.state === "suspended") {
+        await audioContext.resume();
+      }
+    }
+
+    function finishRecording() {
+      const currentTrack = getCurrentTrack();
+      const chunks = recordingChunks.filter((chunk) => chunk && chunk.size > 0);
+      mediaRecorder = null;
+
+      if (chunks.length === 0) {
+        setRecordingStatus("Recording stopped, but this browser did not return any audio data.");
+        updateRecordingControls();
+        return;
+      }
+
+      const blob = new Blob(chunks, {
+        type: recordedTakeMimeType || chunks[0].type || "audio/webm"
+      });
+
+      recordedTakeUrl = URL.createObjectURL(blob);
+
+      if (recordingPreview) {
+        recordingPreview.src = recordedTakeUrl;
+        recordingPreview.hidden = false;
+      }
+
+      if (downloadRecordingLink) {
+        downloadRecordingLink.href = recordedTakeUrl;
+        downloadRecordingLink.download = buildTakeFilename(currentTrack);
+      }
+
+      setRecordingStatus("Take ready. Play it back here or download it.");
+      updateRecordingControls();
+    }
+
+    function stopCurrentRecording(message) {
+      if (countInActive) {
+        countInToken += 1;
+        countInActive = false;
+        if (message) {
+          setRecordingStatus(message);
+        } else {
+          setRecordingStatus("Count-in canceled.");
+        }
+        updateRecordingControls();
+        return;
+      }
+
+      if (!isRecordingActive()) {
+        if (message) {
+          setRecordingStatus(message);
+        }
+        updateRecordingControls();
+        return;
+      }
+
+      if (message) {
+        setRecordingStatus(message);
+      }
+
+      mediaRecorder.stop();
+      audioPlayer.pause();
+      updateRecordingControls();
+    }
+
+    async function startTrackRecording() {
+      const currentTrack = getCurrentTrack();
+      if (!currentTrack) {
+        setRecordingStatus("Choose a track first.");
+        return;
+      }
+
+      if (!navigator.mediaDevices || typeof navigator.mediaDevices.getUserMedia !== "function") {
+        setRecordingStatus("Microphone recording is not available in this browser.");
+        return;
+      }
+
+      if (countInActive || isRecordingActive()) {
+        return;
+      }
+
+      try {
+        await ensureRecordingGraph();
+
+        countInToken += 1;
+        const activeToken = countInToken;
+        countInActive = true;
+        updateRecordingControls();
+
+        const shouldContinue = await runCountIn(3, activeToken);
+        if (!shouldContinue) {
+          return;
+        }
+
+        clearRecordedTake();
+
+        recordedTakeMimeType = getSupportedRecordingMimeType();
+        mediaRecorder = recordedTakeMimeType
+          ? new MediaRecorder(recordingDestination.stream, { mimeType: recordedTakeMimeType })
+          : new MediaRecorder(recordingDestination.stream);
+
+        recordingChunks = [];
+        mediaRecorder.addEventListener("dataavailable", (event) => {
+          if (event.data && event.data.size > 0) {
+            recordingChunks.push(event.data);
+          }
+        });
+        mediaRecorder.addEventListener("stop", finishRecording, { once: true });
+
+        audioPlayer.pause();
+        audioPlayer.currentTime = 0;
+        mediaRecorder.start();
+        countInActive = false;
+        updateRecordingControls();
+        setRecordingStatus("Recording started. The beat is rolling and your mic is live.");
+
+        await audioPlayer.play();
+      } catch (error) {
+        if (mediaRecorder && mediaRecorder.state === "recording") {
+          mediaRecorder.stop();
+        }
+        countInActive = false;
+        mediaRecorder = null;
+        console.warn("Could not start recording:", error);
+        setRecordingStatus("Could not start recording. Allow mic access and try again.");
+        updateRecordingControls();
+      }
+    }
+
+    function renderInstrumentalPicks() {
+      if (!instrumentalPicks) {
+        return;
+      }
+
+      const tracks = playlistTracks.filter((track) => isLikelyInstrumental(track.src));
+      if (tracks.length === 0) {
+        instrumentalPicks.innerHTML = "<span class=\"track-note-preview\">No likely instrumentals were flagged yet.</span>";
+        return;
+      }
+
+      instrumentalPicks.innerHTML = tracks.map((track) => `
+        <button
+          class="instrumental-pick"
+          type="button"
+          data-track-src="${escapeHtml(track.src)}"
+          aria-pressed="false"
+        >${escapeHtml(track.title)}</button>
+      `).join("");
+
+      Array.from(instrumentalPicks.querySelectorAll(".instrumental-pick")).forEach((button) => {
+        button.addEventListener("click", () => {
+          const trackIndex = playlistTracks.findIndex((track) => track.src === button.dataset.trackSrc);
+          if (trackIndex >= 0) {
+            loadTrack(trackIndex, false);
+            setRecordingStatus("Beat loaded. Hit Step On The Track when you are ready.");
+          }
+        });
+      });
+    }
+
+    function updateInstrumentalBadges() {
+      trackButtons.forEach((button) => {
+        const badge = button.querySelector(".instrumental-track-badge");
+        if (!badge) {
+          return;
+        }
+        badge.hidden = !isLikelyInstrumental(button.dataset.src);
+      });
+    }
+
+    function updateCurrentInstrumentalToggle() {
+      if (!toggleCurrentInstrumentalButton) {
+        return;
+      }
+
+      const currentTrack = getCurrentTrack();
+      if (!currentTrack) {
+        toggleCurrentInstrumentalButton.disabled = true;
+        return;
+      }
+
+      const selected = isLikelyInstrumental(currentTrack.src);
+      toggleCurrentInstrumentalButton.disabled = false;
+      toggleCurrentInstrumentalButton.textContent = selected
+        ? "Remove current track from instrumental picks"
+        : "Add current track to instrumental picks";
+    }
+
+    function syncInstrumentalPickState(trackSrc) {
+      if (!instrumentalPicks) {
+        return;
+      }
+
+      Array.from(instrumentalPicks.querySelectorAll(".instrumental-pick")).forEach((button) => {
+        button.setAttribute("aria-pressed", button.dataset.trackSrc === trackSrc ? "true" : "false");
+      });
+    }
 
     function getStorageMode() {
       try {
@@ -953,6 +1710,7 @@
               <span class="track-note-preview">${escapeHtml(track.note)}</span>
               <span class="track-stats">
                 <span class="play-count">${counts[track.src] || 0} plays</span>
+                ${isLikelyInstrumental(track.src) ? '<span class="instrumental-track-badge">Instrumental pick</span>' : ""}
                 <span class="top-track-badge" ${topTrackSources.has(track.src) ? "" : "hidden"}>Top 5</span>
               </span>
             </span>
@@ -962,6 +1720,8 @@
       `).join("");
 
       trackButtons = Array.from(document.querySelectorAll(".track-button"));
+      renderInstrumentalPicks();
+
       if (trackButtons.length > 0) {
         loadTrack(getRequestedTrackIndex(), false);
       }
@@ -985,6 +1745,10 @@
       const track = trackButtons[index];
       if (!track) return;
 
+      if (isRecordingActive()) {
+        stopCurrentRecording("Recording stopped because the track changed.");
+      }
+
       currentTrackIndex = index;
       currentTrackPlayCounted = false;
       audioPlayer.src = track.dataset.src;
@@ -992,6 +1756,8 @@
       nowPlayingNote.textContent = track.dataset.note;
       fileLink.href = track.dataset.src;
       syncUrlToCurrentTrack(track.dataset.src);
+      syncInstrumentalPickState(track.dataset.src);
+      updateCurrentInstrumentalToggle();
 
       trackButtons.forEach((button, buttonIndex) => {
         const isCurrent = buttonIndex === currentTrackIndex;
@@ -1034,8 +1800,52 @@
 
     previousButton.addEventListener("click", () => changeTrack(-1));
     nextButton.addEventListener("click", () => changeTrack(1));
+    recordTrackButton.addEventListener("click", startTrackRecording);
+    stopRecordingButton.addEventListener("click", () => {
+      stopCurrentRecording("Recording stopped. Building your take now.");
+    });
+    playRecordingButton.addEventListener("click", () => {
+      if (recordedTakeUrl && recordingPreview) {
+        recordingPreview.currentTime = 0;
+        recordingPreview.play();
+      }
+    });
+    toggleCurrentInstrumentalButton.addEventListener("click", () => {
+      const currentTrack = getCurrentTrack();
+      if (!currentTrack) {
+        return;
+      }
+
+      if (isLikelyInstrumental(currentTrack.src)) {
+        instrumentalTrackSources.delete(currentTrack.src);
+      } else {
+        instrumentalTrackSources.add(currentTrack.src);
+      }
+
+      writeInstrumentalTrackSources();
+      renderInstrumentalPicks();
+      syncInstrumentalPickState(currentTrack.src);
+      updateCurrentInstrumentalToggle();
+      updateInstrumentalBadges();
+    });
+
+    rapperNameInput.addEventListener("input", () => {
+      if (recordedTakeUrl && downloadRecordingLink) {
+        downloadRecordingLink.download = buildTakeFilename(getCurrentTrack());
+      }
+    });
+
+    rollRapperAliasButton.addEventListener("click", () => {
+      assignFreshRapperAlias();
+      setRecordingStatus("Fresh alias loaded. Ready for your next take.");
+    });
 
     audioPlayer.addEventListener("ended", () => {
+      if (isRecordingActive()) {
+        stopCurrentRecording("Beat finished. Building your take now.");
+        return;
+      }
+
       if (trackButtons.length > 1) {
         changeTrack(1);
       }
@@ -1043,7 +1853,20 @@
 
     audioPlayer.addEventListener("play", recordTrackPlay);
 
+    window.addEventListener("beforeunload", () => {
+      if (recordedTakeUrl) {
+        URL.revokeObjectURL(recordedTakeUrl);
+      }
+
+      if (microphoneStream) {
+        microphoneStream.getTracks().forEach((track) => track.stop());
+      }
+    });
+
+    instrumentalTrackSources = readInstrumentalTrackSources();
+  assignFreshRapperAlias();
     updateCounterScopeMessage();
+    updateRecordingControls();
     loadPlaylist();
   </script>
 </body>
