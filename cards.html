@@ -3,253 +3,78 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="Cards and collectibles archive with availability and eBay listing links.">
+  <meta name="description" content="Browse and purchase Eric Stone's available baseball cards through eBay.">
   <meta property="og:type" content="website">
-  <meta property="og:title" content="Cards & Collectibles | Eric Stone">
-  <meta property="og:description" content="Browse cards by player, year, and sale status.">
+  <meta property="og:title" content="Baseball Cards for Sale | Eric Stone">
+  <meta property="og:description" content="Visit the live eBay storefront for my currently available baseball cards.">
   <meta property="og:url" content="https://ccnjh97wh7-arch.github.io/cards.html">
   <meta property="og:image" content="https://ccnjh97wh7-arch.github.io/images/old-bridge.jpg">
   <meta name="twitter:card" content="summary_large_image">
-  <meta name="twitter:title" content="Cards & Collectibles | Eric Stone">
-  <meta name="twitter:description" content="Browse cards by player, year, and sale status.">
+  <meta name="twitter:title" content="Baseball Cards for Sale | Eric Stone">
+  <meta name="twitter:description" content="Visit the live eBay storefront for my currently available baseball cards.">
   <meta name="twitter:image" content="https://ccnjh97wh7-arch.github.io/images/old-bridge.jpg">
-  <title>Cards & Collectibles | Eric Stone</title>
+  <title>Baseball Cards for Sale</title>
   <link rel="stylesheet" href="style.css">
   <style>
-    .cards-intro-shell {
-      border-left-color: var(--newport-green);
-      background: linear-gradient(135deg, rgba(8, 18, 10, 0.9), rgba(10, 26, 12, 0.78));
+    .cards-storefront-shell {
+      border-left-color: var(--crt-highlight);
+      background: linear-gradient(135deg, rgba(8, 18, 10, 0.94), rgba(10, 23, 12, 0.84));
     }
 
-    .cards-filter-grid {
+    .cards-storefront-grid {
       display: grid;
       grid-template-columns: repeat(3, minmax(0, 1fr));
       gap: 12px;
+      margin-top: 14px;
     }
 
-    .cards-filter-field {
-      display: flex;
-      flex-direction: column;
-      gap: 6px;
-    }
-
-    .cards-filter-field label {
-      font-size: 0.8rem;
-      text-transform: uppercase;
-      letter-spacing: 0.07em;
-      font-weight: 700;
-      color: var(--crt-dim);
-      font-family: Arial, sans-serif;
-    }
-
-    .cards-filter-field select {
-      width: 100%;
-      padding: 10px 12px;
-      border-radius: 8px;
-      font-size: 0.94rem;
-    }
-
-    .cards-filter-summary {
-      margin: 12px 0 0;
-      font-family: Arial, sans-serif;
-      font-size: 0.9rem;
-      color: var(--crt-text-soft);
-    }
-
-    .cards-grid {
+    .cards-storefront-card {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
-      gap: 14px;
-      margin-top: 12px;
-    }
-
-    .card-item {
-      display: flex;
-      flex-direction: column;
+      gap: 8px;
+      padding: 14px;
       border: 1px solid var(--crt-border);
-      border-radius: 12px;
-      background: rgba(8, 18, 10, 0.86);
-      overflow: hidden;
+      border-radius: 10px;
+      background: rgba(8, 18, 10, 0.82);
     }
 
-    .card-media {
-      position: relative;
+    .cards-storefront-card h3 {
       margin: 0;
-      background: rgba(6, 13, 8, 0.9);
+      font-size: 1rem;
     }
 
-    .card-media img {
-      width: 100%;
-      height: 230px;
-      display: block;
-      object-fit: cover;
-    }
-
-    .card-media-label {
-      position: absolute;
-      left: 10px;
-      top: 10px;
-      padding: 4px 8px;
-      border-radius: 999px;
-      border: 1px solid var(--crt-border-strong);
-      background: rgba(5, 10, 6, 0.84);
-      color: var(--crt-text);
-      font-size: 0.72rem;
-      font-family: Arial, sans-serif;
-      font-weight: 700;
-      letter-spacing: 0.08em;
-      text-transform: uppercase;
-    }
-
-    .card-media-switch {
-      display: flex;
-      gap: 8px;
-      padding: 10px;
-      border-top: 1px solid rgba(57, 255, 20, 0.22);
-      background: rgba(5, 12, 6, 0.75);
-    }
-
-    .card-media-switch button {
-      flex: 1;
-      padding: 8px 10px;
-      border-radius: 999px;
-      font-size: 0.8rem;
-      letter-spacing: 0.06em;
-      text-transform: uppercase;
-      font-weight: 700;
-    }
-
-    .card-media-switch button.is-active {
-      background: rgba(57, 255, 20, 0.2);
-      border-color: rgba(183, 255, 176, 0.95);
-      color: #e8ffe4;
-    }
-
-    .card-body {
-      display: grid;
-      gap: 8px;
-      padding: 12px;
-    }
-
-    .card-title {
+    .cards-storefront-card p {
       margin: 0;
-      font-size: 1.1rem;
-      line-height: 1.3;
-      color: var(--crt-text);
-    }
-
-    .card-meta {
-      margin: 0;
-      font-family: Arial, sans-serif;
-      color: var(--crt-text-soft);
-      font-size: 0.88rem;
+      font-size: 0.92rem;
       line-height: 1.5;
     }
 
-    .card-notes {
-      margin: 0;
-      font-family: Arial, sans-serif;
-      color: var(--crt-dim);
-      font-size: 0.84rem;
-      line-height: 1.45;
-      border-top: 1px dashed rgba(57, 255, 20, 0.22);
-      padding-top: 8px;
-    }
-
-    .card-status {
-      display: inline-flex;
-      align-self: flex-start;
-      padding: 4px 8px;
-      border-radius: 999px;
-      border: 1px solid var(--crt-border-strong);
-      font-size: 0.72rem;
-      text-transform: uppercase;
-      letter-spacing: 0.08em;
-      font-family: Arial, sans-serif;
-      font-weight: 700;
-      color: var(--crt-text);
-      background: rgba(5, 12, 6, 0.8);
-    }
-
-    .card-status.is-sold {
-      color: #d7ffd1;
-      background: rgba(85, 27, 27, 0.6);
-      border-color: rgba(255, 148, 148, 0.6);
-    }
-
-    .card-status.is-pending {
-      color: #fff6d7;
-      background: rgba(97, 75, 12, 0.58);
-      border-color: rgba(255, 230, 148, 0.6);
-    }
-
-    .card-status.is-available {
-      color: #e8ffe4;
-      background: rgba(20, 78, 24, 0.56);
-      border-color: rgba(183, 255, 176, 0.8);
-    }
-
-    .card-actions {
-      display: flex;
-      margin-top: 4px;
-    }
-
-    .card-link {
+    .ebay-storefront-cta {
       display: inline-flex;
       justify-content: center;
       align-items: center;
-      width: 100%;
-      min-height: 40px;
-      text-align: center;
-      font-family: Arial, sans-serif;
-      font-size: 0.84rem;
+      min-height: 46px;
+      padding: 12px 18px;
+      border-radius: 999px;
+      text-decoration: none;
       font-weight: 700;
       letter-spacing: 0.04em;
       text-transform: uppercase;
-      text-decoration: none;
-      border-radius: 8px;
-      border: 1px solid var(--crt-border-strong);
-      background: rgba(8, 18, 10, 0.88);
+      background: rgba(8, 18, 10, 0.94);
       color: var(--crt-text);
+      border: 1px solid var(--crt-border-strong);
+      box-shadow: inset 0 0 0 1px rgba(57, 255, 20, 0.08), 0 0 12px rgba(57, 255, 20, 0.15);
     }
 
-    .card-link.is-disabled {
-      opacity: 0.6;
-      pointer-events: none;
-    }
-
-    .cards-empty {
-      margin-top: 12px;
-      padding: 12px;
-      border: 1px dashed var(--crt-border);
-      border-radius: 10px;
-      background: rgba(8, 18, 10, 0.78);
-      color: var(--crt-text-soft);
-      font-family: Arial, sans-serif;
-      font-size: 0.9rem;
+    .ebay-storefront-cta:hover,
+    .ebay-storefront-cta:focus-visible {
+      color: #D7FFD1;
+      border-color: rgba(183, 255, 176, 0.9);
+      box-shadow: inset 0 0 0 1px rgba(183, 255, 176, 0.16), 0 0 14px rgba(57, 255, 20, 0.28);
     }
 
     @media (max-width: 768px) {
-      .cards-filter-grid {
-        grid-template-columns: 1fr 1fr;
-      }
-
-      .cards-filter-field.cards-filter-field--availability {
-        grid-column: 1 / -1;
-      }
-    }
-
-    @media (max-width: 480px) {
-      .cards-filter-grid {
+      .cards-storefront-grid {
         grid-template-columns: 1fr;
-      }
-
-      .cards-filter-field.cards-filter-field--availability {
-        grid-column: auto;
-      }
-
-      .card-media img {
-        height: 210px;
       }
     }
   </style>
@@ -267,148 +92,76 @@
   </div>
 
   <header>
-    <h1>BASEBALL CARDS</h1>
-    <p>Keep a simple inventory for each card with the same core details you would want to show on eBay.</p>
+    <h1>BASEBALL CARDS FOR SALE</h1>
+    <p>Visitors can view and purchase my available baseball cards securely through eBay.</p>
   </header>
 
   <main id="main-content">
-    <section class="page-intro-shell cards-intro-shell" aria-labelledby="cards-page-title">
+    <section class="archive-panel page-intro-shell cards-storefront-shell" aria-labelledby="cards-page-title">
       <div class="section-title-wrap">
-        <p class="section-kicker">Inventory page</p>
-        <h2 id="cards-page-title">A simple place to track baseball cards and future eBay listings.</h2>
+        <p class="section-kicker">Live storefront</p>
+        <h2 id="cards-page-title">Browse my current baseball-card listings on eBay.</h2>
       </div>
-      <p>The collection is blank right now on purpose. When you add cards later, each entry will show the same core details: title, player, team, year, brand, card number, condition, grade, price, description, and an eBay link.</p>
+      <p>These listings live on eBay, where you can see the latest photographs, descriptions, prices, and sold status for each card. Purchases and checkout are handled securely through eBay.</p>
       <div class="gallery-highlights">
+        <a href="https://www.ebay.com/sch/i.html?_ssn=er_524304" target="_blank" rel="noopener noreferrer" class="ebay-storefront-cta">Shop My Baseball Cards on eBay</a>
         <a href="index.html" class="secondary-cta-btn">Back to home</a>
       </div>
     </section>
 
-    <section aria-labelledby="cards-summary-title">
+    <section class="archive-panel" aria-labelledby="cards-how-it-works-title">
       <div class="section-title-wrap">
-        <p class="section-kicker">Collection</p>
-        <h2 id="cards-summary-title">Current inventory</h2>
+        <p class="section-kicker">How it works</p>
+        <h2 id="cards-how-it-works-title">A direct link to the active eBay storefront.</h2>
       </div>
-      <p id="cards-filter-summary" class="cards-filter-summary" role="status" aria-live="polite">Loading cards...</p>
-      <div id="cards-gallery" class="cards-grid" aria-live="polite"></div>
-      <div id="cards-empty" class="cards-empty">No baseball cards added yet. Add entries to cards.json when you are ready.</div>
+      <div class="cards-storefront-grid">
+        <article class="cards-storefront-card">
+          <h3>Current listings</h3>
+          <p>Open the eBay shop to view any active baseball cards I currently have for sale.</p>
+        </article>
+        <article class="cards-storefront-card">
+          <h3>Secure checkout</h3>
+          <p>Payments, purchases, and order details are handled directly by eBay.</p>
+        </article>
+        <article class="cards-storefront-card">
+          <h3>Easy updates</h3>
+          <p>I can add, remove, or revise listings on eBay without changing this page.</p>
+        </article>
+      </div>
     </section>
   </main>
 
-  <script>
-    const cardsDataUrl = 'cards.json';
-    const cardsGallery = document.getElementById('cards-gallery');
-    const cardsFilterSummary = document.getElementById('cards-filter-summary');
-    const cardsEmpty = document.getElementById('cards-empty');
+  <footer>
+    <div class="footer-content">
+      <div class="footer-section">
+        <h3>Quick Links</h3>
+        <ul>
+          <li><a href="index.html">Home</a></li>
+          <li><a href="photos.html">Photos</a></li>
+          <li><a href="music.html">Music</a></li>
+          <li><a href="cards.html">Baseball Cards</a></li>
+          <li><a href="changing-channel.html">The Changing Channel</a></li>
+        </ul>
+      </div>
 
-    let allCards = [];
+      <div class="footer-section">
+        <h3>Connect</h3>
+        <div class="social-links">
+          <a href="https://abefroman1978.substack.com/" target="_blank" rel="noopener noreferrer" title="Substack">📧 Substack</a>
+          <a href="https://youtube.com/playlist?list=PLbaYlPY2lbIItsGmHkmv5vWe0Lj4_GJqr" target="_blank" rel="noopener noreferrer" title="YouTube">🎬 YouTube</a>
+        </div>
+      </div>
 
-    function normalizeCard(card, index) {
-      return {
-        id: card.id || `card-${index + 1}`,
-        title: card.title || `${card.player || 'Baseball card'} ${card.year || ''}`.trim(),
-        player: card.player || 'Unknown player',
-        year: card.year || 'Unknown',
-        team: card.team || 'Unknown team',
-        brand: card.brand || card.manufacturer || 'Unknown brand',
-        cardNumber: card.cardNumber || card.card_number || card.number || 'N/A',
-        condition: card.condition || 'Unknown',
-        grade: card.grade || card.gradeValue || 'Ungraded',
-        price: card.price || card.estimatedValue || 'Not set',
-        description: card.description || card.notes || 'Add a short description later.',
-        ebayListingUrl: card.ebayListingUrl || card.ebayUrl || card.listingUrl || 'https://www.ebay.com/'
-      };
-    }
+      <div class="footer-section">
+        <h3>About</h3>
+        <p>Stories, animation, code, and strange ideas. <br>Built with attention to detail.</p>
+      </div>
+    </div>
 
-    function createCardElement(card) {
-      const article = document.createElement('article');
-      article.className = 'card-item';
-
-      const body = document.createElement('div');
-      body.className = 'card-body';
-
-      const title = document.createElement('h3');
-      title.className = 'card-title';
-      title.textContent = card.title;
-
-      const meta = document.createElement('p');
-      meta.className = 'card-meta';
-      meta.innerHTML = [
-        `Player: ${card.player}`,
-        `Team: ${card.team}`,
-        `Year: ${card.year}`,
-        `Brand: ${card.brand}`,
-        `Card #: ${card.cardNumber}`,
-        `Condition: ${card.condition}`,
-        `Grade: ${card.grade}`,
-        `Price: ${card.price}`
-      ].join('<br>');
-
-      const description = document.createElement('p');
-      description.className = 'card-notes';
-      description.textContent = `Description: ${card.description}`;
-
-      const actions = document.createElement('div');
-      actions.className = 'card-actions';
-
-      const ebayLink = document.createElement('a');
-      ebayLink.className = 'card-link';
-      ebayLink.href = card.ebayListingUrl;
-      ebayLink.target = '_blank';
-      ebayLink.rel = 'noopener noreferrer';
-      ebayLink.textContent = card.ebayListingUrl === 'https://www.ebay.com/' ? 'Add eBay link later' : 'View on eBay';
-
-      actions.appendChild(ebayLink);
-
-      body.appendChild(title);
-      body.appendChild(meta);
-      body.appendChild(description);
-      body.appendChild(actions);
-
-      article.appendChild(body);
-      return article;
-    }
-
-    function renderCards() {
-      cardsGallery.innerHTML = '';
-
-      if (!allCards.length) {
-        cardsEmpty.hidden = false;
-        cardsFilterSummary.textContent = 'No cards added yet.';
-        return;
-      }
-
-      cardsEmpty.hidden = true;
-      const fragment = document.createDocumentFragment();
-      allCards.forEach((card) => {
-        fragment.appendChild(createCardElement(card));
-      });
-      cardsGallery.appendChild(fragment);
-      cardsFilterSummary.textContent = `Showing ${allCards.length} card${allCards.length === 1 ? '' : 's'}.`;
-    }
-
-    async function loadCards() {
-      try {
-        const response = await fetch(cardsDataUrl);
-        if (!response.ok) {
-          throw new Error(`cards.json request failed with ${response.status}`);
-        }
-
-        const rawData = await response.json();
-        if (!Array.isArray(rawData)) {
-          throw new Error('cards.json must contain an array of card objects.');
-        }
-
-        allCards = rawData.map((card, index) => normalizeCard(card, index));
-        renderCards();
-      } catch (error) {
-        console.error(error);
-        cardsFilterSummary.textContent = 'Unable to load cards data right now.';
-        cardsEmpty.hidden = false;
-        cardsEmpty.textContent = 'Cards data could not be loaded. Check cards.json and refresh the page.';
-      }
-    }
-
-    loadCards();
-  </script>
+    <div class="footer-bottom">
+      <p>&copy; 2026 Eric Stone. All rights reserved.</p>
+      <p><a href="#top" class="back-to-top">↑ Back to Top</a></p>
+    </div>
+  </footer>
 </body>
 </html>
