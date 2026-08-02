@@ -262,305 +262,128 @@
     <a href="more-images.html">More Images</a>
     <a href="music.html">Music</a>
     <a href="javascript-games.html">Games</a>
+    <a href="cards.html" aria-current="page">Baseball Cards</a>
     <a href="changing-channel.html">The Changing Channel</a>
-    <a href="cards.html" aria-current="page">Cards & Collectibles</a>
   </div>
 
   <header>
-    <h1>CARDS & COLLECTIBLES</h1>
-    <p>Player cards, condition notes, and listings routed through eBay.</p>
+    <h1>BASEBALL CARDS</h1>
+    <p>Keep a simple inventory for each card with the same core details you would want to show on eBay.</p>
   </header>
 
   <main id="main-content">
     <section class="page-intro-shell cards-intro-shell" aria-labelledby="cards-page-title">
       <div class="section-title-wrap">
-        <p class="section-kicker">Collection catalog</p>
-        <h2 id="cards-page-title">Browse by player, year, and availability.</h2>
+        <p class="section-kicker">Inventory page</p>
+        <h2 id="cards-page-title">A simple place to track baseball cards and future eBay listings.</h2>
       </div>
-      <p>Each card includes front and back images, card details, estimated value, and a direct eBay link when listed.</p>
+      <p>The collection is blank right now on purpose. When you add cards later, each entry will show the same core details: title, player, team, year, brand, card number, condition, grade, price, description, and an eBay link.</p>
       <div class="gallery-highlights">
         <a href="index.html" class="secondary-cta-btn">Back to home</a>
-        <a href="photos.html" class="secondary-cta-btn">Back to photos</a>
       </div>
     </section>
 
-    <section class="filter-section" aria-labelledby="cards-filter-title">
+    <section aria-labelledby="cards-summary-title">
       <div class="section-title-wrap">
-        <p class="section-kicker">Filters</p>
-        <h2 id="cards-filter-title">Narrow the collection</h2>
-      </div>
-      <div class="cards-filter-grid">
-        <div class="cards-filter-field">
-          <label for="player-filter">Player</label>
-          <select id="player-filter" name="player-filter">
-            <option value="all">All players</option>
-          </select>
-        </div>
-        <div class="cards-filter-field">
-          <label for="year-filter">Year</label>
-          <select id="year-filter" name="year-filter">
-            <option value="all">All years</option>
-          </select>
-        </div>
-        <div class="cards-filter-field cards-filter-field--availability">
-          <label for="availability-filter">Availability</label>
-          <select id="availability-filter" name="availability-filter">
-            <option value="all">All statuses</option>
-            <option value="available">Available</option>
-            <option value="pending">Pending</option>
-            <option value="sold">Sold</option>
-          </select>
-        </div>
+        <p class="section-kicker">Collection</p>
+        <h2 id="cards-summary-title">Current inventory</h2>
       </div>
       <p id="cards-filter-summary" class="cards-filter-summary" role="status" aria-live="polite">Loading cards...</p>
-    </section>
-
-    <section aria-labelledby="cards-gallery-title">
-      <div class="section-title-wrap">
-        <p class="section-kicker">Gallery</p>
-        <h2 id="cards-gallery-title">Cards</h2>
-      </div>
       <div id="cards-gallery" class="cards-grid" aria-live="polite"></div>
-      <div id="cards-empty" class="cards-empty" hidden>No cards match these filters right now.</div>
+      <div id="cards-empty" class="cards-empty">No baseball cards added yet. Add entries to cards.json when you are ready.</div>
     </section>
   </main>
 
   <script>
     const cardsDataUrl = 'cards.json';
-
-    const playerFilter = document.getElementById('player-filter');
-    const yearFilter = document.getElementById('year-filter');
-    const availabilityFilter = document.getElementById('availability-filter');
     const cardsGallery = document.getElementById('cards-gallery');
     const cardsFilterSummary = document.getElementById('cards-filter-summary');
     const cardsEmpty = document.getElementById('cards-empty');
 
     let allCards = [];
 
-    function normalizeSaleStatus(value) {
-      const raw = String(value || '').trim().toLowerCase();
-      if (raw === 'sold') {
-        return 'sold';
-      }
-      if (raw === 'pending') {
-        return 'pending';
-      }
-      return 'available';
-    }
-
-    function statusLabel(status) {
-      if (status === 'sold') {
-        return 'Sold';
-      }
-      if (status === 'pending') {
-        return 'Pending';
-      }
-      return 'Available';
-    }
-
     function normalizeCard(card, index) {
-      const player = card.player || card.name || 'Unknown player';
-      const year = String(card.year || card.cardYear || 'Unknown');
-      const sport = card.sport || 'Unknown sport';
-      const team = card.team || 'Unknown team';
-      const manufacturer = card.manufacturer || card.brand || 'Unknown manufacturer';
-      const cardNumber = card.cardNumber || card.card_number || card.number || 'N/A';
-      const condition = card.condition || 'Unknown';
-      const gradeCompany = card.gradeCompany || card.grader || '';
-      const gradeValue = card.gradeValue || card.grade || '';
-      const estimatedValue = card.estimatedValue || card.value || 'Not set';
-      const saleStatus = normalizeSaleStatus(card.saleStatus || card.status || card.availability);
-      const frontImage = card.frontImage || card.imageFront || card.image || '';
-      const backImage = card.backImage || card.imageBack || frontImage;
-      const dateAdded = card.dateAdded || card.addedOn || '';
-      const notes = card.notes || '';
-      const ebayListingUrl = card.ebayListingUrl || card.ebayUrl || card.listingUrl || '';
-
       return {
         id: card.id || `card-${index + 1}`,
-        player,
-        year,
-        sport,
-        team,
-        manufacturer,
-        cardNumber,
-        condition,
-        gradeCompany,
-        gradeValue,
-        estimatedValue,
-        saleStatus,
-        frontImage,
-        backImage,
-        dateAdded,
-        notes,
-        ebayListingUrl
+        title: card.title || `${card.player || 'Baseball card'} ${card.year || ''}`.trim(),
+        player: card.player || 'Unknown player',
+        year: card.year || 'Unknown',
+        team: card.team || 'Unknown team',
+        brand: card.brand || card.manufacturer || 'Unknown brand',
+        cardNumber: card.cardNumber || card.card_number || card.number || 'N/A',
+        condition: card.condition || 'Unknown',
+        grade: card.grade || card.gradeValue || 'Ungraded',
+        price: card.price || card.estimatedValue || 'Not set',
+        description: card.description || card.notes || 'Add a short description later.',
+        ebayListingUrl: card.ebayListingUrl || card.ebayUrl || card.listingUrl || 'https://www.ebay.com/'
       };
-    }
-
-    function setFilterOptions(cards) {
-      const players = Array.from(new Set(cards.map((card) => card.player))).sort((a, b) => a.localeCompare(b));
-      const years = Array.from(new Set(cards.map((card) => card.year))).sort((a, b) => Number(b) - Number(a));
-
-      for (const player of players) {
-        const option = document.createElement('option');
-        option.value = player;
-        option.textContent = player;
-        playerFilter.appendChild(option);
-      }
-
-      for (const year of years) {
-        const option = document.createElement('option');
-        option.value = year;
-        option.textContent = year;
-        yearFilter.appendChild(option);
-      }
-    }
-
-    function applyFilters(cards) {
-      const selectedPlayer = playerFilter.value;
-      const selectedYear = yearFilter.value;
-      const selectedAvailability = availabilityFilter.value;
-
-      return cards.filter((card) => {
-        const matchesPlayer = selectedPlayer === 'all' || card.player === selectedPlayer;
-        const matchesYear = selectedYear === 'all' || card.year === selectedYear;
-        const matchesAvailability = selectedAvailability === 'all' || card.saleStatus === selectedAvailability;
-        return matchesPlayer && matchesYear && matchesAvailability;
-      });
-    }
-
-    function createMediaSwitchButton(label, isActive, onClick) {
-      const button = document.createElement('button');
-      button.type = 'button';
-      button.textContent = label;
-      if (isActive) {
-        button.classList.add('is-active');
-      }
-      button.addEventListener('click', onClick);
-      return button;
     }
 
     function createCardElement(card) {
       const article = document.createElement('article');
       article.className = 'card-item';
 
-      const figure = document.createElement('figure');
-      figure.className = 'card-media';
-
-      const mediaLabel = document.createElement('span');
-      mediaLabel.className = 'card-media-label';
-      mediaLabel.textContent = 'Front';
-
-      const image = document.createElement('img');
-      image.src = card.frontImage;
-      image.alt = `${card.player} ${card.year} ${card.manufacturer} card front`;
-      image.loading = 'lazy';
-
-      figure.appendChild(mediaLabel);
-      figure.appendChild(image);
-
-      const switchWrap = document.createElement('div');
-      switchWrap.className = 'card-media-switch';
-
-      const frontButton = createMediaSwitchButton('Front', true, () => {
-        image.src = card.frontImage;
-        image.alt = `${card.player} ${card.year} ${card.manufacturer} card front`;
-        mediaLabel.textContent = 'Front';
-        frontButton.classList.add('is-active');
-        backButton.classList.remove('is-active');
-      });
-
-      const backButton = createMediaSwitchButton('Back', false, () => {
-        image.src = card.backImage;
-        image.alt = `${card.player} ${card.year} ${card.manufacturer} card back`;
-        mediaLabel.textContent = 'Back';
-        backButton.classList.add('is-active');
-        frontButton.classList.remove('is-active');
-      });
-
-      switchWrap.appendChild(frontButton);
-      switchWrap.appendChild(backButton);
-
       const body = document.createElement('div');
       body.className = 'card-body';
 
       const title = document.createElement('h3');
       title.className = 'card-title';
-      title.textContent = card.player;
-
-      const statusPill = document.createElement('span');
-      statusPill.className = `card-status is-${card.saleStatus}`;
-      statusPill.textContent = statusLabel(card.saleStatus);
+      title.textContent = card.title;
 
       const meta = document.createElement('p');
       meta.className = 'card-meta';
-      const gradeLabel = card.gradeValue
-        ? `${card.gradeCompany || 'Grade'} ${card.gradeValue}`.trim()
-        : 'Ungraded';
-      const dateAddedLabel = card.dateAdded ? card.dateAdded : 'Not set';
-      meta.innerHTML =
-        `Sport: ${card.sport}<br>` +
-        `Team: ${card.team}<br>` +
-        `Year: ${card.year}<br>` +
-        `Manufacturer: ${card.manufacturer}<br>` +
-        `Card #: ${card.cardNumber}<br>` +
-        `Condition: ${card.condition}<br>` +
-        `Grade: ${gradeLabel}<br>` +
-        `Estimated value: ${card.estimatedValue}<br>` +
-        `Date added: ${dateAddedLabel}`;
+      meta.innerHTML = [
+        `Player: ${card.player}`,
+        `Team: ${card.team}`,
+        `Year: ${card.year}`,
+        `Brand: ${card.brand}`,
+        `Card #: ${card.cardNumber}`,
+        `Condition: ${card.condition}`,
+        `Grade: ${card.grade}`,
+        `Price: ${card.price}`
+      ].join('<br>');
 
-      const notes = document.createElement('p');
-      notes.className = 'card-notes';
-      notes.textContent = card.notes ? `Notes: ${card.notes}` : 'Notes: none yet.';
+      const description = document.createElement('p');
+      description.className = 'card-notes';
+      description.textContent = `Description: ${card.description}`;
 
       const actions = document.createElement('div');
       actions.className = 'card-actions';
 
       const ebayLink = document.createElement('a');
       ebayLink.className = 'card-link';
-
-      if (card.ebayListingUrl) {
-        ebayLink.href = card.ebayListingUrl;
-        ebayLink.target = '_blank';
-        ebayLink.rel = 'noopener noreferrer';
-        ebayLink.textContent = 'View on eBay';
-      } else {
-        ebayLink.href = '#';
-        ebayLink.classList.add('is-disabled');
-        ebayLink.setAttribute('aria-disabled', 'true');
-        ebayLink.textContent = 'Not listed on eBay';
-      }
+      ebayLink.href = card.ebayListingUrl;
+      ebayLink.target = '_blank';
+      ebayLink.rel = 'noopener noreferrer';
+      ebayLink.textContent = card.ebayListingUrl === 'https://www.ebay.com/' ? 'Add eBay link later' : 'View on eBay';
 
       actions.appendChild(ebayLink);
 
       body.appendChild(title);
-      body.appendChild(statusPill);
       body.appendChild(meta);
-      body.appendChild(notes);
+      body.appendChild(description);
       body.appendChild(actions);
 
-      article.appendChild(figure);
-      article.appendChild(switchWrap);
       article.appendChild(body);
       return article;
     }
 
     function renderCards() {
-      const filteredCards = applyFilters(allCards);
       cardsGallery.innerHTML = '';
 
-      if (!filteredCards.length) {
+      if (!allCards.length) {
         cardsEmpty.hidden = false;
-      } else {
-        cardsEmpty.hidden = true;
-        const fragment = document.createDocumentFragment();
-        filteredCards.forEach((card) => {
-          fragment.appendChild(createCardElement(card));
-        });
-        cardsGallery.appendChild(fragment);
+        cardsFilterSummary.textContent = 'No cards added yet.';
+        return;
       }
 
-      cardsFilterSummary.textContent = `Showing ${filteredCards.length} of ${allCards.length} cards.`;
+      cardsEmpty.hidden = true;
+      const fragment = document.createDocumentFragment();
+      allCards.forEach((card) => {
+        fragment.appendChild(createCardElement(card));
+      });
+      cardsGallery.appendChild(fragment);
+      cardsFilterSummary.textContent = `Showing ${allCards.length} card${allCards.length === 1 ? '' : 's'}.`;
     }
 
     async function loadCards() {
@@ -576,8 +399,6 @@
         }
 
         allCards = rawData.map((card, index) => normalizeCard(card, index));
-
-        setFilterOptions(allCards);
         renderCards();
       } catch (error) {
         console.error(error);
@@ -586,10 +407,6 @@
         cardsEmpty.textContent = 'Cards data could not be loaded. Check cards.json and refresh the page.';
       }
     }
-
-    playerFilter.addEventListener('change', renderCards);
-    yearFilter.addEventListener('change', renderCards);
-    availabilityFilter.addEventListener('change', renderCards);
 
     loadCards();
   </script>
