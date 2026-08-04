@@ -1,0 +1,265 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Watch Life of Jaffar, an independent animated comedy series created by Eric Stone, featuring more than 80 episodes and a growing universe of strange characters.">
+    <meta property="og:title" content="Life of Jaffar">
+    <meta property="og:description" content="More than 80 episodes of independent animated comedy from Eric Stone.">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://theericstone.com/jaffar.html">
+    <title>Life of Jaffar | Eric Stone</title>
+    <link rel="stylesheet" href="style.css?v=20260726-blackfix">
+    <style>
+        .jaffar-hero-shell {
+            border-left-color: var(--crt-highlight);
+            background: linear-gradient(135deg, rgba(8, 18, 10, 0.96), rgba(10, 22, 12, 0.84));
+        }
+
+        .jaffar-subheading {
+            margin: 6px 0 12px;
+            font-size: clamp(1rem, 2.2vw, 1.2rem);
+            color: var(--crt-text);
+            text-shadow: 0 0 8px rgba(57, 255, 20, 0.18);
+        }
+
+        .jaffar-intro {
+            max-width: 760px;
+            margin: 0 0 20px;
+            color: var(--crt-text-soft);
+            font-size: 1rem;
+            line-height: 1.7;
+        }
+
+        .jaffar-actions {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 12px;
+            margin-top: 18px;
+        }
+
+        .jaffar-actions .hero-cta-btn,
+        .jaffar-actions .secondary-cta-btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            min-height: 46px;
+            padding: 12px 18px;
+        }
+
+        .jaffar-video-shell {
+            padding-bottom: 20px;
+        }
+
+        .jaffar-video-frame {
+            position: relative;
+            width: 100%;
+            max-width: 100%;
+            aspect-ratio: 16 / 9;
+            overflow: hidden;
+            border: 1px solid var(--crt-border-strong);
+            border-radius: 12px;
+            background: rgba(5, 10, 6, 0.95);
+            box-shadow: inset 0 0 0 1px rgba(57, 255, 20, 0.08), 0 0 16px rgba(57, 255, 20, 0.16);
+        }
+
+        .jaffar-video-frame iframe {
+            width: 100%;
+            height: 100%;
+            border: 0;
+            display: block;
+            background: rgba(5, 10, 6, 0.95);
+        }
+
+        .jaffar-playlist-note {
+            margin-top: 10px;
+            color: var(--crt-dim);
+            font-size: 0.95rem;
+        }
+
+        .jaffar-badge {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            padding: 6px 10px;
+            margin-top: 10px;
+            border: 1px solid var(--crt-border-strong);
+            border-radius: 999px;
+            background: rgba(8, 18, 10, 0.88);
+            color: var(--crt-text);
+            font-size: 0.82rem;
+            text-transform: uppercase;
+            letter-spacing: 0.08em;
+            font-family: "Courier New", "Lucida Console", Monaco, monospace;
+        }
+
+        .jaffar-cta-shell {
+            border-left-color: var(--crt-highlight);
+            background: linear-gradient(135deg, rgba(8, 18, 10, 0.94), rgba(12, 24, 14, 0.84));
+        }
+
+        .jaffar-cta-shell .hero-cta-btn {
+            margin-top: 10px;
+        }
+
+        @media (max-width: 768px) {
+            .jaffar-actions {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+
+            .jaffar-actions .hero-cta-btn,
+            .jaffar-actions .secondary-cta-btn {
+                width: 100%;
+            }
+        }
+
+        @media (prefers-reduced-motion: reduce) {
+            body {
+                animation: none !important;
+            }
+
+            *, *::before, *::after {
+                animation: none !important;
+                transition: none !important;
+                scroll-behavior: auto !important;
+            }
+        }
+    </style>
+</head>
+<body id="top">
+    <a class="skip-link" href="#main-content">Skip to main content</a>
+    <div class="global-nav" role="navigation" aria-label="Primary">
+        <a href="index.html">Home</a>
+        <a href="photos.html">Photos</a>
+        <a href="more-images.html">More Images</a>
+        <a href="music.html">Music</a>
+        <a href="javascript-games.html">Games</a>
+        <a href="cards.html">Baseball Cards</a>
+        <a href="changing-channel.html">The Changing Channel</a>
+    </div>
+
+    <header>
+        <div class="header-main">
+            <div class="header-globe" aria-hidden="true">
+                <div class="retro-globe-wrap">
+                    <div class="retro-globe">
+                        <img class="retro-globe-image" src="images/mars-red.svg" alt="" loading="lazy" decoding="async">
+                    </div>
+                </div>
+            </div>
+
+            <div class="header-copy">
+                <h1>ERIC STONE</h1>
+                <p class="header-tagline">Watch Life of Jaffar, then explore stories, animation, games, and strange ideas.</p>
+            </div>
+
+            <div class="header-callouts">
+                <aside class="header-callout header-support" aria-label="Support my work">
+                    <p class="header-support-title">Support my work</p>
+                    <a href="https://venmo.com/Eric-Stone-262" target="_blank" rel="noopener noreferrer" class="donate-btn">💳 Donate via Venmo</a>
+                    <p class="header-support-note">Helps fund new animations, music uploads, and site experiments.</p>
+                </aside>
+                <aside class="header-callout header-screenplay" aria-label="Blue Engine screenplay showcase">
+                    <p class="header-support-title">Blue Engine</p>
+                    <a href="https://open.substack.com/pub/abefroman1978/p/blue-engine?r=61vhfy&utm_campaign=post&utm_medium=web&showWelcomeOnShare=true" target="_blank" rel="noopener noreferrer" class="donate-btn">Read on Substack</a>
+                    <p class="header-support-note">New screenplay drop. Read the <a href="Blue_Engine_Official_Screenplay.pdf" target="_blank" rel="noopener noreferrer">full PDF</a>.</p>
+                </aside>
+            </div>
+        </div>
+    </header>
+
+    <main id="main-content">
+        <section class="archive-panel page-intro-shell jaffar-hero-shell" aria-labelledby="jaffar-hero-title">
+            <div class="section-title-wrap">
+                <p class="section-kicker">AN ERIC STONE ANIMATED SERIES</p>
+                <h2 id="jaffar-hero-title">LIFE OF JAFFAR</h2>
+            </div>
+            <p class="jaffar-subheading">More than 80 episodes of homemade animated chaos.</p>
+            <p class="jaffar-intro">
+                Life of Jaffar is an independent animated comedy created by Eric Stone. What began as one strange character grew into an entire universe of detectives, doctors, pirates, criminals, friends, enemies and people who probably should not be trusted with anything important.
+            </p>
+            <div class="jaffar-actions">
+                <a href="https://www.youtube.com/playlist?list=PLbaYlPY2lbIItsGmHkmv5vWe0Lj4_GJqr" target="_blank" rel="noopener noreferrer" class="hero-cta-btn">▶ WATCH LIFE OF JAFFAR ON YOUTUBE</a>
+                <a href="index.html" class="secondary-cta-btn">← Return to Eric Stone</a>
+            </div>
+        </section>
+
+        <section class="archive-panel jaffar-video-shell" aria-labelledby="playlist-title">
+            <div class="section-title-wrap">
+                <p class="section-kicker">YOUTUBE PLAYLIST</p>
+                <h2 id="playlist-title">Watch the complete series.</h2>
+            </div>
+            <div class="jaffar-video-frame">
+                <iframe
+                    src="https://www.youtube-nocookie.com/embed/videoseries?list=PLbaYlPY2lbIItsGmHkmv5vWe0Lj4_GJqr"
+                    title="Life of Jaffar YouTube playlist"
+                    loading="lazy"
+                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                    allowfullscreen>
+                </iframe>
+            </div>
+            <p class="jaffar-playlist-note">
+                If the embedded player does not load, <a href="https://www.youtube.com/playlist?list=PLbaYlPY2lbIItsGmHkmv5vWe0Lj4_GJqr" target="_blank" rel="noopener noreferrer">open the full playlist on YouTube</a>.
+            </p>
+        </section>
+
+        <section class="archive-panel" aria-labelledby="about-title">
+            <div class="section-title-wrap">
+                <p class="section-kicker">ABOUT THE SHOW</p>
+                <h2 id="about-title">A strange, funny universe built one episode at a time.</h2>
+            </div>
+            <p class="jaffar-intro">
+                Life of Jaffar is a long-running homemade animated series built one episode, one voice and one questionable decision at a time. The show follows Jaffar and an expanding cast that includes Detective White, Orf, Betty, Big Charles, Veronica, Buster, Dr. Puffenstein, Dr. Oxwaltz, Nurse Lucy, pirates, criminals and assorted troublemakers.
+            </p>
+            <p class="jaffar-intro">
+                It is weird, funny, occasionally chaotic and entirely its own thing.
+            </p>
+            <div class="jaffar-badge">ADULT ANIMATED COMEDY</div>
+        </section>
+
+        <section class="archive-panel jaffar-cta-shell" aria-labelledby="final-cta-title">
+            <div class="section-title-wrap">
+                <p class="section-kicker">FINAL CALL TO ACTION</p>
+                <h2 id="final-cta-title">READY TO ENTER JAFFAR’S WORLD?</h2>
+            </div>
+            <p class="jaffar-intro">The complete series is waiting on YouTube.</p>
+            <a href="https://www.youtube.com/playlist?list=PLbaYlPY2lbIItsGmHkmv5vWe0Lj4_GJqr" target="_blank" rel="noopener noreferrer" class="hero-cta-btn">WATCH ALL EPISODES →</a>
+        </section>
+    </main>
+
+    <footer>
+        <div class="footer-content">
+            <div class="footer-section">
+                <h3>Quick Links</h3>
+                <ul>
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="photos.html">Photos</a></li>
+                    <li><a href="music.html">Music</a></li>
+                    <li><a href="jaffar.html">Life of Jaffar</a></li>
+                    <li><a href="cards.html">Baseball Cards</a></li>
+                    <li><a href="changing-channel.html">The Changing Channel</a></li>
+                </ul>
+            </div>
+
+            <div class="footer-section">
+                <h3>Connect</h3>
+                <div class="social-links">
+                    <a href="https://abefroman1978.substack.com/" target="_blank" rel="noopener noreferrer" title="Substack">📧 Substack</a>
+                    <a href="https://youtube.com/playlist?list=PLbaYlPY2lbIItsGmHkmv5vWe0Lj4_GJqr" target="_blank" rel="noopener noreferrer" title="YouTube">🎬 YouTube</a>
+                </div>
+            </div>
+
+            <div class="footer-section">
+                <h3>About</h3>
+                <p>Stories, animation, code, and strange ideas. <br>Built with attention to detail.</p>
+            </div>
+        </div>
+
+        <div class="footer-bottom">
+            <p>&copy; 2026 Eric Stone. All rights reserved.</p>
+            <p><a href="#top" class="back-to-top">↑ Back to Top</a></p>
+        </div>
+    </footer>
+</body>
+</html>
