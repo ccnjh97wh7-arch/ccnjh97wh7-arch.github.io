@@ -3,41 +3,60 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="The Changing Channel: leave a comment and share a memory from the late 1990s.">
+  <meta name="description" content="One strange old movie every week, broadcasting from somewhere beyond the normal television dial.">
   <meta property="og:type" content="website">
   <meta property="og:title" content="The Changing Channel | Eric Stone">
-  <meta property="og:description" content="Leave a comment and share a memory from the late 1990s.">
-  <meta property="og:url" content="https://ccnjh97wh7-arch.github.io/changing-channel.html">
-  <meta property="og:image" content="https://ccnjh97wh7-arch.github.io/images/17882340400264763.jpg">
+  <meta property="og:description" content="One strange old movie every week, broadcasting from somewhere beyond the normal television dial.">
+  <meta property="og:url" content="https://theericstone.com/changing-channel.html">
+  <meta property="og:image" content="https://theericstone.com/images/17882340400264763.jpg">
   <meta name="twitter:card" content="summary_large_image">
   <meta name="twitter:title" content="The Changing Channel | Eric Stone">
-  <meta name="twitter:description" content="Leave a comment and share a memory from the late 1990s.">
-  <meta name="twitter:image" content="https://ccnjh97wh7-arch.github.io/images/17882340400264763.jpg">
+  <meta name="twitter:description" content="One strange old movie every week, broadcasting from somewhere beyond the normal television dial.">
+  <meta name="twitter:image" content="https://theericstone.com/images/17882340400264763.jpg">
   <title>The Changing Channel</title>
   <style>
     :root {
-      --bg: #050806;
-      --panel: #0f1a11;
-      --panel-2: #16261c;
-      --text: #e7f9e8;
-      --muted: #9fb8a4;
-      --accent: #74ff9a;
-      --accent-2: #2ecb6f;
-      --border: #2f6b3d;
-      --shadow: rgba(0, 0, 0, 0.45);
+      --bg: #020403;
+      --panel: rgba(7, 16, 10, 0.96);
+      --panel-2: rgba(12, 20, 14, 0.95);
+      --text: #f3fff6;
+      --muted: #9ec7a9;
+      --accent: #7dffb0;
+      --accent-2: #4bedff;
+      --warning: #ff5e5e;
+      --border: #2a924f;
+      --border-2: #2d5c81;
+      --shadow: rgba(0, 0, 0, 0.6);
     }
 
     * { box-sizing: border-box; }
 
+    html { scroll-behavior: smooth; }
+
     body {
       margin: 0;
       min-height: 100vh;
-      font-family: Georgia, "Times New Roman", serif;
+      font-family: "Courier New", Courier, monospace;
       line-height: 1.6;
       color: var(--text);
       background:
-        radial-gradient(circle at top left, rgba(116, 255, 154, 0.14), transparent 30%),
-        linear-gradient(180deg, #030604 0%, #09130b 100%);
+        radial-gradient(circle at top left, rgba(125, 255, 176, 0.12), transparent 30%),
+        linear-gradient(180deg, #010302 0%, #07110b 100%);
+      position: relative;
+      overflow-x: hidden;
+    }
+
+    body::before {
+      content: "";
+      position: fixed;
+      inset: 0;
+      pointer-events: none;
+      background:
+        repeating-linear-gradient(180deg, rgba(125, 255, 176, 0.05) 0 1px, transparent 1px 3px),
+        linear-gradient(90deg, rgba(0, 0, 0, 0.16), rgba(255, 255, 255, 0.03), rgba(0, 0, 0, 0.16));
+      mix-blend-mode: screen;
+      opacity: 0.35;
+      z-index: 0;
     }
 
     a { color: var(--accent); }
@@ -45,12 +64,12 @@
     .skip-link {
       position: absolute;
       left: 12px;
-      top: -40px;
+      top: -48px;
       padding: 8px 12px;
-      background: #fff;
+      background: var(--text);
       color: #111;
       text-decoration: none;
-      z-index: 10;
+      z-index: 20;
       border-radius: 6px;
     }
 
@@ -62,24 +81,28 @@
       display: flex;
       flex-wrap: wrap;
       gap: 8px;
+      position: relative;
+      z-index: 2;
     }
 
     .top-nav a {
       text-decoration: none;
       padding: 7px 10px;
-      border: 1px solid rgba(116, 255, 154, 0.35);
+      border: 1px solid rgba(125, 255, 176, 0.34);
       border-radius: 999px;
-      background: rgba(10, 16, 12, 0.75);
-      color: #dfffe5;
-      font-size: 0.85rem;
+      background: rgba(3, 9, 6, 0.9);
+      color: #dfffea;
+      font-size: 0.82rem;
       text-transform: uppercase;
       letter-spacing: 0.06em;
     }
 
     main {
-      width: min(760px, calc(100% - 24px));
+      width: min(920px, calc(100% - 24px));
       margin: 0 auto;
-      padding: 28px 0 60px;
+      padding: 24px 0 64px;
+      position: relative;
+      z-index: 1;
     }
 
     .back-link {
@@ -89,33 +112,191 @@
       color: var(--accent);
     }
 
-    h1 {
-      margin: 0 0 10px;
-      font-size: clamp(2rem, 5vw, 3rem);
-      color: var(--accent);
-      text-shadow: 0 0 14px rgba(116, 255, 154, 0.22);
+    .page-head {
+      margin-bottom: 24px;
     }
 
-    .intro {
-      margin: 0 0 24px;
+    .page-kicker {
+      margin: 0 0 8px;
+      color: var(--warning);
+      font-size: 0.82rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      font-weight: 700;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .live-dot {
+      display: inline-block;
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+      background: var(--warning);
+      box-shadow: 0 0 10px var(--warning);
+      animation: pulse 1.4s ease-in-out infinite;
+    }
+
+    h1 {
+      margin: 0;
+      font-size: clamp(2rem, 5vw, 3.1rem);
+      color: var(--accent);
+      text-shadow: 0 0 12px rgba(125, 255, 176, 0.2);
+    }
+
+    .tagline {
+      margin: 8px 0 0;
       color: var(--muted);
-      font-size: 1.02rem;
+      font-size: 1rem;
+      max-width: 720px;
     }
 
     .panel {
-      background: linear-gradient(180deg, rgba(15, 26, 17, 0.98), rgba(10, 17, 12, 0.97));
+      background: linear-gradient(180deg, rgba(9, 19, 13, 0.98), rgba(6, 14, 9, 0.98));
       border: 1px solid var(--border);
       border-radius: 16px;
       box-shadow: 0 10px 24px var(--shadow);
       padding: 22px;
-      margin-bottom: 20px;
+      margin-bottom: 18px;
+      position: relative;
     }
 
-    form label {
+    .panel::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      border-radius: inherit;
+      pointer-events: none;
+    }
+
+    .panel h2, .panel h3 {
+      margin-top: 0;
+      color: var(--accent);
+      font-size: 1.1rem;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+    }
+
+    .intro-copy {
+      margin: 0 0 16px;
+      color: #eafef0;
+      max-width: 760px;
+    }
+
+    .movie-meta {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      margin-bottom: 12px;
+      color: var(--accent-2);
+      font-size: 0.92rem;
+    }
+
+    .movie-meta span {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 4px 8px;
+      border: 1px solid rgba(77, 238, 255, 0.24);
+      border-radius: 999px;
+      background: rgba(77, 238, 255, 0.08);
+    }
+
+    .player-shell {
+      margin: 16px 0 12px;
+      border: 1px solid rgba(125, 255, 176, 0.24);
+      border-radius: 12px;
+      overflow: hidden;
+      background: #010403;
+      box-shadow: inset 0 0 20px rgba(125, 255, 176, 0.08);
+    }
+
+    .player-frame {
       display: block;
-      margin: 0 0 6px;
+      width: 100%;
+      aspect-ratio: 16 / 9;
+      border: 0;
+      background: #000;
+    }
+
+    .source-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      margin-top: 10px;
+      text-decoration: none;
       font-weight: 700;
-      color: #ddffe2;
+      color: var(--accent);
+    }
+
+    .source-link:hover { text-decoration: underline; }
+
+    .rights-label, .content-note, .countdown-label, .schedule-note, .status-message, .form-help {
+      color: #eefcf1;
+      font-size: 0.95rem;
+    }
+
+    .countdown-box {
+      margin-top: 14px;
+      padding: 12px 14px;
+      border: 1px solid rgba(255, 94, 94, 0.4);
+      background: rgba(255, 94, 94, 0.11);
+      border-radius: 10px;
+      color: #ffd9d9;
+    }
+
+    .countdown-box strong {
+      display: block;
+      margin-bottom: 4px;
+      color: var(--warning);
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+    }
+
+    .archive-grid {
+      display: grid;
+      gap: 12px;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      margin-top: 12px;
+    }
+
+    .archive-card {
+      border: 1px solid rgba(125, 255, 176, 0.2);
+      border-radius: 12px;
+      padding: 14px;
+      background: rgba(255, 255, 255, 0.03);
+    }
+
+    .archive-card h4 {
+      margin: 0 0 4px;
+      color: var(--accent);
+      font-size: 0.98rem;
+    }
+
+    .archive-card p { margin: 8px 0 0; color: #effef1; }
+
+    .archive-card .archive-year { color: var(--accent-2); font-size: 0.9rem; }
+
+    .archive-card .archive-label {
+      display: inline-block;
+      margin-top: 8px;
+      padding: 4px 8px;
+      border-radius: 999px;
+      background: rgba(255, 94, 94, 0.16);
+      color: #ffd7d7;
+      font-size: 0.78rem;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+    }
+
+    form { display: grid; gap: 10px; }
+
+    label {
+      display: block;
+      font-weight: 700;
+      color: #e6fcee;
     }
 
     input, textarea, button {
@@ -124,18 +305,14 @@
 
     input, textarea {
       width: 100%;
-      border: 1px solid rgba(116, 255, 154, 0.3);
+      border: 1px solid rgba(125, 255, 176, 0.28);
       border-radius: 10px;
-      padding: 12px 13px;
+      padding: 12px 12px;
       background: rgba(255, 255, 255, 0.04);
       color: var(--text);
-      margin-bottom: 12px;
     }
 
-    textarea {
-      min-height: 130px;
-      resize: vertical;
-    }
+    textarea { min-height: 120px; resize: vertical; }
 
     button {
       border: 0;
@@ -145,62 +322,102 @@
       background: linear-gradient(180deg, var(--accent), var(--accent-2));
       color: #04210b;
       font-weight: 700;
+      transition: transform 0.2s ease, filter 0.2s ease;
     }
 
-    button:hover { filter: brightness(1.05); }
+    button:hover { filter: brightness(1.06); transform: translateY(-1px); }
 
-    .status {
-      margin-top: 10px;
-      min-height: 1.4em;
+    button:disabled { opacity: 0.7; cursor: wait; }
+
+    .status-message {
+      min-height: 1.3em;
+      margin: 0;
       color: var(--accent);
-      font-size: 0.95rem;
     }
 
-    .hint {
-      color: var(--muted);
-      font-size: 0.9rem;
-      margin: 4px 0 0;
-    }
+    .status-message.is-error { color: var(--warning); }
 
     .comment-list {
       list-style: none;
       padding: 0;
-      margin: 0;
+      margin: 12px 0 0;
       display: grid;
-      gap: 12px;
+      gap: 10px;
     }
 
     .comment-item {
-      border: 1px solid rgba(116, 255, 154, 0.18);
+      border: 1px solid rgba(125, 255, 176, 0.16);
       border-radius: 12px;
-      padding: 14px;
+      padding: 12px 14px;
       background: rgba(255, 255, 255, 0.03);
     }
 
-    .comment-meta {
-      display: flex;
-      justify-content: space-between;
-      gap: 12px;
-      flex-wrap: wrap;
+    .comment-name {
+      display: block;
       color: var(--accent);
-      font-size: 0.9rem;
+      font-weight: 700;
+      margin-bottom: 4px;
+    }
+
+    .comment-date {
+      display: block;
+      color: var(--accent-2);
+      font-size: 0.85rem;
       margin-bottom: 6px;
     }
 
-    .comment-body {
-      white-space: pre-wrap;
+    .comment-text {
       margin: 0;
-      color: #ecfff0;
+      color: #f4fff5;
+      white-space: pre-wrap;
+      word-break: break-word;
     }
 
-    .empty {
-      color: var(--muted);
-      margin: 0;
+    .visually-hidden {
+      position: absolute;
+      width: 1px;
+      height: 1px;
+      padding: 0;
+      margin: -1px;
+      overflow: hidden;
+      clip: rect(0, 0, 0, 0);
+      white-space: nowrap;
+      border: 0;
+    }
+
+    .error-callout {
+      border: 1px solid rgba(255, 94, 94, 0.35);
+      background: rgba(255, 94, 94, 0.12);
+      color: #ffe4e4;
+      padding: 12px 14px;
+      border-radius: 10px;
+      margin-bottom: 12px;
+    }
+
+    :focus-visible {
+      outline: 2px solid var(--accent);
+      outline-offset: 2px;
+    }
+
+    @keyframes pulse {
+      0%, 100% { opacity: 1; transform: scale(1); }
+      50% { opacity: 0.7; transform: scale(0.9); }
     }
 
     @media (max-width: 640px) {
-      main { padding-top: 18px; }
-      .panel { padding: 18px; }
+      .panel { padding: 16px; }
+      .archive-grid { grid-template-columns: 1fr; }
+      .top-nav { gap: 6px; }
+      .top-nav a { flex: 1 1 calc(50% - 6px); text-align: center; }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after {
+        animation: none !important;
+        transition-duration: 0.01ms !important;
+        transition-delay: 0ms !important;
+        scroll-behavior: auto !important;
+      }
     }
   </style>
 </head>
@@ -219,112 +436,391 @@
   <main id="main-content">
     <a class="back-link" href="index.html">← Back to the main page</a>
 
-    <h1>The Changing Channel</h1>
-    <p class="intro">Leave a comment, share a memory, or say hello to the people who still remember the late 1990s.</p>
+    <header class="page-head">
+      <p class="page-kicker"><span class="live-dot" aria-hidden="true"></span>Transmission in progress</p>
+      <h1>The Changing Channel</h1>
+      <p class="tagline">One strange old movie. Seven days. Then the signal changes.</p>
+    </header>
 
-    <section class="panel" aria-labelledby="comment-form-title">
-      <h2 id="comment-form-title">Leave a comment</h2>
-      <form id="comment-form">
-        <label for="name">Name</label>
-        <input id="name" name="name" type="text" maxlength="80" placeholder="Optional">
+    <section class="panel" aria-labelledby="intro-title">
+      <h2 id="intro-title">Now playing</h2>
+      <p class="intro-copy">Somewhere between late-night television, a church-basement screening and a channel you discovered by accident, The Changing Channel broadcasts one strange old movie every week.</p>
+      <p class="intro-copy">Watch it. Talk back to it. Return next week and find something else coming through the signal.</p>
+    </section>
 
-        <label for="comment">Comment</label>
-        <textarea id="comment" name="comment" required maxlength="1000" placeholder="What do you want to say?"></textarea>
+    <section class="panel" aria-labelledby="featured-movie-title">
+      <h2 id="featured-movie-title"><span aria-hidden="true">●</span> Now playing</h2>
+      <div id="movie-status" class="status-message" aria-live="polite"></div>
+      <div id="movie-loading" class="error-callout" hidden>Loading the weekly schedule…</div>
+      <div id="movie-error" class="error-callout" hidden></div>
 
-        <button type="submit">Post comment</button>
-        <p id="form-status" class="status" aria-live="polite"></p>
-        <p class="hint">Comments are saved in this browser so they stay here for later visits.</p>
-      </form>
+      <div id="featured-movie" hidden>
+        <div class="movie-meta">
+          <span id="movie-title-badge"></span>
+          <span id="movie-year-badge"></span>
+        </div>
+        <p id="movie-description" class="intro-copy"></p>
+        <p id="movie-content-note" class="content-note"></p>
+        <div class="player-shell">
+          <iframe
+            id="movie-player"
+            class="player-frame"
+            loading="lazy"
+            allow="autoplay; fullscreen"
+            allowfullscreen
+            title="Featured public-domain movie"
+          ></iframe>
+        </div>
+        <a id="movie-source-link" class="source-link" href="#" target="_blank" rel="noopener noreferrer">Open original archive source ↗</a>
+        <p id="movie-rights" class="rights-label"></p>
+        <div class="countdown-box" aria-live="polite">
+          <strong>The signal changes in:</strong>
+          <span id="countdown-label" aria-label="Countdown until the next scheduled movie">Loading…</span>
+        </div>
+      </div>
     </section>
 
     <section class="panel" aria-labelledby="comments-title">
-      <h2 id="comments-title">Recent comments</h2>
+      <h2 id="comments-title">Talk back to the screen</h2>
+      <p class="form-help">Leave a transmission for anyone else who wanders onto this channel.</p>
+      <form id="comment-form" novalidate>
+        <label for="comment-name">Nickname</label>
+        <input id="comment-name" name="name" type="text" maxlength="40" autocomplete="nickname" required>
+
+        <label for="comment-text">Comment</label>
+        <textarea id="comment-text" name="text" maxlength="500" required></textarea>
+
+        <div class="visually-hidden">
+          <label for="comment-honeypot">Leave this blank</label>
+          <input id="comment-honeypot" name="website" type="text" tabindex="-1" autocomplete="off">
+        </div>
+
+        <button id="comment-submit" type="submit">Send transmission</button>
+        <p id="comment-status" class="status-message" aria-live="polite"></p>
+      </form>
+
       <ul id="comment-list" class="comment-list"></ul>
+    </section>
+
+    <section class="panel" aria-labelledby="archive-title">
+      <h2 id="archive-title">Previous transmissions</h2>
+      <div id="archive-list" class="archive-grid"></div>
     </section>
   </main>
 
-  <script>
-    const STORAGE_KEY = "changing-channel-comments-v1";
-    const form = document.getElementById("comment-form");
-    const nameInput = document.getElementById("name");
-    const commentInput = document.getElementById("comment");
-    const status = document.getElementById("form-status");
-    const list = document.getElementById("comment-list");
+  <script type="module">
+    import { initializeApp } from "https://www.gstatic.com/firebasejs/12.16.0/firebase-app.js";
+    import {
+      addDoc,
+      collection,
+      getDocs,
+      getFirestore,
+      orderBy,
+      query,
+      serverTimestamp,
+      Timestamp
+    } from "https://www.gstatic.com/firebasejs/12.16.0/firebase-firestore.js";
 
-    function loadComments() {
-      try {
-        const saved = localStorage.getItem(STORAGE_KEY);
-        if (!saved) return [];
-        const parsed = JSON.parse(saved);
-        return Array.isArray(parsed) ? parsed : [];
-      } catch (error) {
-        console.warn("Could not load comments", error);
-        return [];
-      }
+    const firebaseConfig = {
+      apiKey: "AIzaSyCw64gMvjhoKGwOlkTEF8Krvk3VX1KVup4",
+      authDomain: "rocky-taylor-memorial.firebaseapp.com",
+      projectId: "rocky-taylor-memorial",
+      storageBucket: "rocky-taylor-memorial.firebasestorage.app",
+      messagingSenderId: "1082208747146",
+      appId: "1:1082208747146:web:5eee9fb14e2ef853d03773"
+    };
+
+    const app = initializeApp(firebaseConfig);
+    const db = getFirestore(app);
+
+    const statusEl = document.getElementById("movie-status");
+    const loadingEl = document.getElementById("movie-loading");
+    const errorEl = document.getElementById("movie-error");
+    const featuredMovieEl = document.getElementById("featured-movie");
+    const titleBadgeEl = document.getElementById("movie-title-badge");
+    const yearBadgeEl = document.getElementById("movie-year-badge");
+    const descriptionEl = document.getElementById("movie-description");
+    const contentNoteEl = document.getElementById("movie-content-note");
+    const sourceLinkEl = document.getElementById("movie-source-link");
+    const rightsEl = document.getElementById("movie-rights");
+    const playerEl = document.getElementById("movie-player");
+    const countdownEl = document.getElementById("countdown-label");
+    const archiveListEl = document.getElementById("archive-list");
+    const commentFormEl = document.getElementById("comment-form");
+    const commentNameEl = document.getElementById("comment-name");
+    const commentTextEl = document.getElementById("comment-text");
+    const commentSubmitEl = document.getElementById("comment-submit");
+    const commentStatusEl = document.getElementById("comment-status");
+    const commentListEl = document.getElementById("comment-list");
+    const honeypotEl = document.getElementById("comment-honeypot");
+
+    let schedule = [];
+    let activeMovie = null;
+    let nextMovie = null;
+    let countdownTimer = null;
+    let currentComments = [];
+
+    function setStatus(message, isError = false) {
+      statusEl.textContent = message || "";
+      statusEl.classList.toggle("is-error", Boolean(isError));
     }
 
-    function saveComments(comments) {
-      try {
-        localStorage.setItem(STORAGE_KEY, JSON.stringify(comments));
-      } catch (error) {
-        console.warn("Could not save comments", error);
-      }
+    function formatCountdown(ms) {
+      const totalSeconds = Math.max(0, Math.floor(ms / 1000));
+      const days = Math.floor(totalSeconds / 86400);
+      const hours = Math.floor((totalSeconds % 86400) / 3600);
+      const minutes = Math.floor((totalSeconds % 3600) / 60);
+      const seconds = totalSeconds % 60;
+      const parts = [];
+      if (days) parts.push(`${days}d`);
+      if (hours || days) parts.push(`${hours}h`);
+      if (minutes || hours || days) parts.push(`${minutes}m`);
+      parts.push(`${seconds}s`);
+      return parts.join(" ");
     }
 
-    function formatDate(value) {
-      const date = new Date(value);
-      if (Number.isNaN(date.getTime())) return "Just now";
-      return new Intl.DateTimeFormat([], {
+    function getReadableDate(value) {
+      if (!value) return "";
+      if (value instanceof Timestamp) {
+        return value.toDate().toLocaleString([], {
+          dateStyle: "medium",
+          timeStyle: "short"
+        });
+      }
+      const date = value.toDate ? value.toDate() : new Date(value);
+      return date.toLocaleString([], {
         dateStyle: "medium",
         timeStyle: "short"
-      }).format(date);
+      });
     }
 
     function renderComments(comments) {
+      commentListEl.innerHTML = "";
       if (!comments.length) {
-        list.innerHTML = '<li class="empty">No comments yet. Be the first to say something.</li>';
+        const emptyItem = document.createElement("li");
+        emptyItem.className = "comment-item";
+        emptyItem.textContent = "No transmissions yet. Say something weird.";
+        commentListEl.appendChild(emptyItem);
         return;
       }
 
-      list.innerHTML = comments
-        .slice()
-        .reverse()
-        .map((comment) => `
-          <li class="comment-item">
-            <div class="comment-meta">
-              <strong>${(comment.name || "Anonymous").replace(/[<>]/g, "")}</strong>
-              <span>${formatDate(comment.createdAt)}</span>
-            </div>
-            <p class="comment-body">${comment.text.replace(/[<>]/g, "").replace(/\n/g, "<br>")}</p>
-          </li>
-        `)
-        .join("");
+      const fragment = document.createDocumentFragment();
+      comments.slice().reverse().forEach((comment) => {
+        const item = document.createElement("li");
+        item.className = "comment-item";
+
+        const nameEl = document.createElement("strong");
+        nameEl.className = "comment-name";
+        nameEl.textContent = comment.name || "Anonymous Signal";
+
+        const dateEl = document.createElement("span");
+        dateEl.className = "comment-date";
+        dateEl.textContent = getReadableDate(comment.createdAt);
+
+        const textEl = document.createElement("p");
+        textEl.className = "comment-text";
+        textEl.textContent = comment.text;
+
+        item.append(nameEl, dateEl, textEl);
+        fragment.appendChild(item);
+      });
+      commentListEl.appendChild(fragment);
     }
 
-    form.addEventListener("submit", (event) => {
+    async function loadComments(movieId) {
+      const commentsRef = collection(db, "changing_channel_movies", movieId, "comments");
+      const commentsQuery = query(commentsRef, orderBy("createdAt", "desc"));
+      const snapshot = await getDocs(commentsQuery);
+      currentComments = snapshot.docs.map((docSnap) => ({ id: docSnap.id, ...docSnap.data() }));
+      renderComments(currentComments);
+    }
+
+    async function submitComment(event) {
       event.preventDefault();
-      const text = commentInput.value.trim();
-      if (!text) {
-        status.textContent = "Please write a comment before posting.";
-        commentInput.focus();
+      if (!activeMovie) {
+        commentStatusEl.textContent = "The channel is not ready yet.";
+        commentStatusEl.classList.add("is-error");
         return;
       }
 
-      const comments = loadComments();
-      comments.push({
-        id: Date.now().toString(36),
-        name: nameInput.value.trim(),
-        text,
-        createdAt: new Date().toISOString()
-      });
+      if (honeypotEl.value.trim()) {
+        commentStatusEl.textContent = "Transmission blocked.";
+        commentStatusEl.classList.add("is-error");
+        return;
+      }
 
-      saveComments(comments);
-      renderComments(comments);
-      form.reset();
-      status.textContent = "Comment posted.";
+      const name = commentNameEl.value.trim();
+      const text = commentTextEl.value.trim();
+      if (!text) {
+        commentStatusEl.textContent = "Please write a comment before sending.";
+        commentStatusEl.classList.add("is-error");
+        return;
+      }
+      if (name.length > 40) {
+        commentStatusEl.textContent = "Nickname must be 40 characters or fewer.";
+        commentStatusEl.classList.add("is-error");
+        return;
+      }
+      if (text.length > 500) {
+        commentStatusEl.textContent = "Comment must be 500 characters or fewer.";
+        commentStatusEl.classList.add("is-error");
+        return;
+      }
+
+      commentSubmitEl.disabled = true;
+      commentStatusEl.textContent = "Sending transmission…";
+      commentStatusEl.classList.remove("is-error");
+
+      try {
+        const commentsRef = collection(db, "changing_channel_movies", activeMovie.id, "comments");
+        await addDoc(commentsRef, {
+          name: name || "Anonymous Signal",
+          text,
+          createdAt: serverTimestamp()
+        });
+        commentFormEl.reset();
+        commentStatusEl.textContent = "Transmission posted.";
+        await loadComments(activeMovie.id);
+      } catch (error) {
+        console.error("Comment submission failed", error);
+        commentStatusEl.textContent = "The transmission did not go through. Please try again.";
+        commentStatusEl.classList.add("is-error");
+      } finally {
+        commentSubmitEl.disabled = false;
+      }
+    }
+
+    function renderMovie(movie) {
+      if (!movie) return;
+      activeMovie = movie;
+      featuredMovieEl.hidden = false;
+      loadingEl.hidden = true;
+      errorEl.hidden = true;
+      titleBadgeEl.textContent = movie.title;
+      yearBadgeEl.textContent = String(movie.year);
+      descriptionEl.textContent = movie.description;
+      contentNoteEl.textContent = movie.contentNote ? `Content note: ${movie.contentNote}` : "";
+      sourceLinkEl.href = movie.sourceUrl;
+      sourceLinkEl.textContent = "OPEN ORIGINAL ARCHIVE SOURCE ↗";
+      rightsEl.textContent = movie.rightsLabel;
+      playerEl.src = `https://archive.org/embed/${movie.archiveIdentifier}`;
+      playerEl.title = `${movie.title} (${movie.year})`;
+      setStatus(`Now broadcasting: ${movie.title}.`);
+      if (movie.id) {
+        loadComments(movie.id).catch((error) => {
+          console.error("Could not load comments", error);
+          commentStatusEl.textContent = "Comments are unavailable right now.";
+          commentStatusEl.classList.add("is-error");
+        });
+      }
+      renderArchive();
+    }
+
+    function renderArchive() {
+      const previous = schedule.filter((entry) => new Date(entry.startsAt) < new Date(activeMovie.startsAt));
+      archiveListEl.innerHTML = "";
+      if (!previous.length) {
+        archiveListEl.innerHTML = '<div class="archive-card"><h4>No archive yet</h4><p>The signal has only just begun.</p></div>';
+        return;
+      }
+
+      const fragment = document.createDocumentFragment();
+      previous.slice().reverse().forEach((entry) => {
+        const card = document.createElement("article");
+        card.className = "archive-card";
+        const title = document.createElement("h4");
+        title.textContent = entry.title;
+        const year = document.createElement("p");
+        year.className = "archive-year";
+        year.textContent = entry.year;
+        const description = document.createElement("p");
+        description.textContent = entry.description;
+        const source = document.createElement("p");
+        const sourceLink = document.createElement("a");
+        sourceLink.href = entry.sourceUrl;
+        sourceLink.target = "_blank";
+        sourceLink.rel = "noopener noreferrer";
+        sourceLink.textContent = "Original Archive source";
+        source.appendChild(sourceLink);
+        const label = document.createElement("span");
+        label.className = "archive-label";
+        label.textContent = "Previously Broadcast";
+        card.append(title, year, description, source, label);
+        fragment.appendChild(card);
+      });
+      archiveListEl.appendChild(fragment);
+    }
+
+    function updateCountdown() {
+      if (!nextMovie) {
+        countdownEl.textContent = "The signal will hold until a new transmission is added.";
+        return;
+      }
+      const now = Date.now();
+      const targetTime = new Date(nextMovie.startsAt).getTime();
+      if (targetTime <= now) {
+        const activeIndex = schedule.findIndex((entry) => entry.id === activeMovie.id);
+        if (activeIndex >= 0) {
+          const nextIndex = activeIndex + 1;
+          const rollover = schedule[nextIndex];
+          if (rollover) {
+            activeMovie = rollover;
+            renderMovie(activeMovie);
+          }
+        }
+        return;
+      }
+      countdownEl.textContent = formatCountdown(targetTime - now);
+    }
+
+    function selectMovie(now) {
+      const sorted = [...schedule].sort((a, b) => new Date(a.startsAt) - new Date(b.startsAt));
+      const current = sorted.filter((entry) => new Date(entry.startsAt) <= now).pop() || sorted[0];
+      const currentIndex = sorted.findIndex((entry) => entry.id === current.id);
+      nextMovie = sorted[currentIndex + 1] || null;
+      return current;
+    }
+
+    function startCountdown() {
+      if (countdownTimer) window.clearInterval(countdownTimer);
+      updateCountdown();
+      countdownTimer = window.setInterval(updateCountdown, 1000);
+    }
+
+    async function loadSchedule() {
+      loadingEl.hidden = false;
+      errorEl.hidden = true;
+      try {
+        const response = await fetch("changing-channel-movies.json", { cache: "no-store" });
+        if (!response.ok) throw new Error(`Schedule load failed: ${response.status}`);
+        schedule = await response.json();
+        if (!Array.isArray(schedule) || !schedule.length) throw new Error("No schedule entries were found.");
+        schedule.sort((a, b) => new Date(a.startsAt) - new Date(b.startsAt));
+        const now = Date.now();
+        const selected = selectMovie(now);
+        renderMovie(selected);
+        startCountdown();
+      } catch (error) {
+        console.error(error);
+        loadingEl.hidden = true;
+        errorEl.hidden = false;
+        errorEl.textContent = `The schedule could not be loaded. ${error.message}`;
+        setStatus("The schedule could not be loaded.", true);
+      }
+    }
+
+    commentFormEl.addEventListener("submit", submitComment);
+    window.addEventListener("focus", () => {
+      if (schedule.length) {
+        const selected = selectMovie(Date.now());
+        if (selected.id !== activeMovie.id) {
+          renderMovie(selected);
+          startCountdown();
+        }
+      }
     });
 
-    renderComments(loadComments());
+    loadSchedule();
   </script>
 </body>
 </html>
