@@ -1,0 +1,35 @@
+[
+  {
+    "id": "caligari-1920",
+    "title": "The Cabinet of Dr. Caligari",
+    "year": 1920,
+    "startsAt": "2026-08-05T18:00:00-04:00",
+    "description": "A carnival showman, a sleepwalker and a string of murders arrive through one of the strangest landscapes ever put on film. German Expressionism makes the entire movie look like the walls have started lying.",
+    "archiveIdentifier": "DasKabinettdesDoktorCaligariTheCabinetofDrCaligari",
+    "sourceUrl": "https://archive.org/details/DasKabinettdesDoktorCaligariTheCabinetofDrCaligari",
+    "rightsLabel": "Internet Archive item marked Public Domain",
+    "contentNote": "Silent horror with murder, psychological distress and unsettling imagery."
+  },
+  {
+    "id": "phantom-opera-1925",
+    "title": "The Phantom of the Opera",
+    "year": 1925,
+    "startsAt": "2026-08-12T18:00:00-04:00",
+    "description": "Lon Chaney hides beneath the Paris Opera House, causing trouble, making demands and demonstrating why secret underground apartments are rarely a healthy lifestyle choice.",
+    "archiveIdentifier": "ThePhantomoftheOpera",
+    "sourceUrl": "https://archive.org/details/ThePhantomoftheOpera",
+    "rightsLabel": "Internet Archive item marked Public Domain",
+    "contentNote": "Silent horror with threatening behavior and frightening imagery."
+  },
+  {
+    "id": "haxan-1922",
+    "title": "Häxan",
+    "year": 1922,
+    "startsAt": "2026-08-19T18:00:00-04:00",
+    "description": "Part documentary, part nightmare and part extremely questionable historical lecture, Häxan examines witchcraft, superstition and mass hysteria through images that remain genuinely bizarre.",
+    "archiveIdentifier": "Haxan_tinted_and_subtitled",
+    "sourceUrl": "https://archive.org/details/Haxan_tinted_and_subtitled",
+    "rightsLabel": "Internet Archive item marked Public Domain",
+    "contentNote": "Mature historical imagery involving witchcraft, torture, nudity and religious themes."
+  }
+]
