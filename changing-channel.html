@@ -553,6 +553,7 @@
     const commentStatusEl = document.getElementById("comment-status");
     const commentListEl = document.getElementById("comment-list");
     const honeypotEl = document.getElementById("comment-honeypot");
+    const SCHEDULE_PATH = "changing-channel-movies.json";
 
     let schedule = [];
     let activeMovie = null;
@@ -791,7 +792,7 @@
       loadingEl.hidden = false;
       errorEl.hidden = true;
       try {
-        const response = await fetch("changing-channel-movies.json", { cache: "no-store" });
+        const response = await fetch(SCHEDULE_PATH, { cache: "no-store" });
         if (!response.ok) throw new Error(`Schedule load failed: ${response.status}`);
         schedule = await response.json();
         if (!Array.isArray(schedule) || !schedule.length) throw new Error("No schedule entries were found.");
@@ -804,7 +805,12 @@
         console.error(error);
         loadingEl.hidden = true;
         errorEl.hidden = false;
-        errorEl.textContent = `The schedule could not be loaded. ${error.message}`;
+        if (error.message.includes("Schedule load failed: 404")) {
+          const scheduleUrl = new URL(SCHEDULE_PATH, window.location.href).toString();
+          errorEl.innerHTML = `The schedule file was not found (404). Check <a href="${scheduleUrl}" target="_blank" rel="noopener noreferrer">${SCHEDULE_PATH}</a> and confirm it is deployed.`;
+        } else {
+          errorEl.textContent = `The schedule could not be loaded. ${error.message}`;
+        }
         setStatus("The schedule could not be loaded.", true);
       }
     }
