@@ -55,7 +55,7 @@
         repeating-linear-gradient(180deg, rgba(125, 255, 176, 0.05) 0 1px, transparent 1px 3px),
         linear-gradient(90deg, rgba(0, 0, 0, 0.16), rgba(255, 255, 255, 0.03), rgba(0, 0, 0, 0.16));
       mix-blend-mode: screen;
-      opacity: 0.35;
+      opacity: 0.28;
       z-index: 0;
     }
 
@@ -71,9 +71,18 @@
       text-decoration: none;
       z-index: 20;
       border-radius: 6px;
+      opacity: 0;
+      pointer-events: none;
+      transform: translateY(-4px);
+      transition: top 0.2s ease, opacity 0.2s ease, transform 0.2s ease;
     }
 
-    .skip-link:focus { top: 12px; }
+    .skip-link:focus {
+      top: 12px;
+      opacity: 1;
+      pointer-events: auto;
+      transform: translateY(0);
+    }
 
     .top-nav {
       width: min(980px, calc(100% - 24px));
@@ -95,6 +104,19 @@
       font-size: 0.82rem;
       text-transform: uppercase;
       letter-spacing: 0.06em;
+      box-shadow: inset 0 0 0 1px rgba(125, 255, 176, 0.08);
+      transition: transform 0.2s ease, color 0.2s ease, border-color 0.2s ease, box-shadow 0.2s ease;
+    }
+
+    .top-nav a:hover,
+    .top-nav a:focus-visible {
+      transform: translateY(-1px);
+      color: #ffffff;
+      border-color: rgba(125, 255, 176, 0.62);
+      box-shadow: 0 0 12px rgba(125, 255, 176, 0.16);
+      text-decoration: underline;
+      text-decoration-thickness: 2px;
+      text-underline-offset: 2px;
     }
 
     main {
@@ -113,7 +135,9 @@
     }
 
     .page-head {
-      margin-bottom: 24px;
+      margin-bottom: 28px;
+      padding-bottom: 12px;
+      border-bottom: 1px solid rgba(125, 255, 176, 0.18);
     }
 
     .page-kicker {
@@ -156,10 +180,16 @@
       background: linear-gradient(180deg, rgba(9, 19, 13, 0.98), rgba(6, 14, 9, 0.98));
       border: 1px solid var(--border);
       border-radius: 16px;
-      box-shadow: 0 10px 24px var(--shadow);
+      box-shadow: 0 10px 24px var(--shadow), inset 0 1px 0 rgba(255, 255, 255, 0.05);
       padding: 22px;
-      margin-bottom: 18px;
+      margin-bottom: 20px;
       position: relative;
+      transition: transform 0.2s ease, box-shadow 0.2s ease;
+    }
+
+    .panel:hover {
+      transform: translateY(-1px);
+      box-shadow: 0 12px 28px rgba(0, 0, 0, 0.7), inset 0 1px 0 rgba(255, 255, 255, 0.05);
     }
 
     .panel::before {
@@ -168,6 +198,17 @@
       inset: 0;
       border: 1px solid rgba(255, 255, 255, 0.08);
       border-radius: inherit;
+      pointer-events: none;
+    }
+
+    .panel::after {
+      content: "";
+      position: absolute;
+      left: 22px;
+      right: 22px;
+      bottom: 10px;
+      height: 1px;
+      background: linear-gradient(90deg, transparent, rgba(125, 255, 176, 0.35), transparent);
       pointer-events: none;
     }
 
@@ -181,8 +222,9 @@
 
     .intro-copy {
       margin: 0 0 16px;
-      color: #eafef0;
+      color: #f0fff3;
       max-width: 760px;
+      text-shadow: 0 0 10px rgba(125, 255, 176, 0.06);
     }
 
     .movie-meta {
@@ -234,17 +276,19 @@
     .source-link:hover { text-decoration: underline; }
 
     .rights-label, .content-note, .countdown-label, .schedule-note, .status-message, .form-help {
-      color: #eefcf1;
+      color: #f3fff4;
       font-size: 0.95rem;
+      text-shadow: 0 0 8px rgba(125, 255, 176, 0.06);
     }
 
     .countdown-box {
       margin-top: 14px;
       padding: 12px 14px;
-      border: 1px solid rgba(255, 94, 94, 0.4);
-      background: rgba(255, 94, 94, 0.11);
+      border: 1px solid rgba(255, 94, 94, 0.42);
+      background: rgba(255, 94, 94, 0.12);
       border-radius: 10px;
       color: #ffd9d9;
+      box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.04), 0 0 14px rgba(255, 94, 94, 0.08);
     }
 
     .countdown-box strong {
@@ -267,6 +311,13 @@
       border-radius: 12px;
       padding: 14px;
       background: rgba(255, 255, 255, 0.03);
+      transition: transform 0.2s ease, border-color 0.2s ease, background 0.2s ease;
+    }
+
+    .archive-card:hover {
+      transform: translateY(-1px);
+      border-color: rgba(125, 255, 176, 0.34);
+      background: rgba(255, 255, 255, 0.05);
     }
 
     .archive-card h4 {
@@ -292,6 +343,105 @@
     }
 
     form { display: grid; gap: 10px; }
+
+    .action-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-top: 12px;
+      align-items: center;
+    }
+
+    .action-button {
+      border: 1px solid rgba(125, 255, 176, 0.28);
+      border-radius: 999px;
+      padding: 10px 14px;
+      background: linear-gradient(180deg, rgba(125, 255, 176, 0.14), rgba(77, 238, 255, 0.14));
+      color: var(--text);
+      font-weight: 700;
+      box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.05);
+      transition: transform 0.2s ease, border-color 0.2s ease, filter 0.2s ease;
+    }
+
+    .action-button:hover,
+    .action-button:focus-visible {
+      transform: translateY(-1px);
+      border-color: rgba(125, 255, 176, 0.5);
+      filter: brightness(1.05);
+    }
+
+    body.is-broadcasting {
+      overflow: hidden;
+    }
+
+    .broadcast-modal {
+      position: fixed;
+      inset: 0;
+      z-index: 2000;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 20px;
+      background: rgba(1, 3, 2, 0.92);
+      backdrop-filter: blur(8px);
+    }
+
+    .broadcast-modal[hidden] {
+      display: none;
+    }
+
+    .broadcast-panel {
+      width: min(1080px, 100%);
+      max-height: min(92vh, 820px);
+      display: grid;
+      gap: 12px;
+      padding: 18px;
+      border-radius: 20px;
+      border: 1px solid rgba(125, 255, 176, 0.32);
+      background: linear-gradient(180deg, rgba(7, 16, 10, 0.98), rgba(4, 10, 6, 0.98));
+      box-shadow: 0 20px 60px rgba(0, 0, 0, 0.7);
+    }
+
+    .broadcast-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 12px;
+      flex-wrap: wrap;
+    }
+
+    .broadcast-kicker {
+      margin: 0 0 4px;
+      color: var(--warning);
+      text-transform: uppercase;
+      letter-spacing: 0.16em;
+      font-size: 0.78rem;
+      font-weight: 700;
+    }
+
+    .broadcast-header h3 {
+      margin: 0;
+      color: var(--accent);
+      font-size: 1.05rem;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+    }
+
+    .broadcast-screen {
+      border-radius: 16px;
+      overflow: hidden;
+      border: 1px solid rgba(125, 255, 176, 0.24);
+      background: #000;
+      box-shadow: inset 0 0 22px rgba(125, 255, 176, 0.1);
+    }
+
+    .broadcast-frame {
+      display: block;
+      width: 100%;
+      aspect-ratio: 16 / 9;
+      border: 0;
+      background: #000;
+    }
 
     label {
       display: block;
@@ -433,6 +583,28 @@
     <a href="changing-channel.html">The Changing Channel</a>
   </nav>
 
+  <div id="broadcast-modal" class="broadcast-modal" hidden>
+    <div class="broadcast-panel" role="dialog" aria-modal="true" aria-labelledby="broadcast-title">
+      <div class="broadcast-header">
+        <div>
+          <p class="broadcast-kicker">TV Broadcast</p>
+          <h3 id="broadcast-title">Now on the screen</h3>
+        </div>
+        <button id="broadcast-close" class="action-button" type="button">Close</button>
+      </div>
+      <div class="broadcast-screen">
+        <iframe
+          id="broadcast-player"
+          class="broadcast-frame"
+          loading="lazy"
+          allow="autoplay; fullscreen"
+          allowfullscreen
+          title="Broadcast view"
+        ></iframe>
+      </div>
+    </div>
+  </div>
+
   <main id="main-content">
     <a class="back-link" href="index.html">← Back to the main page</a>
 
@@ -471,7 +643,10 @@
             title="Featured public-domain movie"
           ></iframe>
         </div>
-        <a id="movie-source-link" class="source-link" href="#" target="_blank" rel="noopener noreferrer">Open original archive source ↗</a>
+        <div class="action-row">
+          <a id="movie-source-link" class="source-link" href="#" target="_blank" rel="noopener noreferrer">Open original archive source ↗</a>
+          <button id="broadcast-tv-button" class="action-button" type="button">Broadcast to TV</button>
+        </div>
         <p id="movie-rights" class="rights-label"></p>
         <div class="countdown-box" aria-live="polite">
           <strong>The signal changes in:</strong>
@@ -543,6 +718,10 @@
     const contentNoteEl = document.getElementById("movie-content-note");
     const sourceLinkEl = document.getElementById("movie-source-link");
     const rightsEl = document.getElementById("movie-rights");
+    const broadcastTvButtonEl = document.getElementById("broadcast-tv-button");
+    const broadcastModalEl = document.getElementById("broadcast-modal");
+    const broadcastCloseEl = document.getElementById("broadcast-close");
+    const broadcastPlayerEl = document.getElementById("broadcast-player");
     const playerEl = document.getElementById("movie-player");
     const countdownEl = document.getElementById("countdown-label");
     const archiveListEl = document.getElementById("archive-list");
@@ -691,6 +870,32 @@
       }
     }
 
+    function closeBroadcastView() {
+      if (broadcastModalEl) {
+        broadcastModalEl.hidden = true;
+      }
+      document.body.classList.remove("is-broadcasting");
+      if (broadcastPlayerEl) {
+        broadcastPlayerEl.removeAttribute("src");
+      }
+    }
+
+    function openBroadcastView() {
+      if (!activeMovie) {
+        setStatus("The channel is not ready yet.", true);
+        return;
+      }
+
+      if (broadcastModalEl && broadcastPlayerEl) {
+        broadcastPlayerEl.src = `https://archive.org/embed/${activeMovie.archiveIdentifier}?autoplay=1&view=theater`;
+        broadcastModalEl.hidden = false;
+        document.body.classList.add("is-broadcasting");
+        setStatus(`Transmitting ${activeMovie.title} to the TV.`);
+      } else {
+        setStatus("The broadcast view is unavailable right now.", true);
+      }
+    }
+
     function renderMovie(movie) {
       if (!movie) return;
       activeMovie = movie;
@@ -814,6 +1019,28 @@
         setStatus("The schedule could not be loaded.", true);
       }
     }
+
+    if (broadcastTvButtonEl) {
+      broadcastTvButtonEl.addEventListener("click", openBroadcastView);
+    }
+
+    if (broadcastCloseEl) {
+      broadcastCloseEl.addEventListener("click", closeBroadcastView);
+    }
+
+    if (broadcastModalEl) {
+      broadcastModalEl.addEventListener("click", (event) => {
+        if (event.target === broadcastModalEl) {
+          closeBroadcastView();
+        }
+      });
+    }
+
+    document.addEventListener("keydown", (event) => {
+      if (event.key === "Escape" && !broadcastModalEl?.hidden) {
+        closeBroadcastView();
+      }
+    });
 
     commentFormEl.addEventListener("submit", submitComment);
     window.addEventListener("focus", () => {
