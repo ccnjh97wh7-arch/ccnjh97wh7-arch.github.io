@@ -13,712 +13,231 @@
   <meta name="twitter:title" content="Music Library | Eric Stone">
   <meta name="twitter:description" content="Listen to the Eric Stone music archive and playlist.">
   <meta name="twitter:image" content="https://ccnjh97wh7-arch.github.io/images/downtown-greenville.jpg">
-  <title>Music Library</title>
+  <title>Music | Eric Stone</title>
+  <link rel="stylesheet" href="style.css">
   <style>
-    :root {
-      --patriotic-red: #C41E3A;
-      --patriotic-blue: #003DA5;
-      --near-black: #111111;
-      --warm-paper: #F2EBDD;
-      --ink: #111111;
-      --paper: #f2ebdd;
-      --gold: #daa520;
-      --orange: #c45722;
-      --cream: #fff8e8;
-      --muted: #6f6251;
+    .music-intro-shell {
+      border-left-color: var(--patriotic-blue);
     }
 
-    * {
-      box-sizing: border-box;
+    .music-player-panel {
+      border-left-color: var(--patriotic-red);
     }
 
-    body {
-      margin: 0;
-      font-family: Georgia, "Times New Roman", serif;
-      color: var(--near-black);
-      background: var(--warm-paper);
-      line-height: 1.6;
+    .music-player-layout {
+      display: grid;
+      gap: 18px;
     }
 
-    .skip-link {
-      position: absolute;
-      top: -48px;
-      left: 12px;
-      z-index: 1000;
-      padding: 8px 12px;
-      border-radius: 8px;
-      background: var(--patriotic-blue);
-      color: #fff;
-      font: 700 0.8rem Arial, Helvetica, sans-serif;
-      text-decoration: none;
-      transition: top 0.2s ease;
-    }
-
-    .skip-link:focus {
-      top: 10px;
-    }
-
-    .global-nav {
-      position: sticky;
-      top: 0;
-      z-index: 1000;
-      display: flex;
-      justify-content: center;
-      gap: 10px;
-      flex-wrap: wrap;
-      padding: 10px 14px;
-      background: rgba(17, 17, 17, 0.95);
-      border-bottom: 2px solid var(--patriotic-red);
-      backdrop-filter: blur(6px);
-    }
-
-    .global-nav a {
-      color: var(--warm-paper);
-      text-decoration: none;
-      font-family: Arial, sans-serif;
-      font-size: 0.88rem;
-      font-weight: 700;
-      letter-spacing: 0.03em;
-      text-transform: uppercase;
-      padding: 6px 10px;
-      border-radius: 999px;
-      border: 1px solid rgba(242, 235, 221, 0.25);
-      transition: background-color 0.25s ease, color 0.25s ease, border-color 0.25s ease;
-    }
-
-    .global-nav a:hover {
-      background: var(--patriotic-red);
-      color: #fff;
-      border-color: var(--patriotic-red);
-    }
-
-    a:focus-visible,
-    button:focus-visible,
-    input:focus-visible {
-      outline: 3px solid var(--patriotic-red);
-      outline-offset: 2px;
-    }
-
-    header {
-      border-bottom: 10px solid var(--patriotic-red);
-      background: var(--near-black);
-      color: var(--warm-paper);
-      text-align: center;
-      padding: clamp(36px, 9vw, 72px) 20px;
-      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
-    }
-
-    header h1 {
-      margin: 0 0 8px;
-      color: var(--patriotic-red);
-      font-size: clamp(2.2rem, 7vw, 4.5rem);
-      letter-spacing: 0.08em;
-    }
-
-    header p {
-      margin: 0;
-      color: rgba(242, 235, 221, 0.9);
-      font-family: Arial, Helvetica, sans-serif;
-    }
-
-    main {
-      max-width: 900px;
-      margin: 0 auto;
-      padding: 2rem 1rem 3rem;
-    }
-
-    .shell-section {
-      background: rgba(255, 248, 232, 0.88);
-      border-left: 7px solid var(--patriotic-blue);
-      border-radius: 8px;
-      padding: 22px 20px;
-      margin-bottom: 20px;
-      box-shadow: 0 2px 10px rgba(0, 0, 0, 0.08);
-    }
-
-    .hero {
-      padding-top: 0;
-    }
-
-    .section-title-wrap {
-      margin-bottom: 0.8rem;
-    }
-
-    .eyebrow {
-      margin: 0 0 0.5rem;
-      color: var(--patriotic-blue);
-      font-family: Arial, Helvetica, sans-serif;
-      font-size: 0.85rem;
-      font-weight: 800;
-      letter-spacing: 0.12em;
-      text-transform: uppercase;
-    }
-
-    h1 {
-      margin: 0;
-      max-width: 760px;
-      color: var(--patriotic-blue);
-      font-size: clamp(2rem, 6vw, 3.4rem);
-      line-height: 1.05;
-    }
-
-    .intro {
-      max-width: 680px;
-      margin: 1rem 0 0;
-      color: #2f2f2f;
-      font-size: 1.02rem;
-    }
-
-    .hero-cta {
-      display: inline-block;
-      margin-top: 1rem;
-      padding: 0.65rem 1rem;
-      border: 2px solid var(--patriotic-blue);
-      border-radius: 999px;
-      background: var(--patriotic-blue);
-      color: #fff;
-      text-decoration: none;
-      font: 800 0.9rem Arial, Helvetica, sans-serif;
-      letter-spacing: 0.04em;
-      text-transform: uppercase;
-    }
-
-    .hero-cta:hover {
-      background: var(--patriotic-red);
-      color: #fff;
-    }
-
-    .hero-actions {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 0.75rem;
-      margin-top: 1rem;
-    }
-
-    .secondary-cta {
-      display: inline-block;
-      padding: 0.65rem 1rem;
-      border: 1px solid rgba(0, 61, 165, 0.25);
-      border-radius: 999px;
-      background: rgba(0, 61, 165, 0.06);
-      color: var(--patriotic-blue);
-      text-decoration: none;
-      font: 800 0.9rem Arial, Helvetica, sans-serif;
-      letter-spacing: 0.04em;
-      text-transform: uppercase;
-      transition: transform 0.2s ease, border-color 0.2s ease, background 0.2s ease;
-    }
-
-    .secondary-cta:hover {
-      transform: translateY(-2px);
-      border-color: var(--patriotic-blue);
-      background: rgba(0, 61, 165, 0.12);
-    }
-
-    .music-card {
-      position: relative;
-      overflow: hidden;
-      margin-top: 0;
-      padding: 1.1rem;
-      border: 2px solid var(--patriotic-blue);
-      border-radius: 8px;
-      background: rgba(255, 246, 224, 0.9);
-      box-shadow: none;
-    }
-
-    .music-card::before {
-      content: "";
-      position: absolute;
-      inset: 0 0 auto;
-      height: 0.55rem;
-      background: repeating-linear-gradient(
-        90deg,
-        var(--patriotic-red) 0,
-        var(--patriotic-red) 20px,
-        var(--patriotic-blue) 20px,
-        var(--patriotic-blue) 40px,
-        var(--near-black) 40px,
-        var(--near-black) 60px
-      );
-    }
-
-    .track-top {
-      display: flex;
-      gap: 1rem;
+    .now-playing-block {
+      display: grid;
+      grid-template-columns: 92px minmax(0, 1fr);
+      gap: 16px;
       align-items: center;
-      margin-top: 0.7rem;
+      padding: 16px;
+      border: 1px solid rgba(120, 24, 18, 0.2);
+      border-radius: 12px;
+      background: linear-gradient(135deg, rgba(255, 255, 255, 0.98), rgba(120, 24, 18, 0.06));
     }
 
-    .record {
-      flex: 0 0 auto;
-      width: 86px;
+    .record-mark {
+      width: 92px;
       aspect-ratio: 1;
-      border: 8px solid var(--ink);
       border-radius: 50%;
       background:
-        radial-gradient(circle, var(--gold) 0 11%, var(--ink) 12% 18%, transparent 19%),
-        repeating-radial-gradient(circle, #252525 0 6px, #111111 7px 12px);
+        radial-gradient(circle at center, #f5e7d8 0 11%, #111111 12% 17%, transparent 18%),
+        repeating-radial-gradient(circle, #242424 0 6px, #0f0f0f 7px 12px);
+      border: 7px solid #111111;
+      box-shadow: inset 0 0 0 2px rgba(245, 231, 216, 0.2);
     }
 
-    h2 {
-      margin: 0;
+    .eyebrow-note {
+      margin: 0 0 6px;
       color: var(--patriotic-blue);
-      font-size: 1.8rem;
-      line-height: 1.05;
+      font-family: Arial, sans-serif;
+      font-size: 0.78rem;
+      font-weight: 700;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+    }
+
+    .now-playing-block h2 {
+      margin: 0;
+      color: var(--near-black);
+      font-size: clamp(1.7rem, 3vw, 2.4rem);
     }
 
     .track-note {
-      margin: 0.35rem 0 0;
-      color: var(--muted);
-      font-family: Arial, Helvetica, sans-serif;
+      margin: 6px 0 0;
+      color: #3f3d39;
+      font-family: Arial, sans-serif;
+      font-size: 0.95rem;
     }
 
-    audio {
+    .player-surface audio {
       width: 100%;
-      margin-top: 1.25rem;
-      accent-color: var(--orange);
+      margin-top: 16px;
+      accent-color: var(--patriotic-red);
     }
 
-    .file-link {
-      display: inline-block;
-      margin-top: 1rem;
-      color: var(--ink);
-      font-family: Arial, Helvetica, sans-serif;
-      font-weight: 800;
-      text-decoration-thickness: 3px;
-      text-decoration-color: var(--gold);
-      text-underline-offset: 4px;
-    }
-
-    .player-controls {
+    .player-controls,
+    .share-actions,
+    .music-link-row {
       display: flex;
-      gap: 0.75rem;
-      margin-top: 1rem;
       flex-wrap: wrap;
-    }
-
-    .share-actions {
-      display: flex;
-      gap: 0.75rem;
-      margin-top: 0.75rem;
-      flex-wrap: wrap;
+      gap: 10px;
+      margin-top: 14px;
     }
 
     .player-controls button,
     .share-actions button,
-    .track-button {
-      border: 2px solid var(--ink);
-      color: var(--ink);
-      font-family: Arial, Helvetica, sans-serif;
-      font-weight: 800;
-      cursor: pointer;
-    }
-
-    .player-controls button {
-      padding: 0.65rem 1rem;
+    .music-link-row a,
+    .counter-reset-button {
+      border: 1px solid rgba(120, 24, 18, 0.3);
       border-radius: 999px;
-      background: var(--patriotic-blue);
-      color: #fff;
-      border-color: var(--patriotic-blue);
-    }
-
-    .share-actions button {
-      padding: 0.55rem 0.9rem;
-      border-radius: 999px;
-      background: rgba(0, 61, 165, 0.08);
+      background: rgba(120, 24, 18, 0.06);
       color: var(--patriotic-blue);
-      border-color: rgba(0, 61, 165, 0.35);
+      font-family: Arial, sans-serif;
+      font-size: 0.9rem;
+      font-weight: 700;
+      text-decoration: none;
+      cursor: pointer;
+      transition: transform 0.25s ease, background-color 0.25s ease, border-color 0.25s ease, color 0.25s ease;
+    }
+
+    .player-controls button,
+    .share-actions button,
+    .counter-reset-button {
+      padding: 10px 16px;
+    }
+
+    .music-link-row a {
+      display: inline-flex;
+      align-items: center;
+      padding: 10px 16px;
     }
 
     .player-controls button:hover:not(:disabled),
     .player-controls button:focus-visible,
     .share-actions button:hover,
-    .share-actions button:focus-visible {
-      background: var(--patriotic-red);
-      color: #fff;
-      border-color: var(--patriotic-red);
+    .share-actions button:focus-visible,
+    .music-link-row a:hover,
+    .music-link-row a:focus-visible,
+    .counter-reset-button:hover,
+    .counter-reset-button:focus-visible {
+      transform: translateY(-2px);
+      background: rgba(120, 24, 18, 0.12);
+      border-color: var(--patriotic-blue);
+      color: var(--patriotic-blue);
     }
 
     .player-controls button:disabled {
-      cursor: not-allowed;
-      opacity: 0.45;
-    }
-
-    .share-status {
-      margin: 0.55rem 0 0;
-      min-height: 1.2em;
-      color: #2f2f2f;
-      font-family: Arial, Helvetica, sans-serif;
-      font-size: 0.82rem;
-    }
-
-    .rap-booth {
-      margin-top: 1.25rem;
-      padding: 1rem;
-      border: 1px solid rgba(0, 61, 165, 0.25);
-      border-radius: 10px;
-      background: linear-gradient(180deg, rgba(255, 248, 232, 0.96), rgba(242, 235, 221, 0.92));
-    }
-
-    .rap-booth h3 {
-      margin: 0;
-      color: var(--patriotic-blue);
-      font-size: 1.2rem;
-    }
-
-    .rap-booth-note {
-      margin: 0.45rem 0 0;
-      color: #403628;
-      font-family: Arial, Helvetica, sans-serif;
-      font-size: 0.9rem;
-    }
-
-    .rapper-name-row {
-      display: grid;
-      gap: 0.35rem;
-      margin-top: 0.95rem;
-      max-width: 360px;
-    }
-
-    .rapper-name-row label {
-      color: var(--patriotic-blue);
-      font-family: Arial, Helvetica, sans-serif;
-      font-size: 0.78rem;
-      font-weight: 800;
-      letter-spacing: 0.08em;
-      text-transform: uppercase;
-    }
-
-    .rapper-name-row input {
-      width: 100%;
-      min-height: 42px;
-      padding: 0.55rem 0.7rem;
-      border: 1px solid rgba(0, 61, 165, 0.38);
-      border-radius: 8px;
-      background: #fff;
-      color: var(--near-black);
-      font: 700 0.9rem Arial, Helvetica, sans-serif;
-    }
-
-    .alias-actions {
-      display: flex;
-      gap: 0.55rem;
-      align-items: center;
-      flex-wrap: wrap;
-    }
-
-    .alias-roll-button {
-      min-height: 38px;
-      padding: 0.48rem 0.78rem;
-      border: 1px solid rgba(0, 61, 165, 0.35);
-      border-radius: 999px;
-      background: rgba(0, 61, 165, 0.09);
-      color: var(--patriotic-blue);
-      font: 800 0.74rem Arial, Helvetica, sans-serif;
-      letter-spacing: 0.04em;
-      text-transform: uppercase;
-      cursor: pointer;
-      transition: background 0.2s ease, border-color 0.2s ease, color 0.2s ease;
-    }
-
-    .alias-roll-button:hover,
-    .alias-roll-button:focus-visible {
-      background: rgba(196, 30, 58, 0.12);
-      border-color: var(--patriotic-red);
-      color: var(--patriotic-red);
-    }
-
-    .instrumental-picks-wrap {
-      margin-top: 1rem;
-    }
-
-    .instrumental-picks-label {
-      margin: 0 0 0.55rem;
-      color: var(--patriotic-blue);
-      font-family: Arial, Helvetica, sans-serif;
-      font-size: 0.78rem;
-      font-weight: 800;
-      letter-spacing: 0.08em;
-      text-transform: uppercase;
-    }
-
-    .instrumental-picks {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 0.55rem;
-    }
-
-    .instrumental-manager {
-      margin-top: 0.7rem;
-    }
-
-    .instrumental-manager button {
-      min-height: 40px;
-      padding: 0.52rem 0.86rem;
-      border: 1px solid rgba(0, 0, 0, 0.34);
-      border-radius: 999px;
-      background: rgba(0, 0, 0, 0.04);
-      color: var(--near-black);
-      font: 700 0.78rem Arial, Helvetica, sans-serif;
-      letter-spacing: 0.03em;
-      text-transform: uppercase;
-      cursor: pointer;
-      transition: background 0.2s ease, color 0.2s ease, border-color 0.2s ease;
-    }
-
-    .instrumental-manager button:hover,
-    .instrumental-manager button:focus-visible {
-      border-color: var(--patriotic-red);
-      background: rgba(196, 30, 58, 0.12);
-      color: var(--patriotic-red);
-    }
-
-    .instrumental-pick,
-    .download-recording {
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      min-height: 42px;
-      padding: 0.6rem 0.9rem;
-      border: 1px solid rgba(0, 61, 165, 0.3);
-      border-radius: 999px;
-      background: rgba(0, 61, 165, 0.08);
-      color: var(--patriotic-blue);
-      font: 800 0.82rem Arial, Helvetica, sans-serif;
-      letter-spacing: 0.03em;
-      text-decoration: none;
-      cursor: pointer;
-      transition: transform 0.2s ease, background 0.2s ease, border-color 0.2s ease, color 0.2s ease;
-    }
-
-    .instrumental-pick:hover,
-    .instrumental-pick:focus-visible,
-    .download-recording:hover,
-    .download-recording:focus-visible {
-      transform: translateY(-1px);
-      background: rgba(196, 30, 58, 0.1);
-      border-color: var(--patriotic-red);
-      color: var(--patriotic-red);
-    }
-
-    .instrumental-pick[aria-pressed="true"] {
-      background: var(--patriotic-blue);
-      border-color: var(--patriotic-blue);
-      color: #fff;
-    }
-
-    .recording-controls {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 0.7rem;
-      margin-top: 1rem;
-    }
-
-    .recording-controls button,
-    .recording-controls .download-recording {
-      border: 2px solid var(--ink);
-    }
-
-    .recording-controls button {
-      min-height: 44px;
-      padding: 0.7rem 1rem;
-      border-radius: 999px;
-      font: 800 0.86rem Arial, Helvetica, sans-serif;
-      cursor: pointer;
-    }
-
-    .record-button {
-      background: var(--patriotic-red);
-      border-color: var(--patriotic-red);
-      color: #fff;
-    }
-
-    .record-button.is-recording {
-      animation: pulse-red 1s ease-in-out infinite;
-    }
-
-    .stop-button {
-      background: var(--near-black);
-      border-color: var(--near-black);
-      color: var(--warm-paper);
-    }
-
-    .preview-button {
-      background: var(--patriotic-blue);
-      border-color: var(--patriotic-blue);
-      color: #fff;
-    }
-
-    .recording-controls button:disabled,
-    .recording-controls .download-recording[aria-disabled="true"] {
       opacity: 0.45;
       cursor: not-allowed;
-      pointer-events: none;
       transform: none;
     }
 
-    .recording-status {
-      margin: 0.75rem 0 0;
-      min-height: 1.2em;
-      color: #2f2f2f;
-      font-family: Arial, Helvetica, sans-serif;
-      font-size: 0.86rem;
-    }
-
-    .recording-preview {
-      margin-top: 0.9rem;
-    }
-
-    .recording-preview[hidden] {
-      display: none;
-    }
-
-    .instrumental-track-badge {
-      display: inline-flex;
-      align-items: center;
-      padding: 0.18rem 0.42rem;
-      border-radius: 999px;
-      background: rgba(0, 61, 165, 0.14);
-      color: var(--patriotic-blue);
-      font-weight: 800;
-    }
-
-    .instrumental-track-badge[hidden] {
-      display: none;
-    }
-
-    @keyframes pulse-red {
-      0%,
-      100% {
-        box-shadow: 0 0 0 0 rgba(196, 30, 58, 0.4);
-      }
-
-      50% {
-        box-shadow: 0 0 0 9px rgba(196, 30, 58, 0);
-      }
-    }
-
-    .playlist {
-      margin: 2.25rem 0 0;
-      padding: 0;
-      list-style: none;
-      border-top: 2px solid var(--patriotic-blue);
+    .share-status,
+    .playlist-summary,
+    .counter-scope-note,
+    .library-note {
+      margin: 12px 0 0;
+      color: #3f3d39;
+      font-family: Arial, sans-serif;
     }
 
     .playlist-summary {
-      margin-top: 1rem;
-      font-family: Arial, Helvetica, sans-serif;
       font-size: 0.84rem;
       letter-spacing: 0.04em;
       text-transform: uppercase;
-      color: #2f2f2f;
-    }
-
-    .playlist-summary strong {
-      color: var(--patriotic-blue);
     }
 
     .counter-scope-note {
-      margin: 0.35rem 0 0;
-      font-family: Arial, Helvetica, sans-serif;
-      font-size: 0.78rem;
-      color: #4a4a4a;
+      font-size: 0.8rem;
     }
 
     .counter-reset-wrap {
-      margin-top: 0.65rem;
+      margin-top: 12px;
     }
 
-    .counter-reset-button {
-      padding: 0.45rem 0.75rem;
-      border: 1px solid rgba(0, 0, 0, 0.35);
-      border-radius: 999px;
-      background: rgba(0, 0, 0, 0.03);
-      color: var(--near-black);
-      font: 700 0.76rem Arial, Helvetica, sans-serif;
-      letter-spacing: 0.03em;
-      text-transform: uppercase;
-      cursor: pointer;
-    }
-
-    .counter-reset-button:hover,
-    .counter-reset-button:focus-visible {
-      background: rgba(196, 30, 58, 0.12);
-      border-color: var(--patriotic-red);
-      color: var(--patriotic-red);
+    .playlist {
+      margin: 22px 0 0;
+      padding: 0;
+      list-style: none;
+      border-top: 1px solid rgba(120, 24, 18, 0.18);
     }
 
     .playlist li {
-      border-bottom: 2px solid rgba(0, 61, 165, 0.35);
-    }
-
-    @media (max-width: 480px) {
-      .hero-actions {
-        flex-direction: column;
-        align-items: flex-start;
-      }
-
-      .hero-actions a {
-        width: 100%;
-        text-align: center;
-      }
-
-      .track-top {
-        flex-direction: column;
-        align-items: flex-start;
-      }
-
-      .record {
-        width: 72px;
-      }
+      border-bottom: 1px solid rgba(120, 24, 18, 0.18);
     }
 
     .track-button {
       display: grid;
-      grid-template-columns: 2.2rem 48px 1fr auto;
-      gap: 0.75rem;
+      grid-template-columns: 2rem 48px minmax(0, 1fr) auto;
+      gap: 12px;
       align-items: center;
       width: 100%;
-      padding: 1rem 0.75rem;
+      padding: 14px 6px;
       border: 0;
       background: transparent;
+      color: inherit;
       text-align: left;
+      cursor: pointer;
+    }
+
+    .track-button:hover,
+    .track-button:focus-visible {
+      background: rgba(120, 24, 18, 0.08);
+      outline: 0;
+    }
+
+    .track-button[aria-current="true"] {
+      background: rgba(120, 24, 18, 0.1);
+    }
+
+    .track-number {
+      color: var(--patriotic-red);
+      font-family: Arial, sans-serif;
+      font-size: 0.8rem;
+      font-weight: 700;
+      letter-spacing: 0.08em;
     }
 
     .track-art {
       width: 48px;
       height: 48px;
-      border-radius: 8px;
+      border-radius: 10px;
       object-fit: cover;
-      border: 1px solid rgba(0, 61, 165, 0.28);
+      border: 1px solid rgba(120, 24, 18, 0.24);
     }
 
     .track-title-wrap {
-      display: flex;
-      flex-direction: column;
       min-width: 0;
     }
 
     .track-title {
+      display: block;
+      color: var(--near-black);
       font-size: 0.98rem;
+      font-weight: 700;
       line-height: 1.3;
-      color: #1f1f1f;
     }
 
     .track-note-preview {
-      font-size: 0.78rem;
-      color: #585858;
-      line-height: 1.3;
-      margin-top: 2px;
-      font-family: Arial, Helvetica, sans-serif;
+      display: block;
+      margin-top: 3px;
+      color: #55524d;
+      font-family: Arial, sans-serif;
+      font-size: 0.8rem;
+      line-height: 1.35;
     }
 
     .track-stats {
       display: flex;
       flex-wrap: wrap;
-      gap: 0.45rem;
-      margin-top: 0.45rem;
-      font-family: Arial, Helvetica, sans-serif;
+      gap: 8px;
+      margin-top: 7px;
+      font-family: Arial, sans-serif;
       font-size: 0.72rem;
       letter-spacing: 0.04em;
       text-transform: uppercase;
@@ -732,111 +251,44 @@
     .top-track-badge {
       display: inline-flex;
       align-items: center;
-      padding: 0.18rem 0.42rem;
+      padding: 2px 7px;
       border-radius: 999px;
-      background: rgba(218, 165, 32, 0.2);
-      color: #7a4b00;
-      font-weight: 800;
+      background: rgba(196, 30, 58, 0.12);
+      color: var(--patriotic-red);
+      font-weight: 700;
     }
 
     .top-track-badge[hidden] {
       display: none;
     }
 
-    .track-button.top-track {
-      border-color: var(--gold);
-      box-shadow: inset 0 0 0 1px rgba(218, 165, 32, 0.35);
-      background: linear-gradient(90deg, rgba(218, 165, 32, 0.15), rgba(255, 247, 229, 0.9));
-    }
-
-    .track-button:hover,
-    .track-button:focus-visible {
-      background: rgba(218, 165, 32, 0.24);
-      outline: 3px solid var(--orange);
-      outline-offset: -3px;
-    }
-
-    .track-button[aria-current="true"] {
-      background: var(--near-black);
-      color: var(--warm-paper);
-    }
-
-    .track-number {
-      color: var(--patriotic-red);
-    }
-
-    .track-button[aria-current="true"] .track-number {
-      color: var(--warm-paper);
-    }
-
-    .track-button[aria-current="true"] .track-title,
-    .track-button[aria-current="true"] .track-note-preview,
-    .track-button[aria-current="true"] .play-count,
-    .track-button[aria-current="true"] .top-track-badge {
-      color: var(--warm-paper);
-    }
-
-    .track-button[aria-current="true"] .top-track-badge {
-      background: rgba(242, 235, 221, 0.18);
-    }
-
     .playing-label {
-      color: var(--patriotic-red);
-      font-size: 0.78rem;
+      color: var(--patriotic-blue);
+      font-family: Arial, sans-serif;
+      font-size: 0.76rem;
+      font-weight: 700;
       letter-spacing: 0.08em;
       text-transform: uppercase;
     }
 
     .track-button[aria-current="true"] .playing-label {
-      color: var(--warm-paper);
+      color: var(--patriotic-red);
     }
 
     .library-note {
-      max-width: 720px;
-      margin: 0;
-      padding-left: 1rem;
-      border-left: 6px solid var(--patriotic-red);
-      color: #352c20;
-      font-size: 0.98rem;
+      padding-left: 14px;
+      border-left: 4px solid var(--patriotic-red);
+      font-size: 0.96rem;
+      line-height: 1.6;
     }
 
-    footer {
-      max-width: 960px;
-      margin: 0 auto;
-      padding: 2rem 1rem;
-      color: var(--muted);
-      font-family: Arial, Helvetica, sans-serif;
-      font-size: 0.9rem;
-    }
-
-    @media (max-width: 620px) {
-      .global-nav {
-        justify-content: flex-start;
-        gap: 8px;
-      }
-
-      .global-nav a {
-        font-size: 0.8rem;
-        padding: 5px 9px;
-      }
-
-      .track-top {
-        align-items: flex-start;
-      }
-
-      .record {
-        width: 64px;
-        border-width: 6px;
-      }
-
-      .shell-section {
-        padding: 16px 14px;
-        margin-bottom: 14px;
+    @media (max-width: 700px) {
+      .now-playing-block {
+        grid-template-columns: 1fr;
       }
 
       .track-button {
-        grid-template-columns: 1.8rem 42px 1fr;
-        gap: 0.55rem;
+        grid-template-columns: 1.8rem 42px minmax(0, 1fr);
       }
 
       .track-art {
@@ -848,112 +300,103 @@
         grid-column: 3;
       }
     }
+
+    @media (max-width: 520px) {
+      .player-controls,
+      .share-actions,
+      .music-link-row {
+        flex-direction: column;
+      }
+
+      .player-controls button,
+      .share-actions button,
+      .music-link-row a,
+      .counter-reset-button {
+        width: 100%;
+        justify-content: center;
+        text-align: center;
+      }
+    }
   </style>
 </head>
-<body>
+
+<body id="top">
   <a class="skip-link" href="#main-content">Skip to main content</a>
   <div class="global-nav" role="navigation" aria-label="Primary">
     <a href="index.html">Home</a>
     <a href="photos.html">Photos</a>
     <a href="more-images.html">More Images</a>
-    <a href="music.html">Music</a>
+    <a href="music.html" aria-current="page">Music</a>
     <a href="javascript-games.html">Games</a>
+    <a href="cards.html">Baseball Cards</a>
     <a href="changing-channel.html">The Changing Channel</a>
   </div>
+
   <header>
-    <h1>MUSIC LIBRARY</h1>
-    <p>Songs, experiments, and strange little hits from the archive.</p>
+    <h1>MUSIC</h1>
+    <p>Songs, experiments, and odd little recordings from the archive.</p>
   </header>
 
   <main id="main-content">
-    <section class="hero shell-section">
-      <p class="eyebrow">Suno Songs</p>
-      <h1>Listen Through The Catalog</h1>
-      <p class="intro">
-        A home for the songs, experiments, weird little hits, and half-serious bangers that came out of the Suno era.
-      </p>
-      <a class="hero-cta" href="#audio-player">Start Listening</a>
+    <section class="page-intro-shell archive-panel music-intro-shell" aria-labelledby="music-page-title">
+      <div class="section-title-wrap">
+        <p class="section-kicker">Music archive</p>
+        <h2 id="music-page-title">Listen through the catalog.</h2>
+      </div>
+      <p>The page is simpler now: one player, one playlist, and the tracks themselves. Pick a song, share it, and move through the archive without the extra gadgets.</p>
+      <div class="hero-link-row">
+        <a href="#audio-player" class="hero-cta-btn">Start listening</a>
+        <a href="index.html" class="secondary-cta-btn">Back to home</a>
+      </div>
     </section>
 
-    <section class="music-card shell-section" aria-labelledby="now-playing-title">
-      <div class="track-top">
-        <div class="record" aria-hidden="true"></div>
-        <div>
-          <p class="eyebrow">Now Playing</p>
-          <h2 id="now-playing-title">The Bullshit</h2>
-          <p class="track-note" id="now-playing-note">First track in the archive.</p>
-        </div>
-      </div>
-
-      <audio id="audio-player" controls preload="metadata">
-        <source src="music/the_bullshit.mp3" type="audio/mpeg">
-        Your browser does not support the audio element.
-      </audio>
-
-      <div class="player-controls" aria-label="Playlist controls">
-        <button id="previous-track" type="button">&#9664; Previous</button>
-        <button id="next-track" type="button">Next &#9654;</button>
-      </div>
-
-      <div class="share-actions" aria-label="Share controls">
-        <button id="share-track" type="button">Share This Song</button>
-        <button id="share-playlist" type="button">Share Playlist</button>
-      </div>
-      <p class="share-status" id="share-status" aria-live="polite"></p>
-
-      <section class="rap-booth" aria-labelledby="rap-booth-title">
-        <p class="eyebrow">Step On The Track</p>
-        <h3 id="rap-booth-title">Record a verse while the beat plays</h3>
-        <p class="rap-booth-note">Best results come with headphones so the mic mostly hears your voice and not the page audio leaking from speakers.</p>
-
-        <div class="rapper-name-row">
-          <label for="rapper-name">Rapper Name (for your take file)</label>
-          <input id="rapper-name" type="text" maxlength="40" placeholder="ex: jaffar-bars">
-          <div class="alias-actions">
-            <button class="alias-roll-button" id="roll-rapper-alias" type="button">Roll New Alias</button>
+    <section class="archive-panel music-player-panel" aria-labelledby="now-playing-title">
+      <div class="music-player-layout">
+        <div class="now-playing-block player-surface">
+          <div class="record-mark" aria-hidden="true"></div>
+          <div>
+            <p class="eyebrow-note">Now playing</p>
+            <h2 id="now-playing-title">The Bullshit</h2>
+            <p class="track-note" id="now-playing-note">First track in the archive.</p>
           </div>
         </div>
 
-        <div class="instrumental-picks-wrap">
-          <p class="instrumental-picks-label">Likely instrumentals in this archive</p>
-          <div class="instrumental-picks" id="instrumental-picks"></div>
-          <div class="instrumental-manager">
-            <button id="toggle-current-instrumental" type="button">Add current track to instrumental picks</button>
+        <div class="player-surface">
+          <audio id="audio-player" controls preload="metadata">
+            <source src="music/the_bullshit.mp3" type="audio/mpeg">
+            Your browser does not support the audio element.
+          </audio>
+
+          <div class="player-controls" aria-label="Playlist controls">
+            <button id="previous-track" type="button">&#9664; Previous</button>
+            <button id="next-track" type="button">Next &#9654;</button>
           </div>
+
+          <div class="share-actions" aria-label="Share controls">
+            <button id="share-track" type="button">Share This Song</button>
+            <button id="share-playlist" type="button">Share Playlist</button>
+          </div>
+          <p class="share-status" id="share-status" aria-live="polite"></p>
+
+          <div class="music-link-row">
+            <a id="file-link" href="music/the_bullshit.mp3">Open current MP3 file</a>
+          </div>
+
+          <p class="playlist-summary" id="total-play-count" aria-live="polite">Your listens on this browser: 0 | Unique tracks listened: 0</p>
+          <p class="counter-scope-note" id="counter-scope-note">Local counter only. It does not include other visitors.</p>
+          <div class="counter-reset-wrap">
+            <button class="counter-reset-button" id="reset-play-counts" type="button">Reset My Local Counter</button>
+          </div>
+
+          <ol class="playlist" id="playlist" aria-label="Song playlist"></ol>
         </div>
-
-        <div class="recording-controls" aria-label="Recording controls">
-          <button class="record-button" id="record-track" type="button">Step On The Track</button>
-          <button class="stop-button" id="stop-recording" type="button" disabled>Stop Recording</button>
-          <button class="preview-button" id="play-recording" type="button" disabled>Play Back Take</button>
-          <a class="download-recording" id="download-recording" href="#" download="" hidden aria-disabled="true">Download Take</a>
-        </div>
-
-        <p class="recording-status" id="recording-status" aria-live="polite">Choose a beat, then hit Step On The Track.</p>
-        <audio class="recording-preview" id="recording-preview" controls hidden></audio>
-      </section>
-
-      <a class="file-link" id="file-link" href="music/the_bullshit.mp3">Open current MP3 file</a>
-
-      <p class="playlist-summary" id="total-play-count" aria-live="polite">Your listens on this browser: 0 | Unique tracks listened: 0</p>
-      <p class="counter-scope-note" id="counter-scope-note">Local counter only. It does not include other visitors.</p>
-      <div class="counter-reset-wrap">
-        <button class="counter-reset-button" id="reset-play-counts" type="button">Reset My Local Counter</button>
       </div>
-
-      <ol class="playlist" id="playlist" aria-label="Song playlist"></ol>
     </section>
 
-    <section class="shell-section">
-      <p class="library-note">
-        Choose a song from the playlist. When a track ends, the next one will begin automatically.
-      </p>
+    <section class="page-intro-shell" aria-label="Listening note">
+      <p class="library-note">Choose a song from the playlist. When one track ends, the next one will begin automatically.</p>
     </section>
   </main>
-
-  <footer>
-    <p>Life of Jaffar music archive.</p>
-  </footer>
 
   <script>
     const audioPlayer = document.querySelector("#audio-player");
@@ -969,29 +412,7 @@
     const totalPlayCount = document.querySelector("#total-play-count");
     const counterScopeNote = document.querySelector("#counter-scope-note");
     const resetPlayCountsButton = document.querySelector("#reset-play-counts");
-    const instrumentalPicks = document.querySelector("#instrumental-picks");
-    const recordTrackButton = document.querySelector("#record-track");
-    const stopRecordingButton = document.querySelector("#stop-recording");
-    const playRecordingButton = document.querySelector("#play-recording");
-    const downloadRecordingLink = document.querySelector("#download-recording");
-    const recordingStatus = document.querySelector("#recording-status");
-    const recordingPreview = document.querySelector("#recording-preview");
-    const rapperNameInput = document.querySelector("#rapper-name");
-    const rollRapperAliasButton = document.querySelector("#roll-rapper-alias");
-    const toggleCurrentInstrumentalButton = document.querySelector("#toggle-current-instrumental");
     const PLAY_COUNT_KEY = "eric-stone-music-play-counts";
-    const INSTRUMENTAL_PICKS_KEY = "eric-stone-instrumental-picks";
-    const DEFAULT_INSTRUMENTAL_TRACKS = [
-      "music/lil-static.mp3",
-      "music/sound-track.mp3",
-      "music/tv-broadcast.mp3",
-      "music/japanese-boom-bap.mp3",
-      "music/straight-banger.mp3",
-      "music/saloon-future.mp3",
-      "music/miracle-solve-x.mp3",
-      "music/rocky-theme-music.mp3",
-      "music/shippity.mp3"
-    ];
     const trackArtPool = [
       "images/quiet-evening.jpg",
       "images/downtown-greenville.jpg",
@@ -1004,468 +425,12 @@
       "images/17882340400264763.jpg",
       "images/eric-in-the-woods.jpg"
     ];
+
     let playlistTracks = [];
     let trackButtons = [];
     let currentTrackIndex = 0;
     let currentTrackPlayCounted = false;
     let transientPlayCounts = {};
-    let audioContext = null;
-    let audioGraphReady = false;
-    let recordingDestination = null;
-    let microphoneStream = null;
-    let mediaRecorder = null;
-    let recordingChunks = [];
-    let recordedTakeUrl = "";
-    let recordedTakeMimeType = "";
-    let countInActive = false;
-    let countInToken = 0;
-    let instrumentalTrackSources = new Set(DEFAULT_INSTRUMENTAL_TRACKS);
-    const RAPPER_ALIAS_FIRST = [
-      "MC",
-      "Lil",
-      "DJ",
-      "Captain",
-      "Young",
-      "Professor",
-      "Big",
-      "Slick",
-      "Turbo",
-      "Cosmic",
-      "Major",
-      "Neon"
-    ];
-    const RAPPER_ALIAS_SECOND = [
-      "Snack",
-      "Noodles",
-      "Thunder",
-      "Mustache",
-      "Penguin",
-      "Waffles",
-      "BoomBap",
-      "Potato",
-      "Echo",
-      "Biscuits",
-      "Comet",
-      "Gremlin"
-    ];
-
-    function readInstrumentalTrackSources() {
-      try {
-        const parsed = JSON.parse(localStorage.getItem(INSTRUMENTAL_PICKS_KEY) || "[]");
-        if (!Array.isArray(parsed)) {
-          return new Set(DEFAULT_INSTRUMENTAL_TRACKS);
-        }
-
-        const validSources = parsed.filter((value) => typeof value === "string" && value.startsWith("music/"));
-        if (validSources.length === 0) {
-          return new Set(DEFAULT_INSTRUMENTAL_TRACKS);
-        }
-
-        return new Set(validSources);
-      } catch (error) {
-        console.warn("Could not read instrumental picks:", error);
-        return new Set(DEFAULT_INSTRUMENTAL_TRACKS);
-      }
-    }
-
-    function writeInstrumentalTrackSources() {
-      try {
-        localStorage.setItem(INSTRUMENTAL_PICKS_KEY, JSON.stringify(Array.from(instrumentalTrackSources)));
-      } catch (error) {
-        console.warn("Could not save instrumental picks:", error);
-      }
-    }
-
-    function generateRapperAlias() {
-      const first = RAPPER_ALIAS_FIRST[Math.floor(Math.random() * RAPPER_ALIAS_FIRST.length)];
-      const second = RAPPER_ALIAS_SECOND[Math.floor(Math.random() * RAPPER_ALIAS_SECOND.length)];
-      const suffix = Math.floor(Math.random() * 90) + 10;
-      return first + " " + second + " " + suffix;
-    }
-
-    function assignFreshRapperAlias() {
-      if (!rapperNameInput) {
-        return;
-      }
-
-      rapperNameInput.value = generateRapperAlias();
-
-      if (recordedTakeUrl && downloadRecordingLink) {
-        downloadRecordingLink.download = buildTakeFilename(getCurrentTrack());
-      }
-    }
-
-    function isLikelyInstrumental(trackSrc) {
-      return instrumentalTrackSources.has(trackSrc);
-    }
-
-    function setRecordingStatus(message) {
-      if (recordingStatus) {
-        recordingStatus.textContent = message;
-      }
-    }
-
-    function isRecordingActive() {
-      return Boolean(mediaRecorder && mediaRecorder.state === "recording");
-    }
-
-    function getCurrentTrack() {
-      return playlistTracks[currentTrackIndex] || null;
-    }
-
-    function getSupportedRecordingMimeType() {
-      if (typeof MediaRecorder === "undefined" || typeof MediaRecorder.isTypeSupported !== "function") {
-        return "";
-      }
-
-      const candidates = [
-        "audio/webm;codecs=opus",
-        "audio/webm",
-        "audio/mp4"
-      ];
-
-      return candidates.find((candidate) => MediaRecorder.isTypeSupported(candidate)) || "";
-    }
-
-    function updateRecordingControls() {
-      const hasTake = Boolean(recordedTakeUrl);
-      const recording = isRecordingActive();
-      const disableStart = recording || countInActive || typeof MediaRecorder === "undefined";
-
-      if (recordTrackButton) {
-        recordTrackButton.disabled = disableStart;
-        recordTrackButton.classList.toggle("is-recording", recording);
-      }
-
-      if (stopRecordingButton) {
-        stopRecordingButton.disabled = !recording && !countInActive;
-        stopRecordingButton.textContent = countInActive ? "Cancel Count-In" : "Stop Recording";
-      }
-
-      if (playRecordingButton) {
-        playRecordingButton.disabled = recording || countInActive || !hasTake;
-      }
-
-      if (downloadRecordingLink) {
-        downloadRecordingLink.hidden = !hasTake;
-        downloadRecordingLink.setAttribute("aria-disabled", hasTake ? "false" : "true");
-      }
-    }
-
-    function sanitizeSlug(value) {
-      return String(value || "")
-        .toLowerCase()
-        .replace(/[^a-z0-9]+/g, "-")
-        .replace(/^-+|-+$/g, "");
-    }
-
-    function getTakeExtensionFromMimeType(mimeType) {
-      if (typeof mimeType !== "string") {
-        return "webm";
-      }
-
-      if (mimeType.includes("mp4")) {
-        return "m4a";
-      }
-
-      if (mimeType.includes("ogg")) {
-        return "ogg";
-      }
-
-      return "webm";
-    }
-
-    function clearRecordedTake() {
-      if (recordedTakeUrl) {
-        URL.revokeObjectURL(recordedTakeUrl);
-        recordedTakeUrl = "";
-      }
-
-      recordedTakeMimeType = "";
-
-      if (recordingPreview) {
-        recordingPreview.pause();
-        recordingPreview.removeAttribute("src");
-        recordingPreview.load();
-        recordingPreview.hidden = true;
-      }
-
-      if (downloadRecordingLink) {
-        downloadRecordingLink.removeAttribute("href");
-        downloadRecordingLink.removeAttribute("download");
-      }
-
-      updateRecordingControls();
-    }
-
-    function buildTakeFilename(track) {
-      const baseName = sanitizeSlug(track?.title || "track") || "track";
-      const rapperName = sanitizeSlug(rapperNameInput?.value || "");
-      const extension = getTakeExtensionFromMimeType(recordedTakeMimeType);
-      const prefix = rapperName ? rapperName + "-" : "";
-      return prefix + baseName + "-take." + extension;
-    }
-
-    async function runCountIn(seconds, token) {
-      for (let remaining = seconds; remaining > 0; remaining -= 1) {
-        if (token !== countInToken) {
-          return false;
-        }
-
-        setRecordingStatus("Recording starts in " + remaining + "...");
-        await new Promise((resolve) => setTimeout(resolve, 1000));
-      }
-
-      return token === countInToken;
-    }
-
-    async function ensureRecordingGraph() {
-      if (typeof MediaRecorder === "undefined") {
-        throw new Error("This browser does not support in-browser recording.");
-      }
-
-      const AudioContextCtor = window.AudioContext || window.webkitAudioContext;
-      if (!AudioContextCtor) {
-        throw new Error("This browser does not support Web Audio mixing.");
-      }
-
-      if (!audioContext) {
-        audioContext = new AudioContextCtor();
-      }
-
-      if (!recordingDestination) {
-        recordingDestination = audioContext.createMediaStreamDestination();
-      }
-
-      if (!audioGraphReady) {
-        const trackSource = audioContext.createMediaElementSource(audioPlayer);
-        const trackMonitor = audioContext.createGain();
-        const trackRecordSend = audioContext.createGain();
-
-        trackMonitor.gain.value = 1;
-        trackRecordSend.gain.value = 1;
-        trackSource.connect(trackMonitor);
-        trackMonitor.connect(audioContext.destination);
-        trackSource.connect(trackRecordSend);
-        trackRecordSend.connect(recordingDestination);
-        audioGraphReady = true;
-      }
-
-      if (!microphoneStream) {
-        microphoneStream = await navigator.mediaDevices.getUserMedia({
-          audio: {
-            echoCancellation: true,
-            noiseSuppression: true,
-            autoGainControl: true
-          }
-        });
-
-        const micSource = audioContext.createMediaStreamSource(microphoneStream);
-        const micRecordSend = audioContext.createGain();
-
-        micRecordSend.gain.value = 1;
-        micSource.connect(micRecordSend);
-        micRecordSend.connect(recordingDestination);
-      }
-
-      if (audioContext.state === "suspended") {
-        await audioContext.resume();
-      }
-    }
-
-    function finishRecording() {
-      const currentTrack = getCurrentTrack();
-      const chunks = recordingChunks.filter((chunk) => chunk && chunk.size > 0);
-      mediaRecorder = null;
-
-      if (chunks.length === 0) {
-        setRecordingStatus("Recording stopped, but this browser did not return any audio data.");
-        updateRecordingControls();
-        return;
-      }
-
-      const blob = new Blob(chunks, {
-        type: recordedTakeMimeType || chunks[0].type || "audio/webm"
-      });
-
-      recordedTakeUrl = URL.createObjectURL(blob);
-
-      if (recordingPreview) {
-        recordingPreview.src = recordedTakeUrl;
-        recordingPreview.hidden = false;
-      }
-
-      if (downloadRecordingLink) {
-        downloadRecordingLink.href = recordedTakeUrl;
-        downloadRecordingLink.download = buildTakeFilename(currentTrack);
-      }
-
-      setRecordingStatus("Take ready. Play it back here or download it.");
-      updateRecordingControls();
-    }
-
-    function stopCurrentRecording(message) {
-      if (countInActive) {
-        countInToken += 1;
-        countInActive = false;
-        if (message) {
-          setRecordingStatus(message);
-        } else {
-          setRecordingStatus("Count-in canceled.");
-        }
-        updateRecordingControls();
-        return;
-      }
-
-      if (!isRecordingActive()) {
-        if (message) {
-          setRecordingStatus(message);
-        }
-        updateRecordingControls();
-        return;
-      }
-
-      if (message) {
-        setRecordingStatus(message);
-      }
-
-      mediaRecorder.stop();
-      audioPlayer.pause();
-      updateRecordingControls();
-    }
-
-    async function startTrackRecording() {
-      const currentTrack = getCurrentTrack();
-      if (!currentTrack) {
-        setRecordingStatus("Choose a track first.");
-        return;
-      }
-
-      if (!navigator.mediaDevices || typeof navigator.mediaDevices.getUserMedia !== "function") {
-        setRecordingStatus("Microphone recording is not available in this browser.");
-        return;
-      }
-
-      if (countInActive || isRecordingActive()) {
-        return;
-      }
-
-      try {
-        await ensureRecordingGraph();
-
-        countInToken += 1;
-        const activeToken = countInToken;
-        countInActive = true;
-        updateRecordingControls();
-
-        const shouldContinue = await runCountIn(3, activeToken);
-        if (!shouldContinue) {
-          return;
-        }
-
-        clearRecordedTake();
-
-        recordedTakeMimeType = getSupportedRecordingMimeType();
-        mediaRecorder = recordedTakeMimeType
-          ? new MediaRecorder(recordingDestination.stream, { mimeType: recordedTakeMimeType })
-          : new MediaRecorder(recordingDestination.stream);
-
-        recordingChunks = [];
-        mediaRecorder.addEventListener("dataavailable", (event) => {
-          if (event.data && event.data.size > 0) {
-            recordingChunks.push(event.data);
-          }
-        });
-        mediaRecorder.addEventListener("stop", finishRecording, { once: true });
-
-        audioPlayer.pause();
-        audioPlayer.currentTime = 0;
-        mediaRecorder.start();
-        countInActive = false;
-        updateRecordingControls();
-        setRecordingStatus("Recording started. The beat is rolling and your mic is live.");
-
-        await audioPlayer.play();
-      } catch (error) {
-        if (mediaRecorder && mediaRecorder.state === "recording") {
-          mediaRecorder.stop();
-        }
-        countInActive = false;
-        mediaRecorder = null;
-        console.warn("Could not start recording:", error);
-        setRecordingStatus("Could not start recording. Allow mic access and try again.");
-        updateRecordingControls();
-      }
-    }
-
-    function renderInstrumentalPicks() {
-      if (!instrumentalPicks) {
-        return;
-      }
-
-      const tracks = playlistTracks.filter((track) => isLikelyInstrumental(track.src));
-      if (tracks.length === 0) {
-        instrumentalPicks.innerHTML = "<span class=\"track-note-preview\">No likely instrumentals were flagged yet.</span>";
-        return;
-      }
-
-      instrumentalPicks.innerHTML = tracks.map((track) => `
-        <button
-          class="instrumental-pick"
-          type="button"
-          data-track-src="${escapeHtml(track.src)}"
-          aria-pressed="false"
-        >${escapeHtml(track.title)}</button>
-      `).join("");
-
-      Array.from(instrumentalPicks.querySelectorAll(".instrumental-pick")).forEach((button) => {
-        button.addEventListener("click", () => {
-          const trackIndex = playlistTracks.findIndex((track) => track.src === button.dataset.trackSrc);
-          if (trackIndex >= 0) {
-            loadTrack(trackIndex, false);
-            setRecordingStatus("Beat loaded. Hit Step On The Track when you are ready.");
-          }
-        });
-      });
-    }
-
-    function updateInstrumentalBadges() {
-      trackButtons.forEach((button) => {
-        const badge = button.querySelector(".instrumental-track-badge");
-        if (!badge) {
-          return;
-        }
-        badge.hidden = !isLikelyInstrumental(button.dataset.src);
-      });
-    }
-
-    function updateCurrentInstrumentalToggle() {
-      if (!toggleCurrentInstrumentalButton) {
-        return;
-      }
-
-      const currentTrack = getCurrentTrack();
-      if (!currentTrack) {
-        toggleCurrentInstrumentalButton.disabled = true;
-        return;
-      }
-
-      const selected = isLikelyInstrumental(currentTrack.src);
-      toggleCurrentInstrumentalButton.disabled = false;
-      toggleCurrentInstrumentalButton.textContent = selected
-        ? "Remove current track from instrumental picks"
-        : "Add current track to instrumental picks";
-    }
-
-    function syncInstrumentalPickState(trackSrc) {
-      if (!instrumentalPicks) {
-        return;
-      }
-
-      Array.from(instrumentalPicks.querySelectorAll(".instrumental-pick")).forEach((button) => {
-        button.setAttribute("aria-pressed", button.dataset.trackSrc === trackSrc ? "true" : "false");
-      });
-    }
 
     function getStorageMode() {
       try {
@@ -1487,9 +452,10 @@
 
       if (storageMode === "persistent") {
         counterScopeNote.textContent = "Local counter only. It does not include other visitors.";
-      } else {
-        counterScopeNote.textContent = "Local browser storage is unavailable. Counter is temporary for this tab/session and may reset.";
+        return;
       }
+
+      counterScopeNote.textContent = "Local browser storage is unavailable. Counter is temporary for this tab or session and may reset.";
     }
 
     function readPlayCounts() {
@@ -1503,7 +469,6 @@
           return {};
         }
 
-        // Keep only non-negative numeric counters for predictable display.
         return Object.fromEntries(
           Object.entries(parsed).filter(([, value]) => typeof value === "number" && Number.isFinite(value) && value >= 0)
         );
@@ -1547,6 +512,7 @@
           if (countGap !== 0) {
             return countGap;
           }
+
           return left.title.localeCompare(right.title);
         })
         .slice(0, 5)
@@ -1576,8 +542,6 @@
         if (badgeEl) {
           badgeEl.hidden = !isTopTrack;
         }
-
-        button.classList.toggle("top-track", isTopTrack);
       });
 
       if (totalPlayCount) {
@@ -1710,7 +674,6 @@
               <span class="track-note-preview">${escapeHtml(track.note)}</span>
               <span class="track-stats">
                 <span class="play-count">${counts[track.src] || 0} plays</span>
-                ${isLikelyInstrumental(track.src) ? '<span class="instrumental-track-badge">Instrumental pick</span>' : ""}
                 <span class="top-track-badge" ${topTrackSources.has(track.src) ? "" : "hidden"}>Top 5</span>
               </span>
             </span>
@@ -1720,7 +683,6 @@
       `).join("");
 
       trackButtons = Array.from(document.querySelectorAll(".track-button"));
-      renderInstrumentalPicks();
 
       if (trackButtons.length > 0) {
         loadTrack(getRequestedTrackIndex(), false);
@@ -1735,18 +697,17 @@
       if (trackButtons.length < 2) {
         previousButton.disabled = true;
         nextButton.disabled = true;
-      } else {
-        previousButton.disabled = false;
-        nextButton.disabled = false;
+        return;
       }
+
+      previousButton.disabled = false;
+      nextButton.disabled = false;
     }
 
-    function loadTrack(index, shouldPlay = false) {
+    function loadTrack(index, shouldPlay) {
       const track = trackButtons[index];
-      if (!track) return;
-
-      if (isRecordingActive()) {
-        stopCurrentRecording("Recording stopped because the track changed.");
+      if (!track) {
+        return;
       }
 
       currentTrackIndex = index;
@@ -1756,13 +717,15 @@
       nowPlayingNote.textContent = track.dataset.note;
       fileLink.href = track.dataset.src;
       syncUrlToCurrentTrack(track.dataset.src);
-      syncInstrumentalPickState(track.dataset.src);
-      updateCurrentInstrumentalToggle();
 
       trackButtons.forEach((button, buttonIndex) => {
         const isCurrent = buttonIndex === currentTrackIndex;
         button.setAttribute("aria-current", isCurrent ? "true" : "false");
-        button.querySelector(".playing-label").textContent = isCurrent ? "Playing" : "Play";
+
+        const label = button.querySelector(".playing-label");
+        if (label) {
+          label.textContent = isCurrent ? "Playing" : "Play";
+        }
       });
 
       if (shouldPlay) {
@@ -1771,7 +734,10 @@
     }
 
     function changeTrack(direction) {
-      if (trackButtons.length === 0) return;
+      if (trackButtons.length === 0) {
+        return;
+      }
+
       const nextIndex = (currentTrackIndex + direction + trackButtons.length) % trackButtons.length;
       loadTrack(nextIndex, true);
     }
@@ -1783,8 +749,7 @@
         return;
       }
 
-      const trackUrl = buildTrackShareUrl(currentTrack.dataset.src);
-      await shareUrl(trackUrl, "Song link copied.");
+      await shareUrl(buildTrackShareUrl(currentTrack.dataset.src), "Song link copied.");
     });
 
     sharePlaylistButton.addEventListener("click", async () => {
@@ -1800,52 +765,8 @@
 
     previousButton.addEventListener("click", () => changeTrack(-1));
     nextButton.addEventListener("click", () => changeTrack(1));
-    recordTrackButton.addEventListener("click", startTrackRecording);
-    stopRecordingButton.addEventListener("click", () => {
-      stopCurrentRecording("Recording stopped. Building your take now.");
-    });
-    playRecordingButton.addEventListener("click", () => {
-      if (recordedTakeUrl && recordingPreview) {
-        recordingPreview.currentTime = 0;
-        recordingPreview.play();
-      }
-    });
-    toggleCurrentInstrumentalButton.addEventListener("click", () => {
-      const currentTrack = getCurrentTrack();
-      if (!currentTrack) {
-        return;
-      }
-
-      if (isLikelyInstrumental(currentTrack.src)) {
-        instrumentalTrackSources.delete(currentTrack.src);
-      } else {
-        instrumentalTrackSources.add(currentTrack.src);
-      }
-
-      writeInstrumentalTrackSources();
-      renderInstrumentalPicks();
-      syncInstrumentalPickState(currentTrack.src);
-      updateCurrentInstrumentalToggle();
-      updateInstrumentalBadges();
-    });
-
-    rapperNameInput.addEventListener("input", () => {
-      if (recordedTakeUrl && downloadRecordingLink) {
-        downloadRecordingLink.download = buildTakeFilename(getCurrentTrack());
-      }
-    });
-
-    rollRapperAliasButton.addEventListener("click", () => {
-      assignFreshRapperAlias();
-      setRecordingStatus("Fresh alias loaded. Ready for your next take.");
-    });
 
     audioPlayer.addEventListener("ended", () => {
-      if (isRecordingActive()) {
-        stopCurrentRecording("Beat finished. Building your take now.");
-        return;
-      }
-
       if (trackButtons.length > 1) {
         changeTrack(1);
       }
@@ -1853,20 +774,7 @@
 
     audioPlayer.addEventListener("play", recordTrackPlay);
 
-    window.addEventListener("beforeunload", () => {
-      if (recordedTakeUrl) {
-        URL.revokeObjectURL(recordedTakeUrl);
-      }
-
-      if (microphoneStream) {
-        microphoneStream.getTracks().forEach((track) => track.stop());
-      }
-    });
-
-    instrumentalTrackSources = readInstrumentalTrackSources();
-  assignFreshRapperAlias();
     updateCounterScopeMessage();
-    updateRecordingControls();
     loadPlaylist();
   </script>
 </body>
