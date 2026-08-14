@@ -376,6 +376,7 @@
           </audio>
 
           <div class="player-controls" aria-label="Playlist controls">
+            <button id="play-all" type="button">Play All</button>
             <button id="previous-track" type="button">&#9664; Previous</button>
             <button id="next-track" type="button">Next &#9654;</button>
           </div>
@@ -411,6 +412,7 @@
     const nowPlayingTitle = document.querySelector("#now-playing-title");
     const nowPlayingNote = document.querySelector("#now-playing-note");
     const fileLink = document.querySelector("#file-link");
+    const playAllButton = document.querySelector("#play-all");
     const previousButton = document.querySelector("#previous-track");
     const nextButton = document.querySelector("#next-track");
     const shareTrackButton = document.querySelector("#share-track");
@@ -438,6 +440,7 @@
     let trackButtons = [];
     let currentTrackIndex = 0;
     let currentTrackPlayCounted = false;
+    let playAllActive = false;
     let transientPlayCounts = {};
 
     function getStorageMode() {
@@ -703,11 +706,17 @@
       renderTrackMeta();
 
       if (trackButtons.length < 2) {
+        if (playAllButton) {
+          playAllButton.disabled = true;
+        }
         previousButton.disabled = true;
         nextButton.disabled = true;
         return;
       }
 
+      if (playAllButton) {
+        playAllButton.disabled = false;
+      }
       previousButton.disabled = false;
       nextButton.disabled = false;
     }
@@ -741,6 +750,16 @@
       }
     }
 
+    function startPlayAll() {
+      if (trackButtons.length === 0) {
+        return;
+      }
+
+      playAllActive = true;
+      loadTrack(0, true);
+      setShareStatus("Playing the full playlist from track 1.");
+    }
+
     function changeTrack(direction) {
       if (trackButtons.length === 0) {
         return;
@@ -771,13 +790,36 @@
       setShareStatus("Your local listen counter was reset.");
     });
 
-    previousButton.addEventListener("click", () => changeTrack(-1));
-    nextButton.addEventListener("click", () => changeTrack(1));
+    if (playAllButton) {
+      playAllButton.addEventListener("click", startPlayAll);
+    }
+
+    previousButton.addEventListener("click", () => {
+      playAllActive = false;
+      changeTrack(-1);
+    });
+
+    nextButton.addEventListener("click", () => {
+      playAllActive = false;
+      changeTrack(1);
+    });
 
     audioPlayer.addEventListener("ended", () => {
-      if (trackButtons.length > 1) {
-        changeTrack(1);
+      if (trackButtons.length <= 1) {
+        return;
       }
+
+      if (playAllActive) {
+        if (currentTrackIndex < trackButtons.length - 1) {
+          loadTrack(currentTrackIndex + 1, true);
+        } else {
+          playAllActive = false;
+          setShareStatus("Playlist finished.");
+        }
+        return;
+      }
+
+      changeTrack(1);
     });
 
     audioPlayer.addEventListener("play", recordTrackPlay);
