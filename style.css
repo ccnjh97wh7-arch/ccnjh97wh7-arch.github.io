@@ -325,7 +325,11 @@ header h1 {
     position: relative;
     min-width: 0;
     width: clamp(206px, 21vw, 246px);
-    text-align: right;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
     background: rgba(255, 255, 255, 0.08);
     border: 1px solid rgba(196, 30, 58, 0.45);
     border-radius: 10px;
@@ -396,6 +400,7 @@ header h1 {
     font-family: Arial, sans-serif;
     font-size: 0.75rem;
     line-height: 1.45;
+    text-align: center;
 }
 
 .header-support-note a {
@@ -2982,7 +2987,10 @@ footer {
 }
 
 .donate-btn {
-    display: inline-block;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
     padding: 12px 20px;
     background: linear-gradient(135deg, var(--patriotic-red), #7a1713);
     color: white;
