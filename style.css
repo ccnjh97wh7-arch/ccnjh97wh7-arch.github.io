@@ -1003,7 +1003,7 @@ main {
     border: 1px solid rgba(120, 24, 18, 0.3);
     border-radius: 999px;
     background: rgba(120, 24, 18, 0.06);
-    color: var(--patriotic-blue);
+    color: #111111;
     text-decoration: none;
     font-family: Arial, sans-serif;
     font-size: 0.94rem;
@@ -1015,6 +1015,7 @@ main {
     transform: translateY(-2px);
     background: rgba(120, 24, 18, 0.12);
     border-color: var(--patriotic-blue);
+    color: #111111;
 }
 
 .explore-prompt-section {
@@ -1112,13 +1113,13 @@ main {
     font-size: 0.95rem;
     font-weight: 800;
     letter-spacing: 0.02em;
-    color: var(--patriotic-blue);
+    color: #111111;
 }
 
 .quick-start-meta {
     font-family: Arial, sans-serif;
     font-size: 0.82rem;
-    color: var(--text-muted);
+    color: #3a3a3a;
 }
 
 .quick-start-watch {
@@ -2154,9 +2155,9 @@ section p {
 
 .filter-btn {
     padding: 10px 18px;
-    border: 2px solid var(--patriotic-blue);
-    background-color: transparent;
-    color: var(--patriotic-blue);
+    border: 2px solid rgba(17, 17, 17, 0.18);
+    background-color: rgba(255, 255, 255, 0.8);
+    color: #111111;
     border-radius: 20px;
     cursor: pointer;
     font-size: 14px;
@@ -2167,9 +2168,10 @@ section p {
 }
 
 .filter-btn:hover {
-    background-color: rgba(120, 24, 18, 0.1);
+    background-color: rgba(120, 24, 18, 0.08);
     transform: translateY(-2px);
     box-shadow: 0 2px 8px rgba(120, 24, 18, 0.15);
+    color: #111111;
 }
 
 .filter-btn.active {
