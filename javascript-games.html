@@ -28,29 +28,30 @@
         }
 
         .game-card {
-            border: 2px solid var(--patriotic-blue);
+            border: 1px solid rgba(116, 232, 255, 0.7);
             border-radius: 12px;
             padding: 18px;
-            background: linear-gradient(140deg, rgba(255, 255, 255, 0.94), rgba(196, 30, 58, 0.06));
-            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+            background: linear-gradient(140deg, rgba(6, 18, 30, 0.96), rgba(8, 30, 48, 0.9));
+            box-shadow: 0 8px 18px rgba(0, 0, 0, 0.24);
             transition: transform 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease;
         }
 
         .game-card:hover {
             transform: translateY(-4px);
-            border-color: var(--patriotic-red);
-            box-shadow: 0 10px 24px rgba(196, 30, 58, 0.12);
+            border-color: rgba(255, 107, 121, 0.86);
+            box-shadow: 0 12px 24px rgba(87, 217, 255, 0.2);
         }
 
         .game-card h3 {
             margin: 0 0 10px;
-            color: var(--patriotic-blue);
+            color: #bff1ff;
             font-size: 1.3rem;
         }
 
         .game-card p {
             margin: 0 0 12px;
             font-size: 0.96rem;
+            color: #ddf4ff;
         }
 
         .game-status {
@@ -58,6 +59,7 @@
             font-family: Arial, sans-serif;
             font-size: 0.95rem;
             margin: 8px 0;
+            color: #d9f2ff;
         }
 
         .inline-controls {
@@ -69,16 +71,18 @@
 
         input[type="number"] {
             padding: 8px 10px;
-            border: 2px solid var(--patriotic-blue);
+            border: 1px solid rgba(116, 232, 255, 0.72);
             border-radius: 8px;
             width: 120px;
             font-size: 1rem;
+            background: rgba(7, 22, 36, 0.95);
+            color: #eaf9ff;
         }
 
         .game-btn {
-            border: 2px solid var(--patriotic-blue);
-            background: var(--white);
-            color: var(--patriotic-blue);
+            border: 1px solid rgba(116, 232, 255, 0.84);
+            background: linear-gradient(160deg, rgba(10, 35, 56, 0.96), rgba(6, 20, 35, 0.98));
+            color: #e8f9ff;
             border-radius: 8px;
             padding: 8px 12px;
             font-weight: 700;
@@ -87,8 +91,8 @@
         }
 
         .game-btn:hover {
-            background: var(--patriotic-blue);
-            color: var(--white);
+            background: linear-gradient(160deg, rgba(16, 54, 84, 0.98), rgba(8, 26, 44, 0.98));
+            color: #ffffff;
             transform: translateY(-1px);
         }
 
@@ -99,31 +103,32 @@
 
         .featured-playable {
             margin-top: 28px;
-            border: 2px solid var(--patriotic-blue);
+            border: 1px solid rgba(116, 232, 255, 0.7);
             border-radius: 12px;
             padding: 14px;
-            background: linear-gradient(155deg, rgba(255, 255, 255, 0.94), rgba(0, 61, 165, 0.06));
+            background: linear-gradient(155deg, rgba(6, 18, 30, 0.96), rgba(8, 30, 48, 0.9));
         }
 
         .featured-playable h3 {
             margin: 0 0 8px;
-            color: var(--patriotic-blue);
+            color: #bff1ff;
             font-size: 1.2rem;
         }
 
         .featured-playable p {
             margin: 0 0 12px;
             font-size: 0.95rem;
+            color: #ddf4ff;
         }
 
         .playable-frame-wrap {
             position: relative;
             width: 100%;
             aspect-ratio: 16 / 9;
-            border: 2px solid rgba(0, 61, 165, 0.35);
+            border: 1px solid rgba(116, 232, 255, 0.5);
             border-radius: 10px;
             overflow: hidden;
-            background: #120f0b;
+            background: #040d17;
         }
 
         .playable-frame-wrap iframe {
@@ -132,7 +137,7 @@
             width: 100%;
             height: 100%;
             border: 0;
-            background: #120f0b;
+            background: #040d17;
         }
 
         .rps-buttons {
@@ -145,7 +150,7 @@
         .scoreboard {
             font-family: Arial, sans-serif;
             font-size: 0.95rem;
-            color: #333;
+            color: #cfeeff;
         }
 
         .game-display {
@@ -155,13 +160,13 @@
             justify-content: flex-start;
             margin: 8px 0 12px;
             padding: 10px 12px;
-            border: 2px dashed rgba(0, 61, 165, 0.28);
+            border: 1px dashed rgba(116, 232, 255, 0.54);
             border-radius: 10px;
-            background: rgba(255, 255, 255, 0.8);
+            background: rgba(7, 24, 40, 0.94);
             font-family: Arial, sans-serif;
             font-size: 1rem;
             font-weight: 700;
-            color: var(--near-black);
+            color: #eaf9ff;
         }
 
         .ttt-board {
@@ -177,25 +182,40 @@
             height: 78px;
             font-size: 1.8rem;
             font-weight: 700;
-            border: 2px solid var(--patriotic-blue);
+            border: 1px solid rgba(116, 232, 255, 0.68);
             border-radius: 8px;
-            background: #fff;
-            color: var(--near-black);
+            background: rgba(7, 24, 40, 0.94);
+            color: #ecfaff;
             cursor: pointer;
             transition: background 0.2s ease;
         }
 
         .ttt-cell:hover {
-            background: rgba(0, 61, 165, 0.08);
+            background: rgba(14, 46, 72, 0.94);
         }
 
         .ttt-cell:disabled {
             cursor: not-allowed;
-            color: #777;
-            background: #f3f3f3;
+            color: #8fb6c8;
+            background: rgba(6, 18, 30, 0.9);
         }
 
         @media (max-width: 480px) {
+            .game-card p {
+                font-size: 1.02rem;
+                line-height: 1.62;
+            }
+
+            .game-status,
+            .scoreboard {
+                font-size: 1rem;
+                line-height: 1.5;
+            }
+
+            .game-display {
+                font-size: 1.04rem;
+            }
+
             .ttt-board {
                 grid-template-columns: repeat(3, 68px);
             }

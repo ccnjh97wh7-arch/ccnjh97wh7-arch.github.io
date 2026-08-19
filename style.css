@@ -3366,25 +3366,27 @@ footer {
 
     :root {
         --crt-bg: #050805;
-        --crt-text: #7CFF7C;
-        --crt-highlight: #39FF14;
-        --crt-dim: #76C881;
-        --crt-text-soft: #AEE9AE;
+        --crt-text: #8eeeff;
+        --crt-highlight: #57d9ff;
+        --crt-dim: #7fb8cc;
+        --crt-text-soft: #c7f0ff;
+        --crt-red: #ff5a68;
+        --crt-red-soft: #ffadb5;
         --patriotic-red: #F4FFF0;
         --patriotic-blue: #F4FFF0;
-        --crt-panel: rgba(8, 18, 10, 0.72);
-        --crt-panel-strong: rgba(8, 18, 10, 0.88);
-        --crt-border: rgba(57, 255, 20, 0.42);
-        --crt-border-strong: rgba(57, 255, 20, 0.7);
-        --crt-shadow: rgba(57, 255, 20, 0.18);
+        --crt-panel: rgba(8, 18, 10, 0.9);
+        --crt-panel-strong: rgba(8, 18, 10, 0.95);
+        --crt-border: rgba(87, 217, 255, 0.48);
+        --crt-border-strong: rgba(149, 234, 255, 0.78);
+        --crt-shadow: rgba(87, 217, 255, 0.22);
     }
 
     body {
         background: var(--crt-bg);
         color: var(--crt-text);
         text-shadow:
-            0 0 1px rgba(124, 255, 124, 0.42),
-            0 0 3px rgba(57, 255, 20, 0.14);
+            0 0 1px rgba(142, 238, 255, 0.46),
+            0 0 3px rgba(87, 217, 255, 0.16);
         animation: crt-flicker 11s infinite steps(30, end);
     }
 
@@ -3413,16 +3415,16 @@ footer {
 
     a {
         color: var(--crt-highlight);
-        text-decoration-color: rgba(57, 255, 20, 0.35);
+        text-decoration-color: rgba(87, 217, 255, 0.42);
         transition: color 0.22s ease, text-shadow 0.22s ease, border-color 0.22s ease, background-color 0.22s ease;
     }
 
     a:hover,
     a:focus-visible {
-        color: #B7FFB0;
+        color: #dff8ff;
         text-shadow:
-            0 0 2px rgba(183, 255, 176, 0.72),
-            0 0 8px rgba(57, 255, 20, 0.35);
+            0 0 2px rgba(204, 246, 255, 0.8),
+            0 0 8px rgba(87, 217, 255, 0.38);
     }
 
     p,
@@ -3433,6 +3435,26 @@ footer {
         color: var(--crt-text-soft);
     }
 
+    section p,
+    section li,
+    .latest-update-card p,
+    .nav-card-description,
+    .project-week-description,
+    .friend-link-description,
+    .alaska-extra-detail,
+    .pulp-now-playing,
+    .header-support-note {
+        color: #ddf5ff;
+    }
+
+    section p {
+        line-height: 1.72;
+    }
+
+    section p + p {
+        margin-top: 0.9rem;
+    }
+
     .nav-card-description,
     .project-week-description,
     .friend-link-description,
@@ -3440,7 +3462,7 @@ footer {
     .alaska-extra-detail,
     .pulp-now-playing,
     .header-support-note {
-        color: var(--crt-dim);
+        color: #ddf5ff;
     }
 
     h1,
@@ -3472,8 +3494,8 @@ footer {
     .nav-card-title {
         color: var(--crt-text);
         text-shadow:
-            0 0 2px rgba(124, 255, 124, 0.7),
-            0 0 10px rgba(57, 255, 20, 0.24);
+            0 0 2px rgba(142, 238, 255, 0.74),
+            0 0 10px rgba(87, 217, 255, 0.26);
     }
 
     header,
@@ -3500,7 +3522,7 @@ footer {
         background: var(--crt-panel);
         border-color: var(--crt-border);
         box-shadow:
-            inset 0 0 0 1px rgba(57, 255, 20, 0.08),
+            inset 0 0 0 1px rgba(87, 217, 255, 0.1),
             0 0 16px var(--crt-shadow);
     }
 
@@ -3540,8 +3562,8 @@ footer {
         color: var(--crt-text);
         border: 1px solid var(--crt-border-strong);
         box-shadow:
-            inset 0 0 0 1px rgba(57, 255, 20, 0.08),
-            0 0 12px rgba(57, 255, 20, 0.15);
+            inset 0 0 0 1px rgba(87, 217, 255, 0.1),
+            0 0 12px rgba(87, 217, 255, 0.18);
     }
 
     button:hover,
@@ -3558,20 +3580,20 @@ footer {
     .filter-btn:hover,
     .game-btn:hover,
     .dash-btn:hover {
-        color: #D7FFD1;
-        border-color: rgba(183, 255, 176, 0.9);
+        color: #e8faff;
+        border-color: rgba(204, 246, 255, 0.94);
         box-shadow:
-            inset 0 0 0 1px rgba(183, 255, 176, 0.16),
-            0 0 14px rgba(57, 255, 20, 0.28);
+            inset 0 0 0 1px rgba(204, 246, 255, 0.2),
+            0 0 14px rgba(87, 217, 255, 0.3);
     }
 
     .filter-btn.active {
-        background: rgba(57, 255, 20, 0.2);
-        color: #E8FFE4;
-        border-color: rgba(183, 255, 176, 0.95);
+        background: rgba(87, 217, 255, 0.2);
+        color: #eafaff;
+        border-color: rgba(204, 246, 255, 0.95);
         box-shadow:
-            inset 0 0 0 1px rgba(183, 255, 176, 0.2),
-            0 0 16px rgba(57, 255, 20, 0.34);
+            inset 0 0 0 1px rgba(204, 246, 255, 0.22),
+            0 0 16px rgba(87, 217, 255, 0.34);
     }
 
     .photo-card,
@@ -3581,6 +3603,22 @@ footer {
     .friend-spotlight {
         background: rgba(8, 18, 10, 0.84);
         border-color: var(--crt-border);
+    }
+
+    .hero-intro-shell,
+    .gallery-intro-shell,
+    .page-intro-shell,
+    .creative-lane,
+    .overview-item,
+    .quick-start-watch,
+    .quick-start-read,
+    .quick-start-play {
+        background: linear-gradient(135deg, rgba(6, 16, 24, 0.94), rgba(8, 28, 42, 0.9));
+        border-color: var(--crt-border);
+    }
+
+    .archive-hero::before {
+        background: linear-gradient(120deg, rgba(87, 217, 255, 0.12), transparent 72%);
     }
 
     .alaska-live-card,
@@ -3624,15 +3662,23 @@ footer {
     }
 
     .search-input::placeholder {
-        color: rgba(124, 255, 124, 0.52);
+        color: rgba(142, 238, 255, 0.52);
+    }
+
+    .hero-cta-btn,
+    .secondary-cta-btn,
+    .donate-btn {
+        background: linear-gradient(135deg, rgba(14, 52, 78, 0.96), rgba(7, 26, 43, 0.98));
+        color: #eafaff;
+        border-color: rgba(137, 232, 255, 0.8);
     }
 
     img,
     video,
     canvas,
     iframe {
-        border: 1px solid rgba(57, 255, 20, 0.45);
-        box-shadow: 0 0 18px rgba(57, 255, 20, 0.16);
+        border: 1px solid rgba(87, 217, 255, 0.45);
+        box-shadow: 0 0 18px rgba(87, 217, 255, 0.18);
         filter: none;
     }
 
@@ -3655,9 +3701,9 @@ footer {
 
     .global-nav a[aria-current="page"],
     .global-nav a:hover {
-        background: rgba(57, 255, 20, 0.12);
+        background: rgba(87, 217, 255, 0.14);
         border-color: var(--crt-border-strong);
-        color: #C8FFC1;
+        color: #ddf8ff;
     }
 
     .nav-card:hover,
@@ -3671,10 +3717,10 @@ footer {
     .pulp-time-feature.compact:hover,
     .social-links a:hover,
     .track-button:hover {
-        border-color: rgba(183, 255, 176, 0.95);
+        border-color: rgba(204, 246, 255, 0.95);
         box-shadow:
-            inset 0 0 0 1px rgba(183, 255, 176, 0.2),
-            0 0 16px rgba(183, 255, 176, 0.34) !important;
+            inset 0 0 0 1px rgba(204, 246, 255, 0.2),
+            0 0 16px rgba(204, 246, 255, 0.34) !important;
     }
 
     .nav-card:hover .nav-card-title,
@@ -3683,15 +3729,68 @@ footer {
     .friend-link-card:hover .friend-link-description,
     .latest-update-card:hover h3,
     .latest-update-card:hover p {
-        color: #E9FFE6;
+        color: #effaff;
         text-shadow:
-            0 0 2px rgba(183, 255, 176, 0.45),
-            0 0 8px rgba(183, 255, 176, 0.22);
+            0 0 2px rgba(204, 246, 255, 0.5),
+            0 0 8px rgba(87, 217, 255, 0.24);
+    }
+
+    .section-kicker,
+    .archive-hero-badge,
+    .latest-update-group-title,
+    .photo-card-label,
+    .friend-link-tag,
+    .latest-update-dot,
+    .project-week-badge,
+    .nav-card-badge.new {
+        color: #fff1f3;
+        border: 1px solid rgba(152, 236, 255, 0.86);
+        border-left: 3px solid rgba(118, 236, 255, 0.98);
+        background: rgba(255, 90, 104, 0.8);
+        text-shadow: 0 0 8px rgba(255, 90, 104, 0.4);
+        box-shadow:
+            inset 0 0 0 1px rgba(255, 182, 189, 0.24),
+            0 0 10px rgba(255, 90, 104, 0.24),
+            0 0 8px rgba(118, 236, 255, 0.14);
+    }
+
+    .section-kicker,
+    .friend-link-tag,
+    .photo-card-label,
+    .latest-update-group-title,
+    .archive-hero-badge,
+    .project-week-badge {
+        padding: 4px 9px;
+        border-radius: 999px;
+        display: inline-flex;
+        align-items: center;
+        gap: 6px;
+    }
+
+    .nav-card-badge.new,
+    .latest-update-dot {
+        box-shadow:
+            inset 0 0 0 1px rgba(255, 170, 178, 0.22),
+            0 0 12px rgba(255, 90, 104, 0.36);
+    }
+
+    section:nth-of-type(3n) {
+        border-left-color: rgba(255, 90, 104, 0.74);
+    }
+
+    .header-support,
+    .header-support .donate-btn {
+        border-color: rgba(255, 90, 104, 0.8);
+        box-shadow:
+            inset 0 0 0 1px rgba(255, 120, 132, 0.2),
+            0 0 18px rgba(255, 90, 104, 0.3);
     }
 
     .archive-hero #welcome-title {
-        color: #061206;
-        text-shadow: none;
+        color: #e9f9ff;
+        text-shadow:
+            0 0 2px rgba(204, 246, 255, 0.5),
+            0 0 10px rgba(87, 217, 255, 0.24);
     }
 
     .archive-panel::before {
@@ -3699,36 +3798,36 @@ footer {
     }
 
     .header-globe {
-        filter: drop-shadow(0 0 12px rgba(132, 228, 255, 0.46));
+        filter: drop-shadow(0 0 14px rgba(88, 223, 255, 0.58));
     }
 
     .retro-globe {
-        border-color: rgba(206, 247, 255, 0.95);
-        background: radial-gradient(circle at 34% 30%, rgba(232, 249, 255, 0.48), rgba(27, 88, 139, 0.36) 46%, rgba(0, 0, 0, 0.34));
+        border-color: rgba(166, 242, 255, 0.96);
+        background: radial-gradient(circle at 34% 30%, rgba(218, 248, 255, 0.66), rgba(40, 146, 212, 0.62) 42%, rgba(9, 39, 78, 0.62) 68%, rgba(4, 14, 30, 0.72));
         box-shadow:
-            inset -14px -18px 30px rgba(0, 0, 0, 0.38),
-            inset 16px 14px 24px rgba(220, 245, 255, 0.22),
-            0 0 24px rgba(124, 224, 255, 0.5),
-            0 0 40px rgba(63, 164, 255, 0.34);
+            inset -14px -18px 30px rgba(0, 0, 0, 0.44),
+            inset 16px 14px 24px rgba(210, 247, 255, 0.26),
+            0 0 26px rgba(88, 223, 255, 0.62),
+            0 0 46px rgba(54, 176, 255, 0.44);
     }
 
     .retro-globe-image {
         border: none !important;
         box-shadow: none !important;
-        filter: hue-rotate(172deg) saturate(2.15) brightness(1.3) contrast(1.12);
+        filter: hue-rotate(196deg) saturate(2.35) brightness(1.38) contrast(1.16) drop-shadow(0 0 10px rgba(117, 236, 255, 0.48));
         animation: moon-speed-cycle-mobile 8.8s linear infinite;
     }
 
     .retro-globe::before {
         background:
-            radial-gradient(circle at 50% 30%, rgba(255, 255, 255, 0.35), rgba(255, 211, 120, 0.12) 20%, rgba(255, 255, 255, 0) 48%),
-            linear-gradient(90deg, rgba(0, 0, 0, 0.08) 0%, rgba(86, 200, 255, 0.08) 20%, rgba(255, 174, 92, 0.12) 52%, rgba(0, 0, 0, 0.14) 100%);
+            radial-gradient(circle at 50% 30%, rgba(255, 255, 255, 0.36), rgba(126, 225, 255, 0.2) 24%, rgba(255, 255, 255, 0) 50%),
+            linear-gradient(90deg, rgba(0, 0, 0, 0.1) 0%, rgba(86, 200, 255, 0.12) 24%, rgba(126, 225, 255, 0.2) 54%, rgba(0, 0, 0, 0.16) 100%);
         opacity: 0.8;
     }
 
     .retro-globe-wrap::before,
     .retro-globe-wrap::after {
-        border-color: rgba(172, 236, 255, 0.54);
+        border-color: rgba(134, 230, 255, 0.7);
     }
 
     .header-support {
@@ -3742,75 +3841,76 @@ footer {
     }
 
     .project-week-badge {
-        background: rgba(57, 255, 20, 0.28);
-        color: #FFFFFF;
+        background: rgba(255, 90, 104, 0.72);
+        color: #fff2f4;
+        border: 1px solid rgba(255, 147, 157, 0.7);
     }
 
     .project-week-cta {
-        color: #B9FFB2;
+        color: #c7f0ff;
     }
 
     .pillar-card {
-        border-color: rgba(57, 255, 20, 0.34);
-        background: linear-gradient(135deg, rgba(212, 255, 214, 0.9), rgba(182, 240, 186, 0.86));
+        border-color: rgba(87, 217, 255, 0.5);
+        background: linear-gradient(135deg, rgba(8, 20, 32, 0.94), rgba(9, 30, 48, 0.9));
     }
 
     .pillar-card:hover {
-        border-color: rgba(183, 255, 176, 0.95);
-        box-shadow: 0 10px 24px rgba(183, 255, 176, 0.22);
+        border-color: rgba(204, 246, 255, 0.95);
+        box-shadow: 0 10px 24px rgba(204, 246, 255, 0.2);
     }
 
     .pillar-card-icon {
-        background: rgba(57, 255, 20, 0.16);
+        background: rgba(255, 90, 104, 0.2);
     }
 
     .pillar-card h3 {
-        color: #103314;
+        color: #e9f9ff;
     }
 
     .pillar-card p {
-        color: #061206;
+        color: #d8f3ff;
     }
 
     .nav-card-badge.featured {
-        background: rgba(57, 255, 20, 0.78);
-        color: #062306;
-        box-shadow: 0 4px 12px rgba(57, 255, 20, 0.35);
+        background: rgba(87, 217, 255, 0.78);
+        color: #021118;
+        box-shadow: 0 4px 12px rgba(87, 217, 255, 0.35);
     }
 
     .nav-card-badge.new {
-        background: rgba(57, 255, 20, 0.78);
-        color: #062306;
-        box-shadow: 0 4px 12px rgba(57, 255, 20, 0.35);
+        background: rgba(255, 90, 104, 0.82);
+        color: #fff2f4;
+        box-shadow: 0 4px 12px rgba(255, 90, 104, 0.36);
     }
 
     .nav-card:hover .nav-card-badge.featured {
-        box-shadow: 0 6px 16px rgba(57, 255, 20, 0.45);
+        box-shadow: 0 6px 16px rgba(87, 217, 255, 0.45);
     }
 
     .nav-card:hover .nav-card-badge.new {
-        box-shadow: 0 6px 16px rgba(57, 255, 20, 0.45);
+        box-shadow: 0 6px 16px rgba(255, 90, 104, 0.46);
     }
 
     footer .social-links a {
         color: var(--crt-highlight);
-        border-color: rgba(57, 255, 20, 0.5);
-        background: rgba(57, 255, 20, 0.1);
+        border-color: rgba(87, 217, 255, 0.55);
+        background: rgba(87, 217, 255, 0.12);
     }
 
     footer .social-links a:hover,
     footer .social-links a:focus-visible {
-        color: #D7FFD1;
-        border-color: rgba(183, 255, 176, 0.95);
-        background: rgba(57, 255, 20, 0.22);
+        color: #e8faff;
+        border-color: rgba(204, 246, 255, 0.95);
+        background: rgba(87, 217, 255, 0.24);
     }
 
     .pulp-time-feature.compact {
-        background: rgba(10, 26, 12, 0.92);
-        border-color: rgba(57, 255, 20, 0.6);
+        background: rgba(8, 20, 32, 0.92);
+        border-color: rgba(87, 217, 255, 0.64);
         box-shadow:
-            inset 0 0 0 1px rgba(57, 255, 20, 0.12),
-            0 0 14px rgba(57, 255, 20, 0.2);
+            inset 0 0 0 1px rgba(87, 217, 255, 0.14),
+            0 0 14px rgba(87, 217, 255, 0.22);
     }
 
     @keyframes crt-flicker {
@@ -3827,13 +3927,13 @@ footer {
     @keyframes phosphor-pulse {
         0%, 100% {
             text-shadow:
-                0 0 2px rgba(124, 255, 124, 0.7),
-                0 0 8px rgba(57, 255, 20, 0.2);
+                0 0 2px rgba(142, 238, 255, 0.74),
+                0 0 8px rgba(87, 217, 255, 0.24);
         }
         50% {
             text-shadow:
-                0 0 3px rgba(183, 255, 176, 0.84),
-                0 0 12px rgba(57, 255, 20, 0.34);
+                0 0 3px rgba(204, 246, 255, 0.86),
+                0 0 12px rgba(87, 217, 255, 0.36);
         }
     }
 
