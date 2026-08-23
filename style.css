@@ -2,6 +2,7 @@
     --patriotic-red: #A3241E;
     --patriotic-blue: #5B1612;
     --newport-green: #D36A2E;
+    --phosphor-orange: #ff5500;
     --near-black: #111111;
     --warm-paper: #F5E7D8;
     --white: #FFFFFF;
@@ -1270,6 +1271,206 @@ main {
     height: 100%;
     border: 0;
     display: block;
+}
+
+.soundcloud-feature-shell {
+    margin-top: 8px;
+    padding: 24px 22px;
+    border: 2px solid rgba(255, 85, 0, 0.8);
+    border-left-width: 2px;
+    border-radius: 14px;
+    background:
+        radial-gradient(circle at 86% 14%, rgba(255, 85, 0, 0.15), transparent 40%),
+        linear-gradient(140deg, rgba(8, 8, 8, 0.97), rgba(16, 14, 12, 0.98));
+    box-shadow:
+        0 0 0 1px rgba(255, 85, 0, 0.24),
+        0 0 22px rgba(255, 85, 0, 0.22),
+        0 16px 34px rgba(0, 0, 0, 0.36);
+    animation: soundcloud-signal-glow 10s ease-in-out infinite;
+}
+
+.soundcloud-feature-shell::before {
+    display: none;
+}
+
+.soundcloud-feature-shell::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    border-radius: 12px;
+    pointer-events: none;
+    background: repeating-linear-gradient(
+        180deg,
+        rgba(255, 255, 255, 0.045) 0,
+        rgba(255, 255, 255, 0.045) 1px,
+        transparent 1px,
+        transparent 4px
+    );
+    opacity: 0.22;
+    animation: soundcloud-scanline-drift 13s linear infinite;
+}
+
+.soundcloud-feature-header {
+    margin-bottom: 14px;
+}
+
+.soundcloud-feature-status,
+.soundcloud-feature-meta {
+    margin: 0;
+    font-family: "Courier New", "Lucida Console", Monaco, monospace;
+    font-size: 0.76rem;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+}
+
+.soundcloud-feature-status {
+    color: var(--phosphor-orange);
+    font-weight: 700;
+}
+
+.soundcloud-feature-shell h2 {
+    margin: 8px 0;
+    font-size: clamp(1.9rem, 4vw, 2.9rem);
+    line-height: 1.08;
+    color: #fff7f0;
+    text-shadow:
+        0 0 4px rgba(255, 85, 0, 0.42),
+        0 0 14px rgba(255, 85, 0, 0.2);
+}
+
+.soundcloud-feature-meta {
+    color: #dffbd7;
+    font-weight: 700;
+}
+
+.soundcloud-feature-layout {
+    display: grid;
+    grid-template-columns: minmax(0, 1.02fr) minmax(280px, 0.98fr);
+    gap: 18px;
+    align-items: start;
+}
+
+.soundcloud-feature-copy p {
+    margin: 0;
+    color: #f5fdf2;
+}
+
+.soundcloud-feature-copy p + p {
+    margin-top: 10px;
+}
+
+.soundcloud-influence-callout {
+    margin: 14px 0;
+    padding: 10px 12px;
+    border: 1px solid rgba(255, 85, 0, 0.45);
+    border-radius: 10px;
+    background: rgba(255, 85, 0, 0.08);
+}
+
+.soundcloud-influence-callout p {
+    margin: 0;
+    font-size: 0.86rem;
+    line-height: 1.45;
+    color: #ffe7d7;
+}
+
+.soundcloud-influence-callout p + p {
+    margin-top: 6px;
+}
+
+.soundcloud-influence-title {
+    margin-bottom: 6px;
+    font-family: "Courier New", "Lucida Console", Monaco, monospace;
+    font-size: 0.74rem;
+    font-weight: 700;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: #fff5eb;
+}
+
+.soundcloud-cabinet-btn {
+    display: inline-block;
+    margin-top: 2px;
+    padding: 11px 16px;
+    border: 2px solid rgba(255, 85, 0, 0.92);
+    border-radius: 9px;
+    background: var(--phosphor-orange);
+    color: #0a0703;
+    text-decoration: none;
+    font-family: "Courier New", "Lucida Console", Monaco, monospace;
+    font-size: 0.86rem;
+    font-weight: 800;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    transition: transform 0.2s ease, box-shadow 0.2s ease, background-color 0.2s ease;
+    box-shadow: 0 0 16px rgba(255, 85, 0, 0.26);
+}
+
+.soundcloud-cabinet-btn:hover {
+    transform: translateY(-2px);
+    background: #ff6a1f;
+    box-shadow: 0 0 20px rgba(255, 85, 0, 0.34);
+}
+
+.soundcloud-player-shell {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.soundcloud-player-label {
+    margin: 0;
+    font-family: "Courier New", "Lucida Console", Monaco, monospace;
+    font-size: 0.72rem;
+    font-weight: 700;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: #fff8f2;
+}
+
+.soundcloud-player-shell iframe {
+    width: 100%;
+    height: clamp(320px, 42vw, 440px);
+    border: 1px solid rgba(255, 85, 0, 0.55);
+    border-radius: 10px;
+    box-shadow: 0 0 18px rgba(255, 85, 0, 0.2);
+    background: #0a0908;
+}
+
+.soundcloud-fallback-link {
+    margin: 0;
+    font-size: 0.84rem;
+    color: #ebf8e5;
+}
+
+.soundcloud-fallback-link a {
+    color: #ffd8c2;
+    text-decoration-color: rgba(255, 85, 0, 0.72);
+}
+
+@keyframes soundcloud-signal-glow {
+    0%,
+    100% {
+        box-shadow:
+            0 0 0 1px rgba(255, 85, 0, 0.24),
+            0 0 22px rgba(255, 85, 0, 0.22),
+            0 16px 34px rgba(0, 0, 0, 0.36);
+    }
+    50% {
+        box-shadow:
+            0 0 0 1px rgba(255, 85, 0, 0.28),
+            0 0 28px rgba(255, 85, 0, 0.3),
+            0 16px 34px rgba(0, 0, 0, 0.36);
+    }
+}
+
+@keyframes soundcloud-scanline-drift {
+    0% {
+        transform: translateY(0);
+    }
+    100% {
+        transform: translateY(6px);
+    }
 }
 
 .project-week-card {
@@ -2653,6 +2854,19 @@ nav p {
         grid-template-columns: 1fr;
     }
 
+    .soundcloud-feature-shell {
+        padding: 20px 16px;
+    }
+
+    .soundcloud-feature-layout {
+        grid-template-columns: 1fr;
+        gap: 14px;
+    }
+
+    .soundcloud-player-shell iframe {
+        height: clamp(320px, 58vw, 420px);
+    }
+
     .project-week-image {
         min-height: 180px;
         border-right: 0;
@@ -2947,6 +3161,30 @@ nav p {
     .featured-release-actions {
         flex-direction: column;
         align-items: stretch;
+    }
+
+    .soundcloud-feature-shell {
+        padding: 16px 12px;
+    }
+
+    .soundcloud-feature-shell h2 {
+        font-size: clamp(1.55rem, 8.2vw, 2.1rem);
+    }
+
+    .soundcloud-feature-status,
+    .soundcloud-feature-meta {
+        font-size: 0.7rem;
+        letter-spacing: 0.12em;
+    }
+
+    .soundcloud-cabinet-btn {
+        width: 100%;
+        text-align: center;
+        box-sizing: border-box;
+    }
+
+    .soundcloud-player-shell iframe {
+        height: clamp(300px, 74vw, 380px);
     }
 
     .featured-release-meta {
@@ -3535,6 +3773,7 @@ footer {
         --crt-text-soft: #c7f0ff;
         --crt-red: #ff5a68;
         --crt-red-soft: #ffadb5;
+        --phosphor-orange: #ff5500;
         --patriotic-red: #F4FFF0;
         --patriotic-blue: #F4FFF0;
         --crt-panel: rgba(8, 18, 10, 0.9);
@@ -3782,6 +4021,62 @@ footer {
 
     .archive-hero::before {
         background: linear-gradient(120deg, rgba(87, 217, 255, 0.12), transparent 72%);
+    }
+
+    .soundcloud-feature-shell {
+        border-color: rgba(255, 85, 0, 0.88);
+        background:
+            radial-gradient(circle at 86% 14%, rgba(255, 85, 0, 0.14), transparent 38%),
+            linear-gradient(145deg, rgba(5, 9, 7, 0.96), rgba(8, 16, 11, 0.95));
+        box-shadow:
+            inset 0 0 0 1px rgba(255, 85, 0, 0.16),
+            0 0 16px rgba(255, 85, 0, 0.26),
+            0 0 30px rgba(255, 85, 0, 0.16);
+    }
+
+    .soundcloud-feature-shell h2 {
+        color: #fff4ec;
+        text-shadow:
+            0 0 3px rgba(255, 198, 160, 0.76),
+            0 0 14px rgba(255, 85, 0, 0.32);
+    }
+
+    .soundcloud-feature-status {
+        color: #ffb38c;
+    }
+
+    .soundcloud-feature-meta {
+        color: #dbffd2;
+    }
+
+    .soundcloud-influence-callout {
+        border-color: rgba(255, 85, 0, 0.54);
+        background: rgba(255, 85, 0, 0.11);
+    }
+
+    .soundcloud-player-shell iframe {
+        border-color: rgba(255, 85, 0, 0.72);
+        box-shadow: 0 0 20px rgba(255, 85, 0, 0.26);
+    }
+
+    .soundcloud-cabinet-btn {
+        background: var(--phosphor-orange);
+        color: #090603;
+        border-color: rgba(255, 138, 84, 0.95);
+        box-shadow:
+            inset 0 0 0 1px rgba(255, 241, 230, 0.18),
+            0 0 20px rgba(255, 85, 0, 0.28);
+    }
+
+    .soundcloud-cabinet-btn:hover,
+    .soundcloud-cabinet-btn:focus-visible {
+        color: #000;
+        border-color: #ffd1b8;
+        background: #ff6a1f;
+    }
+
+    .soundcloud-fallback-link a {
+        color: #ffd8c2;
     }
 
     .alaska-live-card,
@@ -4136,6 +4431,11 @@ footer {
         h1,
         h2,
         .global-nav a[aria-current="page"] {
+            animation: none !important;
+        }
+
+        .soundcloud-feature-shell,
+        .soundcloud-feature-shell::after {
             animation: none !important;
         }
 
