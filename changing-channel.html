@@ -513,6 +513,7 @@
     <a href="more-images.html">More Images</a>
     <a href="music.html">Music</a>
     <a href="javascript-games.html">Games</a>
+    <a href="merch.html">Merch</a>
     <a href="changing-channel.html">The Changing Channel</a>
   </nav>
 
@@ -534,6 +535,7 @@
     <section class="panel" aria-labelledby="featured-movie-title">
       <h2 id="featured-movie-title"><span aria-hidden="true">●</span> Now playing</h2>
       <div id="movie-status" class="status-message" aria-live="polite"></div>
+      <p id="up-next-label" class="schedule-note" aria-live="polite">Up next: loading...</p>
       <div id="movie-loading" class="error-callout" hidden>Loading the weekly schedule…</div>
       <div id="movie-error" class="error-callout" hidden></div>
 
@@ -619,6 +621,7 @@
     const db = getFirestore(app);
 
     const statusEl = document.getElementById("movie-status");
+    const upNextEl = document.getElementById("up-next-label");
     const loadingEl = document.getElementById("movie-loading");
     const errorEl = document.getElementById("movie-error");
     const featuredMovieEl = document.getElementById("featured-movie");
@@ -779,6 +782,8 @@
     function renderMovie(movie) {
       if (!movie) return;
       activeMovie = movie;
+      const activeIndex = schedule.findIndex((entry) => entry.id === movie.id);
+      nextMovie = activeIndex >= 0 ? schedule[activeIndex + 1] || null : null;
       featuredMovieEl.hidden = false;
       loadingEl.hidden = true;
       errorEl.hidden = true;
@@ -792,6 +797,9 @@
       playerEl.src = `https://archive.org/embed/${movie.archiveIdentifier}`;
       playerEl.title = `${movie.title} (${movie.year})`;
       setStatus(`Now broadcasting: ${movie.title}.`);
+      upNextEl.textContent = nextMovie
+        ? `Up next: ${nextMovie.title} (${nextMovie.year})`
+        : "Up next: waiting for a new scheduled transmission.";
       if (movie.id) {
         loadComments(movie.id).catch((error) => {
           console.error("Could not load comments", error);
@@ -845,14 +853,8 @@
       const now = Date.now();
       const targetTime = new Date(nextMovie.startsAt).getTime();
       if (targetTime <= now) {
-        const activeIndex = schedule.findIndex((entry) => entry.id === activeMovie.id);
-        if (activeIndex >= 0) {
-          const nextIndex = activeIndex + 1;
-          const rollover = schedule[nextIndex];
-          if (rollover) {
-            activeMovie = rollover;
-            renderMovie(activeMovie);
-          }
+        if (nextMovie) {
+          renderMovie(nextMovie);
         }
         return;
       }
@@ -862,8 +864,6 @@
     function selectMovie(now) {
       const sorted = [...schedule].sort((a, b) => new Date(a.startsAt) - new Date(b.startsAt));
       const current = sorted.filter((entry) => new Date(entry.startsAt) <= now).pop() || sorted[0];
-      const currentIndex = sorted.findIndex((entry) => entry.id === current.id);
-      nextMovie = sorted[currentIndex + 1] || null;
       return current;
     }
 

@@ -31,5 +31,16 @@
     "sourceUrl": "https://archive.org/details/Haxan_tinted_and_subtitled",
     "rightsLabel": "Internet Archive item marked Public Domain",
     "contentNote": "Mature historical imagery involving witchcraft, torture, nudity and religious themes."
+  },
+  {
+    "id": "night-of-the-living-dead-1968",
+    "title": "Night of the Living Dead",
+    "year": 1968,
+    "startsAt": "2026-08-26T18:00:00-04:00",
+    "description": "A small group of survivors boards up a farmhouse while an inexplicable outbreak spreads outside. Scrappy, intense and still unsettling decades later.",
+    "archiveIdentifier": "NightOfTheLivingDead_201507",
+    "sourceUrl": "https://archive.org/details/NightOfTheLivingDead_201507",
+    "rightsLabel": "Internet Archive item marked Public Domain",
+    "contentNote": "Black-and-white horror with violence, threat, and disturbing scenes."
   }
 ]
