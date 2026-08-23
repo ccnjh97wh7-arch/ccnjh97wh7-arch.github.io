@@ -31,6 +31,7 @@
         <a href="more-images.html">More Images</a>
         <a href="music.html">Music</a>
         <a href="javascript-games.html">Games</a>
+        <a href="merch.html">Merch</a>
         <a href="cards.html">Baseball Cards</a>
         <a href="changing-channel.html">The Changing Channel</a>
     </div>
@@ -54,13 +55,15 @@
             <div class="header-callouts">
                 <aside class="header-callout header-support" aria-label="Support my work">
                     <p class="header-support-title">Support my work</p>
-                    <a href="https://venmo.com/Eric-Stone-262" target="_blank" rel="noopener noreferrer" class="donate-btn" data-track="donate-venmo">💳 Donate via Venmo</a>
+                    <p class="venmo-handle-line">Venmo username: <strong id="venmo-username">Eric-Stone-262</strong></p>
+                    <button type="button" id="copy-venmo-btn" class="donate-btn" data-track="copy-venmo-username">Copy Venmo username</button>
+                    <p id="venmo-copy-status" class="header-support-note venmo-copy-status" aria-live="polite">Copy the username, then paste it into Venmo.</p>
                     <p class="header-support-note">Helps fund new animations, music uploads, and site experiments.</p>
                 </aside>
-                <aside class="header-callout header-screenplay" aria-label="Blue Engine screenplay showcase">
-                    <p class="header-support-title">Blue Engine</p>
-                    <a href="https://open.substack.com/pub/abefroman1978/p/blue-engine?r=61vhfy&utm_campaign=post&utm_medium=web&showWelcomeOnShare=true" target="_blank" rel="noopener noreferrer" class="donate-btn" data-track="blue-engine-substack">Read on Substack</a>
-                    <p class="header-support-note">New screenplay drop. Read the <a href="Blue_Engine_Official_Screenplay.pdf" target="_blank" rel="noopener noreferrer" data-track="blue-engine-pdf">full PDF</a>.</p>
+                <aside class="header-callout header-screenplay" aria-label="New Blue Engine project showcase">
+                    <p id="header-featured-release-title" class="header-support-title">Blue Engine Script Reading Parts 1-2</p>
+                    <a id="header-featured-release-primary" href="https://youtube.com/playlist?list=PLcOgXEmuk7bo&si=pyldIirV3X9cQkhO" target="_blank" rel="noopener noreferrer" class="donate-btn" data-track="blue-engine-playlist">Watch the Blue Engine playlist</a>
+                    <p id="header-featured-release-note" class="header-support-note">The new Blue Engine project is live. Parts 1 and 2 are up now, and more uploads are on the way. Read the <a href="Blue_Engine_Official_Screenplay.pdf" target="_blank" rel="noopener noreferrer" data-track="blue-engine-pdf">full PDF</a>.</p>
                 </aside>
             </div>
         </div>
@@ -179,6 +182,37 @@
                     <p class="project-week-cta">Open this week’s pick →</p>
                 </div>
             </a>
+        </section>
+
+        <section id="featured-release-panel" class="archive-panel featured-release-panel" aria-labelledby="featured-release-title" hidden>
+            <div class="section-title-wrap">
+                <p id="featured-release-eyebrow" class="section-kicker">New Blue Engine project</p>
+                <h2 id="featured-release-title">Blue Engine Script Reading Parts 1-2</h2>
+            </div>
+            <div id="featured-release-layout" class="featured-release-layout">
+                <div class="featured-release-copy">
+                    <div id="featured-release-meta" class="featured-release-meta" hidden></div>
+                    <p id="featured-release-summary" class="featured-release-summary">The new Blue Engine project is a script reading by Eric and his 19-year-old nephew, with Parts 1 and 2 live now.</p>
+                    <div class="featured-release-actions">
+                        <a id="featured-release-watch-link" href="#" class="hero-cta-btn" hidden>Watch now</a>
+                        <a id="featured-release-read-link" href="#" class="secondary-cta-btn" hidden>Read the script</a>
+                        <a id="featured-release-pdf-link" href="#" class="secondary-cta-btn" hidden>Open the script PDF</a>
+                    </div>
+                    <div id="featured-release-video-list-wrap" class="featured-release-video-list-wrap" hidden>
+                        <p class="featured-release-video-list-title">Parts so far</p>
+                        <div id="featured-release-video-list" class="featured-release-video-list"></div>
+                    </div>
+                </div>
+                <div id="featured-release-player-shell" class="featured-release-player-shell" hidden>
+                    <iframe
+                        id="featured-release-player"
+                        title="Featured release video"
+                        loading="lazy"
+                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                        allowfullscreen>
+                    </iframe>
+                </div>
+            </div>
         </section>
 
         <section class="explore-prompt-section archive-panel" aria-labelledby="start-here-title">
@@ -321,6 +355,15 @@
             </div>
         </section>
 
+        <section class="archive-panel merch-launch-panel" aria-labelledby="merch-launch-title">
+            <h2 id="merch-launch-title">Merch Launch</h2>
+            <p>Starting simple: Life of Jaffar mugs, fulfilled with Printful.</p>
+            <div class="gallery-highlights">
+                <a href="merch.html" class="hero-cta-btn" data-track="merch-launch-open">Open Mug Shop</a>
+                <a href="https://www.printful.com/" target="_blank" rel="noopener noreferrer" class="secondary-cta-btn" data-track="merch-launch-printful">Printful Platform</a>
+            </div>
+        </section>
+
         <section class="archive-panel">
             <h2>Explore</h2>
 
@@ -381,6 +424,14 @@
                     <span class="nav-card-icon">🎮</span>
                     <div class="nav-card-title">JavaScript Games</div>
                     <p class="nav-card-description">Simple browser games inspired by my earlier coding projects.</p>
+                </a>
+
+                <a href="merch.html" class="nav-card" data-category="personal" data-tags="merch mugs apparel shop store">
+                    <span class="nav-card-badge new">NEW</span>
+                    <img src="images/quiet-evening.jpg" alt="Merch shop preview" class="nav-card-thumb thumb-top-left" loading="lazy" decoding="async" width="640" height="360">
+                    <span class="nav-card-icon">☕</span>
+                    <div class="nav-card-title">Coffee Mugs and Merch</div>
+                    <p class="nav-card-description">Shop mugs and other merch from one central page.</p>
                 </a>
 
                 <a href="changing-channel.html" class="nav-card" data-category="stargarden" data-tags="late 1990s stories nostalgia memories">
@@ -472,6 +523,7 @@
                     <li><a href="photos.html">Photos</a></li>
                     <li><a href="music.html">Music</a></li>
                     <li><a href="jaffar.html">Life of Jaffar</a></li>
+                    <li><a href="merch.html">Merch Shop</a></li>
                     <li><a href="cards.html">Baseball Cards</a></li>
                     <li><a href="changing-channel.html">The Changing Channel</a></li>
                 </ul>
@@ -546,6 +598,211 @@
         ];
 
         const returnVisitKey = 'eric-site-last-visit-v1';
+        const featuredReleasePath = 'featured-release.json';
+
+        function isExternalUrl(href) {
+            return /^https?:\/\//i.test(href || '');
+        }
+
+        function setLinkProps(link, href) {
+            if (!link || !href) {
+                return;
+            }
+
+            link.href = href;
+            if (isExternalUrl(href)) {
+                link.target = '_blank';
+                link.rel = 'noopener noreferrer';
+            } else {
+                link.removeAttribute('target');
+                link.removeAttribute('rel');
+            }
+        }
+
+        function normalizeFeaturedRelease(item) {
+            if (!item || typeof item !== 'object') {
+                return null;
+            }
+
+            const title = typeof item.title === 'string' ? item.title.trim() : '';
+            const releasedAt = typeof item.releasedAt === 'string' ? item.releasedAt.trim() : '';
+            if (!title || !releasedAt) {
+                return null;
+            }
+
+            return {
+                eyebrow: typeof item.eyebrow === 'string' && item.eyebrow.trim() ? item.eyebrow.trim() : 'New Blue Engine project',
+                title,
+                summary: typeof item.summary === 'string' ? item.summary.trim() : '',
+                watchLabel: typeof item.watchLabel === 'string' ? item.watchLabel.trim() : '',
+                watchUrl: typeof item.watchUrl === 'string' ? item.watchUrl.trim() : '',
+                embedUrl: typeof item.embedUrl === 'string' ? item.embedUrl.trim() : '',
+                videos: Array.isArray(item.videos)
+                    ? item.videos
+                        .map((video) => ({
+                            label: typeof video?.label === 'string' ? video.label.trim() : '',
+                            url: typeof video?.url === 'string' ? video.url.trim() : '',
+                            embedUrl: typeof video?.embedUrl === 'string' ? video.embedUrl.trim() : ''
+                        }))
+                        .filter((video) => video.label && video.url)
+                    : [],
+                readLabel: typeof item.readLabel === 'string' ? item.readLabel.trim() : '',
+                readUrl: typeof item.readUrl === 'string' ? item.readUrl.trim() : '',
+                pdfLabel: typeof item.pdfLabel === 'string' ? item.pdfLabel.trim() : '',
+                pdfUrl: typeof item.pdfUrl === 'string' ? item.pdfUrl.trim() : '',
+                releasedAt
+            };
+        }
+
+        async function fetchFeaturedRelease() {
+            try {
+                const response = await fetch(featuredReleasePath, { cache: 'no-store' });
+                if (!response.ok) {
+                    return null;
+                }
+
+                const payload = await response.json();
+                return normalizeFeaturedRelease(payload);
+            } catch (error) {
+                return null;
+            }
+        }
+
+        function renderFeaturedReleaseHomepage(featuredRelease) {
+            const calloutTitle = document.getElementById('header-featured-release-title');
+            const calloutPrimary = document.getElementById('header-featured-release-primary');
+            const calloutNote = document.getElementById('header-featured-release-note');
+            const panel = document.getElementById('featured-release-panel');
+            const eyebrow = document.getElementById('featured-release-eyebrow');
+            const title = document.getElementById('featured-release-title');
+            const summary = document.getElementById('featured-release-summary');
+            const meta = document.getElementById('featured-release-meta');
+            const watchLink = document.getElementById('featured-release-watch-link');
+            const readLink = document.getElementById('featured-release-read-link');
+            const pdfLink = document.getElementById('featured-release-pdf-link');
+            const videoListWrap = document.getElementById('featured-release-video-list-wrap');
+            const videoList = document.getElementById('featured-release-video-list');
+            const layout = document.getElementById('featured-release-layout');
+            const playerShell = document.getElementById('featured-release-player-shell');
+            const player = document.getElementById('featured-release-player');
+
+            if (!calloutTitle || !calloutPrimary || !calloutNote || !panel || !eyebrow || !title || !summary || !meta || !watchLink || !readLink || !pdfLink || !videoListWrap || !videoList || !layout || !playerShell || !player) {
+                return;
+            }
+
+            if (!featuredRelease) {
+                panel.hidden = true;
+                return;
+            }
+
+            const primaryVideo = featuredRelease.videos[0] || null;
+            const primaryLabel = featuredRelease.watchUrl && featuredRelease.watchLabel
+                ? featuredRelease.watchLabel
+                : (featuredRelease.readLabel || 'Read the script');
+            const primaryHref = featuredRelease.watchUrl || featuredRelease.readUrl || featuredRelease.pdfUrl;
+
+            calloutTitle.textContent = featuredRelease.title;
+            calloutPrimary.textContent = primaryLabel;
+            if (primaryHref) {
+                setLinkProps(calloutPrimary, primaryHref);
+            }
+
+            const pdfMarkup = featuredRelease.pdfUrl
+                ? ' Read the <a href="' + featuredRelease.pdfUrl + '"' + (isExternalUrl(featuredRelease.pdfUrl) ? ' target="_blank" rel="noopener noreferrer"' : '') + ' data-track="blue-engine-pdf">full PDF</a>.'
+                : '';
+            calloutNote.innerHTML = (featuredRelease.summary || 'New release.') + pdfMarkup;
+
+            eyebrow.textContent = featuredRelease.eyebrow;
+            title.textContent = featuredRelease.title;
+            summary.textContent = featuredRelease.summary;
+
+            const metaItems = [];
+            if (featuredRelease.videos.length) {
+                metaItems.push(featuredRelease.videos.length + ' part' + (featuredRelease.videos.length === 1 ? '' : 's') + ' live');
+            }
+            if (featuredRelease.watchUrl && /playlist/i.test(featuredRelease.watchUrl)) {
+                metaItems.push('playlist ready');
+            }
+            if (featuredRelease.readUrl) {
+                metaItems.push('script available');
+            }
+            if (metaItems.length) {
+                meta.innerHTML = metaItems.map((item) => '<span class="featured-release-chip">' + item + '</span>').join('');
+                meta.hidden = false;
+            } else {
+                meta.innerHTML = '';
+                meta.hidden = true;
+            }
+
+            if (featuredRelease.watchUrl && featuredRelease.watchLabel) {
+                watchLink.hidden = false;
+                watchLink.textContent = featuredRelease.watchLabel;
+                setLinkProps(watchLink, featuredRelease.watchUrl);
+            } else {
+                watchLink.hidden = true;
+                watchLink.removeAttribute('href');
+            }
+
+            if (featuredRelease.readUrl && featuredRelease.readLabel) {
+                readLink.hidden = false;
+                readLink.textContent = featuredRelease.readLabel;
+                setLinkProps(readLink, featuredRelease.readUrl);
+            } else {
+                readLink.hidden = true;
+                readLink.removeAttribute('href');
+            }
+
+            if (featuredRelease.pdfUrl && featuredRelease.pdfLabel) {
+                pdfLink.hidden = false;
+                pdfLink.textContent = featuredRelease.pdfLabel;
+                setLinkProps(pdfLink, featuredRelease.pdfUrl);
+            } else {
+                pdfLink.hidden = true;
+                pdfLink.removeAttribute('href');
+            }
+
+            if (featuredRelease.videos.length > 1) {
+                videoList.innerHTML = featuredRelease.videos
+                    .slice(1)
+                    .map((video) => '<a href="' + video.url + '" target="_blank" rel="noopener noreferrer" class="secondary-cta-btn">' + video.label + '</a>')
+                    .join('');
+                videoListWrap.hidden = false;
+            } else {
+                videoList.innerHTML = '';
+                videoListWrap.hidden = true;
+            }
+
+            if ((primaryVideo && primaryVideo.embedUrl) || featuredRelease.embedUrl) {
+                playerShell.hidden = false;
+                player.src = (primaryVideo && primaryVideo.embedUrl) || featuredRelease.embedUrl;
+                layout.classList.remove('is-text-only');
+            } else {
+                playerShell.hidden = true;
+                player.removeAttribute('src');
+                layout.classList.add('is-text-only');
+            }
+
+            panel.hidden = false;
+        }
+
+        function buildFeaturedReleaseUpdate(featuredRelease) {
+            if (!featuredRelease) {
+                return [];
+            }
+
+            const href = featuredRelease.watchUrl || featuredRelease.readUrl || featuredRelease.pdfUrl;
+            if (!href) {
+                return [];
+            }
+
+            return [{
+                href,
+                date: getMonthYearLabel(featuredRelease.releasedAt),
+                title: featuredRelease.title,
+                description: featuredRelease.summary,
+                releasedAt: featuredRelease.releasedAt
+            }];
+        }
 
         function getMonthYearLabel(dateValue) {
             const date = dateValue instanceof Date ? dateValue : parseIsoDateOrNull(dateValue);
@@ -877,12 +1134,14 @@
 
         async function initializeHomepageHighlights() {
             const lastVisitTimestamp = getLastVisitTimestamp();
+            const featuredRelease = await fetchFeaturedRelease();
             const autoGameUpdates = await fetchGameUpdatesForHomepage();
-            const allUpdates = mergeUpdates(latestUpdates, autoGameUpdates);
+            const allUpdates = mergeUpdates(buildFeaturedReleaseUpdate(featuredRelease), mergeUpdates(latestUpdates, autoGameUpdates));
 
             renderProjectOfWeek();
             renderMonthlyHeroCta();
             renderRandomDiveLink();
+            renderFeaturedReleaseHomepage(featuredRelease);
             renderLatestUpdates(allUpdates, lastVisitTimestamp);
             renderWhatsNewSinceLastVisit(allUpdates, lastVisitTimestamp);
             setLastVisitTimestamp(Date.now());
@@ -1527,6 +1786,43 @@
 
         updatePulpNowPlaying();
 
+        async function copyVenmoUsername() {
+            const usernameEl = document.getElementById('venmo-username');
+            const statusEl = document.getElementById('venmo-copy-status');
+            if (!usernameEl || !statusEl) {
+                return;
+            }
+
+            const username = usernameEl.textContent.trim();
+            if (!username) {
+                statusEl.textContent = 'Venmo username is unavailable right now.';
+                return;
+            }
+
+            try {
+                await navigator.clipboard.writeText(username);
+                statusEl.textContent = 'Copied. Paste it into Venmo search.';
+            } catch (error) {
+                const helper = document.createElement('textarea');
+                helper.value = username;
+                helper.setAttribute('readonly', '');
+                helper.style.position = 'absolute';
+                helper.style.left = '-9999px';
+                document.body.appendChild(helper);
+                helper.select();
+                const copied = document.execCommand('copy');
+                document.body.removeChild(helper);
+                statusEl.textContent = copied
+                    ? 'Copied. Paste it into Venmo search.'
+                    : 'Copy failed. Venmo username: ' + username;
+            }
+        }
+
+        const copyVenmoBtn = document.getElementById('copy-venmo-btn');
+        if (copyVenmoBtn) {
+            copyVenmoBtn.addEventListener('click', copyVenmoUsername);
+        }
+
         // Lightweight click analytics stored in localStorage for key links.
         const clickAnalyticsKey = 'eric-site-clicks-v1';
 
@@ -1552,9 +1848,9 @@
             localStorage.setItem(clickAnalyticsKey, JSON.stringify(data));
         }
 
-        document.querySelectorAll('a[data-track]').forEach((link) => {
-            link.addEventListener('click', () => {
-                recordTrackedClick(link.dataset.track);
+        document.querySelectorAll('[data-track]').forEach((trackable) => {
+            trackable.addEventListener('click', () => {
+                recordTrackedClick(trackable.dataset.track);
             });
         });
 

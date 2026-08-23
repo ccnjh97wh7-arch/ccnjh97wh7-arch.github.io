@@ -1100,7 +1100,7 @@ main {
     border: 1px solid rgba(120, 24, 18, 0.22);
     border-radius: 12px;
     text-decoration: none;
-    color: var(--near-black);
+    color: #ffffff;
     background: linear-gradient(135deg, rgba(255, 255, 255, 0.97), rgba(120, 24, 18, 0.05));
     transition: transform 0.25s ease, border-color 0.25s ease, box-shadow 0.25s ease;
 }
@@ -1120,13 +1120,13 @@ main {
     font-size: 0.95rem;
     font-weight: 800;
     letter-spacing: 0.02em;
-    color: #111111;
+    color: #ffffff;
 }
 
 .quick-start-meta {
     font-family: Arial, sans-serif;
     font-size: 0.82rem;
-    color: #3a3a3a;
+    color: rgba(255, 255, 255, 0.9);
 }
 
 .quick-start-watch {
@@ -1151,6 +1151,125 @@ main {
 
 .project-week-shell::before {
     background: linear-gradient(180deg, rgba(45, 80, 22, 0.2), rgba(196, 30, 58, 0.07));
+}
+
+.featured-release-panel {
+    border-left-color: var(--patriotic-blue);
+    background:
+        radial-gradient(circle at top right, rgba(91, 22, 18, 0.12), transparent 36%),
+        linear-gradient(135deg, rgba(255, 255, 255, 0.99), rgba(91, 22, 18, 0.05));
+}
+
+.featured-release-panel::before {
+    background: linear-gradient(180deg, rgba(91, 22, 18, 0.24), rgba(196, 30, 58, 0.06));
+}
+
+.featured-release-layout {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) minmax(280px, 0.95fr);
+    gap: 18px;
+    align-items: start;
+}
+
+.featured-release-layout.is-text-only {
+    grid-template-columns: 1fr;
+}
+
+.featured-release-copy {
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+}
+
+.featured-release-meta {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+}
+
+.featured-release-chip {
+    display: inline-flex;
+    align-items: center;
+    padding: 6px 10px;
+    border-radius: 999px;
+    border: 1px solid rgba(91, 22, 18, 0.18);
+    background: rgba(91, 22, 18, 0.08);
+    color: var(--patriotic-blue);
+    font-family: Arial, sans-serif;
+    font-size: 0.76rem;
+    font-weight: 800;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+}
+
+.featured-release-summary {
+    margin: 0;
+    color: #2f2d2a;
+    font-size: 1rem;
+    line-height: 1.7;
+}
+
+.featured-release-actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px;
+}
+
+.featured-release-video-list-wrap {
+    margin-top: 14px;
+}
+
+.featured-release-video-list-title {
+    margin: 0 0 8px;
+    font-family: Arial, sans-serif;
+    font-size: 0.78rem;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--patriotic-red);
+}
+
+.featured-release-video-list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+}
+
+.featured-release-player-shell {
+    position: relative;
+    width: 100%;
+    aspect-ratio: 16 / 9;
+    overflow: hidden;
+    border-radius: 16px;
+    border: 1px solid rgba(91, 22, 18, 0.26);
+    background: #111111;
+    box-shadow: 0 18px 36px rgba(17, 17, 17, 0.12);
+}
+
+.featured-release-player-shell::before {
+    content: "Now featured";
+    position: absolute;
+    top: 12px;
+    left: 12px;
+    z-index: 2;
+    padding: 6px 10px;
+    border-radius: 999px;
+    background: rgba(245, 231, 216, 0.92);
+    color: var(--patriotic-red);
+    font-family: Arial, sans-serif;
+    font-size: 0.72rem;
+    font-weight: 800;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    box-shadow: 0 8px 18px rgba(17, 17, 17, 0.16);
+    pointer-events: none;
+}
+
+.featured-release-player-shell iframe {
+    width: 100%;
+    height: 100%;
+    border: 0;
+    display: block;
 }
 
 .project-week-card {
@@ -1178,7 +1297,9 @@ main {
     width: 100%;
     height: 100%;
     min-height: 220px;
+    aspect-ratio: 16 / 9;
     object-fit: cover;
+    object-position: center;
     border-right: 1px solid rgba(120, 24, 18, 0.18);
 }
 
@@ -1643,7 +1764,7 @@ section p {
 .alaska-live-card h3 {
     margin: 0 0 8px;
     font-size: 1rem;
-    color: var(--newport-green);
+    color: #ffffff;
 }
 
 .alaska-live-card-primary {
@@ -1672,7 +1793,7 @@ section p {
     font-size: 0.9rem;
     line-height: 1.45;
     font-family: Arial, sans-serif;
-    color: #2f2f2f;
+    color: #ffffff;
 }
 
 .alaska-next-transition,
@@ -1688,7 +1809,7 @@ section p {
     margin: 0 0 6px;
     font-family: Arial, sans-serif;
     font-size: 0.83rem;
-    color: #333;
+    color: #ffffff;
 }
 
 .alaska-daylight-meter {
@@ -1711,7 +1832,7 @@ section p {
 
 .alaska-live-value {
     margin: 0;
-    color: var(--patriotic-blue);
+    color: #ffffff;
     font-size: 1rem;
     font-weight: 700;
 }
@@ -1719,7 +1840,7 @@ section p {
 .alaska-updated {
     margin-top: 10px;
     font-size: 0.82rem;
-    color: #4a4a4a;
+    color: rgba(255, 255, 255, 0.82);
 }
 
 .weirdness-link {
@@ -2044,7 +2165,9 @@ section p {
     display: block;
     width: 100%;
     height: 220px;
+    aspect-ratio: 4 / 3;
     object-fit: cover;
+    object-position: center;
 }
 
 .photo-card img.photo-thumb-bottom {
@@ -2526,6 +2649,10 @@ nav p {
         grid-template-columns: 1fr;
     }
 
+    .featured-release-layout {
+        grid-template-columns: 1fr;
+    }
+
     .project-week-image {
         min-height: 180px;
         border-right: 0;
@@ -2817,11 +2944,26 @@ nav p {
         gap: 10px;
     }
 
+    .featured-release-actions {
+        flex-direction: column;
+        align-items: stretch;
+    }
+
+    .featured-release-meta {
+        gap: 8px;
+    }
+
+    .featured-release-video-list {
+        flex-direction: column;
+        align-items: stretch;
+    }
+
     .site-overview-strip {
         grid-template-columns: 1fr;
     }
 
     .hero-link-row a,
+    .featured-release-actions a,
     .gallery-highlights a {
         display: block;
         width: 100%;
@@ -3207,6 +3349,27 @@ footer {
     transform: translateY(-2px);
     box-shadow: 0 6px 16px rgba(196, 30, 58, 0.45);
     border-color: white;
+}
+
+.venmo-handle-line {
+    margin: 0 0 10px;
+    color: rgba(255, 220, 220, 0.98);
+    font-family: Arial, sans-serif;
+    font-size: 0.86rem;
+    letter-spacing: 0.03em;
+}
+
+.venmo-handle-line strong {
+    color: #fff7f7;
+    font-size: 0.92rem;
+}
+
+.venmo-copy-status {
+    min-height: 1.25rem;
+}
+
+.merch-launch-panel p {
+    margin-top: 0;
 }
 
 .hero-cta-btn {
@@ -3864,6 +4027,16 @@ footer {
         background: rgba(255, 90, 104, 0.2);
     }
 
+    .creative-lane-icon,
+    .pillar-card-icon {
+        background: rgba(255, 90, 104, 0.32);
+        border: 1px solid rgba(152, 236, 255, 0.82);
+        box-shadow:
+            inset 0 0 0 1px rgba(255, 196, 202, 0.2),
+            0 0 10px rgba(255, 90, 104, 0.26),
+            0 0 8px rgba(118, 236, 255, 0.14);
+    }
+
     .pillar-card h3 {
         color: #e9f9ff;
     }
@@ -3873,15 +4046,30 @@ footer {
     }
 
     .nav-card-badge.featured {
-        background: rgba(87, 217, 255, 0.78);
-        color: #021118;
-        box-shadow: 0 4px 12px rgba(87, 217, 255, 0.35);
+        background: rgba(87, 217, 255, 0.92);
+        color: #f5fdff;
+        border: 1px solid rgba(208, 248, 255, 0.9);
+        box-shadow: 0 4px 12px rgba(87, 217, 255, 0.42);
     }
 
     .nav-card-badge.new {
         background: rgba(255, 90, 104, 0.82);
         color: #fff2f4;
+        border: 1px solid rgba(255, 196, 202, 0.9);
         box-shadow: 0 4px 12px rgba(255, 90, 104, 0.36);
+    }
+
+    .stat-item,
+    .stat-item:visited,
+    .stat-label,
+    .stat-number,
+    .stat-icon {
+        color: #eaf9ff;
+    }
+
+    .stat-item {
+        background: linear-gradient(150deg, rgba(8, 20, 32, 0.94), rgba(9, 30, 48, 0.9));
+        border-color: rgba(118, 236, 255, 0.7);
     }
 
     .nav-card:hover .nav-card-badge.featured {

@@ -1,0 +1,25 @@
+{
+  "eyebrow": "New Blue Engine project",
+  "title": "Blue Engine Script Reading Parts 1-2",
+  "summary": "The new Blue Engine project is a script reading of Eric Stone's Blue Engine, performed by Eric and his 19-year-old nephew. Parts 1 and 2 are live now, with more uploads still on the way.",
+  "watchLabel": "Watch the Blue Engine playlist",
+  "watchUrl": "https://youtube.com/playlist?list=PLcOgXEmuk7bo&si=pyldIirV3X9cQkhO",
+  "embedUrl": "https://www.youtube.com/embed/kOnjLdoAtU4",
+  "videos": [
+    {
+      "label": "Watch Blue Engine Part 2",
+      "url": "https://youtube.com/shorts/kOnjLdoAtU4?feature=share",
+      "embedUrl": "https://www.youtube.com/embed/kOnjLdoAtU4"
+    },
+    {
+      "label": "Watch Blue Engine Part 1",
+      "url": "https://youtube.com/shorts/S6wP6TN0ZmE",
+      "embedUrl": "https://www.youtube.com/embed/S6wP6TN0ZmE"
+    }
+  ],
+  "readLabel": "Read the script",
+  "readUrl": "https://open.substack.com/pub/abefroman1978/p/blue-engine?r=61vhfy&utm_campaign=post&utm_medium=web&showWelcomeOnShare=true",
+  "pdfLabel": "Open the script PDF",
+  "pdfUrl": "Blue_Engine_Official_Screenplay.pdf",
+  "releasedAt": "2026-08-23T18:00:00Z"
+}
