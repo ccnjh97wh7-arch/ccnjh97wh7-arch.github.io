@@ -1,0 +1,953 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Audio-first table read page for Eric Stone's Blue Engine project.">
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="Blue Engine Table Read | Eric Stone">
+  <meta property="og:description" content="Read the screenplay, record 16-second line takes, and assemble the final cut locally in your browser.">
+  <meta property="og:url" content="https://theericstone.com/table-read.html">
+  <meta property="og:image" content="https://theericstone.com/images/quiet-evening.jpg">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Blue Engine Table Read | Eric Stone">
+  <meta name="twitter:description" content="Read the screenplay, record 16-second line takes, and assemble the final cut locally in your browser.">
+  <meta name="twitter:image" content="https://theericstone.com/images/quiet-evening.jpg">
+  <title>Blue Engine Table Read | Eric Stone</title>
+  <link rel="stylesheet" href="style.css?v=20260726-blackfix">
+  <style>
+    .table-read-layout {
+      display: grid;
+      grid-template-columns: minmax(0, 1.1fr) minmax(320px, 0.9fr);
+      gap: 18px;
+      margin-top: 14px;
+    }
+
+    .script-frame {
+      width: 100%;
+      min-height: 680px;
+      border: 1px solid rgba(120, 24, 18, 0.18);
+      border-radius: 14px;
+      background: rgba(255, 255, 255, 0.85);
+    }
+
+    .recording-panel,
+    .script-panel {
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+    }
+
+    .status-pill {
+      display: inline-flex;
+      align-items: center;
+      width: fit-content;
+      padding: 4px 10px;
+      border-radius: 999px;
+      border: 1px solid rgba(120, 24, 18, 0.28);
+      background: rgba(120, 24, 18, 0.06);
+      color: #5b1612;
+      font-family: Arial, sans-serif;
+      font-size: 0.76rem;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+    }
+
+    .recording-grid {
+      display: grid;
+      gap: 12px;
+    }
+
+    .form-row {
+      display: grid;
+      gap: 6px;
+    }
+
+    .form-row label {
+      font-weight: 700;
+      color: #2f2d29;
+    }
+
+    .form-row input,
+    .form-row textarea,
+    .form-row select {
+      width: 100%;
+      padding: 10px 12px;
+      border-radius: 10px;
+      border: 1px solid rgba(120, 24, 18, 0.22);
+      background: rgba(255, 255, 255, 0.92);
+      color: #1b1b1b;
+      font: inherit;
+    }
+
+    .form-row textarea {
+      min-height: 96px;
+      resize: vertical;
+    }
+
+    .button-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+    }
+
+    .timer-wrap {
+      display: grid;
+      gap: 8px;
+      padding: 14px;
+      border-radius: 14px;
+      border: 1px solid rgba(120, 24, 18, 0.16);
+      background: rgba(255, 255, 255, 0.72);
+    }
+
+    .timer-bar {
+      height: 12px;
+      overflow: hidden;
+      border-radius: 999px;
+      background: rgba(120, 24, 18, 0.12);
+    }
+
+    .timer-bar > span {
+      display: block;
+      width: 100%;
+      height: 100%;
+      transform-origin: left center;
+      background: linear-gradient(90deg, #781812, #bf3d2d);
+    }
+
+    .clip-list {
+      display: grid;
+      gap: 10px;
+      margin: 0;
+      padding: 0;
+      list-style: none;
+    }
+
+    .clip-item {
+      display: grid;
+      gap: 10px;
+      padding: 14px;
+      border-radius: 14px;
+      border: 1px solid rgba(120, 24, 18, 0.16);
+      background: rgba(255, 255, 255, 0.8);
+    }
+
+    .clip-item-header {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px 12px;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .clip-meta {
+      display: grid;
+      gap: 4px;
+      color: #2f2d29;
+    }
+
+    .clip-meta strong {
+      color: var(--patriotic-blue);
+    }
+
+    .clip-audio {
+      width: 100%;
+    }
+
+    .help-copy,
+    .side-note {
+      color: #2f2d29;
+      max-width: 68ch;
+    }
+
+    .split-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-top: 10px;
+    }
+
+    .inline-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 4px 10px;
+      border-radius: 999px;
+      background: rgba(120, 24, 18, 0.07);
+      border: 1px solid rgba(120, 24, 18, 0.22);
+      color: #5b1612;
+      font-size: 0.82rem;
+      font-weight: 700;
+    }
+
+    .line-editor-grid {
+      display: grid;
+      gap: 12px;
+    }
+
+    .small-note {
+      margin: 0;
+      font-size: 0.94rem;
+      color: rgba(47, 45, 41, 0.92);
+    }
+
+    .warning-box {
+      padding: 14px;
+      border-radius: 14px;
+      border: 1px dashed rgba(120, 24, 18, 0.3);
+      background: rgba(120, 24, 18, 0.04);
+      color: #2f2d29;
+    }
+
+    @media (max-width: 980px) {
+      .table-read-layout {
+        grid-template-columns: 1fr;
+      }
+
+      .script-frame {
+        min-height: 560px;
+      }
+    }
+  </style>
+</head>
+<body id="top">
+  <a class="skip-link" href="#main-content">Skip to main content</a>
+
+  <div class="global-nav" role="navigation" aria-label="Primary">
+    <a href="index.html">Home</a>
+    <a href="photos.html">Photos</a>
+    <a href="more-images.html">More Images</a>
+    <a href="music.html">Music</a>
+    <a href="javascript-games.html">Games</a>
+    <a href="table-read.html" aria-current="page">Table Read</a>
+    <a href="changing-channel.html">The Changing Channel</a>
+  </div>
+
+  <header>
+    <h1>BLUE ENGINE TABLE READ</h1>
+    <p>Read the script, record each line in a 16-second window, and assemble the takes locally when you are done.</p>
+  </header>
+
+  <main id="main-content">
+    <section class="archive-panel page-intro-shell" aria-labelledby="table-read-title">
+      <div class="section-title-wrap">
+        <p class="section-kicker">Audio-first workflow</p>
+        <h2 id="table-read-title">Script copy on the left, recording booth on the right.</h2>
+      </div>
+      <p class="help-copy">The screenplay is embedded here as the copy to work from. Every take is capped at 16 seconds, stored in this browser, and can be exported as one assembled WAV or as a take-home rehearsal bundle at the end. No Firebase, no accounts, no backend.</p>
+      <div class="split-actions">
+        <a href="Blue_Engine_Official_Screenplay.pdf" target="_blank" rel="noopener noreferrer" class="hero-cta-btn">Open the screenplay PDF</a>
+        <a href="Blue_Engine_Official_Screenplay.pdf" download class="secondary-cta-btn">Download screenplay PDF</a>
+        <button id="package-btn" type="button" class="secondary-cta-btn">Download take-home rehearsal bundle</button>
+        <a href="jaffar.html" class="secondary-cta-btn">Blue Engine project</a>
+        <a href="index.html" class="secondary-cta-btn">Back to home</a>
+      </div>
+    </section>
+
+    <section class="archive-panel">
+      <div class="table-read-layout">
+        <div class="script-panel">
+          <div class="section-title-wrap">
+            <p class="section-kicker">Script copy</p>
+            <h2>Blue Engine screenplay PDF</h2>
+          </div>
+          <p class="side-note">Use this as the script copy while recording. The PDF is the authoritative version and can stay open in-place, or download it if you want to keep a local copy with you.</p>
+          <iframe class="script-frame" src="Blue_Engine_Official_Screenplay.pdf" title="Blue Engine screenplay PDF"></iframe>
+        </div>
+
+        <div class="recording-panel">
+          <div class="section-title-wrap">
+            <p class="section-kicker">Recording booth</p>
+            <h2>16-second line takes</h2>
+          </div>
+          <p class="side-note">Each take records only up to 16 seconds. When a clip is saved, it is stored locally with the line label, speaker, and any note you add.</p>
+
+          <div class="warning-box">
+            <strong>Important:</strong> this recorder uses the browser microphone. It will ask for permission the first time you hit record.
+          </div>
+
+          <div class="line-editor-grid">
+            <div class="form-row">
+              <label for="speaker-name">Speaker</label>
+              <input id="speaker-name" type="text" maxlength="60" placeholder="Actor or character name">
+            </div>
+            <div class="form-row">
+              <label for="line-label">Line label</label>
+              <input id="line-label" type="text" maxlength="120" placeholder="Scene 1, line 3">
+            </div>
+            <div class="form-row">
+              <label for="line-note">Notes</label>
+              <textarea id="line-note" maxlength="240" placeholder="Pronunciation, performance note, timing note..."></textarea>
+            </div>
+            <div class="timer-wrap" aria-live="polite">
+              <div class="inline-badge">Strict take limit: <span id="time-remaining">16.0</span>s</div>
+              <div class="timer-bar" aria-hidden="true"><span id="timer-fill"></span></div>
+              <p class="small-note" id="recording-status">Ready to record a new line.</p>
+            </div>
+            <div class="button-row">
+              <button id="record-btn" type="button" class="hero-cta-btn">Record 16-second take</button>
+              <button id="stop-btn" type="button" class="secondary-cta-btn" disabled>Stop recording</button>
+              <button id="assemble-btn" type="button" class="secondary-cta-btn">Assemble final cut</button>
+              <button id="clear-btn" type="button" class="secondary-cta-btn">Clear saved takes</button>
+            </div>
+          </div>
+
+          <div class="warning-box">
+            <p class="small-note" id="storage-status">Saved takes: 0. Audio stays in your browser until you assemble or clear it.</p>
+          </div>
+
+          <div>
+            <p class="section-kicker">Saved line takes</p>
+            <ul id="clip-list" class="clip-list" aria-live="polite"></ul>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="footer-content">
+      <div class="footer-section">
+        <h3>Quick Links</h3>
+        <ul>
+          <li><a href="index.html">Home</a></li>
+          <li><a href="table-read.html">Table Read</a></li>
+          <li><a href="jaffar.html">Life of Jaffar</a></li>
+          <li><a href="music.html">Music</a></li>
+          <li><a href="changing-channel.html">The Changing Channel</a></li>
+        </ul>
+      </div>
+
+      <div class="footer-section">
+        <h3>Connect</h3>
+        <div class="social-links">
+          <a href="https://abefroman1978.substack.com/" target="_blank" rel="noopener noreferrer" title="Substack">Substack</a>
+          <a href="https://youtube.com/playlist?list=PLbaYlPY2lbIItsGmHkmv5vWe0Lj4_GJqr" target="_blank" rel="noopener noreferrer" title="YouTube">YouTube</a>
+        </div>
+      </div>
+
+      <div class="footer-section">
+        <h3>About</h3>
+        <p>Stories, animation, code, and strange ideas. <br>Built with attention to detail.</p>
+      </div>
+    </div>
+
+    <div class="footer-bottom">
+      <p>&copy; 2026 Eric Stone. All rights reserved.</p>
+      <p><a href="#top" class="back-to-top">Back to Top</a></p>
+    </div>
+  </footer>
+
+  <script>
+    const takeLimitSeconds = 16;
+    const maxTrackCount = 9999;
+    const dbName = "blue-engine-table-read";
+    const storeName = "takes";
+
+    const speakerNameInput = document.querySelector("#speaker-name");
+    const lineLabelInput = document.querySelector("#line-label");
+    const lineNoteInput = document.querySelector("#line-note");
+    const recordButton = document.querySelector("#record-btn");
+    const stopButton = document.querySelector("#stop-btn");
+    const assembleButton = document.querySelector("#assemble-btn");
+    const clearButton = document.querySelector("#clear-btn");
+    const packageButton = document.querySelector("#package-btn");
+    const recordingStatus = document.querySelector("#recording-status");
+    const storageStatus = document.querySelector("#storage-status");
+    const clipList = document.querySelector("#clip-list");
+    const timeRemaining = document.querySelector("#time-remaining");
+    const timerFill = document.querySelector("#timer-fill");
+
+    let mediaStream = null;
+    let mediaRecorder = null;
+    let recordingChunks = [];
+    let recordingTimer = null;
+    let recordingDeadline = 0;
+    let currentTakeLabel = "";
+    let currentTakeSpeaker = "";
+    let currentTakeNote = "";
+
+    function setStatus(message) {
+      recordingStatus.textContent = message;
+    }
+
+    function formatSeconds(value) {
+      return `${value.toFixed(1)}`;
+    }
+
+    function openDatabase() {
+      return new Promise((resolve, reject) => {
+        const request = indexedDB.open(dbName, 1);
+
+        request.onupgradeneeded = () => {
+          const database = request.result;
+          if (!database.objectStoreNames.contains(storeName)) {
+            const store = database.createObjectStore(storeName, { keyPath: "id", autoIncrement: true });
+            store.createIndex("byCreatedAt", "createdAt", { unique: false });
+          }
+        };
+
+        request.onsuccess = () => resolve(request.result);
+        request.onerror = () => reject(request.error || new Error("Could not open clip database."));
+      });
+    }
+
+    async function withStore(mode, callback) {
+      const database = await openDatabase();
+      return new Promise((resolve, reject) => {
+        const transaction = database.transaction(storeName, mode);
+        const store = transaction.objectStore(storeName);
+        const result = callback(store, transaction);
+
+        transaction.oncomplete = () => {
+          database.close();
+          resolve(result);
+        };
+
+        transaction.onerror = () => {
+          database.close();
+          reject(transaction.error || new Error("Database transaction failed."));
+        };
+      });
+    }
+
+    async function getAllTakes() {
+      const database = await openDatabase();
+      return new Promise((resolve, reject) => {
+        const transaction = database.transaction(storeName, "readonly");
+        const store = transaction.objectStore(storeName);
+        const request = store.getAll();
+
+        request.onsuccess = () => resolve(request.result || []);
+        request.onerror = () => reject(request.error || new Error("Could not load takes."));
+        transaction.oncomplete = () => database.close();
+        transaction.onerror = () => {
+          database.close();
+          reject(transaction.error || new Error("Could not load takes."));
+        };
+      });
+    }
+
+    async function saveTake(take) {
+      return withStore("readwrite", (store) => store.add(take));
+    }
+
+    async function clearTakes() {
+      return withStore("readwrite", (store) => store.clear());
+    }
+
+    function stopRecordingUi(message) {
+      if (recordingTimer) {
+        clearInterval(recordingTimer);
+        recordingTimer = null;
+      }
+
+      recordingDeadline = 0;
+      timerFill.style.transform = "scaleX(1)";
+      timeRemaining.textContent = formatSeconds(takeLimitSeconds);
+      recordButton.disabled = false;
+      stopButton.disabled = true;
+      recordButton.textContent = "Record 16-second take";
+      setStatus(message);
+    }
+
+    function prepNextTake() {
+      lineLabelInput.value = "";
+      lineNoteInput.value = "";
+      lineLabelInput.focus();
+      currentTakeLabel = "";
+      currentTakeNote = "";
+    }
+
+    async function blobToDataUrl(blob) {
+      const arrayBuffer = await blob.arrayBuffer();
+      const bytes = new Uint8Array(arrayBuffer);
+      let binary = "";
+      const chunkSize = 0x8000;
+
+      for (let index = 0; index < bytes.length; index += chunkSize) {
+        binary += String.fromCharCode(...bytes.subarray(index, index + chunkSize));
+      }
+
+      return `data:${blob.type || "application/octet-stream"};base64,${btoa(binary)}`;
+    }
+
+    function buildOfflinePackageHtml(scriptPdfDataUrl, takes) {
+      const clipMarkup = takes.length
+        ? takes.map((take, index) => `
+            <article class="clip-card">
+              <div class="clip-card-header">
+                <h3>${index + 1}. ${escapeHtml(take.label)}</h3>
+                <span>${take.durationSeconds}s max</span>
+              </div>
+              <p><strong>Speaker:</strong> ${escapeHtml(take.speaker)}</p>
+              ${take.note ? `<p><strong>Note:</strong> ${escapeHtml(take.note)}</p>` : ""}
+              <audio controls src="${take.packageAudioUrl}"></audio>
+              <p><strong>Recorded:</strong> ${new Date(take.createdAt).toLocaleString()}</p>
+            </article>
+          `).join("")
+        : `<p class="empty-state">No takes were recorded before this package was created.</p>`;
+
+      return `<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Blue Engine table read offline package.">
+  <title>Blue Engine Table Read Package</title>
+  <style>
+    :root {
+      color-scheme: light;
+      --ink: #1b1b1b;
+      --muted: #3b3833;
+      --accent: #781812;
+      --panel: rgba(255, 255, 255, 0.92);
+      --border: rgba(120, 24, 18, 0.18);
+      --shadow: 0 12px 30px rgba(0, 0, 0, 0.08);
+      font-family: Georgia, serif;
+    }
+
+    body {
+      margin: 0;
+      color: var(--ink);
+      background: linear-gradient(180deg, #f8f1e7 0%, #f2e8dc 100%);
+    }
+
+    header, main, footer {
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 24px;
+    }
+
+    header {
+      padding-top: 32px;
+      padding-bottom: 10px;
+    }
+
+    h1, h2, h3 {
+      margin-top: 0;
+      color: var(--accent);
+    }
+
+    .hero {
+      display: grid;
+      gap: 10px;
+      padding: 20px;
+      border-radius: 18px;
+      background: var(--panel);
+      border: 1px solid var(--border);
+      box-shadow: var(--shadow);
+    }
+
+    .layout {
+      display: grid;
+      grid-template-columns: minmax(0, 1.15fr) minmax(0, 0.85fr);
+      gap: 18px;
+      align-items: start;
+    }
+
+    .panel {
+      padding: 18px;
+      border-radius: 18px;
+      background: var(--panel);
+      border: 1px solid var(--border);
+      box-shadow: var(--shadow);
+    }
+
+    .pdf-frame {
+      width: 100%;
+      min-height: 720px;
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      background: #fff;
+    }
+
+    .clip-list {
+      display: grid;
+      gap: 14px;
+    }
+
+    .clip-card {
+      padding: 14px;
+      border-radius: 14px;
+      border: 1px solid var(--border);
+      background: rgba(255, 255, 255, 0.9);
+    }
+
+    .clip-card-header {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px 12px;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .clip-card-header h3 {
+      margin: 0;
+      font-size: 1.04rem;
+    }
+
+    audio {
+      width: 100%;
+      margin: 10px 0;
+    }
+
+    .empty-state {
+      padding: 16px;
+      border-radius: 14px;
+      background: rgba(120, 24, 18, 0.05);
+      border: 1px dashed var(--border);
+    }
+
+    .actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-top: 14px;
+    }
+
+    a.button {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      padding: 10px 14px;
+      border-radius: 999px;
+      text-decoration: none;
+      font-family: Arial, sans-serif;
+      font-size: 0.92rem;
+      font-weight: 700;
+      border: 1px solid var(--border);
+      background: rgba(120, 24, 18, 0.08);
+      color: var(--accent);
+    }
+
+    .button.primary {
+      background: linear-gradient(180deg, #9d2c1e, #781812);
+      color: #fff;
+    }
+
+    @media (max-width: 960px) {
+      .layout {
+        grid-template-columns: 1fr;
+      }
+
+      .pdf-frame {
+        min-height: 560px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="hero">
+      <p>Blue Engine Table Read</p>
+      <h1>Offline HTML Package</h1>
+      <p>This file is self-contained: the screenplay is embedded, and the recorded takes are attached as playable audio clips.</p>
+      <div class="actions">
+        <a class="button primary" href="#script">Open screenplay</a>
+        <a class="button" href="#takes">Jump to takes</a>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <section class="layout">
+      <article id="script" class="panel">
+        <h2>Script copy</h2>
+        <iframe class="pdf-frame" src="${scriptPdfDataUrl}" title="Blue Engine screenplay PDF"></iframe>
+      </article>
+
+      <aside id="takes" class="panel">
+        <h2>Recorded takes</h2>
+        <p>The clips below are embedded directly in this HTML package.</p>
+        <div class="clip-list">
+          ${clipMarkup}
+        </div>
+      </aside>
+    </section>
+  </main>
+
+  <footer>
+    <p>Generated from the local table-read recorder.</p>
+  </footer>
+</body>
+</html>`;
+    }
+
+    async function downloadOfflinePackage() {
+      const takes = await getAllTakes();
+      const scriptPdfResponse = await fetch("Blue_Engine_Official_Screenplay.pdf");
+      const scriptPdfBlob = await scriptPdfResponse.blob();
+      const scriptPdfDataUrl = await blobToDataUrl(scriptPdfBlob);
+
+      const packageTakes = [];
+      for (const take of takes) {
+        packageTakes.push({
+          speaker: take.speaker,
+          label: take.label,
+          note: take.note,
+          durationSeconds: take.durationSeconds,
+          createdAt: take.createdAt,
+          packageAudioUrl: await blobToDataUrl(take.blob),
+        });
+      }
+
+      const packageHtml = buildOfflinePackageHtml(scriptPdfDataUrl, packageTakes);
+      const packageBlob = new Blob([packageHtml], { type: "text/html;charset=utf-8" });
+      const packageUrl = URL.createObjectURL(packageBlob);
+      const anchor = document.createElement("a");
+      anchor.href = packageUrl;
+      anchor.download = `blue-engine-table-read-package-${new Date().toISOString().replace(/[:.]/g, "-")}.html`;
+      document.body.appendChild(anchor);
+      anchor.click();
+      anchor.remove();
+      window.setTimeout(() => URL.revokeObjectURL(packageUrl), 1000);
+
+      setStatus(`Take-home rehearsal bundle downloaded with ${packageTakes.length} embedded take${packageTakes.length === 1 ? "" : "s"}.`);
+    }
+
+    function updateTimer() {
+      if (!recordingDeadline) {
+        return;
+      }
+
+      const remaining = Math.max(0, (recordingDeadline - Date.now()) / 1000);
+      const progress = remaining / takeLimitSeconds;
+      timeRemaining.textContent = formatSeconds(remaining);
+      timerFill.style.transform = `scaleX(${Math.max(0, Math.min(1, progress))})`;
+
+      if (remaining <= 0) {
+        stopCurrentRecording(true);
+      }
+    }
+
+    async function startRecording() {
+      if (!navigator.mediaDevices || !window.MediaRecorder) {
+        setStatus("This browser cannot record audio.");
+        return;
+      }
+
+      if (mediaRecorder && mediaRecorder.state === "recording") {
+        return;
+      }
+
+      currentTakeSpeaker = speakerNameInput.value.trim();
+      currentTakeLabel = lineLabelInput.value.trim();
+      currentTakeNote = lineNoteInput.value.trim();
+
+      if (!currentTakeLabel) {
+        setStatus("Add a line label before recording.");
+        lineLabelInput.focus();
+        return;
+      }
+
+      try {
+        mediaStream = await navigator.mediaDevices.getUserMedia({ audio: true });
+        recordingChunks = [];
+        mediaRecorder = new MediaRecorder(mediaStream);
+
+        mediaRecorder.ondataavailable = (event) => {
+          if (event.data && event.data.size > 0) {
+            recordingChunks.push(event.data);
+          }
+        };
+
+        mediaRecorder.onstop = async () => {
+          const takeBlob = new Blob(recordingChunks, { type: mediaRecorder.mimeType || "audio/webm" });
+          const take = {
+            speaker: currentTakeSpeaker || "Unassigned",
+            label: currentTakeLabel,
+            note: currentTakeNote,
+            mimeType: takeBlob.type,
+            createdAt: new Date().toISOString(),
+            durationSeconds: takeLimitSeconds,
+            blob: takeBlob,
+          };
+
+          await saveTake(take);
+          await renderTakes();
+          prepNextTake();
+          stopRecordingUi("Take saved locally. Set up the next line and keep moving.");
+        };
+
+        mediaRecorder.start();
+        recordingDeadline = Date.now() + (takeLimitSeconds * 1000);
+        recordButton.disabled = true;
+        stopButton.disabled = false;
+        recordButton.textContent = "Recording...";
+        setStatus(`Recording ${currentTakeLabel}. Stop after 16 seconds or let it end automatically.`);
+        updateTimer();
+        recordingTimer = window.setInterval(updateTimer, 100);
+      } catch (error) {
+        stopRecordingUi("Microphone permission failed or was denied.");
+      }
+    }
+
+    function stopCurrentRecording(fromTimer = false) {
+      if (!mediaRecorder || mediaRecorder.state !== "recording") {
+        return;
+      }
+
+      if (!fromTimer) {
+        setStatus("Stopping recording and saving the take...");
+      }
+
+      mediaRecorder.stop();
+      if (mediaStream) {
+        mediaStream.getTracks().forEach((track) => track.stop());
+        mediaStream = null;
+      }
+    }
+
+    function createClipItem(take, index) {
+      const item = document.createElement("li");
+      item.className = "clip-item";
+      item.innerHTML = `
+        <div class="clip-item-header">
+          <div class="clip-meta">
+            <strong>${index + 1}. ${escapeHtml(take.label)}</strong>
+            <span>Speaker: ${escapeHtml(take.speaker)}</span>
+          </div>
+          <span class="inline-badge">${take.durationSeconds}s max</span>
+        </div>
+        ${take.note ? `<p class="small-note">${escapeHtml(take.note)}</p>` : ""}
+        <audio class="clip-audio" controls src="${URL.createObjectURL(take.blob)}"></audio>
+        <p class="small-note">Recorded ${new Date(take.createdAt).toLocaleString()}</p>
+      `;
+      return item;
+    }
+
+    function escapeHtml(value) {
+      return value
+        .replace(/&/g, "&amp;")
+        .replace(/</g, "&lt;")
+        .replace(/>/g, "&gt;")
+        .replace(/\"/g, "&quot;")
+        .replace(/'/g, "&#39;");
+    }
+
+    function encodeWavFromAudioBuffer(audioBuffer) {
+      const channelData = audioBuffer.numberOfChannels > 1
+        ? mixDownChannels(audioBuffer)
+        : audioBuffer.getChannelData(0);
+      const sampleRate = audioBuffer.sampleRate;
+      const buffer = new ArrayBuffer(44 + (channelData.length * 2));
+      const view = new DataView(buffer);
+
+      writeString(view, 0, "RIFF");
+      view.setUint32(4, 36 + (channelData.length * 2), true);
+      writeString(view, 8, "WAVE");
+      writeString(view, 12, "fmt ");
+      view.setUint32(16, 16, true);
+      view.setUint16(20, 1, true);
+      view.setUint16(22, 1, true);
+      view.setUint32(24, sampleRate, true);
+      view.setUint32(28, sampleRate * 2, true);
+      view.setUint16(32, 2, true);
+      view.setUint16(34, 16, true);
+      writeString(view, 36, "data");
+      view.setUint32(40, channelData.length * 2, true);
+
+      let offset = 44;
+      for (let index = 0; index < channelData.length; index += 1) {
+        const sample = Math.max(-1, Math.min(1, channelData[index]));
+        view.setInt16(offset, sample < 0 ? sample * 0x8000 : sample * 0x7FFF, true);
+        offset += 2;
+      }
+
+      return buffer;
+    }
+
+    function mixDownChannels(audioBuffer) {
+      const length = audioBuffer.length;
+      const mixed = new Float32Array(length);
+      for (let channel = 0; channel < audioBuffer.numberOfChannels; channel += 1) {
+        const channelData = audioBuffer.getChannelData(channel);
+        for (let index = 0; index < length; index += 1) {
+          mixed[index] += channelData[index] / audioBuffer.numberOfChannels;
+        }
+      }
+      return mixed;
+    }
+
+    function writeString(view, offset, string) {
+      for (let index = 0; index < string.length; index += 1) {
+        view.setUint8(offset + index, string.charCodeAt(index));
+      }
+    }
+
+    async function assembleFinalCut() {
+      const takes = await getAllTakes();
+      if (takes.length === 0) {
+        setStatus("No saved takes to assemble yet.");
+        return;
+      }
+
+      const audioContext = new (window.AudioContext || window.webkitAudioContext)();
+      const decodedBuffers = [];
+      for (const take of takes) {
+        const arrayBuffer = await take.blob.arrayBuffer();
+        const decodedBuffer = await audioContext.decodeAudioData(arrayBuffer.slice(0));
+        decodedBuffers.push(decodedBuffer);
+      }
+
+      const totalLength = decodedBuffers.reduce((sum, buffer) => sum + buffer.length, 0);
+      const sampleRate = decodedBuffers[0].sampleRate;
+      const merged = audioContext.createBuffer(1, totalLength, sampleRate);
+      const output = merged.getChannelData(0);
+      let offset = 0;
+
+      for (const buffer of decodedBuffers) {
+        const source = buffer.numberOfChannels > 1 ? mixDownChannels(buffer) : buffer.getChannelData(0);
+        output.set(source, offset);
+        offset += source.length;
+      }
+
+      const wavBuffer = encodeWavFromAudioBuffer(merged);
+      const wavBlob = new Blob([wavBuffer], { type: "audio/wav" });
+      const downloadUrl = URL.createObjectURL(wavBlob);
+      const anchor = document.createElement("a");
+      anchor.href = downloadUrl;
+      anchor.download = `blue-engine-table-read-${new Date().toISOString().replace(/[:.]/g, "-")}.wav`;
+      document.body.appendChild(anchor);
+      anchor.click();
+      anchor.remove();
+      window.setTimeout(() => URL.revokeObjectURL(downloadUrl), 1000);
+
+      setStatus(`Final cut assembled from ${takes.length} saved takes.`);
+    }
+
+    async function renderTakes() {
+      const takes = await getAllTakes();
+      clipList.innerHTML = "";
+      takes.sort((left, right) => new Date(left.createdAt) - new Date(right.createdAt));
+
+      takes.forEach((take, index) => {
+        clipList.appendChild(createClipItem(take, index));
+      });
+
+      storageStatus.textContent = `Saved takes: ${takes.length}. Audio stays in this browser until you assemble or clear it.`;
+      assembleButton.disabled = takes.length === 0;
+      clearButton.disabled = takes.length === 0;
+    }
+
+    async function clearSavedTakes() {
+      await clearTakes();
+      await renderTakes();
+      prepNextTake();
+      setStatus("All saved takes were cleared.");
+    }
+
+    recordButton.addEventListener("click", startRecording);
+    stopButton.addEventListener("click", () => stopCurrentRecording(false));
+    assembleButton.addEventListener("click", assembleFinalCut);
+    clearButton.addEventListener("click", clearSavedTakes);
+    packageButton.addEventListener("click", downloadOfflinePackage);
+
+    timeRemaining.textContent = formatSeconds(takeLimitSeconds);
+    timerFill.style.transform = "scaleX(1)";
+    renderTakes();
+  </script>
+</body>
+</html>
