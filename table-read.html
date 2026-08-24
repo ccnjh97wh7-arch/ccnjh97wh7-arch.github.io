@@ -235,11 +235,11 @@
         <p class="section-kicker">Audio-first workflow</p>
         <h2 id="table-read-title">Script copy on the left, recording booth on the right.</h2>
       </div>
-      <p class="help-copy">The screenplay is embedded here as the copy to work from. Every take is capped at 16 seconds, stored in this browser, and can be exported as one assembled WAV or as a take-home rehearsal bundle at the end. No Firebase, no accounts, no backend.</p>
+      <p class="help-copy">The screenplay is embedded here as the copy to work from. Every take is capped at 16 seconds, stored in this browser, and can be exported as one assembled WAV or as a take-home rehearsal commercial at the end. No Firebase, no accounts, no backend.</p>
       <div class="split-actions">
         <a href="Blue_Engine_Official_Screenplay.pdf" target="_blank" rel="noopener noreferrer" class="hero-cta-btn">Open the screenplay PDF</a>
         <a href="Blue_Engine_Official_Screenplay.pdf" download class="secondary-cta-btn">Download screenplay PDF</a>
-        <button id="package-btn" type="button" class="secondary-cta-btn">Download take-home rehearsal bundle</button>
+        <button id="package-btn" type="button" class="secondary-cta-btn">Download take-home rehearsal commercial</button>
         <a href="jaffar.html" class="secondary-cta-btn">Blue Engine project</a>
         <a href="index.html" class="secondary-cta-btn">Back to home</a>
       </div>
@@ -642,7 +642,7 @@
   <header>
     <div class="hero">
       <p>Blue Engine Table Read</p>
-      <h1>Offline HTML Package</h1>
+      <h1>Take-Home Rehearsal Commercial</h1>
       <p>This file is self-contained: the screenplay is embedded, and the recorded takes are attached as playable audio clips.</p>
       <div class="actions">
         <a class="button primary" href="#script">Open screenplay</a>
@@ -704,7 +704,7 @@
       anchor.remove();
       window.setTimeout(() => URL.revokeObjectURL(packageUrl), 1000);
 
-      setStatus(`Take-home rehearsal bundle downloaded with ${packageTakes.length} embedded take${packageTakes.length === 1 ? "" : "s"}.`);
+      setStatus(`Take-home rehearsal commercial downloaded with ${packageTakes.length} embedded take${packageTakes.length === 1 ? "" : "s"}.`);
     }
 
     function updateTimer() {
