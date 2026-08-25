@@ -24,163 +24,6 @@
       border-left-color: var(--patriotic-red);
     }
 
-    .found-music-panel {
-      border-left-color: #8f5b17;
-      background:
-        linear-gradient(135deg, rgba(255, 249, 232, 0.98), rgba(143, 91, 23, 0.08)),
-        rgba(255, 255, 255, 0.98);
-    }
-
-    .found-music-copy {
-      max-width: 60ch;
-    }
-
-    .found-music-grid {
-      display: grid;
-      gap: 18px;
-      margin-top: 20px;
-    }
-
-    .found-music-card {
-      display: grid;
-      grid-template-columns: minmax(0, 220px) minmax(0, 1fr);
-      gap: 18px;
-      align-items: start;
-      padding: 18px;
-      border: 1px solid rgba(143, 91, 23, 0.22);
-      border-radius: 18px;
-      background: rgba(255, 252, 245, 0.92);
-      box-shadow: 0 18px 30px rgba(47, 33, 17, 0.08);
-    }
-
-    .found-music-art {
-      width: 100%;
-      aspect-ratio: 1184 / 864;
-      object-fit: cover;
-      border-radius: 14px;
-      border: 1px solid rgba(143, 91, 23, 0.22);
-      background: #efe3cf;
-    }
-
-    .found-music-body {
-      display: grid;
-      gap: 12px;
-    }
-
-    .found-music-labels {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 10px;
-      align-items: center;
-    }
-
-    .found-music-badge,
-    .found-music-call-sign {
-      display: inline-flex;
-      align-items: center;
-      min-height: 28px;
-      padding: 4px 10px;
-      border-radius: 999px;
-      font-family: Arial, sans-serif;
-      font-size: 0.76rem;
-      font-weight: 700;
-      letter-spacing: 0.08em;
-      text-transform: uppercase;
-    }
-
-    .found-music-badge {
-      background: rgba(143, 91, 23, 0.14);
-      color: #7c4b09;
-    }
-
-    .found-music-call-sign {
-      background: rgba(17, 57, 105, 0.1);
-      color: var(--patriotic-blue);
-    }
-
-    .found-music-title {
-      margin: 0;
-      color: #1b140f;
-      font-size: clamp(1.5rem, 2.6vw, 2rem);
-    }
-
-    .found-music-artist {
-      margin: 0;
-      color: #4d3723;
-      font-family: Arial, sans-serif;
-      font-size: 0.95rem;
-      letter-spacing: 0.06em;
-      text-transform: uppercase;
-    }
-
-    .found-music-story {
-      margin: 0;
-      color: #33271d;
-      font-family: Arial, sans-serif;
-      line-height: 1.7;
-    }
-
-    .found-music-facts {
-      display: grid;
-      gap: 8px;
-      margin: 0;
-    }
-
-    .found-music-facts div {
-      display: grid;
-      gap: 2px;
-    }
-
-    .found-music-facts dt {
-      color: #7c4b09;
-      font-family: Arial, sans-serif;
-      font-size: 0.76rem;
-      font-weight: 700;
-      letter-spacing: 0.08em;
-      text-transform: uppercase;
-    }
-
-    .found-music-facts dd {
-      margin: 0;
-      color: #33271d;
-      font-family: Arial, sans-serif;
-      line-height: 1.55;
-    }
-
-    .found-music-actions {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 10px;
-    }
-
-    .found-music-actions a,
-    .found-music-actions button {
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      min-height: 42px;
-      padding: 10px 16px;
-      border: 1px solid rgba(143, 91, 23, 0.28);
-      border-radius: 999px;
-      background: rgba(143, 91, 23, 0.08);
-      color: #5d3605;
-      font-family: Arial, sans-serif;
-      font-size: 0.9rem;
-      font-weight: 700;
-      text-decoration: none;
-      cursor: pointer;
-      transition: transform 0.25s ease, background-color 0.25s ease, border-color 0.25s ease;
-    }
-
-    .found-music-actions a:hover,
-    .found-music-actions a:focus-visible,
-    .found-music-actions button:hover,
-    .found-music-actions button:focus-visible {
-      transform: translateY(-2px);
-      background: rgba(143, 91, 23, 0.16);
-      border-color: #7c4b09;
-    }
-
     .music-player-layout {
       display: grid;
       gap: 18px;
@@ -522,10 +365,6 @@
     }
 
     @media (max-width: 700px) {
-      .found-music-card {
-        grid-template-columns: 1fr;
-      }
-
       .now-playing-block {
         grid-template-columns: 1fr;
       }
@@ -547,16 +386,13 @@
     @media (max-width: 520px) {
       .player-controls,
       .share-actions,
-      .music-link-row,
-      .found-music-actions {
+      .music-link-row {
         flex-direction: column;
       }
 
       .player-controls button,
       .share-actions button,
       .music-link-row a,
-      .found-music-actions a,
-      .found-music-actions button,
       .counter-reset-button {
         width: 100%;
         justify-content: center;
@@ -594,15 +430,6 @@
         <a href="#audio-player" class="hero-cta-btn">Start listening</a>
         <a href="index.html" class="secondary-cta-btn">Back to home</a>
       </div>
-    </section>
-
-    <section class="archive-panel found-music-panel" aria-labelledby="found-music-title">
-      <div class="section-title-wrap">
-        <p class="section-kicker">Found music</p>
-        <h2 id="found-music-title">Recovered file cards that stand apart from the main archive.</h2>
-      </div>
-      <p class="found-music-copy">These entries pull in their own cover art, backstory, and outside source trail. They should feel less like ordinary playlist rows and more like discovered evidence.</p>
-      <div class="found-music-grid" id="found-music-grid"></div>
     </section>
 
     <section class="archive-panel music-player-panel" aria-labelledby="now-playing-title">
@@ -678,7 +505,6 @@
     const sharePlaylistButton = document.querySelector("#share-playlist");
     const shareStatus = document.querySelector("#share-status");
     const playlist = document.querySelector("#playlist");
-    const foundMusicGrid = document.querySelector("#found-music-grid");
     const totalPlayCount = document.querySelector("#total-play-count");
     const counterScopeNote = document.querySelector("#counter-scope-note");
     const resetPlayCountsButton = document.querySelector("#reset-play-counts");
@@ -871,62 +697,6 @@
       return "Open source story";
     }
 
-    function renderFoundMusicSpotlights() {
-      if (!foundMusicGrid) {
-        return;
-      }
-
-      const featuredTracks = playlistTracks.filter((track) => track.foundMusic);
-
-      if (featuredTracks.length === 0) {
-        foundMusicGrid.innerHTML = "";
-        return;
-      }
-
-      foundMusicGrid.innerHTML = featuredTracks.map((track) => {
-        const index = playlistTracks.findIndex((candidate) => candidate.src === track.src);
-        const artSrc = getResolvedTrackArt(track, Math.max(index, 0));
-        const canPlayOnPage = Boolean(track.src);
-
-        return `
-          <article class="found-music-card">
-            <img class="found-music-art" src="${escapeHtml(artSrc)}" alt="${escapeHtml(track.title)} cover art" loading="lazy" decoding="async" width="1184" height="864">
-            <div class="found-music-body">
-              <div class="found-music-labels">
-                <span class="found-music-badge">Found music</span>
-                ${track.callSign ? `<span class="found-music-call-sign">${escapeHtml(track.callSign)}</span>` : ""}
-              </div>
-              <div>
-                <h3 class="found-music-title">${escapeHtml(track.title)}</h3>
-                <p class="found-music-artist">Artist: ${escapeHtml(track.artist || "Unknown")}</p>
-              </div>
-              <p class="found-music-story">${escapeHtml(track.story || track.note || "Recovered notes unavailable.")}</p>
-              <dl class="found-music-facts">
-                ${track.origin ? `<div><dt>Origin</dt><dd>${escapeHtml(track.origin)}</dd></div>` : ""}
-                ${track.distinguishingFeature ? `<div><dt>Distinguishing feature</dt><dd>${escapeHtml(track.distinguishingFeature)}</dd></div>` : ""}
-                ${track.specialSkill ? `<div><dt>Special skill</dt><dd>${escapeHtml(track.specialSkill)}</dd></div>` : ""}
-                ${track.notes ? `<div><dt>Notes</dt><dd>${escapeHtml(track.notes)}</dd></div>` : ""}
-              </dl>
-              <div class="found-music-actions">
-                ${canPlayOnPage ? `<button type="button" data-track-src="${escapeHtml(track.src)}">Play on this page</button>` : ""}
-                ${track.sourceUrl ? `<a href="${escapeHtml(track.sourceUrl)}" target="_blank" rel="noopener noreferrer">${escapeHtml(getResolvedTrackSourceLabel(track))}</a>` : ""}
-              </div>
-            </div>
-          </article>
-        `;
-      }).join("");
-
-      Array.from(foundMusicGrid.querySelectorAll("button[data-track-src]")).forEach((button) => {
-        button.addEventListener("click", () => {
-          const trackSrc = button.dataset.trackSrc;
-          const index = playlistTracks.findIndex((track) => track.src === trackSrc);
-          if (index >= 0) {
-            loadTrack(index, true);
-          }
-        });
-      });
-    }
-
     function setShareStatus(message) {
       if (shareStatus) {
         shareStatus.textContent = message;
@@ -1005,7 +775,6 @@
       const counts = readPlayCounts();
       playlistTracks = tracks;
       const topTrackSources = new Set(getTopTrackSources());
-      renderFoundMusicSpotlights();
 
       playlist.innerHTML = tracks.map((track, index) => `
         <li>

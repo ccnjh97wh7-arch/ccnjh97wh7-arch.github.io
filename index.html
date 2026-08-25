@@ -418,6 +418,22 @@
             <div id="latest-updates-grid" class="latest-updates-grid"></div>
         </section>
 
+        <section class="archive-panel" id="music-library-changed" aria-labelledby="music-library-changed-title">
+            <div class="section-title-wrap">
+                <p class="section-kicker">Music update</p>
+                <h2 id="music-library-changed-title">Music library changed</h2>
+            </div>
+            <p>The playlist has new recovered additions. Use the links below for direct access to the new files.</p>
+            <ul>
+                <li><a href="music/ONE,%20TWO,%20SHIT.mp3">ONE, TWO, SHIT (local MP3)</a></li>
+                <li><a href="https://abefroman1978.substack.com/api/v1/audio/upload/e50b6495-a44a-4b6b-b569-62a98b10f2d9/src" target="_blank" rel="noopener noreferrer">BLEEP BLURP (audio file)</a></li>
+                <li><a href="https://abefroman1978.substack.com/api/v1/audio/upload/8d0932fa-7f5c-4bac-a01e-9ba0378ddfc5/src" target="_blank" rel="noopener noreferrer">Healing &amp; Dealing (audio file)</a></li>
+                <li><a href="https://abefroman1978.substack.com/api/v1/audio/upload/a78bf25b-dced-4527-baad-88b6e45cfcdb/src" target="_blank" rel="noopener noreferrer">Healing and Dealing | Episode Two (audio file)</a></li>
+                <li><a href="music-playlist.json">View full playlist file (music-playlist.json)</a></li>
+            </ul>
+            <p><a href="music.html">Open the full music library page →</a></p>
+        </section>
+
         <section class="archive-panel" id="featured-work">
             <h2>Featured Work</h2>
             <p>Start with the projects people visit most.</p>
@@ -551,7 +567,7 @@
                 </a>
                 <a href="music.html" class="stat-item" data-track="stats-music">
                     <div class="stat-icon">🎵</div>
-                    <div class="stat-number">28</div>
+                    <div class="stat-number">32</div>
                     <div class="stat-label">Music Tracks</div>
                 </a>
                 <a href="https://abefroman1978.substack.com/" target="_blank" rel="noopener noreferrer" class="stat-item" data-track="stats-stories-essays">
@@ -644,6 +660,13 @@
     <script>
         // Latest updates are managed here; add one object to publish a new update card.
         const latestUpdates = [
+            {
+                href: 'index.html#music-library-changed',
+                date: 'Aug 2026',
+                title: 'Music Library Changed',
+                description: 'Added ONE, TWO, SHIT plus new found-audio files. Direct links are on the homepage.',
+                releasedAt: '2026-08-25T18:00:00Z'
+            },
             {
                 href: 'javascript-games.html',
                 date: 'Jul 2026',
