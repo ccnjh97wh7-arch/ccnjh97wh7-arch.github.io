@@ -24,6 +24,163 @@
       border-left-color: var(--patriotic-red);
     }
 
+    .found-music-panel {
+      border-left-color: #8f5b17;
+      background:
+        linear-gradient(135deg, rgba(255, 249, 232, 0.98), rgba(143, 91, 23, 0.08)),
+        rgba(255, 255, 255, 0.98);
+    }
+
+    .found-music-copy {
+      max-width: 60ch;
+    }
+
+    .found-music-grid {
+      display: grid;
+      gap: 18px;
+      margin-top: 20px;
+    }
+
+    .found-music-card {
+      display: grid;
+      grid-template-columns: minmax(0, 220px) minmax(0, 1fr);
+      gap: 18px;
+      align-items: start;
+      padding: 18px;
+      border: 1px solid rgba(143, 91, 23, 0.22);
+      border-radius: 18px;
+      background: rgba(255, 252, 245, 0.92);
+      box-shadow: 0 18px 30px rgba(47, 33, 17, 0.08);
+    }
+
+    .found-music-art {
+      width: 100%;
+      aspect-ratio: 1184 / 864;
+      object-fit: cover;
+      border-radius: 14px;
+      border: 1px solid rgba(143, 91, 23, 0.22);
+      background: #efe3cf;
+    }
+
+    .found-music-body {
+      display: grid;
+      gap: 12px;
+    }
+
+    .found-music-labels {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      align-items: center;
+    }
+
+    .found-music-badge,
+    .found-music-call-sign {
+      display: inline-flex;
+      align-items: center;
+      min-height: 28px;
+      padding: 4px 10px;
+      border-radius: 999px;
+      font-family: Arial, sans-serif;
+      font-size: 0.76rem;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+    }
+
+    .found-music-badge {
+      background: rgba(143, 91, 23, 0.14);
+      color: #7c4b09;
+    }
+
+    .found-music-call-sign {
+      background: rgba(17, 57, 105, 0.1);
+      color: var(--patriotic-blue);
+    }
+
+    .found-music-title {
+      margin: 0;
+      color: #1b140f;
+      font-size: clamp(1.5rem, 2.6vw, 2rem);
+    }
+
+    .found-music-artist {
+      margin: 0;
+      color: #4d3723;
+      font-family: Arial, sans-serif;
+      font-size: 0.95rem;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+    }
+
+    .found-music-story {
+      margin: 0;
+      color: #33271d;
+      font-family: Arial, sans-serif;
+      line-height: 1.7;
+    }
+
+    .found-music-facts {
+      display: grid;
+      gap: 8px;
+      margin: 0;
+    }
+
+    .found-music-facts div {
+      display: grid;
+      gap: 2px;
+    }
+
+    .found-music-facts dt {
+      color: #7c4b09;
+      font-family: Arial, sans-serif;
+      font-size: 0.76rem;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+    }
+
+    .found-music-facts dd {
+      margin: 0;
+      color: #33271d;
+      font-family: Arial, sans-serif;
+      line-height: 1.55;
+    }
+
+    .found-music-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+    }
+
+    .found-music-actions a,
+    .found-music-actions button {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 42px;
+      padding: 10px 16px;
+      border: 1px solid rgba(143, 91, 23, 0.28);
+      border-radius: 999px;
+      background: rgba(143, 91, 23, 0.08);
+      color: #5d3605;
+      font-family: Arial, sans-serif;
+      font-size: 0.9rem;
+      font-weight: 700;
+      text-decoration: none;
+      cursor: pointer;
+      transition: transform 0.25s ease, background-color 0.25s ease, border-color 0.25s ease;
+    }
+
+    .found-music-actions a:hover,
+    .found-music-actions a:focus-visible,
+    .found-music-actions button:hover,
+    .found-music-actions button:focus-visible {
+      transform: translateY(-2px);
+      background: rgba(143, 91, 23, 0.16);
+      border-color: #7c4b09;
+    }
+
     .music-player-layout {
       display: grid;
       gap: 18px;
@@ -49,6 +206,16 @@
         repeating-radial-gradient(circle, #242424 0 6px, #0f0f0f 7px 12px);
       border: 7px solid #111111;
       box-shadow: inset 0 0 0 2px rgba(245, 231, 216, 0.2);
+    }
+
+    .record-mark.record-mark-art {
+      border-radius: 16px;
+      border-width: 1px;
+      border-color: rgba(120, 24, 18, 0.24);
+      background-position: center;
+      background-repeat: no-repeat;
+      background-size: cover;
+      box-shadow: 0 14px 24px rgba(47, 33, 17, 0.16);
     }
 
     .eyebrow-note {
@@ -231,6 +398,17 @@
         0 0 14px rgba(132, 255, 176, 0.58);
     }
 
+    .track-artist {
+      display: block;
+      margin-top: 3px;
+      color: #7cddd1;
+      font-family: Arial, sans-serif;
+      font-size: 0.72rem;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+    }
+
     .track-note-preview {
       display: block;
       margin-top: 3px;
@@ -266,6 +444,20 @@
       font-weight: 700;
     }
 
+    .found-track-badge {
+      display: inline-flex;
+      align-items: center;
+      padding: 2px 7px;
+      border-radius: 999px;
+      background: rgba(143, 91, 23, 0.12);
+      color: #7c4b09;
+      font-weight: 700;
+    }
+
+    .found-track-badge[hidden] {
+      display: none;
+    }
+
     .top-track-badge[hidden] {
       display: none;
     }
@@ -290,7 +482,50 @@
       line-height: 1.6;
     }
 
+    .track-story-panel {
+      display: grid;
+      gap: 12px;
+      padding: 16px;
+      border: 1px solid rgba(120, 24, 18, 0.16);
+      border-radius: 12px;
+      background: rgba(255, 255, 255, 0.72);
+    }
+
+    .track-story-panel[hidden] {
+      display: none;
+    }
+
+    .track-story-eyebrow {
+      margin: 0;
+      color: #7c4b09;
+      font-family: Arial, sans-serif;
+      font-size: 0.76rem;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+    }
+
+    .track-story-panel h3 {
+      margin: 0;
+      color: #1b140f;
+      font-size: 1.1rem;
+    }
+
+    .track-story-text,
+    .track-story-origin,
+    .track-story-skill,
+    .track-story-notes {
+      margin: 0;
+      color: #3f3d39;
+      font-family: Arial, sans-serif;
+      line-height: 1.65;
+    }
+
     @media (max-width: 700px) {
+      .found-music-card {
+        grid-template-columns: 1fr;
+      }
+
       .now-playing-block {
         grid-template-columns: 1fr;
       }
@@ -312,13 +547,16 @@
     @media (max-width: 520px) {
       .player-controls,
       .share-actions,
-      .music-link-row {
+      .music-link-row,
+      .found-music-actions {
         flex-direction: column;
       }
 
       .player-controls button,
       .share-actions button,
       .music-link-row a,
+      .found-music-actions a,
+      .found-music-actions button,
       .counter-reset-button {
         width: 100%;
         justify-content: center;
@@ -351,17 +589,26 @@
         <p class="section-kicker">Music archive</p>
         <h2 id="music-page-title">Listen through the catalog.</h2>
       </div>
-      <p>The page is simpler now: one player, one playlist, and the tracks themselves. Pick a song, share it, and move through the archive without the extra gadgets.</p>
+      <p>The page is simpler now: one player, one playlist, and the tracks themselves. A few recovered transmissions can break format when they need to. Pick a song, share it, and move through the archive without the extra gadgets.</p>
       <div class="hero-link-row">
         <a href="#audio-player" class="hero-cta-btn">Start listening</a>
         <a href="index.html" class="secondary-cta-btn">Back to home</a>
       </div>
     </section>
 
+    <section class="archive-panel found-music-panel" aria-labelledby="found-music-title">
+      <div class="section-title-wrap">
+        <p class="section-kicker">Found music</p>
+        <h2 id="found-music-title">Recovered file cards that stand apart from the main archive.</h2>
+      </div>
+      <p class="found-music-copy">These entries pull in their own cover art, backstory, and outside source trail. They should feel less like ordinary playlist rows and more like discovered evidence.</p>
+      <div class="found-music-grid" id="found-music-grid"></div>
+    </section>
+
     <section class="archive-panel music-player-panel" aria-labelledby="now-playing-title">
       <div class="music-player-layout">
         <div class="now-playing-block player-surface">
-          <div class="record-mark" aria-hidden="true"></div>
+          <div class="record-mark" id="now-playing-art" aria-hidden="true"></div>
           <div>
             <p class="eyebrow-note">Now playing</p>
             <h2 id="now-playing-title">The Bullshit</h2>
@@ -389,7 +636,17 @@
 
           <div class="music-link-row">
             <a id="file-link" href="music/the_bullshit.mp3">Open current MP3 file</a>
+            <a id="source-link" href="https://abefroman1978.substack.com/" target="_blank" rel="noopener noreferrer" hidden>Open source story</a>
           </div>
+
+          <section class="track-story-panel" id="track-story-panel" hidden aria-live="polite">
+            <p class="track-story-eyebrow">Found music dossier</p>
+            <h3 id="track-story-title">Recovered notes</h3>
+            <p class="track-story-text" id="track-story-text"></p>
+            <p class="track-story-origin" id="track-story-origin"></p>
+            <p class="track-story-skill" id="track-story-skill"></p>
+            <p class="track-story-notes" id="track-story-notes"></p>
+          </section>
 
           <p class="playlist-summary" id="total-play-count" aria-live="polite">Your listens on this browser: 0 | Unique tracks listened: 0</p>
           <p class="counter-scope-note" id="counter-scope-note">Local counter only. It does not include other visitors.</p>
@@ -411,7 +668,9 @@
     const audioPlayer = document.querySelector("#audio-player");
     const nowPlayingTitle = document.querySelector("#now-playing-title");
     const nowPlayingNote = document.querySelector("#now-playing-note");
+    const nowPlayingArt = document.querySelector("#now-playing-art");
     const fileLink = document.querySelector("#file-link");
+    const sourceLink = document.querySelector("#source-link");
     const playAllButton = document.querySelector("#play-all");
     const previousButton = document.querySelector("#previous-track");
     const nextButton = document.querySelector("#next-track");
@@ -419,9 +678,16 @@
     const sharePlaylistButton = document.querySelector("#share-playlist");
     const shareStatus = document.querySelector("#share-status");
     const playlist = document.querySelector("#playlist");
+    const foundMusicGrid = document.querySelector("#found-music-grid");
     const totalPlayCount = document.querySelector("#total-play-count");
     const counterScopeNote = document.querySelector("#counter-scope-note");
     const resetPlayCountsButton = document.querySelector("#reset-play-counts");
+    const trackStoryPanel = document.querySelector("#track-story-panel");
+    const trackStoryTitle = document.querySelector("#track-story-title");
+    const trackStoryText = document.querySelector("#track-story-text");
+    const trackStoryOrigin = document.querySelector("#track-story-origin");
+    const trackStorySkill = document.querySelector("#track-story-skill");
+    const trackStoryNotes = document.querySelector("#track-story-notes");
     const PLAY_COUNT_KEY = "eric-stone-music-play-counts";
     const trackArtPool = [
       "images/quiet-evening.jpg",
@@ -589,6 +855,78 @@
       return trackArtPool[index % trackArtPool.length];
     }
 
+    function getResolvedTrackArt(track, index) {
+      if (track && track.art) {
+        return track.art;
+      }
+
+      return getTrackArtSrc(index);
+    }
+
+    function getResolvedTrackSourceLabel(track) {
+      if (track && track.sourceLabel) {
+        return track.sourceLabel;
+      }
+
+      return "Open source story";
+    }
+
+    function renderFoundMusicSpotlights() {
+      if (!foundMusicGrid) {
+        return;
+      }
+
+      const featuredTracks = playlistTracks.filter((track) => track.foundMusic);
+
+      if (featuredTracks.length === 0) {
+        foundMusicGrid.innerHTML = "";
+        return;
+      }
+
+      foundMusicGrid.innerHTML = featuredTracks.map((track) => {
+        const index = playlistTracks.findIndex((candidate) => candidate.src === track.src);
+        const artSrc = getResolvedTrackArt(track, Math.max(index, 0));
+        const canPlayOnPage = Boolean(track.src);
+
+        return `
+          <article class="found-music-card">
+            <img class="found-music-art" src="${escapeHtml(artSrc)}" alt="${escapeHtml(track.title)} cover art" loading="lazy" decoding="async" width="1184" height="864">
+            <div class="found-music-body">
+              <div class="found-music-labels">
+                <span class="found-music-badge">Found music</span>
+                ${track.callSign ? `<span class="found-music-call-sign">${escapeHtml(track.callSign)}</span>` : ""}
+              </div>
+              <div>
+                <h3 class="found-music-title">${escapeHtml(track.title)}</h3>
+                <p class="found-music-artist">Artist: ${escapeHtml(track.artist || "Unknown")}</p>
+              </div>
+              <p class="found-music-story">${escapeHtml(track.story || track.note || "Recovered notes unavailable.")}</p>
+              <dl class="found-music-facts">
+                ${track.origin ? `<div><dt>Origin</dt><dd>${escapeHtml(track.origin)}</dd></div>` : ""}
+                ${track.distinguishingFeature ? `<div><dt>Distinguishing feature</dt><dd>${escapeHtml(track.distinguishingFeature)}</dd></div>` : ""}
+                ${track.specialSkill ? `<div><dt>Special skill</dt><dd>${escapeHtml(track.specialSkill)}</dd></div>` : ""}
+                ${track.notes ? `<div><dt>Notes</dt><dd>${escapeHtml(track.notes)}</dd></div>` : ""}
+              </dl>
+              <div class="found-music-actions">
+                ${canPlayOnPage ? `<button type="button" data-track-src="${escapeHtml(track.src)}">Play on this page</button>` : ""}
+                ${track.sourceUrl ? `<a href="${escapeHtml(track.sourceUrl)}" target="_blank" rel="noopener noreferrer">${escapeHtml(getResolvedTrackSourceLabel(track))}</a>` : ""}
+              </div>
+            </div>
+          </article>
+        `;
+      }).join("");
+
+      Array.from(foundMusicGrid.querySelectorAll("button[data-track-src]")).forEach((button) => {
+        button.addEventListener("click", () => {
+          const trackSrc = button.dataset.trackSrc;
+          const index = playlistTracks.findIndex((track) => track.src === trackSrc);
+          if (index >= 0) {
+            loadTrack(index, true);
+          }
+        });
+      });
+    }
+
     function setShareStatus(message) {
       if (shareStatus) {
         shareStatus.textContent = message;
@@ -667,6 +1005,7 @@
       const counts = readPlayCounts();
       playlistTracks = tracks;
       const topTrackSources = new Set(getTopTrackSources());
+      renderFoundMusicSpotlights();
 
       playlist.innerHTML = tracks.map((track, index) => `
         <li>
@@ -676,15 +1015,25 @@
             data-title="${escapeHtml(track.title)}"
             data-note="${escapeHtml(track.note)}"
             data-src="${escapeHtml(track.src)}"
+            data-artist="${escapeHtml(track.artist || "")}" 
+            data-story="${escapeHtml(track.story || "")}" 
+            data-origin="${escapeHtml(track.origin || "")}" 
+            data-special-skill="${escapeHtml(track.specialSkill || "")}" 
+            data-notes="${escapeHtml(track.notes || "")}" 
+            data-art="${escapeHtml(getResolvedTrackArt(track, index))}"
+            data-source-url="${escapeHtml(track.sourceUrl || "")}" 
+            data-source-label="${escapeHtml(getResolvedTrackSourceLabel(track))}"
             aria-current="${index === 0 ? "true" : "false"}"
           >
             <span class="track-number">${String(index + 1).padStart(2, "0")}</span>
-            <img class="track-art" src="${getTrackArtSrc(index)}" alt="" loading="lazy" decoding="async" width="48" height="48">
+            <img class="track-art" src="${escapeHtml(getResolvedTrackArt(track, index))}" alt="" loading="lazy" decoding="async" width="48" height="48">
             <span class="track-title-wrap">
               <span class="track-title">${escapeHtml(track.title)}</span>
+              ${track.artist ? `<span class="track-artist">${escapeHtml(track.artist)}</span>` : ""}
               <span class="track-note-preview">${escapeHtml(track.note)}</span>
               <span class="track-stats">
                 <span class="play-count">${counts[track.src] || 0} plays</span>
+                <span class="found-track-badge" ${track.foundMusic ? "" : "hidden"}>Found</span>
                 <span class="top-track-badge" ${topTrackSources.has(track.src) ? "" : "hidden"}>Top 5</span>
               </span>
             </span>
@@ -733,6 +1082,44 @@
       nowPlayingTitle.textContent = track.dataset.title;
       nowPlayingNote.textContent = track.dataset.note;
       fileLink.href = track.dataset.src;
+      fileLink.textContent = track.dataset.artist ? "Open MP3 for " + track.dataset.title : "Open current MP3 file";
+
+      if (nowPlayingArt) {
+        if (track.dataset.art) {
+          nowPlayingArt.classList.add("record-mark-art");
+          nowPlayingArt.style.backgroundImage = `url("${track.dataset.art}")`;
+        } else {
+          nowPlayingArt.classList.remove("record-mark-art");
+          nowPlayingArt.style.backgroundImage = "";
+        }
+      }
+
+      if (sourceLink) {
+        if (track.dataset.sourceUrl) {
+          sourceLink.hidden = false;
+          sourceLink.href = track.dataset.sourceUrl;
+          sourceLink.textContent = track.dataset.sourceLabel || "Open source story";
+        } else {
+          sourceLink.hidden = true;
+          sourceLink.removeAttribute("href");
+        }
+      }
+
+      if (trackStoryPanel) {
+        const hasStory = Boolean(track.dataset.story || track.dataset.origin || track.dataset.specialSkill || track.dataset.notes);
+
+        if (!hasStory) {
+          trackStoryPanel.hidden = true;
+        } else {
+          trackStoryPanel.hidden = false;
+          trackStoryTitle.textContent = track.dataset.artist ? track.dataset.artist + " dossier" : "Recovered notes";
+          trackStoryText.textContent = track.dataset.story || track.dataset.note;
+          trackStoryOrigin.textContent = track.dataset.origin ? "Origin: " + track.dataset.origin : "";
+          trackStorySkill.textContent = track.dataset.specialSkill ? "Special skill: " + track.dataset.specialSkill : "";
+          trackStoryNotes.textContent = track.dataset.notes ? "Notes: " + track.dataset.notes : "";
+        }
+      }
+
       syncUrlToCurrentTrack(track.dataset.src);
 
       trackButtons.forEach((button, buttonIndex) => {

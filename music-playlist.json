@@ -1,5 +1,56 @@
 [
   {
+    "title": "BLEEP BLURP",
+    "artist": "BLEEP BLURP",
+    "note": "Found music transmission from the UNLICENSED RHYTHM FORCE file cards.",
+    "story": "Released several tracks without clarifying order or intent. Often associated with toy imagery and low-stakes chaos, and never acknowledged whether the persona was a joke before continuing to release music anyway.",
+    "origin": "Appeared with multiple songs already finished and no explanation.",
+    "distinguishingFeature": "Massive presence paired with childlike delivery and synthetic sounds.",
+    "specialSkill": "Reducing complex beats to their most playful components.",
+    "notes": "Frequently underestimated. Seems unconcerned.",
+    "callSign": "Trike Operator",
+    "foundMusic": true,
+    "art": "images/found-music/bleep-blurp-file-card.png",
+    "sourceUrl": "https://abefroman1978.substack.com/p/unlicensed-rhythm-force-file-card-225",
+    "sourceLabel": "Read the Substack file card",
+    "src": "https://abefroman1978.substack.com/api/v1/audio/upload/e50b6495-a44a-4b6b-b569-62a98b10f2d9/src"
+  },
+  {
+    "title": "ONE, TWO, SHIT",
+    "note": "Local archive cut added to the recovered front shelf.",
+    "src": "music/ONE, TWO, SHIT.mp3"
+  },
+  {
+    "title": "Healing & Dealing",
+    "artist": "Eric",
+    "note": "Found broadcast sample from a podcast that probably should not exist.",
+    "story": "Healing and Dealing sits somewhere between late-night radio and a half-working advice hotline. The callers arrive with cardboard diets, eleven-second microwave rules, and parking-lot purgatories, while the show treats every confession like documentary evidence instead of a punchline.",
+    "origin": "Substack audio episode published Mar 21, 2026.",
+    "distinguishingFeature": "Deadpan delivery that refuses to separate absurdity from sincerity.",
+    "specialSkill": "Turning bizarre callers into a calm, deliberate descent through comic evidence.",
+    "notes": "Subtitle: The Podcast That Probably Shouldn't Exist. Includes the show sample surfaced with the post.",
+    "foundMusic": true,
+    "art": "images/found-music/healing-and-dealing-episode-one.png",
+    "sourceUrl": "https://abefroman1978.substack.com/p/healing-and-dealing",
+    "sourceLabel": "Read Episode One on Substack",
+    "src": "https://abefroman1978.substack.com/api/v1/audio/upload/8d0932fa-7f5c-4bac-a01e-9ba0378ddfc5/src"
+  },
+  {
+    "title": "Healing and Dealing | Episode Two",
+    "artist": "Eric",
+    "note": "Found broadcast drifting through private rituals, mild panic, and quiet absurdity.",
+    "story": "Episode two of Healing and Dealing drifts deeper into the strange, intimate corners of everyday life. A glass of milk becomes a philosophical temperature problem, a ceiling fan starts to feel judgmental, flight inspires applause from exactly one person, and the alarm clock turns into a negotiation most people lose.",
+    "origin": "Substack audio episode published Mar 23, 2026.",
+    "distinguishingFeature": "Absurd call-in structure that turns tiny private behaviors into something sincere and recognizable.",
+    "specialSkill": "Making irrational thought patterns sound both comic and quietly profound.",
+    "notes": "Subtitle: The Quiet Absurdity of Being Human.",
+    "foundMusic": true,
+    "art": "images/found-music/healing-and-dealing-episode-two.png",
+    "sourceUrl": "https://abefroman1978.substack.com/p/healing-and-dealing-episode-two",
+    "sourceLabel": "Read Episode Two on Substack",
+    "src": "https://abefroman1978.substack.com/api/v1/audio/upload/a78bf25b-dced-4527-baad-88b6e45cfcdb/src"
+  },
+  {
     "title": "Lil Static",
     "note": "Opening—the world awakens",
     "src": "music/lil-static.mp3"
