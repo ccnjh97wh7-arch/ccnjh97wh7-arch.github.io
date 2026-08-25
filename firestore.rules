@@ -43,6 +43,23 @@ service cloud.firestore {
       allow delete: if false;
     }
 
+    function isValidVisitorCounterPayload(data) {
+      return data.keys().hasOnly(['count', 'updatedAt'])
+        && data.count is int
+        && data.count >= 0
+        && data.updatedAt is timestamp;
+    }
+
+    match /site_stats/{statId} {
+      allow read: if true;
+      allow create: if statId == 'visitor_counter'
+        && isValidVisitorCounterPayload(request.resource.data);
+      allow update: if statId == 'visitor_counter'
+        && isValidVisitorCounterPayload(request.resource.data)
+        && request.resource.data.count >= resource.data.count;
+      allow delete: if false;
+    }
+
     match /changing_channel_movies/{movieId}/comments/{commentId} {
       allow read: if true;
       allow create: if request.resource.data.keys().hasOnly(['name', 'text', 'createdAt'])
