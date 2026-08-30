@@ -18,6 +18,7 @@ const firebaseConfig = {
 };
 
 const visitorCounterKey = "eric-site-visitor-counter-v1";
+const visitorCounterWindowMs = 24 * 60 * 60 * 1000;
 const visitorCounterDoc = doc(getFirestore(initializeApp(firebaseConfig)), "site_stats", "visitor_counter");
 
 function getFooterContainer() {
@@ -45,7 +46,28 @@ function hasCountedThisBrowser() {
     return false;
   }
 
-  return window.localStorage.getItem(visitorCounterKey) === "1";
+  const storedValue = window.localStorage.getItem(visitorCounterKey);
+  if (!storedValue) {
+    return false;
+  }
+
+  if (storedValue === "1") {
+    window.localStorage.removeItem(visitorCounterKey);
+    return false;
+  }
+
+  const timestamp = Number(storedValue);
+  if (!Number.isFinite(timestamp)) {
+    window.localStorage.removeItem(visitorCounterKey);
+    return false;
+  }
+
+  const isRecent = Date.now() - timestamp < visitorCounterWindowMs;
+  if (!isRecent) {
+    window.localStorage.removeItem(visitorCounterKey);
+  }
+
+  return isRecent;
 }
 
 function markCountedThisBrowser() {
@@ -54,7 +76,7 @@ function markCountedThisBrowser() {
   }
 
   try {
-    window.localStorage.setItem(visitorCounterKey, "1");
+    window.localStorage.setItem(visitorCounterKey, String(Date.now()));
   } catch (error) {
     // Ignore storage failures and keep the counter best-effort.
   }

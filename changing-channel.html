@@ -779,11 +779,15 @@
       }
     }
 
+    function isMovieDead(movie) {
+      return Boolean(movie && (movie.isDead || movie.id === "night-of-the-living-dead-1968"));
+    }
+
     function renderMovie(movie) {
       if (!movie) return;
       activeMovie = movie;
       const activeIndex = schedule.findIndex((entry) => entry.id === movie.id);
-      nextMovie = activeIndex >= 0 ? schedule[activeIndex + 1] || null : null;
+      nextMovie = activeIndex >= 0 ? schedule.slice(activeIndex + 1).find((entry) => !isMovieDead(entry)) || null : null;
       featuredMovieEl.hidden = false;
       loadingEl.hidden = true;
       errorEl.hidden = true;
@@ -794,9 +798,22 @@
       sourceLinkEl.href = movie.sourceUrl;
       sourceLinkEl.textContent = "OPEN ORIGINAL ARCHIVE SOURCE ↗";
       rightsEl.textContent = movie.rightsLabel;
-      playerEl.src = `https://archive.org/embed/${movie.archiveIdentifier}`;
-      playerEl.title = `${movie.title} (${movie.year})`;
-      setStatus(`Now broadcasting: ${movie.title}.`);
+
+      const archiveIdentifier = String(movie.archiveIdentifier || "").trim();
+      const archiveIsUnavailable = !archiveIdentifier || isMovieDead(movie);
+      if (archiveIsUnavailable) {
+        playerEl.removeAttribute("src");
+        playerEl.hidden = true;
+        errorEl.hidden = false;
+        errorEl.innerHTML = `The archival source for <strong>${movie.title}</strong> is currently unavailable. The archive returned a 404, so the player is offline until the source is restored.`;
+        setStatus(`The archival source for ${movie.title} is temporarily unavailable.`, true);
+      } else {
+        playerEl.hidden = false;
+        playerEl.src = `https://archive.org/embed/${archiveIdentifier}`;
+        playerEl.title = `${movie.title} (${movie.year})`;
+        setStatus(`Now broadcasting: ${movie.title}.`);
+      }
+
       upNextEl.textContent = nextMovie
         ? `Up next: ${nextMovie.title} (${nextMovie.year})`
         : "Up next: waiting for a new scheduled transmission.";
@@ -828,17 +845,19 @@
         year.className = "archive-year";
         year.textContent = entry.year;
         const description = document.createElement("p");
-        description.textContent = entry.description;
+        description.textContent = isMovieDead(entry)
+          ? "The original archival source for this title is currently unavailable. The slot is kept for continuity, but it is not currently playable."
+          : entry.description;
         const source = document.createElement("p");
         const sourceLink = document.createElement("a");
         sourceLink.href = entry.sourceUrl;
         sourceLink.target = "_blank";
         sourceLink.rel = "noopener noreferrer";
-        sourceLink.textContent = "Original Archive source";
+        sourceLink.textContent = isMovieDead(entry) ? "Archive page (currently offline)" : "Original Archive source";
         source.appendChild(sourceLink);
         const label = document.createElement("span");
         label.className = "archive-label";
-        label.textContent = "Previously Broadcast";
+        label.textContent = isMovieDead(entry) ? "Unavailable archive" : "Previously Broadcast";
         card.append(title, year, description, source, label);
         fragment.appendChild(card);
       });
@@ -862,9 +881,11 @@
     }
 
     function selectMovie(now) {
-      const sorted = [...schedule].sort((a, b) => new Date(a.startsAt) - new Date(b.startsAt));
+      const sorted = [...schedule]
+        .filter((entry) => !isMovieDead(entry))
+        .sort((a, b) => new Date(a.startsAt) - new Date(b.startsAt));
       const current = sorted.filter((entry) => new Date(entry.startsAt) <= now).pop() || sorted[0];
-      return current;
+      return current || null;
     }
 
     function startCountdown() {
