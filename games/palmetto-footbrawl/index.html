@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Palmetto Footbrawl</title>
+    <meta
+      name="description"
+      content="Palmetto Footbrawl — a fast, arcade-inspired two-player football brawler prototype for the static site."
+    />
+    <link rel="stylesheet" href="../../style.css" />
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body class="palmetto-body">
+    <div class="global-nav" role="navigation" aria-label="Primary">
+      <a href="../../index.html">Home</a>
+      <a href="../../photos.html">Photos</a>
+      <a href="../../music.html">Music</a>
+      <a href="../../javascript-games.html">Games</a>
+      <a href="../../changing-channel.html">The Changing Channel</a>
+    </div>
+
+    <header class="palmetto-header">
+      <p class="section-kicker">Arcade football prototype</p>
+      <h1>PALMETTO FOOTBRAWL</h1>
+      <p class="palmetto-subtitle">Two teams. One muddy field. Seven points and zero dignity.</p>
+    </header>
+
+    <main class="palmetto-main">
+      <section class="game-panel">
+        <div class="scoreboard-row">
+          <div class="team-score left">
+            <span class="team-name">Upstate Tigers</span>
+            <strong id="score-left">0</strong>
+          </div>
+          <div class="center-score">
+            <span id="half-label">Half 1</span>
+            <strong id="clock-display">02:00</strong>
+          </div>
+          <div class="team-score right">
+            <span class="team-name">Capital Gamecocks</span>
+            <strong id="score-right">0</strong>
+          </div>
+        </div>
+
+        <div class="canvas-wrap">
+          <canvas id="gameCanvas" width="980" height="520" aria-label="Palmetto Footbrawl game area"></canvas>
+          <div id="gameOverlay" class="game-overlay visible">
+            <div class="overlay-card">
+              <h2 id="overlayTitle">PALMETTO FOOTBRAWL</h2>
+              <p id="overlayMessage">
+                Local two-player football chaos. Press Enter to start, or P to pause.
+              </p>
+              <div class="controls-grid">
+                <div>
+                  <h3>Upstate Tigers</h3>
+                  <p>WASD move</p>
+                  <p>F tackle / punch</p>
+                  <p>G pass</p>
+                  <p>H burst / dive</p>
+                </div>
+                <div>
+                  <h3>Capital Gamecocks</h3>
+                  <p>Arrow keys move</p>
+                  <p>K tackle / punch</p>
+                  <p>L pass</p>
+                  <p>Semicolon burst / dive</p>
+                </div>
+              </div>
+              <button id="startButton" class="game-btn">Start Match</button>
+            </div>
+          </div>
+        </div>
+
+        <div class="hud-row">
+          <button id="pauseButton" class="game-btn">Pause</button>
+          <button id="restartButton" class="game-btn alt">Restart</button>
+          <a href="../../javascript-games.html" class="game-btn secondary">Back to games</a>
+        </div>
+      </section>
+    </main>
+
+    <footer>
+      <div class="footer-bottom">
+        <p>&copy; 2026 Eric Stone. All rights reserved.</p>
+      </div>
+    </footer>
+
+    <script src="game.js"></script>
+  </body>
+</html>
