@@ -21,7 +21,30 @@
     }
 
     .music-player-panel {
+      position: relative;
+      isolation: isolate;
+      overflow: hidden;
       border-left-color: var(--patriotic-red);
+    }
+
+    .music-player-panel::before {
+      content: "";
+      position: absolute;
+      inset: 4% 8% 4% 8%;
+      background-image: url("images/dog-window-bw.png");
+      background-repeat: no-repeat;
+      background-position: center;
+      background-size: cover;
+      opacity: 0.12;
+      filter: grayscale(1) contrast(1.35) brightness(0.72) blur(1.5px);
+      transform: scale(1.08);
+      z-index: 0;
+      pointer-events: none;
+    }
+
+    .music-player-panel > * {
+      position: relative;
+      z-index: 1;
     }
 
     .music-player-layout {

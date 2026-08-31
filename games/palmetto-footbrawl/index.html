@@ -3,10 +3,10 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Palmetto Footbrawl</title>
+    <title>Bring in the Troll</title>
     <meta
       name="description"
-      content="Palmetto Footbrawl — a fast, arcade-inspired two-player football brawler prototype for the static site."
+      content="Bring in the Troll — a muddy football brawler where a giant troll storms the field."
     />
     <link rel="stylesheet" href="../../style.css" />
     <link rel="stylesheet" href="style.css" />
@@ -21,9 +21,9 @@
     </div>
 
     <header class="palmetto-header">
-      <p class="section-kicker">Arcade football prototype</p>
-      <h1>PALMETTO FOOTBRAWL</h1>
-      <p class="palmetto-subtitle">Two teams. One muddy field. Seven points and zero dignity.</p>
+      <p class="section-kicker">Arcade football chaos</p>
+      <h1>BRING IN THE TROLL</h1>
+      <p class="palmetto-subtitle">Two teams. One muddy field. And a very angry troll roaming in.</p>
     </header>
 
     <main class="palmetto-main">
@@ -44,12 +44,12 @@
         </div>
 
         <div class="canvas-wrap">
-          <canvas id="gameCanvas" width="980" height="520" aria-label="Palmetto Footbrawl game area"></canvas>
+          <canvas id="gameCanvas" width="980" height="520" aria-label="Bring in the Troll game area"></canvas>
           <div id="gameOverlay" class="game-overlay visible">
             <div class="overlay-card">
-              <h2 id="overlayTitle">PALMETTO FOOTBRAWL</h2>
+              <h2 id="overlayTitle">BRING IN THE TROLL</h2>
               <p id="overlayMessage">
-                Local two-player football chaos. Press Enter to start, or P to pause.
+                Mobile-friendly chaos: take the ball to the end zone, dodge the hazards, and survive the troll. Press Enter to start, or P to pause.
               </p>
               <div class="controls-grid">
                 <div>
@@ -69,6 +69,22 @@
               </div>
               <button id="startButton" class="game-btn">Start Match</button>
             </div>
+          </div>
+        </div>
+
+        <div id="mobileControls" class="mobile-controls" aria-label="Touch controls">
+          <div class="dpad">
+            <button class="touch-btn move-up" data-key="w" aria-label="Move up">▲</button>
+            <div class="dpad-middle">
+              <button class="touch-btn move-left" data-key="a" aria-label="Move left">◀</button>
+              <button class="touch-btn move-right" data-key="d" aria-label="Move right">▶</button>
+            </div>
+            <button class="touch-btn move-down" data-key="s" aria-label="Move down">▼</button>
+          </div>
+          <div class="action-stack">
+            <button class="touch-btn action" data-key="f">Tackle</button>
+            <button class="touch-btn action" data-key="g">Pass</button>
+            <button class="touch-btn action" data-key="h">Burst</button>
           </div>
         </div>
 
