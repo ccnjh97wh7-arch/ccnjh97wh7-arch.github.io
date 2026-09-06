@@ -84,7 +84,7 @@
       transform: translateY(0);
     }
 
-    .top-nav {
+    .global-nav {
       width: min(980px, calc(100% - 24px));
       margin: 18px auto 0;
       display: flex;
@@ -94,7 +94,7 @@
       z-index: 2;
     }
 
-    .top-nav a {
+    .global-nav a {
       text-decoration: none;
       padding: 7px 10px;
       border: 1px solid rgba(125, 255, 176, 0.34);
@@ -108,8 +108,8 @@
       transition: transform 0.2s ease, color 0.2s ease, border-color 0.2s ease, box-shadow 0.2s ease;
     }
 
-    .top-nav a:hover,
-    .top-nav a:focus-visible {
+    .global-nav a:hover,
+    .global-nav a:focus-visible {
       transform: translateY(-1px);
       color: #ffffff;
       border-color: rgba(125, 255, 176, 0.62);
@@ -490,8 +490,8 @@
     @media (max-width: 640px) {
       .panel { padding: 16px; }
       .archive-grid { grid-template-columns: 1fr; }
-      .top-nav { gap: 6px; }
-      .top-nav a { flex: 1 1 calc(50% - 6px); text-align: center; }
+      .global-nav { gap: 6px; }
+      .global-nav a { flex: 1 1 calc(50% - 6px); text-align: center; }
     }
 
     @media (prefers-reduced-motion: reduce) {
@@ -507,7 +507,7 @@
 <body>
   <a class="skip-link" href="#main-content">Skip to main content</a>
 
-  <nav class="top-nav" aria-label="Primary">
+  <div class="global-nav" role="navigation" aria-label="Primary">
     <a href="index.html">Home</a>
     <a href="photos.html">Photos</a>
     <a href="more-images.html">More Images</a>
@@ -516,7 +516,7 @@
     <a href="merch.html">Merch</a>
     <a href="cards.html">Baseball Cards</a>
     <a href="changing-channel.html" aria-current="page">The Changing Channel</a>
-  </nav>
+  </div>
 
   <main id="main-content">
     <a class="back-link" href="index.html">← Back to the main page</a>

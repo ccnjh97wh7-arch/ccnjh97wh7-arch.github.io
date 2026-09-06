@@ -94,16 +94,17 @@
       pointer-events: auto;
     }
 
-    .site-bar {
+    .global-nav {
       position: relative;
       z-index: 21;
       display: flex;
+      flex-wrap: wrap;
       width: var(--track-width);
       margin: 0 auto;
       padding: 24px 0 8px;
       align-items: center;
-      justify-content: space-between;
-      gap: 18px;
+      justify-content: center;
+      gap: 10px 20px;
       font-family: Arial, Helvetica, sans-serif;
       font-size: 0.74rem;
       font-weight: 700;
@@ -111,18 +112,13 @@
       text-transform: uppercase;
     }
 
-    .site-bar a {
+    .global-nav a {
       text-decoration: none;
     }
 
-    .site-bar a:hover,
-    .site-bar a:focus-visible {
+    .global-nav a:hover,
+    .global-nav a:focus-visible {
       color: var(--gold);
-    }
-
-    .site-bar__links {
-      display: flex;
-      gap: 20px;
     }
 
     .back-button {
@@ -636,25 +632,9 @@
         --track-width: calc(100vw - 24px);
       }
 
-      .site-bar {
+      .global-nav {
         padding-top: 18px;
-        align-items: flex-start;
-        gap: 12px;
-      }
-
-      .site-bar__links {
-        flex-wrap: wrap;
-        justify-content: flex-end;
         gap: 10px 14px;
-      }
-
-      .site-bar__name {
-        font-size: 0;
-      }
-
-      .site-bar__name::after {
-        content: "ES";
-        font-size: 0.74rem;
       }
 
       .masthead {
@@ -751,19 +731,16 @@
 <body>
   <a class="skip-link" href="#carousel">Skip to the images</a>
 
-  <nav class="site-bar" aria-label="Site navigation">
-    <a class="site-bar__name" href="index.html">Eric Stone</a>
-    <div class="site-bar__links">
-      <a href="index.html">Home</a>
-      <a href="photos.html">Photos</a>
-      <a href="more-images.html" aria-current="page">More Images</a>
-      <a href="music.html">Music</a>
-      <a href="javascript-games.html">Games</a>
-      <a href="merch.html">Merch</a>
-      <a href="cards.html">Baseball Cards</a>
-      <a href="changing-channel.html">The Changing Channel</a>
-    </div>
-  </nav>
+  <div class="global-nav" role="navigation" aria-label="Primary">
+    <a href="index.html">Home</a>
+    <a href="photos.html">Photos</a>
+    <a href="more-images.html" aria-current="page">More Images</a>
+    <a href="music.html">Music</a>
+    <a href="javascript-games.html">Games</a>
+    <a href="merch.html">Merch</a>
+    <a href="cards.html">Baseball Cards</a>
+    <a href="changing-channel.html">The Changing Channel</a>
+  </div>
 
   <header class="masthead">
     <p class="eyebrow">Archive / Reel Two</p>
