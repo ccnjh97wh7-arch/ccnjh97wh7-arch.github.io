@@ -21,7 +21,7 @@
     "src": "music/ONE, TWO, SHIT.mp3"
   },
   {
-    "title": "Healing & Dealing",
+    "title": "Healing and Dealing Episode One",
     "artist": "Eric",
     "note": "Found broadcast sample from a podcast that probably should not exist.",
     "story": "Healing and Dealing sits somewhere between late-night radio and a half-working advice hotline. The callers arrive with cardboard diets, eleven-second microwave rules, and parking-lot purgatories, while the show treats every confession like documentary evidence instead of a punchline.",
@@ -34,6 +34,13 @@
     "sourceUrl": "https://abefroman1978.substack.com/p/healing-and-dealing",
     "sourceLabel": "Read Episode One on Substack",
     "src": "https://abefroman1978.substack.com/api/v1/audio/upload/8d0932fa-7f5c-4bac-a01e-9ba0378ddfc5/src"
+  },
+  {
+    "title": "Healing and dealing",
+    "artist": "Eric",
+    "note": "Additional Healing and Dealing recording from the local archive.",
+    "foundMusic": true,
+    "src": "music/healing-and-dealing.wav"
   },
   {
     "title": "Healing and Dealing | Episode Two",
