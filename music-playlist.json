@@ -40,6 +40,7 @@
     "artist": "Eric",
     "note": "Additional Healing and Dealing recording from the local archive.",
     "foundMusic": true,
+    "art": "images/found-music/healing-and-dealing-episode-one.png",
     "src": "music/healing-and-dealing.wav"
   },
   {
