@@ -3,190 +3,2094 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Eric Stone's independent archive of stories, music, moving pictures, and personal work.">
+    <meta name="description" content="Eric Stone's creative archive: Life of Jaffar, photos, music, JavaScript games, and stories.">
     <meta property="og:type" content="website">
     <meta property="og:title" content="Eric Stone">
-    <meta property="og:description" content="Stories, music, moving pictures, and evidence that awkward years can become something worth keeping.">
+    <meta property="og:description" content="Watch Life of Jaffar and explore stories, music, photos, games, and more.">
     <meta property="og:url" content="https://ccnjh97wh7-arch.github.io/">
-    <meta property="og:image" content="https://ccnjh97wh7-arch.github.io/images/water-tower-sunset.jpg">
+    <meta property="og:image" content="https://ccnjh97wh7-arch.github.io/pulp-time-mark.png">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Eric Stone">
+    <meta name="twitter:description" content="Watch Life of Jaffar and explore stories, music, photos, games, and more.">
+    <meta name="twitter:image" content="https://ccnjh97wh7-arch.github.io/pulp-time-mark.png">
     <title>Eric Stone</title>
-    <link rel="stylesheet" href="css/editorial-home.css?v=20260921-clean">
+    <link rel="preconnect" href="https://youtube.com" crossorigin>
+    <link rel="preconnect" href="https://abefroman1978.substack.com" crossorigin>
+    <link rel="preconnect" href="https://api.open-meteo.com" crossorigin>
+    <link rel="preconnect" href="https://images-api.nasa.gov" crossorigin>
+    <link rel="dns-prefetch" href="https://youtube.com">
+    <link rel="dns-prefetch" href="https://api.open-meteo.com">
+    <link rel="stylesheet" href="style.css?v=20260824-vault-video">
 </head>
-<body id="top" class="editorial-home">
+
+<body id="top">
     <a class="skip-link" href="#main-content">Skip to main content</a>
-
-    <nav class="global-nav" aria-label="Primary">
+    <div class="global-nav" role="navigation" aria-label="Primary">
         <a href="index.html" aria-current="page">Home</a>
-        <a href="https://abefroman1978.substack.com/" target="_blank" rel="noopener noreferrer">Writing</a>
-        <a href="music.html">Music</a>
-        <a href="jaffar.html">Films</a>
         <a href="photos.html">Photos</a>
-        <a href="more-images.html">Images</a>
+        <a href="more-images.html">More Images</a>
+        <a href="music.html">Music</a>
+        <a href="javascript-games.html">Games</a>
+        <a href="merch.html">Merch</a>
+        <a href="cards.html">Baseball Cards</a>
         <a href="changing-channel.html">The Changing Channel</a>
-    </nav>
+    </div>
 
-    <header class="editorial-masthead">
-        <p class="masthead-kicker">An independent archive from the South Carolina Upstate</p>
-        <h1>Eric Stone</h1>
-        <p class="header-tagline">Stories, music, moving pictures, and evidence that awkward years can become something worth keeping.</p>
-        <p class="masthead-origin">A Wren High School production, continued through summer school at Greenville High.</p>
-    </header>
-
-    <main id="main-content">
-        <section class="mission-lede" aria-labelledby="mission-title">
-            <p class="section-kicker">Mission statement</p>
-            <h2 id="mission-title">For the years when a book or a video game was the only friend in the room.</h2>
-            <div class="mission-copy">
-                <p>This website is dedicated to the awkward moments in my life, and to the stories, sounds, pictures, and small worlds that came out of them. It is a personal archive: funny when it can be, honest when it needs to be, and made for anyone who has ever found company in art.</p>
-                <p>I have taken this version of the site about as far as I can alone. Its next chapter depends on other people. The best way to help is to collaborate: bring a story, an edit, artwork, music, code, or an idea that belongs here. A donation directly pays for production, preservation, and the time required to keep the work alive.</p>
-            </div>
-
-            <div class="proposal-actions" aria-label="Support and collaboration options">
-                <div class="proposal-primary">
-                    <p class="proposal-label">Keep the work moving</p>
-                    <p class="venmo-handle-line">Venmo <strong id="venmo-username">@Eric-Stone-262</strong></p>
-                    <button type="button" id="copy-venmo-btn" class="donate-btn">Copy Venmo username</button>
-                    <p id="venmo-copy-status" class="proposal-note" aria-live="polite">Every contribution buys time for the next piece.</p>
-                </div>
-                <div class="proposal-secondary">
-                    <p class="proposal-label">Better yet, make something with me</p>
-                    <p>Writers, artists, musicians, editors, programmers, and people with a story are invited.</p>
-                    <div class="collaboration-contacts">
-                        <a href="mailto:ericstone305@gmail.com" class="collaborate-link">ericstone305@gmail.com</a>
-                        <a href="tel:+18646258354" class="collaborate-link">864-625-8354</a>
+    <header>
+        <div class="header-main">
+            <div class="header-globe" aria-hidden="true">
+                <div class="retro-globe-wrap">
+                    <div class="retro-globe">
+                        <span class="retro-globe-lens-flare" aria-hidden="true"></span>
+                        <img class="retro-globe-image" src="images/mars-red.svg" alt="" loading="lazy" decoding="async">
                     </div>
                 </div>
             </div>
 
-            <p class="mission-close">If the work does not speak to you, no pressure. If it does, this is the moment when your help can change what happens next.</p>
-        </section>
-
-        <section class="front-page-section" aria-labelledby="current-edition-title">
-            <div class="editorial-heading">
-                <p class="section-kicker">Current edition</p>
-                <h2 id="current-edition-title">Begin here.</h2>
+            <div class="header-copy">
+                <h1>ERIC STONE</h1>
+                <p class="header-tagline">Watch Life of Jaffar, then explore stories, animation, games, and strange ideas.</p>
             </div>
 
-            <article class="lead-story">
-                <a href="jaffar.html" class="story-image-link">
-                    <img src="images/water-tower-sunset.jpg" alt="A water tower silhouetted against a vivid evening sky" width="960" height="540">
+            <div class="header-callouts">
+                <aside class="header-callout header-support" aria-label="Support my work">
+                    <p class="header-support-title">Support my work</p>
+                    <p class="venmo-handle-line">Venmo username: <strong id="venmo-username">Eric-Stone-262</strong></p>
+                    <button type="button" id="copy-venmo-btn" class="donate-btn" data-track="copy-venmo-username">Copy Venmo username</button>
+                    <p id="venmo-copy-status" class="header-support-note venmo-copy-status" aria-live="polite">Copy the username, then paste it into Venmo.</p>
+                    <p class="header-support-note">Helps fund new animations, music uploads, and site experiments.</p>
+                </aside>
+                <aside class="header-callout header-screenplay" aria-label="New Blue Engine project showcase">
+                    <p id="header-featured-release-title" class="header-support-title">Blue Engine Script Reading Parts 1-2</p>
+                    <a id="header-featured-release-primary" href="https://youtube.com/playlist?list=PLcOgXEmuk7bo&si=pyldIirV3X9cQkhO" target="_blank" rel="noopener noreferrer" class="donate-btn" data-track="blue-engine-playlist">Watch the Blue Engine playlist</a>
+                    <p id="header-featured-release-note" class="header-support-note">The new Blue Engine project is live. Parts 1 and 2 are up now, and more uploads are on the way. Read the <a href="Blue_Engine_Official_Screenplay.pdf" target="_blank" rel="noopener noreferrer" data-track="blue-engine-pdf">full PDF</a>.</p>
+                </aside>
+            </div>
+        </div>
+    </header>
+
+    <main id="main-content">
+        <section class="hero-intro-shell archive-hero" aria-labelledby="welcome-title">
+            <h2 id="welcome-title">Welcome to Eric Stone’s corner of the web.</h2>
+            <p>
+                Start with Life of Jaffar, then drift into photography, music, writing, and browser games.
+                This space is built to feel like a small, evolving collection of creative experiments.
+            </p>
+            <div class="hero-link-row">
+                <a
+                    href="jaffar.html"
+                    class="hero-cta-btn"
+                    data-track="watch-life-of-jaffar-hero"
+                >
+                    ▶ Watch Life of Jaffar
                 </a>
-                <div class="story-copy">
-                    <p class="story-label">Moving pictures</p>
-                    <h3><a href="jaffar.html">Life of Jaffar</a></h3>
-                    <p>Animation, characters, fragments, and strange little worlds collected in one continuing project.</p>
-                    <a class="read-more" href="jaffar.html">Watch the series</a>
+                <a href="cards.html" class="secondary-cta-btn">⚾ Baseball cards</a>
+                <a href="photos.html" class="secondary-cta-btn">Browse photos</a>
+                <a id="hero-monthly-cta" href="music.html" class="secondary-cta-btn" data-track="hero-monthly-default">This month: Open music</a>
+                <a id="random-dive-link" href="javascript-games.html" class="secondary-cta-btn random-dive-btn" data-track="random-dive-default">🎲 Random dive</a>
+                <a href="old-movies.html" class="secondary-cta-btn" data-track="old-movies-hero">🎞️ Old Movies Nearby</a>
+            </div>
+
+            <div class="site-overview-strip" aria-label="Site overview highlights">
+                <div class="overview-item">
+                    <span class="overview-kicker">Watch</span>
+                    <strong>Life of Jaffar</strong>
                 </div>
-            </article>
+                <div class="overview-item">
+                    <span class="overview-kicker">Read</span>
+                    <strong>Stories & essays</strong>
+                </div>
+                <div class="overview-item">
+                    <span class="overview-kicker">Listen</span>
+                    <strong>Music archive</strong>
+                </div>
+                <div class="overview-item">
+                    <span class="overview-kicker">Play</span>
+                    <strong>Browser games</strong>
+                </div>
+            </div>
+        </section>
 
-            <div class="story-grid">
-                <article class="story-card">
-                    <a href="https://youtube.com/playlist?list=PLcOgXEmuk7bo&amp;si=pyldIirV3X9cQkhO" target="_blank" rel="noopener noreferrer" class="story-image-link">
-                        <img src="images/quiet-evening.jpg" alt="A quiet evening landscape" width="640" height="360" loading="lazy">
-                    </a>
-                    <p class="story-label">Script reading</p>
-                    <h3><a href="https://youtube.com/playlist?list=PLcOgXEmuk7bo&amp;si=pyldIirV3X9cQkhO" target="_blank" rel="noopener noreferrer">Blue Engine</a></h3>
-                    <p>Eric Stone and his nephew read the screenplay in an ongoing video series.</p>
-                    <p class="story-links"><a href="https://youtube.com/playlist?list=PLcOgXEmuk7bo&amp;si=pyldIirV3X9cQkhO" target="_blank" rel="noopener noreferrer">Watch Parts 1-2</a> <a href="Blue_Engine_Official_Screenplay.pdf">Read the screenplay</a></p>
+        <section class="archive-panel soundcloud-feature-shell" aria-labelledby="soundcloud-feature-title">
+            <div class="soundcloud-feature-header">
+                <p class="soundcloud-feature-status">LATEST FEATURE // RECOVERED AUDIO</p>
+                <h2 id="soundcloud-feature-title">THE PREHISTORIC BEATENING</h2>
+                <p class="soundcloud-feature-meta">18 TRACKS // 43:34 // CABINET OPEN</p>
+            </div>
+
+            <div class="soundcloud-feature-layout">
+                <div class="soundcloud-feature-copy">
+                    <p>
+                        Terrible beats. Wack as a motherfucker, only shinier. What you have found is a rare glimpse inside my special cabinet of prehistoric sound: malformed loops, accidental hooks, unfinished ideas, and totally assed-out bubblegum bullshit from an age when every button had a fifty-fifty chance of making music or killing the whole goddamn machine.
+                    </p>
+                    <p>
+                        Two tracks inside this cabinet are not mine: MF DOOM’s “GAZZILLION EAR” and “D.O.A DEATH OF AUTOTUNE INSTRUMENTAL” by DJ Muro & Mitsu The Beats. Both were heavy inspirations for what I was trying to do, so I placed them between clusters of my experiments as brief flashes of civilization—and to break up the prehistoric beat rubble.
+                    </p>
+                    <p>
+                        The rest is mine: glittering, malformed, and somehow still alive. Fuck. I mean, fuck.
+                    </p>
+
+                    <aside class="soundcloud-influence-callout" aria-label="Influence track attribution">
+                        <p class="soundcloud-influence-title">INFLUENCE MARKERS DETECTED</p>
+                        <p>MF DOOM — “GAZZILLION EAR”</p>
+                        <p>DJ MURO & MITSU THE BEATS — “D.O.A DEATH OF AUTOTUNE INSTRUMENTAL”</p>
+                    </aside>
+
+                    <a href="https://soundcloud.com/user-18937025/sets/terrible-beats" target="_blank" rel="noopener noreferrer" class="soundcloud-cabinet-btn">OPEN THE FORBIDDEN CABINET</a>
+                </div>
+
+                <div class="soundcloud-player-shell">
+                    <p class="soundcloud-player-label">SOUNDCLOUD PLAYLIST</p>
+                    <iframe
+                        title="The Prehistoric Beatening SoundCloud playlist"
+                        loading="lazy"
+                        allow="autoplay"
+                        src="https://w.soundcloud.com/player/?url=https%3A//soundcloud.com/user-18937025/sets/terrible-beats&color=%23ff5500&auto_play=false&hide_related=true&show_comments=false&show_user=true&show_reposts=false&show_teaser=true&visual=true">
+                    </iframe>
+                    <p class="soundcloud-fallback-link">
+                        If the embedded player does not load, <a href="https://soundcloud.com/user-18937025/sets/terrible-beats" target="_blank" rel="noopener noreferrer">open the playlist directly on SoundCloud</a>.
+                    </p>
+                </div>
+            </div>
+        </section>
+
+        <section class="archive-panel vault-video-feature-shell" aria-labelledby="vault-video-feature-title">
+            <div class="vault-video-feature-header">
+                <p class="vault-video-feature-status">RECOVERY STATUS // FILE LOCATED</p>
+                <h2 id="vault-video-feature-title">RECOVERED FROM THE VAULT</h2>
+                <p class="vault-video-feature-meta">ORIGINAL TRANSMISSION: CIRCA 2018–2019 // CONDITION: MIRACULOUSLY PLAYABLE</p>
+            </div>
+
+            <div class="vault-video-feature-layout">
+                <div class="vault-video-feature-copy">
+                    <p>
+                        For nearly eight years, this file remained buried beneath dead links, abandoned accounts, forgotten passwords, and layer after layer of internet sediment. It has now been located, authenticated, and dragged back into daylight.
+                    </p>
+                    <p>
+                        Against all reasonable judgment, this early Eric Stone transmission is being released again—presented exactly as it survived, not remade, polished into something else, or asked to apologize for itself.
+                    </p>
+
+                    <aside class="vault-video-report-callout" aria-label="Internet archaeology report">
+                        <p class="vault-video-report-title">INTERNET ARCHAEOLOGY REPORT</p>
+                        <p>ARCHIVAL DESIGNATION: VAULT FILE ES–008</p>
+                        <p>RECOVERED: AUGUST 23, 2026</p>
+                        <p>HISTORICAL IMPORTANCE: WILDLY OVERSTATED</p>
+                    </aside>
+
+                    <a href="https://youtu.be/TsPhbz1NmNk" target="_blank" rel="noopener noreferrer" class="vault-video-original-btn">VIEW ORIGINAL TRANSMISSION</a>
+                </div>
+
+                <div class="vault-video-player-shell">
+                    <p class="vault-video-player-label">RECOVERED VIDEO FEED</p>
+                    <div class="vault-video-screen-wrap">
+                        <iframe
+                            title="Recovered from the vault archival video"
+                            src="https://www.youtube.com/embed/TsPhbz1NmNk?rel=0"
+                            loading="lazy"
+                            allow="accelerometer; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                            allowfullscreen>
+                        </iframe>
+                    </div>
+                    <p class="vault-video-fallback-link">
+                        If the recovered feed does not load, <a href="https://youtu.be/TsPhbz1NmNk" target="_blank" rel="noopener noreferrer">open the original transmission on YouTube.</a>
+                    </p>
+                </div>
+            </div>
+        </section>
+
+        <section class="archive-panel creative-lanes" aria-labelledby="creative-lanes-title">
+            <div class="section-title-wrap">
+                <p class="section-kicker">What I Make</p>
+                <h2 id="creative-lanes-title">A small archive of stories, media, and experiments.</h2>
+            </div>
+            <div class="creative-lane-grid">
+                <article class="creative-lane">
+                    <span class="creative-lane-icon" aria-hidden="true">🎬</span>
+                    <h3>Moving images</h3>
+                    <p>Short-form animation, filmic fragments, and odd little worlds that keep evolving.</p>
                 </article>
-
-                <article class="story-card">
-                    <a href="music.html" class="story-image-link">
-                        <img src="images/downtown-greenville.jpg" alt="Downtown Greenville street scene" width="640" height="360" loading="lazy">
-                    </a>
-                    <p class="story-label">The jukebox</p>
-                    <h3><a href="music.html">Music archive</a></h3>
-                    <p>Homemade tracks, found broadcasts, experiments, and recovered recordings with individual cover art.</p>
-                    <p class="story-links"><a href="music.html">Open the jukebox</a></p>
+                <article class="creative-lane">
+                    <span class="creative-lane-icon" aria-hidden="true">✍️</span>
+                    <h3>Writing</h3>
+                    <p>Essays, memories, movie thoughts, and stories that sit somewhere between personal and strange.</p>
                 </article>
-
-                <article class="story-card">
-                    <a href="https://soundcloud.com/user-18937025/sets/terrible-beats" target="_blank" rel="noopener noreferrer" class="story-image-link">
-                        <img src="images/old-bridge.jpg" alt="An old bridge crossing through a wooded landscape" width="640" height="360" loading="lazy">
-                    </a>
-                    <p class="story-label">Recovered audio</p>
-                    <h3><a href="https://soundcloud.com/user-18937025/sets/terrible-beats" target="_blank" rel="noopener noreferrer">The Prehistoric Beatening</a></h3>
-                    <p>Eighteen malformed loops, accidental hooks, unfinished ideas, and prehistoric beat rubble.</p>
-                    <p class="story-links"><a href="https://soundcloud.com/user-18937025/sets/terrible-beats" target="_blank" rel="noopener noreferrer">Listen on SoundCloud</a></p>
-                </article>
-
-                <article class="story-card">
-                    <a href="https://abefroman1978.substack.com/" target="_blank" rel="noopener noreferrer" class="story-image-link">
-                        <img src="images/porch-dusk.jpg" alt="A porch at dusk" width="640" height="360" loading="lazy">
-                    </a>
-                    <p class="story-label">Writing</p>
-                    <h3><a href="https://abefroman1978.substack.com/" target="_blank" rel="noopener noreferrer">Stories and essays</a></h3>
-                    <p>Memories, movie thoughts, personal writing, and the beginnings of a new home for online gossip columns.</p>
-                    <p class="story-links"><a href="https://abefroman1978.substack.com/" target="_blank" rel="noopener noreferrer">Read the current archive</a></p>
+                <article class="creative-lane">
+                    <span class="creative-lane-icon" aria-hidden="true">🎵</span>
+                    <h3>Sound + code</h3>
+                    <p>Music, playlist experiments, games, and tiny browser-made worlds built to be played with.</p>
                 </article>
             </div>
         </section>
 
-        <section class="front-page-section archive-desk" aria-labelledby="archive-desk-title">
-            <div class="editorial-heading">
-                <p class="section-kicker">Archive desk</p>
-                <h2 id="archive-desk-title">More from the collection.</h2>
+        <section id="whats-new-strip" class="archive-panel whats-new-strip" aria-labelledby="whats-new-title" hidden>
+            <div class="section-title-wrap">
+                <p class="section-kicker">Since Your Last Visit</p>
+                <h2 id="whats-new-title">New additions you may have missed.</h2>
             </div>
-            <div class="archive-list">
-                <article>
-                    <p class="archive-number">01</p>
-                    <h3><a href="https://youtu.be/TsPhbz1NmNk" target="_blank" rel="noopener noreferrer">Recovered from the Vault</a></h3>
-                    <p>An early transmission from around 2018-2019, found after years beneath dead links and abandoned accounts.</p>
+            <p id="whats-new-status" class="whats-new-status">Checking for new updates...</p>
+            <ul id="whats-new-list" class="whats-new-list"></ul>
+        </section>
+
+        <section class="quick-start-shell archive-panel" aria-labelledby="quick-start-title">
+            <div class="section-title-wrap">
+                <p class="section-kicker">Start Here</p>
+                <h2 id="quick-start-title">Choose your first move.</h2>
+            </div>
+            <div class="quick-start-grid">
+                <a href="#featured-jaffar-card" class="quick-start-card quick-start-watch" data-track="quick-start-watch">
+                    <span class="quick-start-icon" aria-hidden="true">▶</span>
+                    <span class="quick-start-label">I want to watch</span>
+                    <span class="quick-start-meta">Jump to Life of Jaffar</span>
+                </a>
+                <a href="table-read.html" class="quick-start-card quick-start-listen" data-track="quick-start-listen">
+                    <span class="quick-start-icon" aria-hidden="true">🎧</span>
+                    <span class="quick-start-label">I want to listen</span>
+                    <span class="quick-start-meta">Open the table read preview</span>
+                </a>
+                <a href="#featured-writing-card" class="quick-start-card quick-start-read" data-track="quick-start-read">
+                    <span class="quick-start-icon" aria-hidden="true">✍️</span>
+                    <span class="quick-start-label">I want to read</span>
+                    <span class="quick-start-meta">Jump to Substack stories</span>
+                </a>
+                <a href="#featured-games-card" class="quick-start-card quick-start-play" data-track="quick-start-play">
+                    <span class="quick-start-icon" aria-hidden="true">🎮</span>
+                    <span class="quick-start-label">I want to play</span>
+                    <span class="quick-start-meta">Jump to JavaScript games</span>
+                </a>
+            </div>
+        </section>
+
+        <section class="archive-panel project-week-shell" aria-labelledby="project-week-title">
+            <div class="section-title-wrap">
+                <p class="section-kicker">Project of the Week</p>
+                <h2 id="project-week-title">One thing worth diving into right now.</h2>
+            </div>
+            <a id="project-week-card" class="project-week-card" href="javascript-games.html" data-track="project-week-default">
+                <img id="project-week-image" src="images/scenic-road.jpg" alt="Project of the week preview" class="project-week-image" loading="lazy" decoding="async" width="960" height="540">
+                <div class="project-week-copy">
+                    <span class="project-week-badge">This Week</span>
+                    <p id="project-week-note" class="project-week-note">A rotating pick from the archive.</p>
+                    <h3 id="project-week-card-title">Featured Project</h3>
+                    <p id="project-week-card-description" class="project-week-description">Loading this week’s highlight...</p>
+                    <p class="project-week-cta">Open this week’s pick →</p>
+                </div>
+            </a>
+        </section>
+
+        <section id="featured-release-panel" class="archive-panel featured-release-panel" aria-labelledby="featured-release-title" hidden>
+            <div class="section-title-wrap">
+                <p id="featured-release-eyebrow" class="section-kicker">New Blue Engine project</p>
+                <h2 id="featured-release-title">Blue Engine Script Reading Parts 1-2</h2>
+            </div>
+            <div id="featured-release-layout" class="featured-release-layout">
+                <div class="featured-release-copy">
+                    <div id="featured-release-meta" class="featured-release-meta" hidden></div>
+                    <p id="featured-release-summary" class="featured-release-summary">The new Blue Engine project is a script reading by Eric and his 19-year-old nephew, with Parts 1 and 2 live now.</p>
+                    <div class="featured-release-actions">
+                        <a id="featured-release-watch-link" href="#" class="hero-cta-btn" hidden>Watch now</a>
+                        <a id="featured-release-read-link" href="#" class="secondary-cta-btn" hidden>Read the script</a>
+                        <a id="featured-release-pdf-link" href="#" class="secondary-cta-btn" hidden>Open the script PDF</a>
+                    </div>
+                    <div id="featured-release-video-list-wrap" class="featured-release-video-list-wrap" hidden>
+                        <p class="featured-release-video-list-title">Parts so far</p>
+                        <div id="featured-release-video-list" class="featured-release-video-list"></div>
+                    </div>
+                </div>
+                <div id="featured-release-player-shell" class="featured-release-player-shell" hidden>
+                    <iframe
+                        id="featured-release-player"
+                        title="Featured release video"
+                        loading="lazy"
+                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                        allowfullscreen>
+                    </iframe>
+                </div>
+            </div>
+        </section>
+
+        <section class="archive-panel copper-rap-panel" aria-labelledby="copper-rap-title">
+            <div class="section-title-wrap">
+                <p class="section-kicker">From the archive</p>
+                <h2 id="copper-rap-title">Copper Rap</h2>
+            </div>
+            <div class="featured-release-layout">
+                <div class="featured-release-copy">
+                    <p class="featured-release-summary">An old Copper Rap Eric made 18 years ago, created with collaborators Rick Morris and Joland Beverly, AKA Bizzle.</p>
+                    <div class="featured-release-actions">
+                        <a href="https://youtu.be/5jHYG2ZnKt0?si=_Spo2oR5waEu0N0j" target="_blank" rel="noopener noreferrer" class="hero-cta-btn" data-track="copper-rap-watch">Watch Copper Rap</a>
+                    </div>
+                </div>
+                <div class="featured-release-player-shell copper-rap-player-shell">
+                    <iframe
+                        src="https://www.youtube.com/embed/5jHYG2ZnKt0"
+                        title="Copper Rap video"
+                        loading="lazy"
+                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                        allowfullscreen>
+                    </iframe>
+                </div>
+            </div>
+        </section>
+
+        <section class="explore-prompt-section archive-panel" aria-labelledby="start-here-title">
+            <div class="section-title-wrap">
+                <p class="section-kicker">Choose a lane</p>
+                <h2 id="start-here-title">Pick the path that feels closest.</h2>
+            </div>
+            <div class="explore-pillar-grid">
+                <a href="photos.html" class="pillar-card">
+                    <span class="pillar-card-icon">📸</span>
+                    <h3>Photos & memory</h3>
+                    <p>Browse snapshots, places, and faces from the archive.</p>
+                </a>
+                <a href="cards.html" class="pillar-card">
+                    <span class="pillar-card-icon">⚾</span>
+                    <h3>Baseball cards</h3>
+                    <p>Open the live eBay storefront for available cards.</p>
+                </a>
+                <a href="music.html" class="pillar-card">
+                    <span class="pillar-card-icon">🎵</span>
+                    <h3>Music & atmosphere</h3>
+                    <p>Move through songs, playlists, and sound pieces.</p>
+                </a>
+                <a href="javascript-games.html" class="pillar-card">
+                    <span class="pillar-card-icon">🎮</span>
+                    <h3>Games & play</h3>
+                    <p>Try a few browser-based experiments and odd little worlds.</p>
+                </a>
+                <p style="margin: 14px 0 0; text-align: center;">
+                    <a href="games/palmetto-footbrawl/" style="display:inline-block; padding:10px 16px; border:1px solid rgba(126,233,255,0.8); border-radius:999px; background:rgba(9,22,33,0.8); color:#ebfbff; text-decoration:none; font-weight:700; letter-spacing:0.08em; text-transform:uppercase;">Play Palmetto Footbrawl</a>
+                </p>
+            </div>
+        </section>
+
+        <section class="archive-panel alaska-live-section" aria-labelledby="alaska-live-title">
+            <div class="section-title-wrap">
+                <p class="section-kicker">Live Weirdness</p>
+                <h2 id="alaska-live-title">Arctic Circle Live Tracker</h2>
+            </div>
+            <p class="alaska-live-intro">Real-time weather and daylight from high-latitude places where the sun behaves like science fiction.</p>
+
+            <div class="alaska-location-picker">
+                <label for="alaska-location-select">Track location:</label>
+                <select id="alaska-location-select" aria-label="Select Arctic location"></select>
+                <p id="alaska-place-meta" class="alaska-place-meta">Loading location details...</p>
+            </div>
+
+            <div class="alaska-live-grid" role="status" aria-live="polite" aria-atomic="false">
+                <div class="alaska-live-card alaska-live-card-primary">
+                    <p id="alaska-status-badge" class="alaska-status-badge">Loading polar conditions...</p>
+                    <p id="alaska-local-time" class="alaska-local-time">Local time: --</p>
+                    <p id="alaska-next-transition" class="alaska-next-transition">Next transition: --</p>
+                    <div class="alaska-daylight-meter-wrap" aria-label="Daylight progress">
+                        <p id="alaska-progress-label" class="alaska-progress-label">Daylight progress: --</p>
+                        <div class="alaska-daylight-meter" role="presentation">
+                            <div id="alaska-daylight-meter-fill" class="alaska-daylight-meter-fill"></div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="alaska-live-card">
+                    <h3>Weather</h3>
+                    <p id="alaska-weather" class="alaska-live-value">--</p>
+                    <p id="alaska-apparent" class="alaska-live-detail">Feels like: --</p>
+                    <p id="alaska-wind" class="alaska-live-detail">Wind: --</p>
+                </div>
+
+                <div class="alaska-live-card">
+                    <h3>Daylight</h3>
+                    <p id="alaska-daylight-mode" class="alaska-live-value">--</p>
+                    <p id="alaska-sun-window" class="alaska-live-detail">Sunrise/Sunset: --</p>
+                    <p id="alaska-daylight-duration" class="alaska-live-detail">Daylight duration: --</p>
+                </div>
+            </div>
+
+            <p id="alaska-updated" class="alaska-updated">Last weather refresh: waiting for first update...</p>
+            <p class="weirdness-link">
+                <a href="weirdness.html">More live weirdness →</a>
+            </p>
+
+            <div class="alaska-extra-grid">
+                <article class="alaska-extra-card nasa-fresh-card" aria-labelledby="nasa-fresh-title">
+                    <p class="alaska-extra-kicker">Space Feed</p>
+                    <h3 id="nasa-fresh-title">NASA Newest Images</h3>
+                    <p id="nasa-fresh-status" class="alaska-extra-detail">Loading latest NASA library image...</p>
+                    <a id="nasa-fresh-link" class="alaska-extra-link" href="https://images.nasa.gov/" target="_blank" rel="noopener noreferrer">
+                        Open latest NASA image →
+                    </a>
+                    <a class="alaska-extra-muted-link" href="https://images.nasa.gov/" target="_blank" rel="noopener noreferrer">
+                        Browse NASA Image Library
+                    </a>
                 </article>
-                <article>
-                    <p class="archive-number">02</p>
-                    <h3><a href="https://youtu.be/5jHYG2ZnKt0" target="_blank" rel="noopener noreferrer">Copper Rap</a></h3>
-                    <p>An eighteen-year-old collaboration with Rick Morris and Joland Beverly, also known as Bizzle.</p>
-                </article>
-                <article>
-                    <p class="archive-number">03</p>
-                    <h3><a href="changing-channel.html">The Changing Channel</a></h3>
-                    <p>Stories, memories, and old movies broadcasting from somewhere beyond the normal television dial.</p>
-                </article>
-                <article>
-                    <p class="archive-number">04</p>
-                    <h3><a href="photos.html">Photographs</a></h3>
-                    <p>People, places, roads, evenings, and visual evidence from across the archive.</p>
-                </article>
-                <article>
-                    <p class="archive-number">05</p>
-                    <h3><a href="more-images.html">More Images</a></h3>
-                    <p>Clippings, snapshots, fragments, and accidents that do not belong anywhere else.</p>
-                </article>
-                <article>
-                    <p class="archive-number">06</p>
-                    <h3><a href="old-movies.html">Old Movies Nearby</a></h3>
-                    <p>A film shelf for older discoveries and the things they leave behind.</p>
+
+                <article class="alaska-extra-card piedmont-sky-card" aria-labelledby="piedmont-sky-title">
+                    <p class="alaska-extra-kicker">Home Sky</p>
+                    <h3 id="piedmont-sky-title">Piedmont, SC Sun + Moon</h3>
+                    <p id="piedmont-sunrise" class="alaska-extra-detail">Sunrise: --</p>
+                    <p id="piedmont-sunset" class="alaska-extra-detail">Sunset: --</p>
+                    <p id="piedmont-moon-phase" class="alaska-extra-detail">Moon phase: --</p>
+                    <p id="piedmont-updated" class="alaska-extra-updated">Last update: waiting for first refresh...</p>
                 </article>
             </div>
         </section>
 
-        <section class="closing-note" aria-labelledby="closing-title">
-            <p class="section-kicker">The proposal</p>
-            <h2 id="closing-title">The archive can continue, but not as a one-person operation.</h2>
-            <p>Collaborate, contribute, or pass the work to someone who might recognize themselves in it.</p>
-            <p><a href="mailto:ericstone305@gmail.com">ericstone305@gmail.com</a> <span aria-hidden="true">/</span> <a href="tel:+18646258354">864-625-8354</a> <span aria-hidden="true">/</span> Venmo @Eric-Stone-262</p>
+        <section class="archive-panel">
+            <div class="latest-updates-header-row">
+                <div>
+                    <h2>Latest Updates</h2>
+                    <p>Newest additions across games, photos, stories, and music.</p>
+                </div>
+                <a href="updates.html" class="updates-archive-link" data-track="updates-archive-link">View all updates archive →</a>
+            </div>
+
+            <div id="latest-updates-grid" class="latest-updates-grid"></div>
+        </section>
+
+        <section class="archive-panel" id="music-library-changed" aria-labelledby="music-library-changed-title">
+            <div class="section-title-wrap">
+                <p class="section-kicker">Music update</p>
+                <h2 id="music-library-changed-title">Music library changed</h2>
+            </div>
+            <p>The playlist has new recovered additions. Use the links below for direct access to the new files.</p>
+            <ul>
+                <li><a href="music/ONE,%20TWO,%20SHIT.mp3">ONE, TWO, SHIT (local MP3)</a></li>
+                <li><a href="https://abefroman1978.substack.com/api/v1/audio/upload/e50b6495-a44a-4b6b-b569-62a98b10f2d9/src" target="_blank" rel="noopener noreferrer">BLEEP BLURP (audio file)</a></li>
+                <li><a href="https://abefroman1978.substack.com/api/v1/audio/upload/8d0932fa-7f5c-4bac-a01e-9ba0378ddfc5/src" target="_blank" rel="noopener noreferrer">Healing and Dealing Episode One (audio file)</a></li>
+                <li><a href="https://abefroman1978.substack.com/api/v1/audio/upload/a78bf25b-dced-4527-baad-88b6e45cfcdb/src" target="_blank" rel="noopener noreferrer">Healing and Dealing | Episode Two (audio file)</a></li>
+                <li><a href="music-playlist.json">View full playlist file (music-playlist.json)</a></li>
+            </ul>
+            <p><a href="music.html">Open the full music library page →</a></p>
+        </section>
+
+        <section class="archive-panel" id="featured-work">
+            <h2>Featured Work</h2>
+            <p>Start with the projects people visit most.</p>
+
+            <div class="featured-grid">
+                <a href="jaffar.html" class="nav-card featured-project-card quick-jump-target" id="featured-jaffar-card" data-track="featured-jaffar">
+                    <span class="nav-card-badge featured">FEATURED</span>
+                    <img src="images/water-tower-sunset.jpg" alt="Life of Jaffar preview" class="nav-card-thumb" loading="lazy" decoding="async" width="640" height="360">
+                    <span class="nav-card-icon">🎬</span>
+                    <div class="nav-card-title">Life of Jaffar</div>
+                    <p class="nav-card-description">Animation, characters, and strange little worlds.</p>
+                </a>
+
+                <a href="javascript-games.html" class="nav-card featured-project-card quick-jump-target" id="featured-games-card" data-track="featured-games">
+                    <img src="images/old-bridge.jpg" alt="JavaScript games preview" class="nav-card-thumb" loading="lazy" decoding="async" width="640" height="360">
+                    <span class="nav-card-icon">🎮</span>
+                    <div class="nav-card-title">JavaScript Games</div>
+                    <p class="nav-card-description">Simple browser games inspired by earlier coding projects.</p>
+                </a>
+
+                <a href="https://abefroman1978.substack.com/" target="_blank" rel="noopener noreferrer" class="nav-card featured-project-card quick-jump-target" id="featured-writing-card" data-track="featured-substack">
+                    <img src="images/porch-dusk.jpg" alt="Writing preview" class="nav-card-thumb" loading="lazy" decoding="async" width="640" height="360">
+                    <span class="nav-card-icon">✍️</span>
+                    <div class="nav-card-title">My Substack Stories</div>
+                    <p class="nav-card-description">Essays, movie thoughts, memories, and writing.</p>
+                </a>
+            </div>
+        </section>
+
+        <section class="archive-panel merch-launch-panel" aria-labelledby="merch-launch-title">
+            <h2 id="merch-launch-title">Merch Launch</h2>
+            <p>Starting simple: Life of Jaffar mugs, fulfilled with Printful.</p>
+            <div class="gallery-highlights">
+                <a href="merch.html" class="hero-cta-btn" data-track="merch-launch-open">Open Mug Shop</a>
+                <a href="https://www.printful.com/" target="_blank" rel="noopener noreferrer" class="secondary-cta-btn" data-track="merch-launch-printful">Printful Platform</a>
+            </div>
+        </section>
+
+        <section class="archive-panel">
+            <h2>Explore</h2>
+
+            <div class="filter-section">
+                <input type="text" id="search-input" class="search-input" placeholder="Search projects...">
+                <div class="filter-buttons">
+                    <button class="filter-btn active" data-filter="all">All</button>
+                    <button class="filter-btn" data-filter="visual">Visual</button>
+                    <button class="filter-btn" data-filter="writing">Writing</button>
+                    <button class="filter-btn" data-filter="animation">Animation</button>
+                    <button class="filter-btn" data-filter="audio">Audio</button>
+                    <button class="filter-btn" data-filter="code">Code</button>
+                    <button class="filter-btn" data-filter="personal">Personal</button>
+                </div>
+                <p id="filter-feedback" class="filter-feedback" role="status" aria-live="polite">Showing all projects.</p>
+            </div>
+
+            <nav id="nav-container">
+                <a href="photos.html" class="nav-card" data-category="visual" data-tags="photos pictures visual">
+                    <img src="images/buddy-sleeping.jpg" alt="Photos preview" class="nav-card-thumb" loading="lazy" decoding="async" width="640" height="360">
+                    <span class="nav-card-icon">📸</span>
+                    <div class="nav-card-title">Photos</div>
+                    <p class="nav-card-description">Photographs, old pictures, and whatever else belongs here.</p>
+                </a>
+
+                <a href="more-images.html" class="nav-card" data-category="visual" data-tags="images art visual fragments">
+                    <img src="images/mountain-view.jpg" alt="More images preview" class="nav-card-thumb" loading="lazy" decoding="async" width="640" height="360">
+                    <span class="nav-card-icon">🖼️</span>
+                    <div class="nav-card-title">More Images</div>
+                    <p class="nav-card-description">Photographs, fragments, clippings, and accidents collected by Eric Stone.</p>
+                </a>
+
+                <a href="https://abefroman1978.substack.com/" target="_blank" rel="noopener noreferrer" class="nav-card" data-category="writing" data-tags="stories essays writing substack">
+                    <span class="nav-card-badge featured">FEATURED</span>
+                    <img src="images/eric-in-the-woods.jpg" alt="Substack stories preview" class="nav-card-thumb thumb-top-left" loading="lazy" decoding="async" width="640" height="360">
+                    <span class="nav-card-icon">✍️</span>
+                    <div class="nav-card-title">My Substack Stories</div>
+                    <p class="nav-card-description">Essays, movie thoughts, memories, and writing.</p>
+                </a>
+
+                <a href="jaffar.html" class="nav-card" data-category="animation" data-tags="animation jaffar video youtube">
+                    <span class="nav-card-badge featured">FEATURED</span>
+                    <img src="images/quiet-evening.jpg" alt="Life of Jaffar preview" class="nav-card-thumb" loading="lazy" decoding="async" width="640" height="360">
+                    <span class="nav-card-icon">🎬</span>
+                    <div class="nav-card-title">Life of Jaffar</div>
+                    <p class="nav-card-description">Animation, characters, and strange little worlds.</p>
+                </a>
+
+                <a href="music.html" class="nav-card" data-category="audio" data-tags="music tracks suno songs library">
+                    <img src="images/downtown-greenville.jpg" alt="Music library preview" class="nav-card-thumb thumb-bottom" loading="lazy" decoding="async" width="640" height="360">
+                    <span class="nav-card-icon">🎵</span>
+                    <div class="nav-card-title">Music Library</div>
+                    <p class="nav-card-description">Suno songs, homemade tracks, and the music archive.</p>
+                </a>
+
+                <a href="javascript-games.html" class="nav-card" data-category="code" data-tags="javascript games code programming arcade">
+                    <img src="images/scenic-road.jpg" alt="JavaScript games preview" class="nav-card-thumb" loading="lazy" decoding="async" width="640" height="360">
+                    <span class="nav-card-icon">🎮</span>
+                    <div class="nav-card-title">JavaScript Games</div>
+                    <p class="nav-card-description">Simple browser games inspired by my earlier coding projects.</p>
+                </a>
+
+                <a href="merch.html" class="nav-card" data-category="personal" data-tags="merch mugs apparel shop store">
+                    <span class="nav-card-badge new">NEW</span>
+                    <img src="images/quiet-evening.jpg" alt="Merch shop preview" class="nav-card-thumb thumb-top-left" loading="lazy" decoding="async" width="640" height="360">
+                    <span class="nav-card-icon">☕</span>
+                    <div class="nav-card-title">Coffee Mugs and Merch</div>
+                    <p class="nav-card-description">Shop mugs and other merch from one central page.</p>
+                </a>
+
+                <a href="changing-channel.html" class="nav-card" data-category="stargarden" data-tags="late 1990s stories nostalgia memories">
+                    <span class="nav-card-badge new">NEW</span>
+                    <img src="images/17882340400264763.jpg" alt="The Changing Channel preview" class="nav-card-thumb thumb-bottom" loading="lazy" decoding="async" width="640" height="360">
+                    <span class="nav-card-icon">🇺🇸</span>
+                    <div class="nav-card-title">The Changing Channel</div>
+                    <p class="nav-card-description">One strange old movie every week, broadcasting from somewhere beyond the normal television dial.</p>
+                </a>
+            </nav>
+
+            <div id="no-results-state" class="no-results-state" hidden>
+                <p class="no-results-title">No matches yet.</p>
+                <p class="no-results-copy">Try a broader word, or tap <strong>All</strong> to reset the filter.</p>
+            </div>
+        </section>
+
+        <section class="archive-panel">
+            <h2>By The Numbers</h2>
+            <div class="stats-grid">
+                <a href="photos.html" class="stat-item" data-track="stats-photos">
+                    <div class="stat-icon">📸</div>
+                    <div class="stat-number">75+</div>
+                    <div class="stat-label">Photos</div>
+                </a>
+                <a href="music.html" class="stat-item" data-track="stats-music">
+                    <div class="stat-icon">🎵</div>
+                    <div class="stat-number">32</div>
+                    <div class="stat-label">Music Tracks</div>
+                </a>
+                <a href="https://abefroman1978.substack.com/" target="_blank" rel="noopener noreferrer" class="stat-item" data-track="stats-stories-essays">
+                    <div class="stat-icon">✍️</div>
+                    <div class="stat-number">50+</div>
+                    <div class="stat-label">Stories & Essays</div>
+                </a>
+                <a href="javascript-games.html" class="stat-item" data-track="stats-games">
+                    <div class="stat-icon">🎮</div>
+                    <div class="stat-number">5</div>
+                    <div class="stat-label">JS Games</div>
+                </a>
+                <a href="jaffar.html" class="stat-item" data-track="stats-animations">
+                    <div class="stat-icon">🎬</div>
+                    <div class="stat-number">12</div>
+                    <div class="stat-label">Animations</div>
+                </a>
+                <a href="more-images.html" class="stat-item" data-track="stats-images-art">
+                    <div class="stat-icon">🖼️</div>
+                    <div class="stat-number">40+</div>
+                    <div class="stat-label">Images & Art</div>
+                </a>
+            </div>
+        </section>
+
+        <section class="friend-spotlight" aria-label="Friend channel spotlight">
+            <p class="friend-spotlight-label">Friend Spotlight</p>
+            <a href="https://pulptime.com/channel" target="_blank" rel="noopener noreferrer" class="pulp-time-feature compact" aria-label="Open my friend's Pulp Time page" data-track="friend-spotlight-pulptime">
+                <img src="pulp-time-mark.png" alt="Pulp Time logo" class="pulp-time-logo compact" loading="lazy" decoding="async" width="96" height="96">
+                <div class="friend-spotlight-copy">
+                    <p class="pulp-time-tagline compact">Pulp Time</p>
+                    <p id="pulp-now-playing" class="pulp-now-playing">Checking now playing...</p>
+                </div>
+            </a>
+            <div class="friend-spotlight-links" aria-label="More friend spotlight links">
+                <a href="https://teamcoco.com/podcasts/the-weird-place" target="_blank" rel="noopener noreferrer" class="friend-link-card" data-track="friend-spotlight-weird-place">
+                    <p class="friend-link-tag">Podcast</p>
+                    <p class="friend-link-title">Dana Carvey - The Weird Place</p>
+                    <p class="friend-link-description">Dana Carvey's strange and funny science-fiction anthology podcast, like The Twilight Zone wandering into a comedy club.</p>
+                </a>
+                <a href="https://shop.czarface.com/" target="_blank" rel="noopener noreferrer" class="friend-link-card" data-track="friend-spotlight-czarface-music">
+                    <p class="friend-link-tag">Music</p>
+                    <p class="friend-link-title">Czarface - Music</p>
+                    <p class="friend-link-description">Official home of Czarface's music, vinyl releases, merchandise, and new projects.</p>
+                </a>
+                <a href="https://www.czarcomics.com/" target="_blank" rel="noopener noreferrer" class="friend-link-card" data-track="friend-spotlight-czarface-comics">
+                    <p class="friend-link-tag">Comics / Art</p>
+                    <p class="friend-link-title">Czarface Comics</p>
+                    <p class="friend-link-description">The official home of Czarface's comic-book universe, including new issues, variant covers, and artwork.</p>
+                </a>
+            </div>
         </section>
     </main>
 
     <footer>
-        <p>Eric Stone, South Carolina. Independent and still in progress.</p>
-        <p><a href="#top">Back to top</a></p>
+        <div class="footer-content">
+            <div class="footer-section">
+                <h3>Quick Links</h3>
+                <ul>
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="photos.html">Photos</a></li>
+                    <li><a href="music.html">Music</a></li>
+                    <li><a href="jaffar.html">Life of Jaffar</a></li>
+                    <li><a href="merch.html">Merch Shop</a></li>
+                    <li><a href="cards.html">Baseball Cards</a></li>
+                    <li><a href="changing-channel.html">The Changing Channel</a></li>
+                    <li><a href="old-movies.html">Old Movies Nearby</a></li>
+                </ul>
+            </div>
+
+            <div class="footer-section">
+                <h3>Connect</h3>
+                <div class="social-links">
+                    <a href="https://abefroman1978.substack.com/" target="_blank" rel="noopener noreferrer" title="Substack">📧 Substack</a>
+                    <a href="https://youtube.com/playlist?list=PLbaYlPY2lbIItsGmHkmv5vWe0Lj4_GJqr" target="_blank" rel="noopener noreferrer" title="YouTube">🎬 YouTube</a>
+                </div>
+            </div>
+
+            <div class="footer-section">
+                <h3>About</h3>
+                <p>Stories, animation, code, and strange ideas. <br>Built with attention to detail.</p>
+            </div>
+        </div>
+
+        <div class="footer-bottom">
+            <p>&copy; 2026 Eric Stone. All rights reserved.</p>
+            <p><a href="#top" class="back-to-top">↑ Back to Top</a></p>
+        </div>
     </footer>
 
     <script>
-        const copyButton = document.getElementById('copy-venmo-btn');
-        const copyStatus = document.getElementById('venmo-copy-status');
+        // Latest updates are managed here; add one object to publish a new update card.
+        const latestUpdates = [
+            {
+                href: 'index.html#music-library-changed',
+                date: 'Aug 2026',
+                title: 'Music Library Changed',
+                description: 'Added ONE, TWO, SHIT plus new found-audio files. Direct links are on the homepage.',
+                releasedAt: '2026-08-25T18:00:00Z'
+            },
+            {
+                href: 'javascript-games.html',
+                date: 'Jul 2026',
+                title: 'New Mini Games Added',
+                description: 'Dice Duel and Quick Math are now live in the JavaScript Games page.',
+                releasedAt: '2026-07-20T18:00:00Z'
+            },
+            {
+                href: 'more-images.html',
+                date: 'Jul 2026',
+                title: 'More Images Carousel',
+                description: 'A fresh reel-style image archive with swipe, arrows, and lightbox view.',
+                releasedAt: '2026-07-17T18:00:00Z'
+            },
+            {
+                href: 'changing-channel.html',
+                date: 'Jul 2026',
+                title: 'The Changing Channel',
+                description: 'Welcome.',
+                releasedAt: '2026-07-14T18:00:00Z'
+            },
+            {
+                href: 'music.html',
+                date: 'Jul 2026',
+                title: 'Music Library Refresh',
+                description: 'Playlist browsing and playback controls are streamlined for easier listening.',
+                releasedAt: '2026-07-10T18:00:00Z'
+            }
+        ];
 
-        copyButton.addEventListener('click', async () => {
-            const username = 'Eric-Stone-262';
+        const monthlyHeroCtaPool = [
+            { href: 'music.html', label: 'This month: Open music', track: 'hero-monthly-music', external: false },
+            { href: 'javascript-games.html', label: 'This month: Play games', track: 'hero-monthly-games', external: false },
+            { href: 'changing-channel.html', label: 'This month: Visit The Changing Channel', track: 'hero-monthly-stories', external: false },
+            { href: 'weirdness.html', label: 'This month: Live weirdness', track: 'hero-monthly-weirdness', external: false }
+        ];
+
+        const randomDivePool = [
+            { href: 'photos.html', label: '🎲 Random dive: Photos', track: 'random-dive-photos', external: false },
+            { href: 'more-images.html', label: '🎲 Random dive: More Images', track: 'random-dive-more-images', external: false },
+            { href: 'music.html', label: '🎲 Random dive: Music', track: 'random-dive-music', external: false },
+            { href: 'javascript-games.html', label: '🎲 Random dive: Games', track: 'random-dive-games', external: false },
+            { href: 'https://abefroman1978.substack.com/', label: '🎲 Random dive: Substack', track: 'random-dive-substack', external: true }
+        ];
+
+        const returnVisitKey = 'eric-site-last-visit-v1';
+        const featuredReleasePath = 'featured-release.json';
+
+        function isExternalUrl(href) {
+            return /^https?:\/\//i.test(href || '');
+        }
+
+        function setLinkProps(link, href) {
+            if (!link || !href) {
+                return;
+            }
+
+            link.href = href;
+            if (isExternalUrl(href)) {
+                link.target = '_blank';
+                link.rel = 'noopener noreferrer';
+            } else {
+                link.removeAttribute('target');
+                link.removeAttribute('rel');
+            }
+        }
+
+        function normalizeFeaturedRelease(item) {
+            if (!item || typeof item !== 'object') {
+                return null;
+            }
+
+            const title = typeof item.title === 'string' ? item.title.trim() : '';
+            const releasedAt = typeof item.releasedAt === 'string' ? item.releasedAt.trim() : '';
+            if (!title || !releasedAt) {
+                return null;
+            }
+
+            return {
+                eyebrow: typeof item.eyebrow === 'string' && item.eyebrow.trim() ? item.eyebrow.trim() : 'New Blue Engine project',
+                title,
+                summary: typeof item.summary === 'string' ? item.summary.trim() : '',
+                watchLabel: typeof item.watchLabel === 'string' ? item.watchLabel.trim() : '',
+                watchUrl: typeof item.watchUrl === 'string' ? item.watchUrl.trim() : '',
+                embedUrl: typeof item.embedUrl === 'string' ? item.embedUrl.trim() : '',
+                videos: Array.isArray(item.videos)
+                    ? item.videos
+                        .map((video) => ({
+                            label: typeof video?.label === 'string' ? video.label.trim() : '',
+                            url: typeof video?.url === 'string' ? video.url.trim() : '',
+                            embedUrl: typeof video?.embedUrl === 'string' ? video.embedUrl.trim() : ''
+                        }))
+                        .filter((video) => video.label && video.url)
+                    : [],
+                readLabel: typeof item.readLabel === 'string' ? item.readLabel.trim() : '',
+                readUrl: typeof item.readUrl === 'string' ? item.readUrl.trim() : '',
+                pdfLabel: typeof item.pdfLabel === 'string' ? item.pdfLabel.trim() : '',
+                pdfUrl: typeof item.pdfUrl === 'string' ? item.pdfUrl.trim() : '',
+                releasedAt
+            };
+        }
+
+        async function fetchFeaturedRelease() {
+            try {
+                const response = await fetch(featuredReleasePath, { cache: 'no-store' });
+                if (!response.ok) {
+                    return null;
+                }
+
+                const payload = await response.json();
+                return normalizeFeaturedRelease(payload);
+            } catch (error) {
+                return null;
+            }
+        }
+
+        function renderFeaturedReleaseHomepage(featuredRelease) {
+            const calloutTitle = document.getElementById('header-featured-release-title');
+            const calloutPrimary = document.getElementById('header-featured-release-primary');
+            const calloutNote = document.getElementById('header-featured-release-note');
+            const panel = document.getElementById('featured-release-panel');
+            const eyebrow = document.getElementById('featured-release-eyebrow');
+            const title = document.getElementById('featured-release-title');
+            const summary = document.getElementById('featured-release-summary');
+            const meta = document.getElementById('featured-release-meta');
+            const watchLink = document.getElementById('featured-release-watch-link');
+            const readLink = document.getElementById('featured-release-read-link');
+            const pdfLink = document.getElementById('featured-release-pdf-link');
+            const videoListWrap = document.getElementById('featured-release-video-list-wrap');
+            const videoList = document.getElementById('featured-release-video-list');
+            const layout = document.getElementById('featured-release-layout');
+            const playerShell = document.getElementById('featured-release-player-shell');
+            const player = document.getElementById('featured-release-player');
+
+            if (!calloutTitle || !calloutPrimary || !calloutNote || !panel || !eyebrow || !title || !summary || !meta || !watchLink || !readLink || !pdfLink || !videoListWrap || !videoList || !layout || !playerShell || !player) {
+                return;
+            }
+
+            if (!featuredRelease) {
+                panel.hidden = true;
+                return;
+            }
+
+            const primaryVideo = featuredRelease.videos[0] || null;
+            const primaryLabel = featuredRelease.watchUrl && featuredRelease.watchLabel
+                ? featuredRelease.watchLabel
+                : (featuredRelease.readLabel || 'Read the script');
+            const primaryHref = featuredRelease.watchUrl || featuredRelease.readUrl || featuredRelease.pdfUrl;
+
+            calloutTitle.textContent = featuredRelease.title;
+            calloutPrimary.textContent = primaryLabel;
+            if (primaryHref) {
+                setLinkProps(calloutPrimary, primaryHref);
+            }
+
+            const pdfMarkup = featuredRelease.pdfUrl
+                ? ' Read the <a href="' + featuredRelease.pdfUrl + '"' + (isExternalUrl(featuredRelease.pdfUrl) ? ' target="_blank" rel="noopener noreferrer"' : '') + ' data-track="blue-engine-pdf">full PDF</a>.'
+                : '';
+            calloutNote.innerHTML = (featuredRelease.summary || 'New release.') + pdfMarkup;
+
+            eyebrow.textContent = featuredRelease.eyebrow;
+            title.textContent = featuredRelease.title;
+            summary.textContent = featuredRelease.summary;
+
+            const metaItems = [];
+            if (featuredRelease.videos.length) {
+                metaItems.push(featuredRelease.videos.length + ' part' + (featuredRelease.videos.length === 1 ? '' : 's') + ' live');
+            }
+            if (featuredRelease.watchUrl && /playlist/i.test(featuredRelease.watchUrl)) {
+                metaItems.push('playlist ready');
+            }
+            if (featuredRelease.readUrl) {
+                metaItems.push('script available');
+            }
+            if (metaItems.length) {
+                meta.innerHTML = metaItems.map((item) => '<span class="featured-release-chip">' + item + '</span>').join('');
+                meta.hidden = false;
+            } else {
+                meta.innerHTML = '';
+                meta.hidden = true;
+            }
+
+            if (featuredRelease.watchUrl && featuredRelease.watchLabel) {
+                watchLink.hidden = false;
+                watchLink.textContent = featuredRelease.watchLabel;
+                setLinkProps(watchLink, featuredRelease.watchUrl);
+            } else {
+                watchLink.hidden = true;
+                watchLink.removeAttribute('href');
+            }
+
+            if (featuredRelease.readUrl && featuredRelease.readLabel) {
+                readLink.hidden = false;
+                readLink.textContent = featuredRelease.readLabel;
+                setLinkProps(readLink, featuredRelease.readUrl);
+            } else {
+                readLink.hidden = true;
+                readLink.removeAttribute('href');
+            }
+
+            if (featuredRelease.pdfUrl && featuredRelease.pdfLabel) {
+                pdfLink.hidden = false;
+                pdfLink.textContent = featuredRelease.pdfLabel;
+                setLinkProps(pdfLink, featuredRelease.pdfUrl);
+            } else {
+                pdfLink.hidden = true;
+                pdfLink.removeAttribute('href');
+            }
+
+            if (featuredRelease.videos.length > 1) {
+                videoList.innerHTML = featuredRelease.videos
+                    .slice(1)
+                    .map((video) => '<a href="' + video.url + '" target="_blank" rel="noopener noreferrer" class="secondary-cta-btn">' + video.label + '</a>')
+                    .join('');
+                videoListWrap.hidden = false;
+            } else {
+                videoList.innerHTML = '';
+                videoListWrap.hidden = true;
+            }
+
+            if ((primaryVideo && primaryVideo.embedUrl) || featuredRelease.embedUrl) {
+                playerShell.hidden = false;
+                player.src = (primaryVideo && primaryVideo.embedUrl) || featuredRelease.embedUrl;
+                layout.classList.remove('is-text-only');
+            } else {
+                playerShell.hidden = true;
+                player.removeAttribute('src');
+                layout.classList.add('is-text-only');
+            }
+
+            panel.hidden = false;
+        }
+
+        function buildFeaturedReleaseUpdate(featuredRelease) {
+            if (!featuredRelease) {
+                return [];
+            }
+
+            const href = featuredRelease.watchUrl || featuredRelease.readUrl || featuredRelease.pdfUrl;
+            if (!href) {
+                return [];
+            }
+
+            return [{
+                href,
+                date: getMonthYearLabel(featuredRelease.releasedAt),
+                title: featuredRelease.title,
+                description: featuredRelease.summary,
+                releasedAt: featuredRelease.releasedAt
+            }];
+        }
+
+        function getMonthYearLabel(dateValue) {
+            const date = dateValue instanceof Date ? dateValue : parseIsoDateOrNull(dateValue);
+            if (!date) {
+                return '';
+            }
+
+            const month = date.toLocaleString('en-US', { month: 'short', timeZone: 'UTC' });
+            const year = date.getUTCFullYear();
+            return month + ' ' + year;
+        }
+
+        function normalizeUpdateItem(item) {
+            const releaseDate = parseIsoDateOrNull(item.releasedAt);
+            if (!item || !item.title || !item.href || !releaseDate) {
+                return null;
+            }
+
+            return {
+                href: item.href,
+                title: item.title,
+                description: item.description || '',
+                releasedAt: releaseDate.toISOString(),
+                date: item.date || getMonthYearLabel(releaseDate)
+            };
+        }
+
+        function mergeUpdates(primary, secondary) {
+            const seen = new Set();
+            const merged = [];
+
+            [...primary, ...secondary].forEach((item) => {
+                const normalized = normalizeUpdateItem(item);
+                if (!normalized) {
+                    return;
+                }
+
+                const dedupeKey = normalized.href + '|' + normalized.title;
+                if (seen.has(dedupeKey)) {
+                    return;
+                }
+
+                seen.add(dedupeKey);
+                merged.push(normalized);
+            });
+
+            return merged.sort((a, b) => {
+                const aDate = parseIsoDateOrNull(a.releasedAt);
+                const bDate = parseIsoDateOrNull(b.releasedAt);
+                if (!aDate || !bDate) {
+                    return 0;
+                }
+                return bDate.getTime() - aDate.getTime();
+            });
+        }
+
+        async function fetchGameUpdatesForHomepage() {
+            try {
+                const response = await fetch('javascript-games.html', { cache: 'no-store' });
+                if (!response.ok) {
+                    return [];
+                }
+
+                const markup = await response.text();
+                const parser = new DOMParser();
+                const documentFragment = parser.parseFromString(markup, 'text/html');
+
+                return Array.from(documentFragment.querySelectorAll('[data-home-update="true"]'))
+                    .map((element) => ({
+                        href: element.dataset.updateHref || 'javascript-games.html',
+                        title: element.dataset.updateTitle || '',
+                        description: element.dataset.updateDescription || '',
+                        releasedAt: element.dataset.releasedAt || '',
+                        date: getMonthYearLabel(element.dataset.releasedAt)
+                    }))
+                    .map(normalizeUpdateItem)
+                    .filter(Boolean);
+            } catch (error) {
+                return [];
+            }
+        }
+
+        function parseIsoDateOrNull(value) {
+            if (typeof value !== 'string' || !value.trim()) {
+                return null;
+            }
+
+            const parsed = new Date(value);
+            if (Number.isNaN(parsed.getTime())) {
+                return null;
+            }
+
+            return parsed;
+        }
+
+        function getLastVisitTimestamp() {
+            try {
+                const raw = localStorage.getItem(returnVisitKey);
+                if (!raw) {
+                    return null;
+                }
+
+                const value = Number(raw);
+                return Number.isFinite(value) ? value : null;
+            } catch (error) {
+                return null;
+            }
+        }
+
+        function setLastVisitTimestamp(timestampMs) {
+            try {
+                localStorage.setItem(returnVisitKey, String(timestampMs));
+            } catch (error) {
+                // Ignore storage write failures.
+            }
+        }
+
+        function getUpdatesReleasedAfter(updates, timestampMs) {
+            if (!Number.isFinite(timestampMs)) {
+                return [];
+            }
+
+            return updates
+                .map((item) => {
+                    const releaseDate = parseIsoDateOrNull(item.releasedAt);
+                    return { item, releaseDate };
+                })
+                .filter((entry) => entry.releaseDate && entry.releaseDate.getTime() > timestampMs)
+                .sort((a, b) => b.releaseDate.getTime() - a.releaseDate.getTime())
+                .map((entry) => entry.item);
+        }
+
+        function renderMonthlyHeroCta() {
+            const monthlyCta = document.getElementById('hero-monthly-cta');
+            if (!monthlyCta || !monthlyHeroCtaPool.length) {
+                return;
+            }
+
+            const monthIndex = new Date().getUTCMonth() % monthlyHeroCtaPool.length;
+            const pick = monthlyHeroCtaPool[monthIndex];
+            monthlyCta.href = pick.href;
+            monthlyCta.textContent = pick.label;
+            monthlyCta.dataset.track = pick.track;
+
+            if (pick.external) {
+                monthlyCta.target = '_blank';
+                monthlyCta.rel = 'noopener noreferrer';
+            } else {
+                monthlyCta.removeAttribute('target');
+                monthlyCta.removeAttribute('rel');
+            }
+        }
+
+        function renderRandomDiveLink() {
+            const randomLink = document.getElementById('random-dive-link');
+            if (!randomLink || !randomDivePool.length) {
+                return;
+            }
+
+            const randomIndex = Math.floor(Math.random() * randomDivePool.length);
+            const pick = randomDivePool[randomIndex];
+
+            randomLink.href = pick.href;
+            randomLink.textContent = pick.label;
+            randomLink.dataset.track = pick.track;
+
+            if (pick.external) {
+                randomLink.target = '_blank';
+                randomLink.rel = 'noopener noreferrer';
+            } else {
+                randomLink.removeAttribute('target');
+                randomLink.removeAttribute('rel');
+            }
+        }
+
+        const projectOfWeekPool = [
+            {
+                href: 'https://youtube.com/playlist?list=PLbaYlPY2lbIItsGmHkmv5vWe0Lj4_GJqr&si=2LMokRVzgl2abDVl',
+                title: 'Life of Jaffar',
+                description: 'Animation, characters, and strange little worlds.',
+                image: 'images/water-tower-sunset.jpg',
+                note: 'I am pushing this one this week because it captures the tone of the whole site in one shot.',
+                external: true,
+                track: 'project-week-jaffar'
+            },
+            {
+                href: 'javascript-games.html',
+                title: 'JavaScript Games',
+                description: 'Small browser experiments you can jump into in seconds.',
+                image: 'images/old-bridge.jpg',
+                note: 'This week is for play. Fast clicks, weird little loops, and no setup needed.',
+                external: false,
+                track: 'project-week-games'
+            },
+            {
+                href: 'https://abefroman1978.substack.com/',
+                title: 'My Substack Stories',
+                description: 'Essays, memories, movie thoughts, and writing fragments.',
+                image: 'images/porch-dusk.jpg',
+                note: 'If you want the voice behind the archive, start with the writing this week.',
+                external: true,
+                track: 'project-week-substack'
+            },
+            {
+                href: 'more-images.html',
+                title: 'More Images Carousel',
+                description: 'Clippings, snapshots, odd artifacts, and visual fragments.',
+                image: 'images/mountain-view.jpg',
+                note: 'This pick is the pure mood board pass: quick visuals and strange details.',
+                external: false,
+                track: 'project-week-more-images'
+            }
+        ];
+
+        function getProjectWeekIndex() {
+            const now = new Date();
+            const startOfYearUtc = Date.UTC(now.getUTCFullYear(), 0, 1);
+            const todayUtc = Date.UTC(now.getUTCFullYear(), now.getUTCMonth(), now.getUTCDate());
+            const dayOfYear = Math.floor((todayUtc - startOfYearUtc) / 86400000) + 1;
+            const weekIndex = Math.floor((dayOfYear - 1) / 7);
+            return weekIndex % projectOfWeekPool.length;
+        }
+
+        function renderProjectOfWeek() {
+            const card = document.getElementById('project-week-card');
+            const image = document.getElementById('project-week-image');
+            const title = document.getElementById('project-week-card-title');
+            const description = document.getElementById('project-week-card-description');
+            const note = document.getElementById('project-week-note');
+
+            if (!card || !image || !title || !description || !note || !projectOfWeekPool.length) {
+                return;
+            }
+
+            const pick = projectOfWeekPool[getProjectWeekIndex()];
+
+            card.href = pick.href;
+            card.dataset.track = pick.track;
+
+            if (pick.external) {
+                card.target = '_blank';
+                card.rel = 'noopener noreferrer';
+            } else {
+                card.removeAttribute('target');
+                card.removeAttribute('rel');
+            }
+
+            image.src = pick.image;
+            image.alt = pick.title + ' preview';
+            title.textContent = pick.title;
+            description.textContent = pick.description;
+            note.textContent = pick.note;
+        }
+
+        function renderLatestUpdates(updates, lastVisitTimestamp) {
+            const updatesGrid = document.getElementById('latest-updates-grid');
+            if (!updatesGrid) {
+                return;
+            }
+
+            const groupedUpdates = updates.reduce((groups, item) => {
+                if (!groups[item.date]) {
+                    groups[item.date] = [];
+                }
+
+                groups[item.date].push(item);
+                return groups;
+            }, {});
+
+            updatesGrid.innerHTML = Object.keys(groupedUpdates)
+                .map((groupDate) => {
+                    const cardsMarkup = groupedUpdates[groupDate]
+                        .map((item) => {
+                            const releaseDate = parseIsoDateOrNull(item.releasedAt);
+                            const isNewSinceVisit = Number.isFinite(lastVisitTimestamp) && releaseDate && releaseDate.getTime() > lastVisitTimestamp;
+                            const newBadgeMarkup = isNewSinceVisit
+                                ? '<span class="latest-update-dot" aria-label="New since your last visit">New</span>'
+                                : '';
+
+                            return (
+                                '<a href="' + item.href + '" class="latest-update-card">' +
+                                    newBadgeMarkup +
+                                '<h3>' + item.title + '</h3>' +
+                                '<p>' + item.description + '</p>' +
+                                '</a>'
+                            );
+                        })
+                        .join('');
+
+                    return (
+                        '<section class="latest-update-group" aria-label="Updates from ' + groupDate + '">' +
+                            '<h3 class="latest-update-group-title">' + groupDate + '</h3>' +
+                            '<div class="latest-update-group-grid">' + cardsMarkup + '</div>' +
+                        '</section>'
+                    );
+                })
+                .join('');
+        }
+
+        function renderWhatsNewSinceLastVisit(updates, lastVisitTimestamp) {
+            const strip = document.getElementById('whats-new-strip');
+            const status = document.getElementById('whats-new-status');
+            const list = document.getElementById('whats-new-list');
+
+            if (!strip || !status || !list) {
+                return;
+            }
+
+            if (!Number.isFinite(lastVisitTimestamp)) {
+                strip.hidden = true;
+                return;
+            }
+
+            const newItems = getUpdatesReleasedAfter(updates, lastVisitTimestamp);
+            if (!newItems.length) {
+                strip.hidden = true;
+                return;
+            }
+
+            status.textContent = 'Since your last visit, ' + newItems.length + ' update' + (newItems.length === 1 ? ' is' : 's are') + ' new.';
+            list.innerHTML = newItems
+                .slice(0, 3)
+                .map((item) =>
+                    '<li><a href="' + item.href + '">' + item.title + '</a></li>'
+                )
+                .join('');
+            strip.hidden = false;
+        }
+
+        async function initializeHomepageHighlights() {
+            const lastVisitTimestamp = getLastVisitTimestamp();
+            const featuredRelease = await fetchFeaturedRelease();
+            const autoGameUpdates = await fetchGameUpdatesForHomepage();
+            const allUpdates = mergeUpdates(buildFeaturedReleaseUpdate(featuredRelease), mergeUpdates(latestUpdates, autoGameUpdates));
+
+            renderProjectOfWeek();
+            renderMonthlyHeroCta();
+            renderRandomDiveLink();
+            renderFeaturedReleaseHomepage(featuredRelease);
+            renderLatestUpdates(allUpdates, lastVisitTimestamp);
+            renderWhatsNewSinceLastVisit(allUpdates, lastVisitTimestamp);
+            setLastVisitTimestamp(Date.now());
+        }
+
+        initializeHomepageHighlights();
+
+        const arcticLocations = {
+            utqiagvik: {
+                id: 'utqiagvik',
+                placeName: 'Utqiagvik, Alaska',
+                latitude: 71.2906,
+                longitude: -156.7886,
+                timezone: 'America/Anchorage'
+            },
+            tromso: {
+                id: 'tromso',
+                placeName: 'Tromso, Norway',
+                latitude: 69.6492,
+                longitude: 18.9553,
+                timezone: 'Europe/Oslo'
+            },
+            longyearbyen: {
+                id: 'longyearbyen',
+                placeName: 'Longyearbyen, Svalbard',
+                latitude: 78.2232,
+                longitude: 15.6469,
+                timezone: 'Arctic/Longyearbyen'
+            }
+        };
+
+        let activeLocationId = 'utqiagvik';
+
+        function getActiveLocation() {
+            return arcticLocations[activeLocationId] || arcticLocations.utqiagvik;
+        }
+
+        const alaskaElements = {
+            locationSelect: document.getElementById('alaska-location-select'),
+            placeMeta: document.getElementById('alaska-place-meta'),
+            statusBadge: document.getElementById('alaska-status-badge'),
+            localTime: document.getElementById('alaska-local-time'),
+            nextTransition: document.getElementById('alaska-next-transition'),
+            progressLabel: document.getElementById('alaska-progress-label'),
+            progressFill: document.getElementById('alaska-daylight-meter-fill'),
+            weather: document.getElementById('alaska-weather'),
+            apparent: document.getElementById('alaska-apparent'),
+            wind: document.getElementById('alaska-wind'),
+            daylightMode: document.getElementById('alaska-daylight-mode'),
+            sunWindow: document.getElementById('alaska-sun-window'),
+            daylightDuration: document.getElementById('alaska-daylight-duration'),
+            updated: document.getElementById('alaska-updated')
+        };
+
+        const alaskaState = {
+            timezone: getActiveLocation().timezone,
+            sunrise: null,
+            sunset: null,
+            daylightDurationSeconds: null,
+            isDay: null
+        };
+
+        const nasaFreshElements = {
+            status: document.getElementById('nasa-fresh-status'),
+            link: document.getElementById('nasa-fresh-link')
+        };
+
+        const piedmontElements = {
+            sunrise: document.getElementById('piedmont-sunrise'),
+            sunset: document.getElementById('piedmont-sunset'),
+            moonPhase: document.getElementById('piedmont-moon-phase'),
+            updated: document.getElementById('piedmont-updated')
+        };
+
+        const piedmontConfig = {
+            placeName: 'Piedmont, South Carolina',
+            latitude: 34.7029,
+            longitude: -82.4646,
+            timezone: 'America/New_York'
+        };
+
+        const weatherCodeLabels = {
+            0: 'Clear sky',
+            1: 'Mostly clear',
+            2: 'Partly cloudy',
+            3: 'Overcast',
+            45: 'Fog',
+            48: 'Rime fog',
+            51: 'Light drizzle',
+            53: 'Drizzle',
+            55: 'Heavy drizzle',
+            56: 'Freezing drizzle',
+            57: 'Heavy freezing drizzle',
+            61: 'Light rain',
+            63: 'Rain',
+            65: 'Heavy rain',
+            66: 'Freezing rain',
+            67: 'Heavy freezing rain',
+            71: 'Light snow',
+            73: 'Snow',
+            75: 'Heavy snow',
+            77: 'Snow grains',
+            80: 'Rain showers',
+            81: 'Heavy rain showers',
+            82: 'Violent rain showers',
+            85: 'Snow showers',
+            86: 'Heavy snow showers',
+            95: 'Thunderstorm',
+            96: 'Thunderstorm with hail',
+            99: 'Strong thunderstorm with hail'
+        };
+
+        function formatTwoDigits(value) {
+            return String(value).padStart(2, '0');
+        }
+
+        function formatDateInTimezone(date, timezone) {
+            const formatter = new Intl.DateTimeFormat('en-US', {
+                timeZone: timezone,
+                hour: 'numeric',
+                minute: '2-digit',
+                second: '2-digit',
+                hour12: true,
+                weekday: 'short',
+                month: 'short',
+                day: 'numeric'
+            });
+            return formatter.format(date);
+        }
+
+        function formatDurationFromSeconds(seconds) {
+            if (!Number.isFinite(seconds) || seconds < 0) {
+                return '--';
+            }
+
+            const whole = Math.round(seconds);
+            const hours = Math.floor(whole / 3600);
+            const minutes = Math.floor((whole % 3600) / 60);
+            return formatTwoDigits(hours) + 'h ' + formatTwoDigits(minutes) + 'm';
+        }
+
+        function formatCountdown(milliseconds) {
+            if (!Number.isFinite(milliseconds) || milliseconds <= 0) {
+                return '00h 00m 00s';
+            }
+
+            const totalSeconds = Math.floor(milliseconds / 1000);
+            const hours = Math.floor(totalSeconds / 3600);
+            const minutes = Math.floor((totalSeconds % 3600) / 60);
+            const seconds = totalSeconds % 60;
+
+            return formatTwoDigits(hours) + 'h ' + formatTwoDigits(minutes) + 'm ' + formatTwoDigits(seconds) + 's';
+        }
+
+        function parseDateOrNull(value) {
+            if (typeof value === 'number' && Number.isFinite(value)) {
+                return new Date(value * 1000);
+            }
+
+            if (typeof value !== 'string' || !value.trim()) {
+                return null;
+            }
+
+            const parsed = new Date(value);
+            if (Number.isNaN(parsed.getTime())) {
+                return null;
+            }
+
+            return parsed;
+        }
+
+        function getWeatherLabel(code) {
+            return weatherCodeLabels[code] || 'Unknown conditions';
+        }
+
+        function getDatePartsInTimezone(date, timezone) {
+            const parts = new Intl.DateTimeFormat('en-US', {
+                timeZone: timezone,
+                year: 'numeric',
+                month: '2-digit',
+                day: '2-digit'
+            }).formatToParts(date);
+
+            const values = {};
+            parts.forEach((part) => {
+                if (part.type === 'year' || part.type === 'month' || part.type === 'day') {
+                    values[part.type] = Number(part.value);
+                }
+            });
+
+            if (!values.year || !values.month || !values.day) {
+                return null;
+            }
+
+            return values;
+        }
+
+        function getMoonPhaseFractionForTimezone(date, timezone) {
+            const dateParts = getDatePartsInTimezone(date, timezone);
+            if (!dateParts) {
+                return null;
+            }
+
+            const observationDateUtcNoon = Date.UTC(dateParts.year, dateParts.month - 1, dateParts.day, 12, 0, 0);
+            const knownNewMoon = Date.UTC(2000, 0, 6, 18, 14, 0);
+            const synodicMonthDays = 29.530588853;
+            const daysSinceKnownNewMoon = (observationDateUtcNoon - knownNewMoon) / 86400000;
+            const cyclePosition = ((daysSinceKnownNewMoon % synodicMonthDays) + synodicMonthDays) % synodicMonthDays;
+            return cyclePosition / synodicMonthDays;
+        }
+
+        function getMoonPhaseLabel(phaseFraction) {
+            if (!Number.isFinite(phaseFraction)) {
+                return 'Unknown phase';
+            }
+
+            if (phaseFraction < 0.03 || phaseFraction >= 0.97) {
+                return 'New Moon';
+            }
+            if (phaseFraction < 0.22) {
+                return 'Waxing Crescent';
+            }
+            if (phaseFraction < 0.28) {
+                return 'First Quarter';
+            }
+            if (phaseFraction < 0.47) {
+                return 'Waxing Gibbous';
+            }
+            if (phaseFraction < 0.53) {
+                return 'Full Moon';
+            }
+            if (phaseFraction < 0.72) {
+                return 'Waning Gibbous';
+            }
+            if (phaseFraction < 0.78) {
+                return 'Last Quarter';
+            }
+            return 'Waning Crescent';
+        }
+
+        function getMoonIlluminationPercent(phaseFraction) {
+            if (!Number.isFinite(phaseFraction)) {
+                return null;
+            }
+
+            const illumination = (1 - Math.cos(2 * Math.PI * phaseFraction)) / 2;
+            return Math.round(illumination * 100);
+        }
+
+        function setDaylightProgress(percent, label) {
+            if (alaskaElements.progressFill) {
+                const bounded = Math.max(0, Math.min(100, Number(percent) || 0));
+                alaskaElements.progressFill.style.width = bounded + '%';
+            }
+
+            if (alaskaElements.progressLabel) {
+                alaskaElements.progressLabel.textContent = label;
+            }
+        }
+
+        function renderLocationMeta(location) {
+            if (!alaskaElements.placeMeta) {
+                return;
+            }
+
+            const latText = Math.abs(location.latitude).toFixed(2) + ' ' + (location.latitude >= 0 ? 'N' : 'S');
+            const lonText = Math.abs(location.longitude).toFixed(2) + ' ' + (location.longitude >= 0 ? 'E' : 'W');
+            alaskaElements.placeMeta.textContent = location.placeName + ' | ' + latText + ', ' + lonText;
+        }
+
+        function populateLocationPicker() {
+            if (!alaskaElements.locationSelect) {
+                return;
+            }
+
+            const options = Object.values(arcticLocations)
+                .map((location) => '<option value="' + location.id + '">' + location.placeName + '</option>')
+                .join('');
+
+            alaskaElements.locationSelect.innerHTML = options;
+            alaskaElements.locationSelect.value = activeLocationId;
+            renderLocationMeta(getActiveLocation());
+        }
+
+        function setAlaskaFallback(message) {
+            if (!alaskaElements.statusBadge) {
+                return;
+            }
+
+            alaskaElements.statusBadge.textContent = message;
+            alaskaElements.weather.textContent = '--';
+            alaskaElements.apparent.textContent = 'Feels like: --';
+            alaskaElements.wind.textContent = 'Wind: --';
+            alaskaElements.daylightMode.textContent = '--';
+            alaskaElements.sunWindow.textContent = 'Sunrise/Sunset: --';
+            alaskaElements.daylightDuration.textContent = 'Daylight duration: --';
+            setDaylightProgress(0, 'Daylight progress: unavailable');
+        }
+
+        function updateAlaskaClock() {
+            if (!alaskaElements.localTime || !alaskaElements.nextTransition) {
+                return;
+            }
+
+            const now = new Date();
+            const location = getActiveLocation();
+            alaskaElements.localTime.textContent = 'Local time in ' + location.placeName + ': ' + formatDateInTimezone(now, alaskaState.timezone);
+
+            if (!alaskaState.sunrise || !alaskaState.sunset) {
+                alaskaElements.nextTransition.textContent = 'Next transition: sun transition not available for this date';
+                setDaylightProgress(0, 'Daylight progress: unavailable');
+                return;
+            }
+
+            const nowMs = now.getTime();
+            const sunriseMs = alaskaState.sunrise.getTime();
+            const sunsetMs = alaskaState.sunset.getTime();
+
+            if (alaskaState.daylightDurationSeconds !== null && alaskaState.daylightDurationSeconds >= 84600) {
+                alaskaElements.nextTransition.textContent = 'Next transition: midnight sun conditions';
+                setDaylightProgress(100, 'Daylight progress: 100% (midnight sun)');
+                return;
+            }
+
+            if (alaskaState.daylightDurationSeconds !== null && alaskaState.daylightDurationSeconds <= 1200) {
+                alaskaElements.nextTransition.textContent = 'Next transition: polar night conditions';
+                setDaylightProgress(0, 'Daylight progress: 0% (polar night)');
+                return;
+            }
+
+            if (nowMs < sunriseMs) {
+                alaskaElements.nextTransition.textContent = 'Next transition: sunrise in ' + formatCountdown(sunriseMs - nowMs);
+                setDaylightProgress(0, 'Daylight progress: 0% (before sunrise)');
+                return;
+            }
+
+            if (nowMs < sunsetMs) {
+                alaskaElements.nextTransition.textContent = 'Next transition: sunset in ' + formatCountdown(sunsetMs - nowMs);
+                const progress = ((nowMs - sunriseMs) / (sunsetMs - sunriseMs)) * 100;
+                setDaylightProgress(progress, 'Daylight progress: ' + Math.max(0, Math.min(100, Math.round(progress))) + '%');
+                return;
+            }
+
+            const tomorrowSunrise = new Date(alaskaState.sunrise);
+            tomorrowSunrise.setDate(tomorrowSunrise.getDate() + 1);
+            alaskaElements.nextTransition.textContent = 'Next transition: sunrise in ' + formatCountdown(tomorrowSunrise.getTime() - nowMs);
+            setDaylightProgress(100, 'Daylight progress: 100% (after sunset)');
+        }
+
+        function getDaylightMode(daylightDurationSeconds, isDay) {
+            if (Number.isFinite(daylightDurationSeconds) && daylightDurationSeconds >= 84600) {
+                return 'Midnight sun (24-hour daylight)';
+            }
+
+            if (Number.isFinite(daylightDurationSeconds) && daylightDurationSeconds <= 1200) {
+                return 'Polar night (almost no daylight)';
+            }
+
+            if (isDay === 1) {
+                return 'Daytime';
+            }
+
+            if (isDay === 0) {
+                return 'Nighttime';
+            }
+
+            return 'Transitioning';
+        }
+
+        async function updateAlaskaLiveTracker() {
+            if (!alaskaElements.statusBadge) {
+                return;
+            }
+
+            const location = getActiveLocation();
+            renderLocationMeta(location);
+
+            const endpoint =
+                'https://api.open-meteo.com/v1/forecast?latitude=' + location.latitude +
+                '&longitude=' + location.longitude +
+                '&current=temperature_2m,apparent_temperature,is_day,weather_code,wind_speed_10m' +
+                '&daily=sunrise,sunset,daylight_duration' +
+                '&forecast_days=1' +
+                '&timeformat=unixtime' +
+                '&timezone=' + encodeURIComponent(location.timezone);
+
+            try {
+                const response = await fetch(endpoint, { cache: 'no-store' });
+                if (!response.ok) {
+                    throw new Error('Weather fetch failed: ' + response.status);
+                }
+
+                const payload = await response.json();
+                const current = payload.current || {};
+                const daily = payload.daily || {};
+
+                const timezone = typeof payload.timezone === 'string' && payload.timezone
+                    ? payload.timezone
+                    : location.timezone;
+
+                alaskaState.timezone = timezone;
+                alaskaState.sunrise = Array.isArray(daily.sunrise) ? parseDateOrNull(daily.sunrise[0]) : null;
+                alaskaState.sunset = Array.isArray(daily.sunset) ? parseDateOrNull(daily.sunset[0]) : null;
+                alaskaState.daylightDurationSeconds = Array.isArray(daily.daylight_duration)
+                    ? Number(daily.daylight_duration[0])
+                    : null;
+                alaskaState.isDay = typeof current.is_day === 'number' ? current.is_day : null;
+
+                const weatherText = getWeatherLabel(current.weather_code);
+                const temp = Number.isFinite(current.temperature_2m) ? Math.round(current.temperature_2m) + ' C' : '--';
+                const feelsLike = Number.isFinite(current.apparent_temperature)
+                    ? Math.round(current.apparent_temperature) + ' C'
+                    : '--';
+                const wind = Number.isFinite(current.wind_speed_10m) ? Math.round(current.wind_speed_10m) + ' km/h' : '--';
+                const daylightMode = getDaylightMode(alaskaState.daylightDurationSeconds, alaskaState.isDay);
+
+                alaskaElements.statusBadge.textContent = daylightMode;
+                alaskaElements.weather.textContent = weatherText + ' | ' + temp;
+                alaskaElements.apparent.textContent = 'Feels like: ' + feelsLike;
+                alaskaElements.wind.textContent = 'Wind: ' + wind;
+                alaskaElements.daylightMode.textContent = daylightMode;
+
+                if (alaskaState.sunrise && alaskaState.sunset) {
+                    const sunriseText = new Intl.DateTimeFormat('en-US', {
+                        timeZone: alaskaState.timezone,
+                        hour: 'numeric',
+                        minute: '2-digit',
+                        hour12: true
+                    }).format(alaskaState.sunrise);
+
+                    const sunsetText = new Intl.DateTimeFormat('en-US', {
+                        timeZone: alaskaState.timezone,
+                        hour: 'numeric',
+                        minute: '2-digit',
+                        hour12: true
+                    }).format(alaskaState.sunset);
+
+                    alaskaElements.sunWindow.textContent = 'Sunrise/Sunset: ' + sunriseText + ' / ' + sunsetText;
+                } else {
+                    alaskaElements.sunWindow.textContent = 'Sunrise/Sunset: unavailable for this date';
+                }
+
+                alaskaElements.daylightDuration.textContent = 'Daylight duration: ' + formatDurationFromSeconds(alaskaState.daylightDurationSeconds);
+                alaskaElements.updated.textContent = 'Last weather refresh: ' + formatDateInTimezone(new Date(), alaskaState.timezone);
+                updateAlaskaClock();
+            } catch (error) {
+                setAlaskaFallback('Live polar tracker temporarily offline');
+                if (alaskaElements.updated) {
+                    alaskaElements.updated.textContent = 'Last weather refresh: request failed, retrying...';
+                }
+            }
+        }
+
+        async function updateNasaFreshFeed() {
+            if (!nasaFreshElements.status || !nasaFreshElements.link) {
+                return;
+            }
+
+            const currentYear = new Date().getUTCFullYear();
+            const endpoint =
+                'https://images-api.nasa.gov/search?media_type=image&q=mars&year_start=' + (currentYear - 1);
+
+            try {
+                const response = await fetch(endpoint, { cache: 'no-store' });
+                if (!response.ok) {
+                    throw new Error('NASA library request failed: ' + response.status);
+                }
+
+                const payload = await response.json();
+                const items = (payload.collection && Array.isArray(payload.collection.items))
+                    ? payload.collection.items
+                    : [];
+
+                const usableItems = items
+                    .map((item) => {
+                        const data = Array.isArray(item.data) ? item.data[0] : null;
+                        if (!data || typeof data.title !== 'string') {
+                            return null;
+                        }
+
+                        const createdAt = parseDateOrNull(data.date_created);
+                        const nasaId = typeof data.nasa_id === 'string' ? data.nasa_id : '';
+                        return {
+                            title: data.title.trim(),
+                            createdAt,
+                            nasaId
+                        };
+                    })
+                    .filter((item) => item && item.createdAt instanceof Date);
+
+                if (!usableItems.length) {
+                    throw new Error('No NASA items returned');
+                }
+
+                usableItems.sort((a, b) => b.createdAt.getTime() - a.createdAt.getTime());
+                const newest = usableItems[0];
+                const detailUrl = newest.nasaId
+                    ? 'https://images.nasa.gov/details-' + encodeURIComponent(newest.nasaId)
+                    : 'https://images.nasa.gov/';
+
+                nasaFreshElements.status.textContent = 'Latest match: ' + newest.title;
+                nasaFreshElements.link.href = detailUrl;
+            } catch (error) {
+                nasaFreshElements.status.textContent = 'NASA live feed is temporarily unavailable.';
+                nasaFreshElements.link.href = 'https://images.nasa.gov/';
+            }
+        }
+
+        async function updatePiedmontSunAndMoon() {
+            if (!piedmontElements.sunrise || !piedmontElements.sunset || !piedmontElements.moonPhase || !piedmontElements.updated) {
+                return;
+            }
+
+            const endpoint =
+                'https://api.open-meteo.com/v1/forecast?latitude=' + piedmontConfig.latitude +
+                '&longitude=' + piedmontConfig.longitude +
+                '&daily=sunrise,sunset' +
+                '&forecast_days=1' +
+                '&timeformat=unixtime' +
+                '&timezone=' + encodeURIComponent(piedmontConfig.timezone);
+
+            try {
+                const response = await fetch(endpoint, { cache: 'no-store' });
+                if (!response.ok) {
+                    throw new Error('Piedmont forecast request failed: ' + response.status);
+                }
+
+                const payload = await response.json();
+                const daily = payload.daily || {};
+                const sunrise = Array.isArray(daily.sunrise) ? parseDateOrNull(daily.sunrise[0]) : null;
+                const sunset = Array.isArray(daily.sunset) ? parseDateOrNull(daily.sunset[0]) : null;
+
+                if (sunrise) {
+                    const sunriseText = new Intl.DateTimeFormat('en-US', {
+                        timeZone: piedmontConfig.timezone,
+                        hour: 'numeric',
+                        minute: '2-digit',
+                        hour12: true
+                    }).format(sunrise);
+                    piedmontElements.sunrise.textContent = 'Sunrise: ' + sunriseText;
+                } else {
+                    piedmontElements.sunrise.textContent = 'Sunrise: unavailable';
+                }
+
+                if (sunset) {
+                    const sunsetText = new Intl.DateTimeFormat('en-US', {
+                        timeZone: piedmontConfig.timezone,
+                        hour: 'numeric',
+                        minute: '2-digit',
+                        hour12: true
+                    }).format(sunset);
+                    piedmontElements.sunset.textContent = 'Sunset: ' + sunsetText;
+                } else {
+                    piedmontElements.sunset.textContent = 'Sunset: unavailable';
+                }
+
+                const phaseFraction = getMoonPhaseFractionForTimezone(new Date(), piedmontConfig.timezone);
+                const phaseLabel = getMoonPhaseLabel(phaseFraction);
+                const illumination = getMoonIlluminationPercent(phaseFraction);
+                piedmontElements.moonPhase.textContent = Number.isFinite(illumination)
+                    ? 'Moon phase: ' + phaseLabel + ' (' + illumination + '% illuminated)'
+                    : 'Moon phase: ' + phaseLabel;
+
+                piedmontElements.updated.textContent = 'Last update: ' + formatDateInTimezone(new Date(), piedmontConfig.timezone);
+            } catch (error) {
+                piedmontElements.sunrise.textContent = 'Sunrise: unavailable';
+                piedmontElements.sunset.textContent = 'Sunset: unavailable';
+                piedmontElements.moonPhase.textContent = 'Moon phase: unavailable';
+                piedmontElements.updated.textContent = 'Last update: request failed, retrying...';
+            }
+        }
+
+        if (alaskaElements.statusBadge) {
+            populateLocationPicker();
+
+            if (alaskaElements.locationSelect) {
+                alaskaElements.locationSelect.addEventListener('change', () => {
+                    const nextId = alaskaElements.locationSelect.value;
+                    if (!arcticLocations[nextId]) {
+                        return;
+                    }
+
+                    activeLocationId = nextId;
+                    alaskaState.timezone = getActiveLocation().timezone;
+                    alaskaState.sunrise = null;
+                    alaskaState.sunset = null;
+                    alaskaState.daylightDurationSeconds = null;
+                    alaskaState.isDay = null;
+                    setDaylightProgress(0, 'Daylight progress: refreshing...');
+                    updateAlaskaClock();
+                    updateAlaskaLiveTracker();
+                });
+            }
+
+            updateAlaskaClock();
+            updateAlaskaLiveTracker();
+            window.setInterval(updateAlaskaClock, 1000);
+            window.setInterval(updateAlaskaLiveTracker, 10 * 60 * 1000);
+        }
+
+        if (nasaFreshElements.status && nasaFreshElements.link) {
+            updateNasaFreshFeed();
+            window.setInterval(updateNasaFreshFeed, 30 * 60 * 1000);
+        }
+
+        if (piedmontElements.sunrise && piedmontElements.sunset && piedmontElements.moonPhase && piedmontElements.updated) {
+            updatePiedmontSunAndMoon();
+            window.setInterval(updatePiedmontSunAndMoon, 60 * 60 * 1000);
+        }
+
+        async function updatePulpNowPlaying() {
+            const output = document.getElementById('pulp-now-playing');
+            if (!output) {
+                return;
+            }
+
+            const fallbackText = 'Now showing updates are available on the channel page.';
+
+            try {
+                const response = await fetch('./pulptime-now-showing.json', { cache: 'no-store' });
+
+                if (!response.ok) {
+                    throw new Error('Now showing file fetch failed');
+                }
+
+                const payload = await response.json();
+                const nowShowing = typeof payload.nowShowing === 'string' ? payload.nowShowing.trim() : '';
+                const upNext = typeof payload.upNext === 'string' ? payload.upNext.trim() : '';
+
+                if (nowShowing) {
+                    output.textContent = upNext
+                        ? 'Now Showing: ' + nowShowing + ' | Up Next: ' + upNext
+                        : 'Now Showing: ' + nowShowing;
+                    return;
+                }
+
+                output.textContent = fallbackText;
+            } catch (error) {
+                output.textContent = fallbackText;
+            }
+        }
+
+        updatePulpNowPlaying();
+
+        async function copyVenmoUsername() {
+            const usernameEl = document.getElementById('venmo-username');
+            const statusEl = document.getElementById('venmo-copy-status');
+            if (!usernameEl || !statusEl) {
+                return;
+            }
+
+            const username = usernameEl.textContent.trim();
+            if (!username) {
+                statusEl.textContent = 'Venmo username is unavailable right now.';
+                return;
+            }
+
             try {
                 await navigator.clipboard.writeText(username);
-                copyStatus.textContent = 'Copied: ' + username;
+                statusEl.textContent = 'Copied. Paste it into Venmo search.';
             } catch (error) {
-                copyStatus.textContent = 'Venmo username: ' + username;
+                const helper = document.createElement('textarea');
+                helper.value = username;
+                helper.setAttribute('readonly', '');
+                helper.style.position = 'absolute';
+                helper.style.left = '-9999px';
+                document.body.appendChild(helper);
+                helper.select();
+                const copied = document.execCommand('copy');
+                document.body.removeChild(helper);
+                statusEl.textContent = copied
+                    ? 'Copied. Paste it into Venmo search.'
+                    : 'Copy failed. Venmo username: ' + username;
             }
+        }
+
+        const copyVenmoBtn = document.getElementById('copy-venmo-btn');
+        if (copyVenmoBtn) {
+            copyVenmoBtn.addEventListener('click', copyVenmoUsername);
+        }
+
+        // Lightweight click analytics stored in localStorage for key links.
+        const clickAnalyticsKey = 'eric-site-clicks-v1';
+
+        function getClickAnalytics() {
+            try {
+                const raw = localStorage.getItem(clickAnalyticsKey);
+                return raw ? JSON.parse(raw) : {};
+            } catch (error) {
+                return {};
+            }
+        }
+
+        function recordTrackedClick(eventName) {
+            if (!eventName) {
+                return;
+            }
+            const data = getClickAnalytics();
+            const existing = data[eventName] || { count: 0, lastClicked: '' };
+            data[eventName] = {
+                count: existing.count + 1,
+                lastClicked: new Date().toISOString()
+            };
+            localStorage.setItem(clickAnalyticsKey, JSON.stringify(data));
+        }
+
+        document.querySelectorAll('[data-track]').forEach((trackable) => {
+            trackable.addEventListener('click', () => {
+                recordTrackedClick(trackable.dataset.track);
+            });
         });
+
+        window.getSiteClickAnalytics = getClickAnalytics;
+
+        // Filter functionality
+        const searchInput = document.getElementById('search-input');
+        const filterButtons = document.querySelectorAll('.filter-btn');
+        const navCards = document.querySelectorAll('#nav-container .nav-card');
+        const filterFeedback = document.getElementById('filter-feedback');
+        const noResultsState = document.getElementById('no-results-state');
+        const totalCardCount = navCards.length;
+        let activeFilter = 'all';
+
+        function getFilterLabel(filterValue) {
+            if (filterValue === 'all') {
+                return 'all categories';
+            }
+
+            return filterValue;
+        }
+
+        // Filter cards based on search term and category
+        function filterCards() {
+            const searchTerm = searchInput ? searchInput.value.trim().toLowerCase() : '';
+            let visibleCount = 0;
+            
+            navCards.forEach(card => {
+                const category = card.dataset.category;
+                const tags = card.dataset.tags.toLowerCase();
+                const title = card.querySelector('.nav-card-title').textContent.toLowerCase();
+                const description = card.querySelector('.nav-card-description').textContent.toLowerCase();
+                
+                // Check if card matches search term
+                const matchesSearch = !searchTerm || 
+                    title.includes(searchTerm) || 
+                    description.includes(searchTerm) || 
+                    tags.includes(searchTerm);
+                
+                // Check if card matches category filter
+                const matchesCategory = activeFilter === 'all' || category === activeFilter;
+                
+                // Show or hide card with smooth transition
+                if (matchesSearch && matchesCategory) {
+                    card.style.display = 'flex';
+                    card.style.opacity = '1';
+                    card.style.pointerEvents = 'auto';
+                    visibleCount += 1;
+                } else {
+                    card.style.display = 'none';
+                    card.style.opacity = '0';
+                    card.style.pointerEvents = 'none';
+                }
+            });
+
+            if (noResultsState) {
+                noResultsState.hidden = visibleCount !== 0;
+            }
+
+            if (filterFeedback) {
+                const categoryLabel = getFilterLabel(activeFilter);
+                if (!searchTerm && activeFilter === 'all') {
+                    filterFeedback.textContent = 'Showing all ' + totalCardCount + ' projects.';
+                } else if (!searchTerm) {
+                    filterFeedback.textContent = 'Showing ' + visibleCount + ' of ' + totalCardCount + ' projects in ' + categoryLabel + '.';
+                } else if (visibleCount === 0) {
+                    filterFeedback.textContent = 'No projects match "' + searchTerm + '" in ' + categoryLabel + '.';
+                } else {
+                    filterFeedback.textContent = 'Showing ' + visibleCount + ' of ' + totalCardCount + ' projects for "' + searchTerm + '" in ' + categoryLabel + '.';
+                }
+            }
+        }
+
+        // Search input event listener
+        if (searchInput) {
+            searchInput.addEventListener('input', filterCards);
+        }
+
+        // Filter button event listeners
+        filterButtons.forEach(button => {
+            button.addEventListener('click', () => {
+                // Remove active class from all buttons
+                filterButtons.forEach(btn => btn.classList.remove('active'));
+                // Add active class to clicked button
+                button.classList.add('active');
+                // Update active filter
+                activeFilter = button.dataset.filter;
+                // Clear search input when filtering by category
+                searchInput.value = '';
+                // Refilter cards
+                filterCards();
+            });
+        });
+
+        filterCards();
     </script>
+    <script type="module" src="js/site-visitor-counter.js"></script>
 </body>
 </html>
