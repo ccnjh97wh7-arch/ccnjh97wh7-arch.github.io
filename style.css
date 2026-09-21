@@ -49,11 +49,7 @@ img.retro-globe-image {
     top: 10px;
 }
 
-a:focus-visible,
-button:focus-visible,
-input:focus-visible,
-textarea:focus-visible,
-select:focus-visible {
+a:focus-visible, button:focus-visible, input:focus-visible, textarea:focus-visible, select:focus-visible {
     outline: 3px solid var(--patriotic-red);
     outline-offset: 2px;
 }
@@ -117,11 +113,7 @@ header::after {
     pointer-events: none;
 }
 
-.header-main,
-header h1,
-.header-tagline,
-.header-callouts,
-.header-support {
+.header-main, header h1, .header-tagline, .header-callouts, .header-support {
     position: relative;
     z-index: 1;
 }
@@ -273,16 +265,12 @@ header h1,
     animation: moon-speed-cycle 5.8s cubic-bezier(0.45, 0.05, 0.55, 0.95) infinite;
 }
 
-.header-globe:hover .retro-globe-image,
-.header-globe:focus-within .retro-globe-image {
+.header-globe:hover .retro-globe-image, .header-globe:focus-within .retro-globe-image {
     animation-duration: 5.4s;
     filter: hue-rotate(172deg) saturate(2.7) brightness(1.58) contrast(1.24) drop-shadow(0 0 14px rgba(204, 248, 255, 0.56));
 }
 
-.header-globe:hover .retro-globe-wrap::before,
-.header-globe:focus-within .retro-globe-wrap::before,
-.header-globe:hover .retro-globe-wrap::after,
-.header-globe:focus-within .retro-globe-wrap::after {
+.header-globe:hover .retro-globe-wrap::before, .header-globe:focus-within .retro-globe-wrap::before, .header-globe:hover .retro-globe-wrap::after, .header-globe:focus-within .retro-globe-wrap::after {
     animation-duration: 6.2s;
 }
 
@@ -328,8 +316,7 @@ header h1 {
     align-items: stretch;
 }
 
-.header-callout,
-.header-support {
+.header-callout, .header-support {
     position: relative;
     min-width: 0;
     width: clamp(206px, 21vw, 246px);
@@ -420,9 +407,7 @@ header h1 {
     color: var(--white);
 }
 
-.header-screenplay .header-support-title,
-.header-screenplay .header-support-note,
-.header-screenplay .header-support-note a {
+.header-screenplay .header-support-title, .header-screenplay .header-support-note, .header-screenplay .header-support-note a {
     color: rgba(188, 247, 255, 0.98);
     text-shadow: 0 0 6px rgba(92, 206, 255, 0.4);
 }
@@ -444,8 +429,7 @@ header h1 {
     animation: blue-engine-pulse 2.75s ease-in-out infinite;
 }
 
-.header-screenplay .donate-btn,
-.header-screenplay {
+.header-screenplay .donate-btn, .header-screenplay {
     animation-delay: -1.95s;
 }
 
@@ -502,9 +486,7 @@ header h1 {
     pointer-events: none;
 }
 
-.header-support .header-support-title,
-.header-support .header-support-note,
-.header-support .header-support-note a {
+.header-support .header-support-title, .header-support .header-support-note, .header-support .header-support-note a {
     color: rgba(255, 190, 190, 0.99);
     text-shadow: 0 0 6px rgba(255, 74, 74, 0.5);
 }
@@ -538,8 +520,7 @@ header h1 {
 }
 
 @keyframes blue-engine-pulse {
-    0%,
-    100% {
+    0%, 100% {
         box-shadow:
             0 0 0 1px rgba(161, 242, 255, 0.2),
             0 0 16px rgba(92, 206, 255, 0.32),
@@ -556,8 +537,7 @@ header h1 {
 }
 
 @keyframes blue-engine-flicker {
-    0%,
-    100% {
+    0%, 100% {
         opacity: 1;
         transform: translate3d(0, 0, 0);
     }
@@ -576,8 +556,7 @@ header h1 {
 }
 
 @keyframes support-engine-pulse {
-    0%,
-    100% {
+    0%, 100% {
         box-shadow:
             0 0 0 1px rgba(255, 154, 154, 0.18),
             0 0 16px rgba(255, 74, 74, 0.32),
@@ -594,8 +573,7 @@ header h1 {
 }
 
 @keyframes support-engine-flicker {
-    0%,
-    100% {
+    0%, 100% {
         opacity: 1;
         transform: translate3d(0, 0, 0);
     }
@@ -690,8 +668,7 @@ header h1 {
 }
 
 @keyframes retro-lens-sweep {
-    0%,
-    100% {
+    0%, 100% {
         transform: translateX(-58%) rotate(7deg);
         opacity: 0;
     }
@@ -722,8 +699,7 @@ header h1 {
 }
 
 @keyframes retro-globe-flicker {
-    0%,
-    100% {
+    0%, 100% {
         opacity: 0.4;
         transform: scale(1.04) rotate(0deg);
     }
@@ -746,8 +722,7 @@ header h1 {
 }
 
 @keyframes retro-globe-sheen {
-    0%,
-    100% {
+    0%, 100% {
         filter: brightness(1) saturate(1) hue-rotate(0deg);
     }
     20% {
@@ -762,8 +737,7 @@ header h1 {
 }
 
 @keyframes retro-globe-tube-hum {
-    0%,
-    100% {
+    0%, 100% {
         opacity: 1;
         transform: scale(1);
     }
@@ -830,8 +804,7 @@ header h1 {
 }
 
 @keyframes retro-globe-caption-flicker {
-    0%,
-    100% {
+    0%, 100% {
         opacity: 0.94;
     }
     50% {
@@ -1335,8 +1308,7 @@ main {
     margin-bottom: 14px;
 }
 
-.soundcloud-feature-status,
-.soundcloud-feature-meta {
+.soundcloud-feature-status, .soundcloud-feature-meta {
     margin: 0;
     font-family: "Courier New", "Lucida Console", Monaco, monospace;
     font-size: 0.76rem;
@@ -1470,8 +1442,7 @@ main {
 }
 
 @keyframes soundcloud-signal-glow {
-    0%,
-    100% {
+    0%, 100% {
         box-shadow:
             0 0 0 1px rgba(255, 85, 0, 0.24),
             0 0 22px rgba(255, 85, 0, 0.22),
@@ -1522,8 +1493,7 @@ main {
     margin-bottom: 14px;
 }
 
-.vault-video-feature-status,
-.vault-video-feature-meta {
+.vault-video-feature-status, .vault-video-feature-meta {
     margin: 0;
     font-family: "Courier New", "Lucida Console", Monaco, monospace;
     font-size: 0.76rem;
@@ -1668,8 +1638,7 @@ main {
 }
 
 @keyframes vault-video-signal-glow {
-    0%,
-    100% {
+    0%, 100% {
         box-shadow:
             0 0 0 1px rgba(196, 125, 255, 0.26),
             0 0 22px rgba(196, 125, 255, 0.2),
@@ -1711,9 +1680,7 @@ main {
 }
 
 @media (prefers-reduced-motion: reduce) {
-    .vault-video-feature-shell,
-    .vault-video-feature-shell::after,
-    .vault-video-original-btn {
+    .vault-video-feature-shell, .vault-video-feature-shell::after, .vault-video-original-btn {
         animation: none !important;
         transition: none !important;
     }
@@ -2003,8 +1970,7 @@ section p {
     transition: transform 0.2s ease, border-color 0.2s ease, background-color 0.2s ease;
 }
 
-.friend-link-card:hover,
-.friend-link-card:focus-visible {
+.friend-link-card:hover, .friend-link-card:focus-visible {
     transform: translateY(-2px);
     border-color: rgba(196, 30, 58, 0.48);
     background: linear-gradient(140deg, rgba(255, 255, 255, 0.98), rgba(196, 30, 58, 0.08));
@@ -2155,150 +2121,6 @@ section p {
     gap: 12px;
 }
 
-.alaska-live-section {
-    border-left-color: var(--newport-green);
-}
-
-.alaska-live-section::before {
-    background: linear-gradient(180deg, rgba(45, 80, 22, 0.2), rgba(120, 24, 18, 0.06));
-}
-
-.alaska-live-intro {
-    margin: 0;
-}
-
-.alaska-location-picker {
-    margin-top: 12px;
-    margin-bottom: 6px;
-    display: grid;
-    grid-template-columns: auto minmax(200px, 1fr);
-    align-items: center;
-    gap: 8px 10px;
-}
-
-.alaska-location-picker label {
-    font-family: Arial, sans-serif;
-    font-size: 0.86rem;
-    font-weight: 700;
-    letter-spacing: 0.04em;
-    color: var(--newport-green);
-    text-transform: uppercase;
-}
-
-.alaska-location-picker select {
-    appearance: none;
-    border: 1px solid rgba(120, 24, 18, 0.35);
-    border-radius: 8px;
-    padding: 9px 11px;
-    font-family: Arial, sans-serif;
-    font-size: 0.92rem;
-    background: linear-gradient(135deg, rgba(255, 255, 255, 0.98), rgba(120, 24, 18, 0.07));
-    color: var(--near-black);
-}
-
-.alaska-place-meta {
-    margin: 0;
-    grid-column: 1 / -1;
-    font-size: 0.83rem;
-    color: #3f3f3f;
-}
-
-.alaska-live-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(210px, 1fr));
-    gap: 12px;
-    margin-top: 14px;
-}
-
-.alaska-live-card {
-    border: 1px solid rgba(45, 80, 22, 0.3);
-    border-radius: 10px;
-    background: linear-gradient(135deg, rgba(255, 255, 255, 0.96), rgba(45, 80, 22, 0.07));
-    padding: 12px 13px;
-}
-
-.alaska-live-card h3 {
-    margin: 0 0 8px;
-    font-size: 1rem;
-    color: #ffffff;
-}
-
-.alaska-live-card-primary {
-    border-color: rgba(120, 24, 18, 0.3);
-    background: linear-gradient(135deg, rgba(120, 24, 18, 0.08), rgba(45, 80, 22, 0.11));
-}
-
-.alaska-status-badge {
-    display: inline-block;
-    margin: 0 0 8px;
-    padding: 4px 9px;
-    border-radius: 999px;
-    font-family: Arial, sans-serif;
-    font-size: 0.76rem;
-    letter-spacing: 0.06em;
-    text-transform: uppercase;
-    color: #ffffff;
-    background: var(--newport-green);
-}
-
-.alaska-local-time,
-.alaska-next-transition,
-.alaska-live-detail,
-.alaska-updated {
-    margin: 0;
-    font-size: 0.9rem;
-    line-height: 1.45;
-    font-family: Arial, sans-serif;
-    color: #ffffff;
-}
-
-.alaska-next-transition,
-.alaska-live-detail {
-    margin-top: 6px;
-}
-
-.alaska-daylight-meter-wrap {
-    margin-top: 10px;
-}
-
-.alaska-progress-label {
-    margin: 0 0 6px;
-    font-family: Arial, sans-serif;
-    font-size: 0.83rem;
-    color: #ffffff;
-}
-
-.alaska-daylight-meter {
-    width: 100%;
-    height: 12px;
-    border-radius: 999px;
-    border: 1px solid rgba(120, 24, 18, 0.3);
-    background: linear-gradient(90deg, rgba(9, 20, 51, 0.55), rgba(251, 214, 106, 0.35));
-    overflow: hidden;
-}
-
-.alaska-daylight-meter-fill {
-    width: 0%;
-    height: 100%;
-    border-radius: 999px;
-    background: linear-gradient(90deg, rgba(255, 242, 166, 0.92), rgba(255, 182, 59, 0.96));
-    box-shadow: 0 0 10px rgba(255, 196, 71, 0.4);
-    transition: width 0.5s linear;
-}
-
-.alaska-live-value {
-    margin: 0;
-    color: #ffffff;
-    font-size: 1rem;
-    font-weight: 700;
-}
-
-.alaska-updated {
-    margin-top: 10px;
-    font-size: 0.82rem;
-    color: rgba(255, 255, 255, 0.82);
-}
-
 .weirdness-link {
     margin: 12px 0 0;
 }
@@ -2318,87 +2140,6 @@ section p {
 .weirdness-link a:hover {
     color: var(--patriotic-red);
     border-color: rgba(196, 30, 58, 0.65);
-}
-
-.alaska-extra-grid {
-    display: grid;
-    grid-template-columns: repeat(2, minmax(0, 1fr));
-    gap: 12px;
-    margin-top: 14px;
-}
-
-.alaska-extra-card {
-    border: 1px solid rgba(120, 24, 18, 0.24);
-    border-radius: 10px;
-    padding: 12px 13px;
-    background: linear-gradient(135deg, rgba(255, 255, 255, 0.97), rgba(120, 24, 18, 0.06));
-}
-
-.alaska-extra-kicker {
-    margin: 0 0 6px;
-    font-family: Arial, sans-serif;
-    font-size: 0.68rem;
-    font-weight: 700;
-    letter-spacing: 0.08em;
-    text-transform: uppercase;
-    color: var(--newport-green);
-}
-
-.alaska-extra-card h3 {
-    margin: 0 0 8px;
-    font-size: 1rem;
-    color: var(--patriotic-blue);
-}
-
-.alaska-extra-detail {
-    margin: 0;
-    font-size: 0.9rem;
-    line-height: 1.45;
-    color: #343434;
-    font-family: Arial, sans-serif;
-}
-
-.alaska-extra-detail + .alaska-extra-detail {
-    margin-top: 6px;
-}
-
-.alaska-extra-link {
-    display: inline-block;
-    margin-top: 10px;
-    font-family: Arial, sans-serif;
-    font-size: 0.84rem;
-    font-weight: 700;
-    letter-spacing: 0.03em;
-    color: var(--patriotic-red);
-    text-decoration: none;
-    border-bottom: 1px dashed rgba(196, 30, 58, 0.6);
-    padding-bottom: 2px;
-}
-
-.alaska-extra-muted-link {
-    display: inline-block;
-    margin-top: 7px;
-    font-size: 0.78rem;
-    color: var(--patriotic-blue);
-    text-decoration: none;
-    font-family: Arial, sans-serif;
-}
-
-.alaska-extra-updated {
-    margin: 8px 0 0;
-    font-size: 0.78rem;
-    color: #4a4a4a;
-    font-family: Arial, sans-serif;
-}
-
-.nasa-fresh-card {
-    border-color: rgba(196, 30, 58, 0.32);
-    background: linear-gradient(135deg, rgba(255, 255, 255, 0.97), rgba(196, 30, 58, 0.09));
-}
-
-.piedmont-sky-card {
-    border-color: rgba(45, 80, 22, 0.32);
-    background: linear-gradient(135deg, rgba(255, 255, 255, 0.97), rgba(45, 80, 22, 0.08));
 }
 
 .weirdness-page-intro {
@@ -2663,8 +2404,7 @@ section p {
     line-height: 1.4;
 }
 
-.gallery-loading,
-.gallery-empty {
+.gallery-loading, .gallery-empty {
     font-size: 16px;
     color: var(--patriotic-red);
 }
@@ -4143,8 +3883,7 @@ footer {
         z-index: 3;
     }
 
-    body::before,
-    body::after {
+    body::before, body::after {
         content: "";
         position: fixed;
         inset: 0;
@@ -4167,31 +3906,18 @@ footer {
         transition: color 0.22s ease, text-shadow 0.22s ease, border-color 0.22s ease, background-color 0.22s ease;
     }
 
-    a:hover,
-    a:focus-visible {
+    a:hover, a:focus-visible {
         color: #dff8ff;
         text-shadow:
             0 0 2px rgba(204, 246, 255, 0.8),
             0 0 8px rgba(87, 217, 255, 0.38);
     }
 
-    p,
-    li,
-    small,
-    .header-tagline,
-    .footer-bottom p {
+    p, li, small, .header-tagline, .footer-bottom p {
         color: var(--crt-text-soft);
     }
 
-    section p,
-    section li,
-    .latest-update-card p,
-    .nav-card-description,
-    .project-week-description,
-    .friend-link-description,
-    .alaska-extra-detail,
-    .pulp-now-playing,
-    .header-support-note {
+    section p, section li, .latest-update-card p, .nav-card-description, .project-week-description, .friend-link-description, .pulp-now-playing, .header-support-note {
         color: #ddf5ff;
     }
 
@@ -4203,70 +3929,23 @@ footer {
         margin-top: 0.9rem;
     }
 
-    .nav-card-description,
-    .project-week-description,
-    .friend-link-description,
-    .latest-update-card p,
-    .alaska-extra-detail,
-    .pulp-now-playing,
-    .header-support-note {
+    .nav-card-description, .project-week-description, .friend-link-description, .latest-update-card p, .pulp-now-playing, .header-support-note {
         color: #ddf5ff;
     }
 
-    h1,
-    h2,
-    h3,
-    h4,
-    h5,
-    h6,
-    label,
-    button,
-    input,
-    select,
-    textarea,
-    .global-nav a,
-    .section-kicker,
-    .nav-card-title,
-    .quick-start-label,
-    .stat-label,
-    .friend-link-tag,
-    .pulp-time-tagline {
+    h1, h2, h3, h4, h5, h6, label, button, input, select, textarea, .global-nav a, .section-kicker, .nav-card-title, .quick-start-label, .stat-label, .friend-link-tag, .pulp-time-tagline {
         font-family: "Courier New", "Lucida Console", Monaco, monospace;
         letter-spacing: 0.02em;
     }
 
-    h1,
-    h2,
-    h3,
-    .global-nav a,
-    .nav-card-title {
+    h1, h2, h3, .global-nav a, .nav-card-title {
         color: var(--crt-text);
         text-shadow:
             0 0 2px rgba(142, 238, 255, 0.74),
             0 0 10px rgba(87, 217, 255, 0.26);
     }
 
-    header,
-    .global-nav,
-    footer,
-    .archive-panel,
-    .page-intro-shell,
-    .nav-card,
-    .quick-start-card,
-    .project-week-card,
-    .stat-item,
-    .friend-link-card,
-    .live-weirdness-card,
-    .latest-update-card,
-    .weirdness-page-intro,
-    .pulp-time-feature,
-    .dash-wrap,
-    .dash-intro,
-    .dash-arena,
-    .game-card,
-    section,
-    article,
-    form {
+    header, .global-nav, footer, .archive-panel, .page-intro-shell, .nav-card, .quick-start-card, .project-week-card, .stat-item, .friend-link-card, .live-weirdness-card, .latest-update-card, .weirdness-page-intro, .pulp-time-feature, .dash-wrap, .dash-intro, .dash-arena, .game-card, section, article, form {
         background: var(--crt-panel);
         border-color: var(--crt-border);
         box-shadow:
@@ -4274,38 +3953,15 @@ footer {
             0 0 16px var(--crt-shadow);
     }
 
-    header,
-    footer,
-    .global-nav {
+    header, footer, .global-nav {
         background: var(--crt-panel-strong);
     }
 
-    section,
-    article,
-    form,
-    .archive-panel,
-    .nav-card,
-    .quick-start-card,
-    .project-week-card,
-    .stat-item,
-    .friend-link-card,
-    .live-weirdness-card,
-    .latest-update-card,
-    .pulp-time-feature,
-    .game-card {
+    section, article, form, .archive-panel, .nav-card, .quick-start-card, .project-week-card, .stat-item, .friend-link-card, .live-weirdness-card, .latest-update-card, .pulp-time-feature, .game-card {
         border: 1px solid var(--crt-border);
     }
 
-    button,
-    input,
-    select,
-    textarea,
-    .hero-cta-btn,
-    .secondary-cta-btn,
-    .donate-btn,
-    .filter-btn,
-    .game-btn,
-    .dash-btn {
+    button, input, select, textarea, .hero-cta-btn, .secondary-cta-btn, .donate-btn, .filter-btn, .game-btn, .dash-btn {
         background: rgba(8, 18, 10, 0.9);
         color: var(--crt-text);
         border: 1px solid var(--crt-border-strong);
@@ -4314,20 +3970,7 @@ footer {
             0 0 12px rgba(87, 217, 255, 0.18);
     }
 
-    button:hover,
-    button:focus-visible,
-    input:hover,
-    input:focus-visible,
-    select:hover,
-    select:focus-visible,
-    textarea:hover,
-    textarea:focus-visible,
-    .hero-cta-btn:hover,
-    .secondary-cta-btn:hover,
-    .donate-btn:hover,
-    .filter-btn:hover,
-    .game-btn:hover,
-    .dash-btn:hover {
+    button:hover, button:focus-visible, input:hover, input:focus-visible, select:hover, select:focus-visible, textarea:hover, textarea:focus-visible, .hero-cta-btn:hover, .secondary-cta-btn:hover, .donate-btn:hover, .filter-btn:hover, .game-btn:hover, .dash-btn:hover {
         color: #e8faff;
         border-color: rgba(204, 246, 255, 0.94);
         box-shadow:
@@ -4344,23 +3987,12 @@ footer {
             0 0 16px rgba(87, 217, 255, 0.34);
     }
 
-    .photo-card,
-    .filter-section,
-    .no-results-state,
-    .latest-update-group,
-    .friend-spotlight {
+    .photo-card, .filter-section, .no-results-state, .latest-update-group, .friend-spotlight {
         background: rgba(8, 18, 10, 0.84);
         border-color: var(--crt-border);
     }
 
-    .hero-intro-shell,
-    .gallery-intro-shell,
-    .page-intro-shell,
-    .creative-lane,
-    .overview-item,
-    .quick-start-watch,
-    .quick-start-read,
-    .quick-start-play {
+    .hero-intro-shell, .gallery-intro-shell, .page-intro-shell, .creative-lane, .overview-item, .quick-start-watch, .quick-start-read, .quick-start-play {
         background: linear-gradient(135deg, rgba(6, 16, 24, 0.94), rgba(8, 28, 42, 0.9));
         border-color: var(--crt-border);
     }
@@ -4414,8 +4046,7 @@ footer {
             0 0 20px rgba(255, 85, 0, 0.28);
     }
 
-    .soundcloud-cabinet-btn:hover,
-    .soundcloud-cabinet-btn:focus-visible {
+    .soundcloud-cabinet-btn:hover, .soundcloud-cabinet-btn:focus-visible {
         color: #000;
         border-color: #ffd1b8;
         background: #ff6a1f;
@@ -4425,38 +4056,17 @@ footer {
         color: #ffd8c2;
     }
 
-    .alaska-live-card,
-    .alaska-location-picker,
-    .alaska-extra-card,
-    .nasa-fresh-card,
-    .piedmont-sky-card,
-    .weirdness-page-intro,
-    .live-weirdness-card {
+    .weirdness-page-intro, .live-weirdness-card {
         background: rgba(8, 18, 10, 0.88);
         border-color: var(--crt-border);
     }
 
-    .alaska-live-value,
-    .alaska-extra-card h3,
-    .weirdness-link a,
-    .alaska-extra-link,
-    .alaska-extra-muted-link {
+    .weirdness-link a {
         color: var(--crt-text);
     }
 
-    .alaska-place-meta,
-    .alaska-updated,
-    .alaska-extra-updated,
-    .alaska-progress-label,
-    .alaska-extra-kicker,
-    .weirdness-page-kicker,
-    .live-weirdness-label {
+    .weirdness-page-kicker, .live-weirdness-label {
         color: var(--crt-dim);
-    }
-
-    .alaska-daylight-meter {
-        background: rgba(8, 18, 10, 0.92);
-        border-color: var(--crt-border-strong);
     }
 
     .search-input {
@@ -4469,18 +4079,13 @@ footer {
         color: rgba(142, 238, 255, 0.52);
     }
 
-    .hero-cta-btn,
-    .secondary-cta-btn,
-    .donate-btn {
+    .hero-cta-btn, .secondary-cta-btn, .donate-btn {
         background: linear-gradient(135deg, rgba(14, 52, 78, 0.96), rgba(7, 26, 43, 0.98));
         color: #eafaff;
         border-color: rgba(137, 232, 255, 0.8);
     }
 
-    img,
-    video,
-    canvas,
-    iframe {
+    img, video, canvas, iframe {
         border: 1px solid rgba(87, 217, 255, 0.45);
         box-shadow: 0 0 18px rgba(87, 217, 255, 0.18);
         filter: none;
@@ -4492,8 +4097,7 @@ footer {
         filter: saturate(1.8) brightness(1.32) contrast(1.18) drop-shadow(0 0 10px rgba(255, 34, 34, 0.34));
     }
 
-    .pulp-time-logo,
-    .pulp-time-logo.compact {
+    .pulp-time-logo, .pulp-time-logo.compact {
         border: none;
         box-shadow: none;
         filter: none;
@@ -4503,50 +4107,27 @@ footer {
         border-bottom: 1px solid var(--crt-border-strong);
     }
 
-    .global-nav a[aria-current="page"],
-    .global-nav a:hover {
+    .global-nav a[aria-current="page"], .global-nav a:hover {
         background: rgba(87, 217, 255, 0.14);
         border-color: var(--crt-border-strong);
         color: #ddf8ff;
     }
 
-    .nav-card:hover,
-    .photo-card:hover,
-    .quick-start-card:hover,
-    .project-week-card:hover,
-    .latest-update-card:hover,
-    .friend-link-card:hover,
-    .live-weirdness-card:hover,
-    .stat-item:hover,
-    .pulp-time-feature.compact:hover,
-    .social-links a:hover,
-    .track-button:hover {
+    .nav-card:hover, .photo-card:hover, .quick-start-card:hover, .project-week-card:hover, .latest-update-card:hover, .friend-link-card:hover, .live-weirdness-card:hover, .stat-item:hover, .pulp-time-feature.compact:hover, .social-links a:hover, .track-button:hover {
         border-color: rgba(204, 246, 255, 0.95);
         box-shadow:
             inset 0 0 0 1px rgba(204, 246, 255, 0.2),
             0 0 16px rgba(204, 246, 255, 0.34) !important;
     }
 
-    .nav-card:hover .nav-card-title,
-    .nav-card:hover .nav-card-description,
-    .friend-link-card:hover .friend-link-title,
-    .friend-link-card:hover .friend-link-description,
-    .latest-update-card:hover h3,
-    .latest-update-card:hover p {
+    .nav-card:hover .nav-card-title, .nav-card:hover .nav-card-description, .friend-link-card:hover .friend-link-title, .friend-link-card:hover .friend-link-description, .latest-update-card:hover h3, .latest-update-card:hover p {
         color: #effaff;
         text-shadow:
             0 0 2px rgba(204, 246, 255, 0.5),
             0 0 8px rgba(87, 217, 255, 0.24);
     }
 
-    .section-kicker,
-    .archive-hero-badge,
-    .latest-update-group-title,
-    .photo-card-label,
-    .friend-link-tag,
-    .latest-update-dot,
-    .project-week-badge,
-    .nav-card-badge.new {
+    .section-kicker, .archive-hero-badge, .latest-update-group-title, .photo-card-label, .friend-link-tag, .latest-update-dot, .project-week-badge, .nav-card-badge.new {
         color: #fff1f3;
         border: 1px solid rgba(152, 236, 255, 0.86);
         border-left: 3px solid rgba(118, 236, 255, 0.98);
@@ -4558,12 +4139,7 @@ footer {
             0 0 8px rgba(118, 236, 255, 0.14);
     }
 
-    .section-kicker,
-    .friend-link-tag,
-    .photo-card-label,
-    .latest-update-group-title,
-    .archive-hero-badge,
-    .project-week-badge {
+    .section-kicker, .friend-link-tag, .photo-card-label, .latest-update-group-title, .archive-hero-badge, .project-week-badge {
         padding: 4px 9px;
         border-radius: 999px;
         display: inline-flex;
@@ -4571,8 +4147,7 @@ footer {
         gap: 6px;
     }
 
-    .nav-card-badge.new,
-    .latest-update-dot {
+    .nav-card-badge.new, .latest-update-dot {
         box-shadow:
             inset 0 0 0 1px rgba(255, 170, 178, 0.22),
             0 0 12px rgba(255, 90, 104, 0.36);
@@ -4582,8 +4157,7 @@ footer {
         border-left-color: rgba(255, 90, 104, 0.74);
     }
 
-    .header-support,
-    .header-support .donate-btn {
+    .header-support, .header-support .donate-btn {
         border-color: rgba(255, 90, 104, 0.8);
         box-shadow:
             inset 0 0 0 1px rgba(255, 120, 132, 0.2),
@@ -4629,8 +4203,7 @@ footer {
         opacity: 0.8;
     }
 
-    .retro-globe-wrap::before,
-    .retro-globe-wrap::after {
+    .retro-globe-wrap::before, .retro-globe-wrap::after {
         border-color: rgba(134, 230, 255, 0.7);
     }
 
@@ -4668,8 +4241,7 @@ footer {
         background: rgba(255, 90, 104, 0.2);
     }
 
-    .creative-lane-icon,
-    .pillar-card-icon {
+    .creative-lane-icon, .pillar-card-icon {
         background: rgba(255, 90, 104, 0.32);
         border: 1px solid rgba(152, 236, 255, 0.82);
         box-shadow:
@@ -4700,11 +4272,7 @@ footer {
         box-shadow: 0 4px 12px rgba(255, 90, 104, 0.36);
     }
 
-    .stat-item,
-    .stat-item:visited,
-    .stat-label,
-    .stat-number,
-    .stat-icon {
+    .stat-item, .stat-item:visited, .stat-label, .stat-number, .stat-icon {
         color: #eaf9ff;
     }
 
@@ -4727,8 +4295,7 @@ footer {
         background: rgba(87, 217, 255, 0.12);
     }
 
-    footer .social-links a:hover,
-    footer .social-links a:focus-visible {
+    footer .social-links a:hover, footer .social-links a:focus-visible {
         color: #e8faff;
         border-color: rgba(204, 246, 255, 0.95);
         background: rgba(87, 217, 255, 0.24);
@@ -4766,36 +4333,20 @@ footer {
         }
     }
 
-    h1,
-    h2,
-    .global-nav a[aria-current="page"] {
+    h1, h2, .global-nav a[aria-current="page"] {
         animation: phosphor-pulse 7s ease-in-out infinite;
     }
 
     @media (prefers-reduced-motion: reduce) {
-        body,
-        h1,
-        h2,
-        .global-nav a[aria-current="page"] {
+        body, h1, h2, .global-nav a[aria-current="page"] {
             animation: none !important;
         }
 
-        .soundcloud-feature-shell,
-        .soundcloud-feature-shell::after {
+        .soundcloud-feature-shell, .soundcloud-feature-shell::after {
             animation: none !important;
         }
 
-        a,
-        button,
-        input,
-        select,
-        textarea,
-        .hero-cta-btn,
-        .secondary-cta-btn,
-        .donate-btn,
-        .filter-btn,
-        .game-btn,
-        .dash-btn {
+        a, button, input, select, textarea, .hero-cta-btn, .secondary-cta-btn, .donate-btn, .filter-btn, .game-btn, .dash-btn {
             transition: none !important;
         }
     }
@@ -4935,8 +4486,7 @@ main > .old-movies-back-row:last-child {
         0 0 14px rgba(168, 120, 255, 0.24);
 }
 
-.old-movies-schedule li.schedule-highlight .schedule-date,
-.old-movies-schedule li.schedule-highlight .schedule-title {
+.old-movies-schedule li.schedule-highlight .schedule-date, .old-movies-schedule li.schedule-highlight .schedule-title {
     color: #efe3ff;
     text-shadow: 0 0 8px rgba(199, 146, 255, 0.4);
 }
@@ -4990,9 +4540,7 @@ main > .old-movies-back-row:last-child {
     font-size: 0.92rem;
 }
 
-.theater-experience,
-.theater-status,
-.theater-status-copy {
+.theater-experience, .theater-status, .theater-status-copy {
     margin: 0;
 }
 
@@ -5063,8 +4611,7 @@ main > .old-movies-back-row:last-child {
     transition: transform 0.22s ease, border-color 0.22s ease, box-shadow 0.22s ease;
 }
 
-.theater-showtimes-btn:hover,
-.theater-showtimes-btn:focus-visible {
+.theater-showtimes-btn:hover, .theater-showtimes-btn:focus-visible {
     transform: translateY(-1px);
     color: #ffffff;
     border-color: rgba(204, 246, 255, 0.95);
@@ -5096,8 +4643,7 @@ main > .old-movies-back-row:last-child {
 }
 
 @media (prefers-reduced-motion: reduce) {
-    .theater-card,
-    .theater-showtimes-btn {
+    .theater-card, .theater-showtimes-btn {
         transition: none !important;
     }
 }
