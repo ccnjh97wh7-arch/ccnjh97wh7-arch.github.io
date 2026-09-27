@@ -47,76 +47,6 @@
       z-index: 1;
     }
 
-    .music-player-layout {
-      display: grid;
-      gap: 18px;
-    }
-
-    .now-playing-block {
-      display: grid;
-      grid-template-columns: 92px minmax(0, 1fr);
-      gap: 16px;
-      align-items: center;
-      padding: 16px;
-      border: 1px solid rgba(120, 24, 18, 0.2);
-      border-radius: 12px;
-      background: linear-gradient(135deg, rgba(255, 255, 255, 0.98), rgba(120, 24, 18, 0.06));
-    }
-
-    .record-mark {
-      width: 92px;
-      aspect-ratio: 1;
-      border-radius: 50%;
-      background:
-        radial-gradient(circle at center, #f5e7d8 0 11%, #111111 12% 17%, transparent 18%),
-        repeating-radial-gradient(circle, #242424 0 6px, #0f0f0f 7px 12px);
-      border: 7px solid #111111;
-      box-shadow: inset 0 0 0 2px rgba(245, 231, 216, 0.2);
-    }
-
-    .record-mark.record-mark-art {
-      border-radius: 16px;
-      border-width: 1px;
-      border-color: rgba(120, 24, 18, 0.24);
-      background-position: center;
-      background-repeat: no-repeat;
-      background-size: cover;
-      box-shadow: 0 14px 24px rgba(47, 33, 17, 0.16);
-    }
-
-    .eyebrow-note {
-      margin: 0 0 6px;
-      color: var(--patriotic-blue);
-      font-family: Arial, sans-serif;
-      font-size: 0.78rem;
-      font-weight: 700;
-      letter-spacing: 0.14em;
-      text-transform: uppercase;
-    }
-
-    .now-playing-block h2 {
-      margin: 0;
-      color: #f8fffb;
-      font-size: clamp(1.7rem, 3vw, 2.4rem);
-      text-shadow:
-        0 0 4px rgba(244, 255, 248, 0.95),
-        0 0 10px rgba(201, 255, 219, 0.85),
-        0 0 18px rgba(132, 255, 176, 0.65);
-    }
-
-    .track-note {
-      margin: 6px 0 0;
-      color: #3f3d39;
-      font-family: Arial, sans-serif;
-      font-size: 0.95rem;
-    }
-
-    .player-surface audio {
-      width: 100%;
-      margin-top: 16px;
-      accent-color: var(--patriotic-red);
-    }
-
     .player-controls {
       display: flex;
       flex-wrap: wrap;
@@ -324,10 +254,6 @@
     }
 
     @media (max-width: 700px) {
-      .now-playing-block {
-        grid-template-columns: 1fr;
-      }
-
       .track-button {
         grid-template-columns: 1.8rem 42px minmax(0, 1fr);
       }
@@ -384,40 +310,26 @@
         <p class="section-kicker">Music archive</p>
         <h2 id="music-page-title">Listen through the catalog.</h2>
       </div>
-      <p>The page is simpler now: one player, one playlist, and the tracks themselves. A few recovered transmissions can break format when they need to. Pick a song, share it, and move through the archive without the extra gadgets.</p>
+      <p>The page is simpler now: one playlist and the tracks themselves. Pick a song and move through the archive.</p>
       <div class="hero-link-row">
-        <a href="#audio-player" class="hero-cta-btn">Start listening</a>
+        <a href="#playlist" class="hero-cta-btn">Start listening</a>
         <a href="index.html" class="secondary-cta-btn">Back to home</a>
       </div>
     </section>
 
-    <section class="archive-panel music-player-panel" aria-labelledby="now-playing-title">
-      <div class="music-player-layout">
-        <div class="now-playing-block player-surface">
-          <div class="record-mark" id="now-playing-art" aria-hidden="true"></div>
-          <div>
-            <p class="eyebrow-note">Now playing</p>
-            <h2 id="now-playing-title">The Bullshit</h2>
-            <p class="track-note" id="now-playing-note">First track in the archive.</p>
-          </div>
-        </div>
+    <section class="archive-panel music-player-panel" aria-label="Music playlist">
+      <audio id="audio-player" preload="metadata" hidden>
+        <source src="music/the_bullshit.mp3" type="audio/mpeg">
+      </audio>
 
-        <div class="player-surface">
-          <audio id="audio-player" controls preload="metadata">
-            <source src="music/the_bullshit.mp3" type="audio/mpeg">
-            Your browser does not support the audio element.
-          </audio>
-
-          <p class="playlist-summary" id="total-play-count" aria-live="polite">Your listens on this browser: 0 | Unique tracks listened: 0</p>
-          <p class="counter-scope-note" id="counter-scope-note">Local counter only. It does not include other visitors.</p>
-          <div class="player-controls" aria-label="Album playback">
-            <button id="play-all" type="button">Play Entire Album</button>
-          </div>
-          <p class="player-status" id="player-status" aria-live="polite"></p>
-
-          <ol class="playlist" id="playlist" aria-label="Song playlist"></ol>
-        </div>
+      <p class="playlist-summary" id="total-play-count" aria-live="polite">Your listens on this browser: 0 | Unique tracks listened: 0</p>
+      <p class="counter-scope-note" id="counter-scope-note">Local counter only. It does not include other visitors.</p>
+      <div class="player-controls" aria-label="Album playback">
+        <button id="play-all" type="button">Play Entire Album</button>
       </div>
+      <p class="player-status" id="player-status" aria-live="polite"></p>
+
+      <ol class="playlist" id="playlist" aria-label="Song playlist"></ol>
     </section>
 
     <section class="page-intro-shell" aria-label="Listening note">
@@ -427,9 +339,6 @@
 
   <script>
     const audioPlayer = document.querySelector("#audio-player");
-    const nowPlayingTitle = document.querySelector("#now-playing-title");
-    const nowPlayingNote = document.querySelector("#now-playing-note");
-    const nowPlayingArt = document.querySelector("#now-playing-art");
     const playAllButton = document.querySelector("#play-all");
     const playerStatus = document.querySelector("#player-status");
     const playlist = document.querySelector("#playlist");
@@ -693,18 +602,6 @@
       currentTrackIndex = index;
       currentTrackPlayCounted = false;
       audioPlayer.src = track.dataset.src;
-      nowPlayingTitle.textContent = track.dataset.title;
-      nowPlayingNote.textContent = track.dataset.note;
-
-      if (nowPlayingArt) {
-        if (track.dataset.art) {
-          nowPlayingArt.classList.add("record-mark-art");
-          nowPlayingArt.style.backgroundImage = `url("${track.dataset.art}")`;
-        } else {
-          nowPlayingArt.classList.remove("record-mark-art");
-          nowPlayingArt.style.backgroundImage = "";
-        }
-      }
 
       syncUrlToCurrentTrack(track.dataset.src);
 
